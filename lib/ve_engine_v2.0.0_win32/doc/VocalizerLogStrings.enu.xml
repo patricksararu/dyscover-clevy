@@ -1,0 +1,2354 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="VocalizerErrors.xsl"?>
+
+<!-- 
+
+Nuance Vocalizer Error Mapping File
+Copyright (c) 2001-2009 Nuance Communcations, Inc. All Rights Reserved.
+
+-->
+<ErrorMessages moduleName="Vocalizer" version="5.0.0" xmlns="http://www.nuance.com/vocalizer50/ErrorMessages">
+    <!-- For compatibility with old internal log calls, intentionally empty -->
+    <error num="0" severity="2"/>
+    <error num="1" severity="3"/>
+
+    <!-- Event names, event ID + 10 -->
+    <error num="10" severity="4">NVOCunde</error> <!-- undefined -->
+    <error num="11" severity="4">NVOCopen</error> <!-- TTS instance open -->
+    <error num="12" severity="4">NVOCclos</error> <!-- TTS instance close -->
+    <error num="13" severity="4">NVOCsyst</error> <!-- Synthesis start -->
+    <error num="14" severity="4">NVOCsynd</error> <!-- Synthesis end -->
+    <error num="15" severity="4">NVOCliss</error> <!-- License start -->
+    <error num="16" severity="4">NVOClise</error> <!-- License end -->
+    <error num="17" severity="4">NVOClisr</error> <!-- License refused -->
+    <error num="18" severity="4">NVOCaudf</error> <!-- First audio -->
+    <error num="19" severity="4">NVOCaudn</error> <!-- Next audio -->
+    <error num="20" severity="4">NVOClock</error> <!-- License lock -->
+    <error num="21" severity="4">NVOCunlo</error> <!-- License unlock -->
+    <error num="22" severity="4">NVOCifst</error> <!-- Internet fetch start -->
+    <error num="23" severity="4">NVOCifnd</error> <!-- Internet fetch end -->
+    <error num="24" severity="4">NVOCactp</error> <!-- ActivePrompt used -->
+    <error num="25" severity="4">NVOCapps</error> <!-- Application session -->
+    <error num="26" severity="4">NVOCsysw</error> <!-- Mid-synthesis switch -->
+    <error num="27" severity="4">NVOCinpt</error> <!-- Input text -->
+    <error num="28" severity="4">NVOCtnat</error> <!-- Tenant -->
+    <error num="29" severity="4">NVOCdict</error> <!-- Dictionary -->
+    <error num="30" severity="4">NVOCrlsp</error> <!-- Ruleset -->
+
+  <!-- audiofetch errors -->
+    <error num="100" severity="2" scope="system">Out of memory</error>
+    <error num="101" severity="3">Audio insertion failed, invalid Sun audio
+    file, corrupt header</error>
+    <error num="102" severity="3">Audio insertion failed, unsupported Sun audio
+    file, only mono audio (single channel) is supported</error>
+    <error num="103" severity="3">Audio insertion failed, invalid Sun audio
+    file, A-law audio must be 8kHz</error>
+    <error num="104" severity="3">Audio insertion failed, invalid Sun audio
+    file, mu-law audio must be 8kHz</error>
+    <error num="105" severity="3">Audio insertion failed, Sun audio file
+    contains audio encoded in an unsupported format</error>
+    <error num="106" severity="3">Audio insertion failed, invalid Sun audio
+    file, missing audio data</error>
+    <error num="107" severity="3">Audio insertion failed, invalid Sun audio
+    file, audio data is beyond the end of the file</error>
+    <error num="108" severity="3">Audio insertion failed, insufficient
+    memory for Sun audio audio data storage</error>
+    <error num="109" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, missing end_head label in the header</error>
+    <error num="110" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, must start with a NIST_1A header line</error>
+    <error num="111" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, invalid header length field</error>
+    <error num="112" severity="3">Audio insertion failed, unsupported
+    NIST SPHERE audio file, only mono audio (single channel) is
+    supported</error>
+    <error num="113" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, A-law audio must be 8kHz</error>
+    <error num="114" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, mu-law audio must be 8kHz</error>
+    <error num="115" severity="3">Audio insertion failed, NIST SPHERE
+    audio file contains audio encoded in an unsupported format</error>
+    <error num="116" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, missing audio data</error>
+    <error num="117" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, audio data is beyond the end of the file</error>
+    <error num="118" severity="3">Audio insertion failed, insufficient
+    memory for NIST SPHERE audio audio data storage</error>
+    <error num="119" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, invalid sample count</error>
+    <error num="120" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, invalid sample byte size</error>
+    <error num="121" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, missing type and value for an integer header
+    field</error>
+    <error num="122" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, incorrect type for an integer header field</error>
+    <error num="123" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, missing value for an integer header field</error>
+    <error num="124" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, missing type and value for a string header
+    field</error>
+    <error num="125" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, incorrect type for a string header field</error>
+    <error num="126" severity="3">Audio insertion failed, invalid NIST
+    SPHERE audio file, missing value for a string header field</error>
+    <error num="128" severity="3">Cannot obtain an Internet fetch resource, so only local file fetching is supported</error>
+    <error num="129" severity="3">Cannot obtain an appropriate an Internet fetch resource, so only local file fetching is supported</error>
+    <error num="130" severity="2" scope="system">Audio fetcher initialization failed,
+    could not create a map container</error>
+    <error num="131" severity="3">Audio file fetch failed, audio file is too large</error>
+    <error num="132" severity="3">Audio file fetch failed, unspecified or unsupported MIME content type</error>
+    <error num="133" severity="3">Audio file fetch failed, unsupported audio format</error>
+    <error num="134" severity="3">Audio insertion failed, sample rate does not match the active voice</error>
+    <error num="136" severity="3">Audio insertion failed, contains audio encoded in an unsupported format</error>
+    <error num="137" severity="3">Audio insertion failed, sample rate does not match the active voice</error>
+    <error num="138" severity="3">Audio insertion failed, no audio samples</error>
+    <error num="143" severity="3">Audio insertion failed, invalid RIFF WAV
+    file, corrupt fmt chunk </error>
+    <error num="144" severity="3">Audio insertion failed, unsupported RIFF WAV
+    file, only mono audio (single channel) is supported </error>
+    <error num="145" severity="3">Audio insertion failed, unsupported RIFF WAV
+    file, for linear PCM samples only support 16 bit samples</error>
+    <error num="146" severity="3">Audio insertion failed, invalid RIFF WAV
+    file, mismatched specifications for A-law audio </error>
+    <error num="147" severity="3">Audio insertion failed, invalid RIFF WAV
+    file, mismatched specifications for u-law audio </error>
+    <error num="148" severity="3">Audio insertion failed, unsupported RIFF WAV
+    file, unsupported sample format </error>
+    <error num="149" severity="3">Audio insertion failed, invalid RIFF WAV
+    file, missing fmt chunk </error>
+    <error num="150" severity="3">Audio insertion failed, invalid RIFF WAV
+    file, missing audio data chunk </error>
+    <error num="151" severity="3">Audio insertion failed, insufficient
+    memory for RIFF WAV audio data storage </error>
+    <error num="154" severity="3">Audio insertion failed, invalid
+    speechbase insertion URI</error>
+    <error num="155" severity="3">Audio insertion failed, could not
+    store the speechbase handle</error>
+    <error num="156" severity="3">Audio insertion failed, could not
+    get a unit within a speechbase</error>
+    <error num="157" severity="3">Audio insertion failed, failed to
+    prepare for decoding a speechbase unit</error>
+    <error num="158" severity="3">Audio insertion failed, could not
+    decode a speechbase unit</error>
+    <error num="159" severity="3">Audio insertion failed, failed to
+    clean up after decoding a speechbase unit</error>
+    <error num="160" severity="3">Audio insertion failed, could not find the required audio decoder</error>
+    <error num="161" severity="3">Audio insertion failed, could not open the audio decoder</error>
+    <error num="162" severity="3">Audio insertion failed, the audio encoding is not supported</error>
+    <error num="163" severity="3">Audio insertion failed, could not decode the audio samples</error>
+    <error num="164" severity="3">Audio insertion failed, could not close an audio decoder</error>
+
+    <!-- broker errors -->
+    <error num="200" severity="2" scope="system">Out of memory</error>
+    <error num="256" severity="2" scope="system">Can not find a TTS engine in the
+    installation directory</error>
+    <error num="257" severity="2" scope="system">Cannot load data, not found within the CLC archive</error>
+    <error num="258" severity="2" scope="system">Could not find the required TTS
+    engine in the installation directory</error>
+    <error num="259" severity="2" scope="system">Cannot load a component, cached load
+    failure</error>
+    <error num="260" severity="2" scope="system">Cannot load a component, the component
+    path isn't registered</error>
+    <error num="261" severity="3">Can not find a component for loading</error>
+    <error num="262" severity="2" scope="system">Cannot load a component, the component
+    GetInterface function isn't registered</error>
+    <error num="263" severity="2" scope="system">Cannot load a component, the DLL or shared
+    library load failed</error>
+    <error num="264" severity="2" scope="system">Cannot load a component, could not find
+    the GetInterface function in the loaded DLL or shared library</error>
+    <error num="265" severity="2" scope="system">Cannot load a component, the component
+    GetInterface function returned an error</error>
+    <error num="266" severity="2" scope="system">Cannot load a component, the component
+    ClassOpen function returned an error</error>
+    <error num="267" severity="3">Broker header tag query failed</error>
+    <error num="275" severity="2" scope="system">Cannot load a data component, OS data open
+    failed</error>
+    <error num="276" severity="2" scope="system">Broker header file parse failed</error>
+    <error num="280" severity="2" scope="system">Cannot unload a data component, OS data close
+    failed</error>
+    <error num="282" severity="3">Broker header tag query failed</error>
+    <error num="286" severity="2" scope="system">Cannot map a data component, out of
+    range</error>
+    <error num="287" severity="2" scope="system">Cannot map a data component, OS data map
+    failed</error>
+    <error num="289" severity="5">Duplicate broker string found while
+    loading the installed component list, ignoring the second occurance</error>
+    <error num="293" severity="2" scope="system">Cannot write a data component, not found
+    </error>
+    <error num="294" severity="2" scope="system">Cannot write a data component, could not get
+    the data path</error>
+    <error num="295" severity="2" scope="system">Cannot write a data component, I/O error
+    </error>
+    <error num="296" severity="2" scope="system">Cannot unmap a data component, OS data unmap
+    failed</error>
+    <error num="297" severity="2" scope="system">Cannot freeze a mapped data component, OS
+    data freeze failed</error>
+    <error num="298" severity="2" scope="system">Cannot open a critical section</error>
+    <error num="300" severity="2" scope="system">Cannot create an interface map, out of memory
+    </error>
+
+    <!-- inetspi errors -->
+    <error num="500" severity="2">Internet fetch error</error>
+    <error num="501" severity="2" scope="system">Internet fetch cache initialization failed, caching is disabled</error>
+    <error num="502" severity="2" scope="system">Internet fetch cache initialization failed due to invalid configuration parameters, caching is disabled</error>
+    <error num="503" severity="2" scope="system">Internet fetch initialization failed</error>
+    <error num="504" severity="2" scope="system">Internet fetch initialization failed due to invalid configuration parameters</error>
+    <error num="512" severity="2">Found invalid hex character</error>
+    <error num="513" severity="2">VXIValue deserialize failed: Missing SOAP-ENC:hexBinary element close tag</error>
+    <error num="514" severity="2" scope="system">VXIValue deserialize failed: Out of memory</error>
+    <error num="515" severity="2" scope="system">VXIValue deserialize failed: VXIContentCreate() failed</error>
+    <error num="516" severity="2">VXIValue deserialize failed: NULL input string</error>
+    <error num="517" severity="2">VXIValue deserialize failed: Missing open element in input string</error>
+    <error num="518" severity="2">VXIValue deserialize failed: Invalid SOAP-ENC type</error>
+    <error num="519" severity="2">VXIValue deserialize failed: Unterminated id attribute</error>
+    <error num="520" severity="2">VXIValue deserialize failed: Unterminated contentType attribute</error>
+    <error num="521" severity="2">VXIValue deserialize failed: Missing &apos;&gt;&apos; for SOAP-ENC element open</error>
+    <error num="522" severity="2">VXIValue deserialize failed: Missing SOAP-ENC:string element close tag</error>
+    <error num="523" severity="2">VXIValue deserialize failed: Missing SOAP-ENC element close tag</error>
+    <error num="524" severity="2">VXIValue deserialize failed: parse failed</error>
+    <error num="525" severity="2" scope="system">Out of memory</error>
+    <error num="526" severity="2">Internet fetch mode is not supported</error>
+    <error num="527" severity="3">File open for read failed</error>
+    <error num="528" severity="2" scope="system">Internet fetch property storage failed</error>
+    <error num="529" severity="3">File read failed</error>
+    <error num="530" severity="3">File close failed</error>
+
+    <!-- osspi errors -->
+    <error num="640" severity="2" scope="system">Low level problem loading DLL/so</error>
+    <error num="641" severity="2" scope="system">File IO interface can not open file</error>
+
+    <!-- swilicense flexlm errors -->
+    <error num="768" severity="2" scope="system">Licensing error: global licensing directory is not set</error>
+    <error num="769" severity="2" scope="system">Licensing error: unable to read configuration parameter SWILicenseServerList</error>
+    <error num="770" severity="2" scope="system">Licensing error: please contact Nuance technical support for further information on installing an appropriate license</error>
+    <error num="771" severity="2" scope="system">Licensing error: cannot lock Flex mutex. Static licenses might not be usable anymore.</error>
+    <error num="772" severity="3">Problems communicating with license server. Trying to re-establish connection.</error>
+    <error num="773" severity="2" scope="system">Licensing error: error during attempt to reconnect to license server.</error>
+    <error num="774" severity="3">Licensing warning: no user data in reconnection callback. This probably means no licenses are currently checked out.</error>
+    <error num="775" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_PERROR_MSGBOX)</error>
+    <error num="776" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_PROMPT_FOR_FILE)</error>
+    <error num="777" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_WINDOWS_MODULE_HANDLE)</error>
+    <error num="778" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_LICENSE_DEFAULT)</error>
+    <error num="779" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_CKOUT_INSTALL_LIC)</error>
+    <error num="780" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_MT_CONNECT)</error>
+    <error num="781" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_TCP_TIMEOUT)</error>
+    <error num="782" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_CHECK_INTERVAL)</error>
+    <error num="783" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_RETRY INTERVAL)</error>
+    <error num="784" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_RETRY COUNT)</error>
+    <error num="785" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_VENDOR_CALLBACK_DATA)</error>
+    <error num="786" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_USER_RECONNECT)</error>
+    <error num="787" severity="2" scope="system">Licensing error: CreateAJob: Cannot exceed maximum number of jobs</error>
+    <error num="788" severity="2" scope="system">Licensing error: CreateAJob: error calling lc_new_job</error>
+    <error num="789" severity="2" scope="system">Licensing error: CreateAJob: error setting extra attributes</error>
+    <error num="790" severity="2" scope="system">Licensing error: DoCheckout: error setting vendor data</error>
+    <error num="791" severity="2" scope="system">Licensing error: DoCheckout: Unexpected NULL value</error>
+    <error num="792" severity="2" scope="system">Licensing error: DoCheckout: exception caught in lc_checkout</error>
+    <error num="793" severity="2" scope="system">Licensing error: DoCheckout: Attempted to exceed maximum number of jobs</error>
+    <error num="794" severity="2" scope="system">Licensing error: DoCheckout: error calling lc_checkout</error>
+    <error num="795" severity="2" scope="system">Licensing error: DoCheckout: Error creating a new job; Possibly an attempt to exceed the maximum number of jobs?</error>
+    <error num="796" severity="2" scope="system">Licensing error: DoCheckout: error calling lc_checkout</error>
+    <error num="797" severity="2" scope="system">Licensing error: failed to create Flex mutex</error>
+    <error num="798" severity="2" scope="system">Licensing error: SWIlicenseInit: error configuring FlexLM with first call to lc_new_job</error>
+    <error num="799" severity="2" scope="system">Licensing error: license object handle is NULL</error>
+    <error num="800" severity="2" scope="system">Licensing error: out of memory</error>
+    <error num="801" severity="2" scope="system">Licensing error: out of memory</error>
+    <error num="802" severity="2" scope="system">Licensing error: out of memory</error>
+    <error num="803" severity="2" scope="system">Licensing error: failed to lock Flex mutex</error>
+    <error num="804" severity="2" scope="system">Licensing error: license object handle is NULL</error>
+    <error num="805" severity="2" scope="system">Licensing error: Internal error in SWIlicenseLock; feature name inconsistent</error>
+    <error num="806" severity="2" scope="system">Licensing error: Internal error in SWIlicenseLock; feature name inconsistent</error>
+    <error num="807" severity="2" scope="system">Licensing error: Internal error in SWIlicenseLock; feature name inconsistent</error>
+    <error num="808" severity="2" scope="system">Licensing error: Internal error in SWIlicenseLock; feature name inconsistent</error>
+    <error num="809" severity="2" scope="system">Licensing error: out of memory</error>
+    <error num="810" severity="2" scope="system">Licensing error: failed to lock Flex mutex</error>
+    <error num="811" severity="2" scope="system">Licensing error: SWIlicenseUnlock: license object handle is NULL</error>
+    <error num="812" severity="2" scope="system">Licensing error: SWIlicenseUnlock: error setting vendor data</error>
+    <error num="813" severity="2" scope="system">Licensing error: SWIlicenseUnlock: exception caught in lc_checkin</error>
+    <error num="814" severity="2" scope="system">Licensing error: SWIlicenseUnlock: error setting vendor data</error>
+    <error num="815" severity="2" scope="system">Licensing error: SWIlicenseUnlock: error setting vendor data</error>
+    <error num="816" severity="2" scope="system">Licensing error: license object handle is NULL</error>
+    <error num="817" severity="2" scope="system">Licensing error: license server connection compromised. Cannot validate SWIrec SPEECH license</error>
+    <error num="818" severity="2" scope="system">Licensing error: license server connection compromised. Cannot validate SWIep license</error>
+    <error num="819" severity="2" scope="system">Licensing error: license server connection compromised. Cannot validate TTS speak license</error>
+    <error num="820" severity="5">Licensing: no license to disable TTS throttling</error>
+    <error num="821" severity="2" scope="system">Licensing error: license object handle is NULL</error>
+    <error num="822" severity="2" scope="system">Licensing error: failed to lock Flex mutex</error>
+    <error num="823" severity="2" scope="system">Licensing error: SWIlicenseDestroyObj: error setting vendor data</error>
+    <error num="824" severity="2" scope="system">Licensing error: SWIlicenseDestroyObj: error setting vendor data</error>
+    <error num="825" severity="2" scope="system">Licensing error: SWIlicenseDestroyObj: error setting vendor data</error>
+    <error num="826" severity="2" scope="system">Licensing error: failed to destroy Flex mutex</error>
+    <error num="827" severity="2" scope="system">Licensing error: application needs to allocate a license to unlock the Vocalizer port</error>
+    <error num="828" severity="2" scope="system">Licensing error: license server connection compromised. Cannot validate PromptSculptor apdb license.</error>
+    <error num="829" severity="2" scope="system">Licensing error: license server connection compromised. Cannot validate PromptSculptor wavegen license.</error>
+    <error num="830" severity="2" scope="system">Licensing error: failed to destroy thread handle. Potential resource leak.</error>
+    <error num="831" severity="2" scope="system">Licensing error: failed to re-instate licensing.</error>
+    <error num="832" severity="2" scope="system">Licensing error: communication with license server is compromised. Disabling all product features until license server communication is restored.</error>
+    <error num="833" severity="2" scope="system">Licensing: marking feature as compromised</error>
+    <error num="834" severity="2" scope="system">Licensing error: failed to lock Flex mutex</error>
+    <error num="835" severity="3">Entering re-connection thread</error>
+    <error num="836" severity="3">Successfully re-established a license server connection for feature</error>
+    <error num="837" severity="2" scope="system">Licensing error: failed to destroy thread handle. Potential resource leak.</error>
+    <error num="838" severity="2" scope="system">Licensing error: no user data in callback following successful reconnection. This probably means no licenses were checked in during ReconnectCallback</error>
+    <error num="839" severity="2" scope="system">Licensing error: attempt to obtain licenses for an unsupport feature</error>
+    <error num="840" severity="2" scope="system">Licensing internal error: NULL parameter</error>
+    <error num="841" severity="2" scope="system">Licensing error: DoRecheckout: exception caught in lc_checkout</error>
+    <error num="842" severity="2" scope="system">Licensing error: DoRecheckout: max jobs limit exceeded</error>
+    <error num="843" severity="2" scope="system">Licensing error: DoRecheckout: error calling lc_checkout</error>
+    <error num="844" severity="2" scope="system">Licensing error: DoRecheckout: max jobs limit exceeded</error>
+    <error num="845" severity="2" scope="system">Licensing error: DoRecheckout: error calling lc_checkout</error>
+    <error num="846" severity="2" scope="system">Licensing error: Sattempt to obtain licenses for an unsupported feature</error>
+    <error num="847" severity="2" scope="system">Licensing error: SWIlicenseUnlock: exception caught in lc_checkin</error>
+    <error num="848" severity="2" scope="system">Licensing error: connection to license server compromised - Cannot validate license.</error>
+    <error num="849" severity="2" scope="system">Licensing error: invalid reconnection to license server. Licenses not re-instated.</error>
+    <error num="850" severity="2" scope="system">Licensing error: SetExtraFlexAttrs: error calling lc_set_attr(LM_A_USER_RECONNECT_DONE_EX)</error>
+    <error num="851" severity="2" scope="system">Licensing error: invalid attempt to reconnect to license server</error>
+    <error num="852" severity="3">Problems communicating with license server. Trying to re-establish connection.</error>
+    <error num="853" severity="2" scope="system">Licensing error: error during attempt to reconnect to license server.</error>
+    <error num="854" severity="3">Licensing error: failed to acquire cache mutex. Licensing for feature in jeopardy.</error>
+    <error num="855" severity="2" scope="system">Licensing internal error: SWIlicenseCreateLicenseCache called before SWIlicenseInitEx</error>
+    <error num="856" severity="2" scope="system">Licensing error: won't create cache for 0 licenses</error>
+    <error num="857" severity="2" scope="system">Licensing error: failed to create cache mutex. Dynamic licensing not enabled for feature.</error>
+    <error num="858" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Dynamic licensing not enabled for feature.</error>
+    <error num="859" severity="2" scope="system">Licensing error: license cache already exists for this feature</error>
+    <error num="860" severity="2" scope="system">Licensing error: failed to create cache-cleaning thread. Dynamic licensing not enabled for feature.</error>
+    <error num="861" severity="2" scope="system">Licensing error: error creating licensing job. Dynamic licensing not enabled for feature.</error>
+    <error num="862" severity="2" scope="system">Licensing error: error setting licensing job attributes. Dynamic licensing not enabled for feature.</error>
+    <error num="863" severity="2" scope="system">Licensing error: requested number of cacheable licenses too high. Using maximum value instead.</error>
+    <error num="864" severity="2" scope="system">Licensing error: license expiration time too low. Using minimum value instead.</error>
+    <error num="865" severity="2" scope="system">Licensing error: can't destroy cache for unknown feature</error>
+    <error num="866" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Resources and licenses might be held for longer than needed.</error>
+    <error num="867" severity="2" scope="system">Licensing error: failed to free license. It may be held for longer than needed.</error>
+    <error num="868" severity="2" scope="system">Licensing error: can't give out license for unknown feature</error>
+    <error num="869" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Licensing for feature in jeopardy.</error>
+    <error num="870" severity="2" scope="system">Licensing error: can't give out license from an unitialized license cache</error>
+    <error num="871" severity="3">Licensing warning: no licenses available</error>
+    <error num="872" severity="2" scope="system">Licensing error: license cache in undefined state. Licensing for feature in jeopardy.</error>
+    <error num="873" severity="2" scope="system">Licensing error: failed to obtain license. Licensing for feature in jeopardy.</error>
+    <error num="874" severity="3">Licensing warning: failed to obtain additional license</error>
+    <error num="875" severity="2" scope="system">Licensing internal error: can't free license from invalid handle</error>
+    <error num="876" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Licensing for feature in jeopardy.</error>
+    <error num="877" severity="2" scope="system">Licensing error: failed to free license. It may be held for longer than needed.</error>
+    <error num="878" severity="2" scope="system">Licensing error: can't free license as there are none to free</error>
+    <error num="879" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Licensing for feature in jeopardy.</error>
+    <error num="880" severity="2" scope="system">Licensing error: can't retrieve number of license in use for unknown feature</error>
+    <error num="881" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Licensing for feature in jeopardy.</error>
+    <error num="882" severity="2" scope="system">Licensing internal error: can't validate licensing from invalid handle</error>
+    <error num="883" severity="2" scope="system">Licensing error: failed to acquire cache mutex. Licensing for feature in jeopardy.</error>
+    <error num="884" severity="2" scope="system">Licensing error: failed to release license.</error>
+    <error num="885" severity="2" scope="system">Licensing error: failed to create cache-cleaning timer. Dynamic licenses won't be released.</error>
+    <error num="886" severity="2" scope="system">Licensing error: won't create license cache for unknown feature</error>
+
+    <!-- throttle ace errors -->
+    <error num="896" severity="2" scope="system">Out of memory</error>
+
+    <!-- PCRE errors --> 
+    <error num="1000" severity="2" scope="system">Out of memory</error>
+    <error num="1001" severity="2" scope="system">Internal error, attempted to get
+    memory with an uninitialized frame block</error>
+    <error num="1002" severity="2">Regular expression could not be
+    parsed, exceeded the maximum number of memory blocks</error>
+    <error num="1003" severity="2" scope="system">Internal error, attempted to free
+    memory with an uninitialized frame block</error>
+    <error num="1004" severity="2" scope="system">Internal error, freed an
+    unallocated block</error>
+
+    <!-- SSML parser errors -->
+    <error num="1152" severity="2" scope="system">SSML class handle is invalid</error>
+    <error num="1153" severity="2" scope="system">SSML class handle is invalid</error>
+    <error num="1154" severity="2" scope="system">ObjOpen of parser failed</error>
+    <error num="1156" severity="2" scope="system">Wrong state for initiating SSML
+    processing</error>
+    <error num="1158" severity="2" scope="system">Could not get the number of SSML
+    input bytes remaining</error>
+    <error num="1159" severity="2">Could not resolve an XML entity
+    for SSML parsing</error>
+    <error num="1160" severity="2">Invalid SSML validation mode
+    configuration parameter</error>
+    <error num="1297" severity="3">Marker with unsupported type</error>
+    <error num="1298" severity="3">Invalid presentation type for marker</error>
+    <error num="1299" severity="3">Invalid UNIPA phoneme string</error>
+    <error num="1300" severity="3">Invalid phoneme string alphabet</error>
+    <error num="1301" severity="3">Could not convert an IPA phoneme string to L&amp;H+</error>
+    <error num="1302" severity="3">SSML ssft-pron with ssft-pos is not supported</error>
+    <error num="1303" severity="3">SSML ssft-pron with xml:lang is not supported</error>
+    <error num="1304" severity="3">SSML prosody with pitch changes is not supported</error>
+    <error num="1305" severity="3">The duration attribute for SSML prosody is not supported</error>
+    <error num="1408" severity="3">File/URI fetch resource not available (inet)</error>
+    <error num="1409" severity="3">Audio insertions will not be
+    supported, no registered audio fetcher resource</error>
+    <error num="1412" severity="3">SSML meta must have either the name or http-equiv attribute</error>
+    <error num="1413" severity="3">Invalid SSML attribute value</error>
+    <error num="1414" severity="3">SSML meta cannot have both the name and http-equiv attributes</error>
+    <error num="1416" severity="3">SSML voice must have attributes</error>
+    <error num="1417" severity="3">SSML attribute is not supported</error>
+    <error num="1418" severity="3">SSML element is not supported</error>
+    <error num="1419" severity="5">SSML audio fetchhint=&quot;prefetch&quot; is ignored</error>
+    <error num="1420" severity="3">Audio element without &quot;src&quot; attribute is ignored</error>
+    <error num="1421" severity="2">SSML audio insertion without fallback could not be fetched</error>
+    <error num="1422" severity="3">SSML audio insertion could not be fetched, using fallback</error>
+    <error num="1423" severity="3">Unsupported SSML version</error>
+    <error num="1425" severity="3">Say-as elements that do not have exactly one attribute are ignored</error>
+    <error num="1427" severity="3">Unsupported SSML say-as element</error>
+    <error num="1433" severity="3">Found an empty voice element. Ignored it</error>
+    <error num="1434" severity="3">Found an empty emphasis element. Ignored it</error>
+    <error num="1436" severity="3">Prosody element that is empty is ignored</error>
+    <error num="1439" severity="3">SSML parse warning</error>
+    <error num="1440" severity="2">SSML parse error</error>
+    <error num="1441" severity="2">Fatal SSML parse error</error>
+    <error num="1442" severity="3">Invalid fetchtimeout attribute
+    value for an audio or lexicon element</error>
+    <error num="1443" severity="3">Invalid maxage attribute value for
+    an andio or lexicon element</error>
+    <error num="1444" severity="3">Invalid maxstale attribute value
+    for an audio or lexicon element</error>
+    <error num="1445" severity="3">Invalid SSML input, missing uri
+    attribute for a lexicon element. Ignored the element</error>
+    <error num="1446" severity="3">Invalid SSML input, non-empty break
+    element contents. Ignoring the break element</error>
+    <error num="1447" severity="3">Invalid SSML input, non-empty
+    lexicon element contents. Ignoring the lexicon element</error>
+    <error num="1448" severity="3">Could not load a SSML lexicon, no
+    dictionary engine is active</error>
+    <error num="1449" severity="3">Start tag of prompt element without &quot;id&quot; attribute is ignored</error>
+    <error num="1450" severity="3">SSML prompt insertion without fallback could not be found</error>
+    <error num="1451" severity="3">SSML prompt insertion could not be found, using fallback</error>
+    <error num="1452" severity="3">Domain manager resource not available</error>
+    <error num="1455" severity="3">Component query resource not available</error>
+    <error num="1456" severity="2" scope="system">SSML voice switch failed, component query intrface is missing</error>
+    <error num="1457" severity="2">SSML voice switch failed, could not match the attributes</error>
+    <error num="1458" severity="2">SSML parse error: element 'speak' is not recognized, the 'xmlns' attribute is probably missing or incorrect</error>
+    <error num="1459" severity="3">SSML parse internal error</error>
+    <error num="1460" severity="2">SSML prosody must have attributes</error>
+    <error num="1461" severity="3">Cannot find an exact match for a SSML language switch, trying to fallback to an alternate locale for that language</error>
+    <error num="1462" severity="3">Invalid SSML meta secure_context value, ignored</error>
+    <error num="1536" severity="2">SSML parse failed</error>
+    <error num="1537" severity="2" scope="system">SSML parser reset failed</error>
+    <error num="1664" severity="2" scope="system">Could not create a SSML parser</error>
+
+    <!-- stdpp errors -->
+    <!-- 1900, 1901, were removed and may be reused -->
+    <error num="1902" severity="2" scope="system">Unexpected marker lengths found</error>
+    <error num="1903" severity="2">Input text format is not supported</error>
+    <error num="1922" severity="2">Misaligned phoneme marker</error>
+    <error num="1923" severity="2" scope="system">Out of memory</error>
+    <error num="1924" severity="2" scope="system">Invalid argument</error>
+    <error num="1925" severity="2">No markers found</error>
+    <error num="1926" severity="2">Current product only supports a single user dictionary</error>
+    <error num="1927" severity="2">Current product does not support loading user dictionaries from a URI</error>
+    <error num="1928" severity="2" scope="system">Cant determine machine endianness, assume litte endian</error>
+    <error num="1929" severity="2">phoneme with missing closing TN marker</error>
+    <error num="1930" severity="2">reference marker out of scope</error>
+    <error num="1931" severity="2">bad state; no input markers, no existing SYNC marker</error>
+    <error num="1932" severity="2">bad state; sync marker out of order, try and continue</error>
+    <error num="1933" severity="2">failed to validate utf8 input in text parser</error>
+    <error num="1800" severity="2" scope="system">Error loading data file</error>
+    <error num="1801" severity="2" scope="system">Expected transcoding information</error>
+    <error num="1802" severity="2" scope="system">Unexpected transcoding function</error>
+    <error num="1803" severity="2" scope="system">Expected transliteration information</error>
+    <error num="1804" severity="2" scope="system">Cannot load transliteration data</error>
+    <error num="1805" severity="2" scope="system">Escape sequence data not loaded</error>
+    <error num="1806" severity="2" scope="system">No wparser loaded</error>
+    <error num="1807" severity="2" scope="system">Could not initialize wparser object</error>
+    <error num="1808" severity="2" scope="system">End of sentence data not loaded</error>
+    <error num="1809" severity="2" scope="system">At least one word dictionary expected</error>
+    <error num="1810" severity="2" scope="system">Word parser symbol data expected</error>
+    <error num="1811" severity="2" scope="system">Word parser broker string expected</error>
+    <error num="1812" severity="2">Missing pronunciation field in dictionary entry (spell mode)</error>
+    <error num="1813" severity="2">Incorrectly formatted dictionary entry (spell mode)</error>
+    <error num="1814" severity="5">Truncating line in word-by-word mode</error>
+    <error num="1815" severity="5">Truncating line in line-by-line mode</error>
+    <error num="1816" severity="5">Truncating line in sentence mode</error>
+    <error num="1817" severity="5">JPJ dict lookup, word not found in dictionary for current domain</error>
+    <error num="1818" severity="5">Null length dummy word found: try and continue</error>
+    <error num="1819" severity="2" scope="system">Cannot load code page extension data</error>
+    <error num="1820" severity="2" scope="system">ignoring SSFT_PARAMC_PP_MAXMARKERSINEMPTYTXT value (0 or exceeds max)</error>
+
+    <!-- audioinserter errors -->
+    <error num="2560" severity="3">Audio insertions will not work, cannot obtain an appropriate audio fetcher resource</error>
+    <error num="2561" severity="3">Audio insertion failed, cannot retrieve the audio for an audio marker</error>
+    <error num="2569" severity="3">Could not read from the audio
+    input stream</error>
+    <error num="2570" severity="3">Could not write to the marker
+    output stream</error>
+    <error num="2571" severity="3">Could not read from the marker
+    input stream</error>
+    <error num="2574" severity="3">Audio inserter creation failed,
+    could not get the synthstream interface</error>
+    <!-- 2575, 2576 were deleted and may be reused -->
+    <error num="2577" severity="3">Out of memory</error>
+    <error num="2578" severity="3">Audio stream write failed</error>
+    <error num="2579" severity="2" scope="system">Could not set a parameter container
+    value</error>
+    <error num="2580" severity="2" scope="system">Could not register parameter
+    listeners</error>
+
+    <!-- compstats errors -->
+    <error num="2688" severity="2" scope="system">Out of memory</error>
+    <error num="2689" severity="3" scope="system">Invalid clock for compstats_Start</error>
+    <error num="2690" severity="3" scope="system">Clock start stack overflow</error>
+    <error num="2691" severity="3" scope="system">Invalid clock for compstats_Stop</error>
+    <error num="2692" severity="3" scope="system">Clock stop with no matching start</error>
+    <error num="2693" severity="3" scope="system">compstats clock started without ending the previous start</error>
+    <error num="2694" severity="3" scope="system">compstats clock ended without a matching start</error>
+
+    <!-- SAPI5 API errors -->
+    <error num="3710" severity="4">Vocalizer for Enterprise started</error>
+    <error num="3711" severity="4">Installed voice</error>
+    <error num="3712" severity="2" scope="system">Could not create a TTS engine
+    instance</error>
+    <error num="3713" severity="2">SAPI speak request failed due to a
+    TTS engine error</error>
+    <error num="3714" severity="2" scope="system">XML configuration file contains an
+    invalid default dictionary key</error>
+    <error num="3715" severity="2" scope="system">Vocalizer initialization failed</error>
+    <error num="3716" severity="1" scope="system">Internal engine fault. Failed to instantiate an object container</error>
+    <error num="3717" severity="3">Running TTS instance without internet access. (Failed to instantiate inet.)</error>
+    <error num="3718" severity="3">Running TTS instance without native dictionary support. (Failed to instantiate dictionary engine.)</error>
+    <error num="3719" severity="1" scope="system">Internal engine fault. </error>
+    <error num="3720" severity="1" scope="system">Internal engine fault. Failed to register object in object container. </error>
+    <error num="3721" severity="1" scope="system">File not found</error>
+    <error num="3722" severity="1" scope="system">Unable to determine path. System error</error>
+    <error num="3723" severity="1" scope="system">Unable to convert path to ANSI string</error>
+    <error num="3724" severity="1" scope="system">Path too long</error>
+    <error num="3725" severity="2" scope="system">No configured TTS server matches
+    the requested language and voice</error>
+    <error num="3726" severity="1" scope="system">Internal error, cannot find a
+    failed connection's server statistics</error>
+    <error num="3727" severity="1" scope="system">Internal error, cannot find a
+    failed connection's server statistics</error>
+    <error num="3728" severity="1" scope="system">Internal engine fault. Failed to
+    instantiate a parameter container</error>
+    <error num="3840" severity="2" scope="system">Could not create a TTS engine
+    instance</error>
+    <error num="3841" severity="2" scope="system">Memory allocation failed for the
+    audio buffer</error>
+    <error num="3842" severity="2" scope="system">Memory allocation failed for the
+    bookmark buffer</error>
+    <error num="3843" severity="2" scope="system">Memory allocation failed for the
+    mark buffer</error>
+    <error num="3844" severity="2" scope="system">Unable to load a SAPI dictionary, the
+    dictionary engine is not loaded</error>
+    <error num="3845" severity="3">Unable to load a SAPI dictionary</error>
+    <error num="3846" severity="2" scope="system">Unable to load a SAPI phoneme conversion
+    data file</error>
+    <error num="3847" severity="3">Unable to convert SAPI phonemes to
+    Vocalizer phonemes</error>
+    <error num="3848" severity="3">Unable to convert SAPI phonemes to
+    Vocalizer phonemes</error>
+    <error num="3849" severity="3">Unable to convert SAPI phonemes to
+    Vocalizer phonemes</error>
+    <error num="3850" severity="3">Unable to convert IPA/UPS phonemes to
+    Vocalizer phonemes, no phoneme table for the language</error>
+    <error num="3851" severity="3">Empty phoneme list in a pronounce
+    text fragment, fragment ignored</error>
+    <error num="3852" severity="3">Unknown text fragment action,
+    fragment ignored</error>
+    <error num="3853" severity="3">Unknown volume predefined constant,
+    volume change ignored</error>
+    <error num="3854" severity="3">Unknown text fragment volume value
+    type, volume change ignored</error>
+    <error num="3855" severity="3">Unknown text fragment emphasis
+    type, emphasis ignored</error>
+    <error num="3856" severity="3">Unknown rate predefined constant,
+    rate change ignored</error>
+    <error num="3857" severity="3">Unknown text fragment rate value
+    type, rate change ignored</error>
+    <error num="3858" severity="2" scope="system">Memory allocation failed</error>
+    <error num="3859" severity="2" scope="system">Unable to unload a SAPI dictionary, the
+    dictionary engine is not loaded</error>
+    <error num="3860" severity="3">Unable to unload a SAPI dictionary</error>
+    <error num="3861" severity="3">Unable to load a SAPI dictionary,
+    dictionary size after the fetch is too large</error>
+    <error num="3862" severity="3">Unable to load a SAPI dictionary,
+    read from the SAPI provided Internet fetch stream failed</error>
+    <error num="3863" severity="3">Unable to load a SAPI dictionary,
+    load via the SAPI provided Internet fetcher failed</error>
+    <error num="3864" severity="3">Unable to load a SAPI dictionary,
+    could not get the size of the SAPI provided Internet fetch stream</error>
+    <error num="3865" severity="3">Parse of a SAPI XML fragment
+    failed</error>
+    <error num="3866" severity="3">Unrecognized SSML element
+    extensions</error>
+    <error num="3867" severity="3">Unrecognized SSML attribute</error>
+    <error num="3868" severity="3">Invalid default ruleset key</error>
+    <error num="3869" severity="2" scope="system">Could not apply a SAPI XML
+    configuration file parameter</error>
+
+    <!-- swilicense oem errors -->
+    <error num="3968" severity="2" scope="system">Out of memory</error>
+    <error num="3969" severity="2" scope="system">SWIlicense: License object handle is NULL</error>
+    <error num="3970" severity="2" scope="system">SWIlicense: Application is not licensed to access Vocalizer. Please contact Nuance technical support for further information on obtaining an appropriate license</error>
+    <error num="3971" severity="2" scope="system">Licensing error: No license to disable TTS throttling</error>
+    <error num="3972" severity="2" scope="system">SWIlicense: Internal license validation error</error>
+    <error num="3973" severity="2" scope="system">SWIlicense: Application needs to supply a license code to unlock the Vocalizer port</error>
+
+    <!-- log mapper errors -->
+    <error num="4000" severity="3">Duplicate error number entry in XML
+    error mapping file</error>
+    <error num="4001" severity="3">XML error lookup file parse failed</error>
+    <error num="4002" severity="3">XML error text file references an
+    invalid DTD or schema</error>
+    <error num="4003" severity="3">XML error lookup file parser
+    exception</error>
+
+    <!-- xmlconfig errors -->
+    <error num="4200" severity="2" scope="system">Xerces initialization failed</error>
+    <error num="4201" severity="2" scope="system">Configuration list set string failed, invalid argument</error>
+    <error num="4202" severity="2" scope="system">Configuration list set string failed, cannot do a set on a read-only iterator</error>
+    <error num="4203" severity="2" scope="system">Configuration list set string failed, add mode and the parameter already exists</error>
+    <error num="4204" severity="2" scope="system">Configuration list set string failed, modify mode and the parameter does not exist</error>
+    <error num="4205" severity="2" scope="system">Configuration list set string failed, invalid mode</error>
+    <error num="4206" severity="2" scope="system">Configuration list delete key failed, invalid argument</error>
+    <error num="4207" severity="2" scope="system">Configuration list delete key failed, cannot do a delete on a read-only iterator</error>
+    <error num="4208" severity="2" scope="system">Required configuration parameter for list delete key is not configured</error>
+    <error num="4209" severity="2" scope="system">Invalid configuration file path, empty string</error>
+    <error num="4210" severity="2" scope="system">Invalid configuration file path, no extension</error>
+    <error num="4211" severity="2" scope="system">Invalid configuration file path, extension not supported</error>
+    <error num="4212" severity="2" scope="system">Out of memory</error>
+    <error num="4213" severity="2" scope="system">Overlay configuration file specifies a configuration parameter that isn't specified in the base configuration file</error>
+    <error num="4214" severity="2" scope="system">Overlay configuration file specifies a list configuration parameter that isn't specified in the base configuration file</error>
+    <error num="4215" severity="2" scope="system">Configuration file parse error, corrupt input file</error>
+    <error num="4216" severity="2" scope="system">Invalid configuration file version number</error>
+    <error num="4217" severity="2" scope="system">Configuration file parse error, missing password attribute for protectedParam</error>
+    <error num="4218" severity="2" scope="system">Configuration file parse warning, duplicate parameter</error>
+    <error num="4219" severity="2" scope="system">Configuration file parse error, no parameters found</error>
+    <error num="4220" severity="2" scope="system">Configuration file parse error, XML configuration file open failed</error>
+    <error num="4221" severity="2" scope="system">Configuration file parse error, could not get XML configuration file size</error>
+    <error num="4222" severity="2" scope="system">Configuration file parse error, XML configuration file read failed</error>
+    <error num="4223" severity="2" scope="system">Invalid configuration file path, empty string</error>
+    <error num="4224" severity="2" scope="system">Configuration file save error, file open failed</error>
+    <error num="4225" severity="2" scope="system">Configuration file save error, file write of the data failed</error>
+    <error num="4226" severity="2" scope="system">Configuration set string failed, invalid argument</error>
+    <error num="4227" severity="2" scope="system">Configuration set wide string failed, invalid argument</error>
+    <error num="4228" severity="2" scope="system">Configuration set list failed, invalid argument</error>
+    <error num="4229" severity="2" scope="system">Configuration set map failed, all map values must be a VXIString</error>
+    <error num="4230" severity="2" scope="system">Configuration get value failed, invalid argument</error>
+    <error num="4231" severity="2" scope="system">Required configuration parameter for delete is not configured</error>
+    <error num="4232" severity="2" scope="system">Configuration file save error, file write of the header failed</error>
+    <error num="4233" severity="2" scope="system">Configuration set string failed, add mode and the parameter already exists</error>
+    <error num="4234" severity="2" scope="system">Configuration set string failed, modify mode and the parameter does not exist</error>
+    <error num="4235" severity="2" scope="system">Configuration set string failed, add/modify mode but both insert and replace failed</error>
+    <error num="4236" severity="2" scope="system">Configuration set string failed, invalid mode</error>
+    <error num="4237" severity="2" scope="system">Configuration get list value failed, invalid argument</error>
+    <error num="4238" severity="2" scope="system">Required configuration parameter is not configured</error>
+    <error num="4239" severity="2" scope="system">Configuration parameter may not be empty</error>
+    <error num="4240" severity="2" scope="system">Configuration get list string failed, invalid argument</error>
+    <error num="4241" severity="2" scope="system">Configuration get string failed, invalid argument</error>
+    <error num="4242" severity="2" scope="system">Configuration get list wide string failed, invalid argument</error>
+    <error num="4243" severity="2" scope="system">Configuration get wide string failed, invalid argument</error>
+    <error num="4244" severity="2" scope="system">Configuration get list path failed, invalid argument</error>
+    <error num="4245" severity="2" scope="system">Configuration get path failed, invalid argument</error>
+    <error num="4246" severity="2" scope="system">Configuration get wide path failed, invalid argument</error>
+    <error num="4247" severity="2" scope="system">Configuration get list URI failed, invalid argument</error>
+    <error num="4248" severity="2" scope="system">Configuration get URI failed, invalid argument</error>
+    <error num="4249" severity="2" scope="system">Invalid value for an integer configuration parameter</error>
+    <error num="4250" severity="2" scope="system">Integer configuration parameter is out-of-range</error>
+    <error num="4251" severity="2" scope="system">Configuration get list integer failed, invalid argument</error>
+    <error num="4252" severity="2" scope="system">Configuration get integer failed, invalid argument</error>
+    <error num="4253" severity="2" scope="system">Invalid value for an LH_U32 configuration parameter</error>
+    <error num="4254" severity="2" scope="system">Unsigned integer configuration parameter is out-of-range</error>
+    <error num="4255" severity="2" scope="system">Configuration get list unsigned integer failed, invalid argument</error>
+    <error num="4256" severity="2" scope="system">Configuration get unsigned integer failed, invalid argument</error>
+    <error num="4257" severity="2" scope="system">Invalid value for a floating point configuration parameter</error>
+    <error num="4258" severity="2" scope="system">Configuration get list float failed, invalid argument</error>
+    <error num="4259" severity="2" scope="system">Configuration get float failed, invalid argument</error>
+    <error num="4260" severity="2" scope="system">Invalid value for a boolean configuration parameter, use true or false</error>
+    <error num="4261" severity="2" scope="system">Configuration get list boolean failed, invalid argument</error>
+    <error num="4262" severity="2" scope="system">Configuration get boolean failed, invalid argument</error>
+    <error num="4263" severity="2" scope="system">Configuration get list failed, invalid argument</error>
+    <error num="4264" severity="2" scope="system">List configuration parameter is required</error>
+    <error num="4265" severity="2" scope="system">List configuration parameter may not be empty</error>
+    <error num="4266" severity="2" scope="system">Configuration get list as map failed, invalid argument</error>
+    <error num="4267" severity="2" scope="system">Configuration error, parameter insertion failed</error>
+    <error num="4268" severity="2" scope="system">Configuration file parse error, nested element under value</error>
+    <error num="4269" severity="2" scope="system">Variable not found as a configuration parameter nor as a environment variable</error>
+    <error num="4270" severity="2" scope="system">Configuration file references an invalid DTD or schema</error>
+    <error num="4271" severity="3">XML configuration file parse error</error>
+    <error num="4272" severity="3">Ignored an unrecognized session.xml
+    attribute</error>
+    <error num="4273" severity="3">Ignored an unrecognized server.xml
+    attribute</error>
+    <error num="4274" severity="3">Illegal session.xml text outside of
+    &lt;value&gt; tags</error>
+    <error num="4275" severity="3">Illegal server.xml text outside of
+    &lt;value&gt; tags</error>
+    <error num="4276" severity="3">Missing version attribute on the
+    session.xml &lt;sessionconfig&gt; element</error>
+    <error num="4277" severity="3">Missing version attribute on the
+    server.xml &lt;serverconfig&gt; element</error>
+    <error num="4278" severity="3">Invalid version attribute on the
+    session.xml &lt;sessionconfig&gt; element</error>
+    <error num="4279" severity="3">Invalid version attribute on the
+    server.xml &lt;serverconfig&gt; element</error>
+    <error num="4280" severity="3">Missing name attribute on the
+    session.xml &lt;param&gt; element</error>
+    <error num="4281" severity="3">Missing name attribute on the
+    server.xml &lt;param&gt; element</error>
+    <error num="4282" severity="3">Missing type attribute on the
+    session.xml &lt;resource&gt; element</error>
+    <error num="4283" severity="3">session.xml parameter error: invalid
+    parameter value type</error>
+    <error num="4284" severity="3">session.xml structure error: invalid
+    child element nesting</error>
+    <error num="4285" severity="3">server.xml structure error: invalid
+    child element nesting</error>
+    <error num="4286" severity="3">session.xml structure error: invalid
+    element</error>
+    <error num="4287" severity="3">server.xml structure error: invalid
+    element</error>
+    <error num="4288" severity="3">session.xml parameter error: invalid
+    speechsynth parameter name</error>
+    <error num="4289" severity="3">server.xml structure error: parameter
+    must have one value</error>
+    <error num="4290" severity="3">session.xml parameter error: invalid
+    global parameter name</error>
+    <error num="4291" severity="3">server.xml parameter must have an
+    absolute path as its value</error>
+    <error num="4292" severity="3">Vocalizer does not support language
+    specific settings in session.xml</error>
+    <error num="4293" severity="3">Invalid session.xml speechsynth resource
+    type</error>
+    <error num="4294" severity="3">session.xml structure error: global
+    parameter must have one value</error>
+    <error num="4295" severity="3">server.xml structure error: speechsynth
+    parameter must have one value</error>
+    <error num="4296" severity="3">session.xml structure error: parameter
+    can only be specified once</error>
+    <error num="4297" severity="3">server.xml structure error: parameter
+    can only be specified once</error>
+
+    <!-- winperf errors -->
+    <error num="4300" severity="3">Cannot publish Windows performance
+    counters for monitoring Vocalizer, Windows ATL performance monitor
+    server failed to initialize</error>
+    <error num="4301" severity="3">Cannot publish Windows performance
+    counters for monitoring Vocalizer, Windows ATL performance monitor
+    lock failed</error>
+    <error num="4302" severity="3">Cannot publish Windows performance
+    counters for monitoring Vocalizer, Windows ATL performance monitor
+    object creation failed</error>
+    <error num="4303" severity="3">Windows performance counter
+    subsystem shutdown failed</error>
+
+    <!-- dcteg errors -->
+    <error num="4400" severity="2" scope="system">Out of memory</error>
+    <error num="4401" severity="3">Dictionary operation failed, edct
+    dictionary manager is not initialized</error>
+    <error num="4402" severity="3">Dictionary operation failed, cdct
+    dictionary manager is not initialized</error>
+    <error num="4403" severity="3">Dictionary load failed, MIME
+    content type is not supported</error>
+    <error num="4404" severity="3">Dictionary unload failed, MIME
+    content type is not supported</error>
+    <error num="4405" severity="3">Dictionary unload failed, null or
+    empty MIME content type</error>
+    <error num="4406" severity="3">Dictionary load failed, MIME
+    content type for the file could not be determined</error>
+    <error num="4407" severity="3">Dictionary manager transcoder open
+    failed, not initialized</error>
+    <error num="4408" severity="3">Dictionary load failed, neither a
+    URI nor in-memory data was provided</error>
+    <error num="4409" severity="3">Dictionary synchronize failed,
+    cannot synchronize an in-memory dictionary</error>
+    <error num="4410" severity="3">Dictionary unload failed, remove
+    from dictionary list failed</error>
+    <error num="4411" severity="3">Enable dictionary failed, could not
+    move the dictionary in the dictionary list</error>
+    <error num="4412" severity="3">Disable dictionary failed, could not
+    move the dictionary in the dictionary list</error>
+    <error num="4413" severity="3">Dictionary lookup failed, MIME
+    content type is not supported</error>
+    <error num="4414" severity="3">Dictionary load failed, Internet
+    fetch did not return the size</error>
+    <error num="4415" severity="3">Dictionary load failed, Internet
+    fetch did not return the MIME content type</error>
+    <error num="4416" severity="3">Dictionary load failed, local file
+    open failed</error>
+    <error num="4417" severity="3">Dictionary load failed, local file
+    read failed</error>
+    <error num="4418" severity="3">Dictionary load failed, add to
+    dictionary list failed</error>
+    <error num="4420" severity="3">Binary dictionary load failed</error>
+    <error num="4421" severity="3">Binary dictionary load failed,
+    invalid dictionary data format</error>
+    <error num="4422" severity="3">Binary dictionary load failed,
+    invalid character in the dictionary data</error>
+    <error num="4423" severity="3">Binary dictionary load failed,
+    dictionary must specify a language</error>
+    <error num="4424" severity="3">Binary dictionary load failed, too
+    many entries in the dictionary</error>
+    <error num="4425" severity="3">Binary dictionary load failed,
+    already loaded</error>
+    <error num="4430" severity="3">Binary dictionary load failed</error>
+    <error num="4431" severity="3">Binary dictionary load failed,
+    invalid dictionary data format</error>
+    <error num="4432" severity="3">Binary dictionary load failed,
+    invalid character in the dictionary data</error>
+    <error num="4433" severity="3">Binary dictionary load failed,
+    dictionary must specify a language</error>
+    <error num="4434" severity="3">Binary dictionary load failed, too
+    many entries in the dictionary</error>
+    <error num="4435" severity="3">Binary dictionary load failed,
+    already loaded</error>
+    <error num="4440" severity="3">Text dictionary load failed</error>
+    <error num="4441" severity="3">Text dictionary load failed,
+    invalid dictionary data format</error>
+    <error num="4442" severity="3">Text dictionary load failed,
+    invalid character in the dictionary data</error>
+    <error num="4443" severity="3">Text dictionary load failed,
+    dictionary must specify a language</error>
+    <error num="4444" severity="3">Text dictionary load failed, too
+    many entries in the dictionary</error>
+    <error num="4445" severity="3">Text dictionary load failed,
+    already loaded</error>
+    <error num="4450" severity="3">Text dictionary load failed</error>
+    <error num="4451" severity="3">Text dictionary load failed,
+    invalid dictionary data format</error>
+    <error num="4452" severity="3">Text dictionary load failed,
+    invalid character in the dictionary data</error>
+    <error num="4453" severity="3">Text dictionary load failed,
+    dictionary must specify a language</error>
+    <error num="4454" severity="3">Text dictionary load failed, too
+    many entries in the dictionary</error>
+    <error num="4455" severity="3">Text dictionary load failed,
+    already loaded</error>
+    <error num="4460" severity="3">Dictionary unload failed</error>
+    <error num="4461" severity="3">Dictionary unload failed,
+    dictionary is active</error>
+    <error num="4462" severity="3">Dictionary unload failed,
+    dictionary is busy</error>
+    <error num="4463" severity="3">Dictionary unload failed, invalid
+    dictionary handle</error>
+    <error num="4470" severity="3">Dictionary unload failed</error>
+    <error num="4471" severity="3">Dictionary unload failed,
+    dictionary is active</error>
+    <error num="4472" severity="3">Dictionary unload failed,
+    dictionary is busy</error>
+    <error num="4473" severity="3">Dictionary unload failed, invalid
+    dictionary handle</error>
+    <error num="4474" severity="3">Dictionary load failed, no Internet
+    fetcher configured</error>
+    <error num="4475" severity="3">Dictionary lookup failed,
+    unexpected representation type for the value</error>
+    <error num="4476" severity="3">Dictionary lookup failed,
+    unexpected content type for the value</error>
+    <error num="4477" severity="2" scope="system">Could not create a dictionary memory
+    allocator</error>
+    <error num="4478" severity="2">Dictionary data parse failed</error>
+    <error num="4479" severity="2" scope="system">Internal error, dictionary data loader
+    unexpectedly requires the dictionary stream after the constructor</error>
+    <error num="4480" severity="2" scope="system">Could not get the dictionary transcription
+    interface</error>
+    <error num="4481" severity="2">Compressed dictionary data parse failed
+    </error>
+    <error num="4482" severity="2" scope="system">Could not get the compressed dictionary
+    transcription interface</error>
+
+    <!-- voice switch component errors -->
+    <error num="4500" severity="3">Out of memory</error>
+    <error num="4501" severity="2" scope="system">failure creating voice switch object</error>
+    <error num="4502" severity="3">could not get the synthstream interface</error>
+    
+    <!-- Vocalizer for Telecom API errors -->
+    <error num="10000" severity="2" scope="system">ttseg_ObjClose failed</error>
+    <error num="10001" severity="2" scope="system">pfClassClose failed</error>
+    <error num="10002" severity="2" scope="system">brk_InterfaceRelease ms_pIInProcTtsEg failed</error>
+    <error num="10003" severity="2" scope="system">brk_InterfaceRelease ms_pINetTtsEg failed</error>
+    <error num="10004" severity="2" scope="system">CDctInst::DeInitOnce failed</error>
+    <error num="10005" severity="2" scope="system">CInetBase::DeInitOnce failed</error>
+    <error num="10006" severity="2" scope="system">brk_ObjClose failed</error>
+    <error num="10007" severity="2" scope="system">brk_ClassClose failed</error>
+    <error num="10008" severity="2" scope="system">lpTtsParms is NULL</error>
+    <error num="10009" severity="2" scope="system">heap_Open failed</error>
+    <error num="10010" severity="2" scope="system">critsec_ObjOpen failed</error>
+    <error num="10011" severity="2" scope="system">rsrc_Open failed</error>
+    <error num="10012" severity="2" scope="system">Required environment variable is empty or undefined</error>
+    <error num="10013" severity="2" scope="system">brk_ClassOpen failed</error>
+    <error num="10014" severity="2" scope="system">brk_ObjOpen failed</error>
+    <error num="10015" severity="2" scope="system">brk_InterfaceQuery tts/eng failed</error>
+    <error num="10016" severity="2" scope="system">ttseg_ClassOpen failed</error>
+    <error num="10017" severity="2" scope="system">brk_InterfaceQuery tts/neteng failed</error>
+    <error num="10018" severity="2" scope="system">netttseg_ClassOpen failed</error>
+    <error num="10019" severity="2" scope="system">ttseg_GetProductList failed</error>
+    <error num="10020" severity="2" scope="system">ttseg_GetProductList failed</error>
+    <error num="10021" severity="2" scope="system">failed, Can't find product</error>
+    <error num="10022" severity="2" scope="system">brk_ObjClose failed</error>
+    <error num="10023" severity="2" scope="system">brk_ObjOpen failed</error>
+    <error num="10024" severity="2" scope="system">CDctInst::InitOnce failed</error>
+    <error num="10025" severity="2" scope="system">CInetBase::InitOnce failed</error>
+    <error num="10026" severity="2" scope="system">brk_ComponentPathQuery on xml/rshconfig failed</error>
+    <error num="10027" severity="2" scope="system">ReadRshConfigFile failed</error>
+    <error num="10028" severity="2" scope="system">CTtsEngInst::InitOnce failed</error>
+    <error num="10029" severity="2" scope="system">Critical section create failed</error>
+    <error num="10030" severity="2" scope="system">Service SPI object open error</error>
+    <error num="10031" severity="2" scope="system">CTtsEngInst::GetLangString failed</error>
+    <error num="10032" severity="2" scope="system">CTtsEngInst::GetVoiceString failed</error>
+    <error num="10033" severity="2">client/server mode not supported</error>
+    <error num="10034" severity="2" scope="system">SetObjectContainer for SSFT_OBJC_WORD_DCTEG failed</error>
+    <error num="10035" severity="2" scope="system">SetObjectContainer for SSFT_OBJC_INET failed</error>
+    <error num="10036" severity="2">ttseg_ObjOpen failed</error>
+    <error num="10037" severity="2">Parameter set not set correctly</error>
+    <error num="10038" severity="2" scope="system">ttseg_ObjOpen paramSet failed</error>
+    <error num="10039" severity="2">ttseg_Break failed</error>
+    <error num="10040" severity="2">Invalid parameter value: setting markup type</error>
+    <error num="10041" severity="2">Invalid parameter value: setting output type</error>
+    <error num="10042" severity="2">Invalid parameter specified</error>
+    <error num="10043" severity="2" scope="system">Couldn't get the current input character
+    set</error>
+    <error num="10044" severity="2">Could not set an engine parameter</error>
+    <error num="10045" severity="2">Could not get an engine parameter</error>
+    <error num="10046" severity="2" scope="system">GetParams returned invalid markup type</error>
+    <error num="10047" severity="2" scope="system">GetParams returned invalid output type</error>
+    <error num="10048" severity="2">LoadG2PDictList failed</error>
+    <error num="10049" severity="2" scope="system">Could not allocate ParamArray</error>
+    <error num="10050" severity="2" scope="system">Could not allocate iParamSet</error>
+    <error num="10051" severity="2">LoadG2PDictList failed because dct already loaded</error>
+    <error num="10052" severity="2">LoadG2PDictList failed because pfSetParams failed</error>
+    <error num="10053" severity="2">LoadG2PDictList failed Could not unload after failure</error>
+    <error num="10054" severity="2">UnloadG2PDictList failed</error>
+    <error num="10067" severity="2">TtsSource callback function is not
+    defined, must be defined if speakdata.data is NULL</error>
+    <error num="10068" severity="2">Engine error</error>
+    <error num="10069" severity="2">Buffer too small</error>
+    <error num="10070" severity="2">Language/voice combination not found</error>
+    <error num="10071" severity="2">srvspi_SecExToState failed</error>
+    <error num="10072" severity="2">TtsOpen failed: must specify a language, voice, and destination callback</error>
+    <error num="10073" severity="2">pParamList is NULL</error>
+    <error num="10074" severity="2">pG2PDictList is NULL</error>
+    <error num="10075" severity="2">pu32Total is NULL</error>
+    <error num="10076" severity="2">pu32NumRetreived is NULL</error>
+    <error num="10077" severity="2">TtsMapCreate failed</error>
+    <error num="10078" severity="2">TtsMapDestroy failed</error>
+    <error num="10079" severity="2">TtsMapSetChar failed</error>
+    <error num="10080" severity="2">TtsMapSetU32 failed</error>
+    <error num="10081" severity="2">TtsMapSetBool failed</error>
+    <error num="10082" severity="2">TtsMapGetChar failed</error>
+    <error num="10083" severity="2">TtsMapFreeChar failed</error>
+    <error num="10084" severity="2">TtsMapGetU32 failed</error>
+    <error num="10085" severity="2">TtsMMapGetBool failed</error>
+    <error num="10086" severity="2">TtsVectorCreate failed</error>
+    <error num="10087" severity="2">TtsVectorDestroy failed</error>
+    <error num="10088" severity="2">TtsRemoveLRestrict failed</error>
+    <error num="10089" severity="2" scope="system">Failed to allocate engine</error>
+    <error num="10090" severity="2">TTS engine initialize failed</error>
+    <error num="10091" severity="2">TTS engine uninitialize</error>
+    <error num="10092" severity="2">TtsProcess failed</error>
+    <error num="10093" severity="2">TtsProcess returned with a warning</error>
+    <error num="10094" severity="2">TtsStop failed</error>
+    <error num="10095" severity="2">Set parameter failed</error>
+    <error num="10096" severity="2">Get parameter failed</error>
+    <error num="10097" severity="2">TtsLoadG2PDictList failed</error>
+    <error num="10098" severity="2">TtsUnloadG2PDictList failed</error>
+    <error num="10099" severity="2">TtsUnloadAllG2P failed</error>
+    <error num="10100" severity="2">TtsGetG2PDictTotal failed</error>
+    <error num="10101" severity="2">TtsGetG2PDictList failed</error>
+    <error num="10102" severity="2">TtsProcessEx failed</error>
+    <error num="10103" severity="2">TtsLoadUsrDict failed</error>
+    <error num="10104" severity="2">TtsEnableUsrDict failed</error>
+    <error num="10105" severity="2">TtsDisableUsrDict failed</error>
+    <error num="10106" severity="2">TtsDisableUsrDicts failed</error>
+    <error num="10107" severity="2">TtsResourceAllocate failed</error>
+    <error num="10108" severity="2" scope="system">Callback logging initialize failed</error>
+    <error num="10109" severity="2">TtsOpen failed, invalid
+    output type value</error>
+    <error num="10110" severity="2">TtsOpen failed, could not
+    set a parameter</error>
+    <error num="10111" severity="2">TtsSetParams failed, could not
+    load the requested synthesis configuration (most likely the
+    language, voice, or frequency)</error>
+    <error num="10112" severity="2" scope="system">Out of memory</error>
+    <error num="10113" severity="3">TtsSetParams failed, ruleset
+    unload failed because the ruleset was not loaded</error>
+    <error num="10114" severity="3">Invalid default dictionary key</error>
+    <error num="10115" severity="3">Invalid default ruleset key</error>
+    <error num="10116" severity="3">Invaid XML configuration parameter
+    value</error>
+    <error num="10117" severity="3">Invaid XML configuration parameter
+    value</error>
+    <error num="10118" severity="2">TtsOpen failed, invalid
+    frequency value</error>
+    <error num="10119" severity="4">Vocalizer for Enterprise started</error>
+    <error num="10120" severity="4">Installed voice</error>
+    <error num="10121" severity="2">TtsGetVoiceList failed, invalid argument</error>
+    <error num="10122" severity="2" scope="system">TtsOpen failed, unsupported TTS_OPEN_PARAMS::fmtVersion value</error>
+    <error num="10123" severity="2">TtsGetSupportedParams failed</error>
+    <error num="10124" severity="2">TtsUnloadUsrDict failed</error>
+    <error num="10125" severity="2">TtsInitialize failed: must specify a library location and a destination callback</error>
+    <error num="10126" severity="2" scope="system">Could not set a parameter
+    container backup point</error>
+    <error num="10127" severity="2" scope="system">Could not restore a parameter
+    container backup point</error>
+    <error num="10128" severity="2" scope="system">Could not free a parameter
+    container backup point</error>
+    <error num="10129" severity="2" scope="system">Could not set an engine parameter</error>
+    <error num="10130" severity="2" scope="system">critsec_ObjClose failed</error>
+
+    <!-- Regular expression rulesets errors -->
+    <error num="11000" severity="2" scope="system">Invalid argument for sub_Append</error>
+    <error num="11001" severity="2">String would exceed limit</error>
+    <error num="11002" severity="2" scope="system">Out of memory</error>
+    <error num="11003" severity="2" scope="system">Invalid argument for sub_AppendSubstitute</error>
+    <error num="11004" severity="2">String would exceed limit</error>
+    <error num="11005" severity="2">Regular expression compile failed</error>
+    <error num="11006" severity="2">Can't compile rule</error>
+    <error num="11007" severity="2">Can't compile rule</error>
+    <error num="11008" severity="2">Skipping line with too many characters</error>
+    <error num="11009" severity="2">Skipping line with too many characters</error>
+    <error num="11010" severity="2">Ruleset read error</error>
+    <error num="11011" severity="2">Invalid separator</error>
+    <error num="11012" severity="2">Invalid separator</error>
+    <error num="11013" severity="2">Ignoring trailing string</error>
+    <error num="11014" severity="2">Ignoring trailing string</error>
+    <error num="11015" severity="2">Ruleset parse failed: Invalid start tag</error>
+    <error num="11016" severity="2">Ruleset parse failed: Ignoring unknown option</error>
+    <error num="11017" severity="2">Ruleset parse failed: Ignoring unknown option</error>
+    <error num="11018" severity="2">Ruleset parse failed: Ignoring trailing string</error>
+    <error num="11019" severity="2">Ruleset parse failed: Ignoring trailing string</error>
+    <error num="11020" severity="2">Ruleset header parse failed: Missing [header] section title</error>
+    <error num="11021" severity="2">Ruleset header parse failed: Duplicate language attribute</error>
+    <error num="11022" severity="2">Ruleset header parse failed: Missing language attribute</error>
+    <error num="11023" severity="2" scope="system">Ruleset vector add failed</error>
+    <error num="11024" severity="2" scope="system">Ruleset vector remove failed</error>
+    <error num="11025" severity="2" scope="system">Ruleset vector get element failed</error>
+    <error num="11026" severity="2" scope="system">Ruleset internal error</error>
+    <error num="11027" severity="2">Ruleset execution failed</error>
+    <error num="11028" severity="2">Ruleset header parse failed: Duplicate type attribute</error>
+    <error num="11029" severity="3">Ruleset load failed, no Internet
+    fetcher configured</error>
+    <error num="11030" severity="3">Java Virtual Machine creation failure</error>
+
+    <!-- Internet fetcher load URI utility library errors -->
+    <error num="12000" severity="2" scope="system">URI fetch failed, invalid Internet
+    fetch object</error>
+    <error num="12001" severity="2">URI fetch failed, document is too large</error>
+    <error num="12002" severity="2">URI fetch failed</error>
+    <error num="12003" severity="2">URI fetch failed, document had a
+    length of 0</error>
+
+    <!-- Internet fetch errors -->
+    <error num="13100" severity="1" scope="system">SBinet: Failed to initialize interface </error>
+    <error num="13101" severity="1" scope="system">SBinet: Failed to allocate interface </error>
+    <error num="13102" severity="1" scope="system">SBinet: NULL interface pointer </error>
+    <error num="13103" severity="1" scope="system">SBinet: Out of memory </error>
+    <error num="13104" severity="1" scope="system">SBinet: Installed Microsoft Internet
+    Explorer version is too old, 5.0 or later required </error>
+    <error num="13105" severity="1" scope="system">SBinet: Microsoft Internet Explorer 5.0 or
+    later must be installed </error>
+    <error num="13106" severity="3">SBinet: No name found for cookie </error>
+    <error num="13107" severity="2" scope="system">SBinet: Mutex lock failed, cache lock table </error>
+    <error num="13108" severity="2" scope="system">SBinet: Mutex unlock failed, cache lock table </error>
+    <error num="13109" severity="1" scope="system">SBinet: Failed to initialize sockets subsystem </error>
+    <error num="13200" severity="2" scope="system">SBinet: Invalid argument </error>
+    <error num="13201" severity="2" scope="system">SBinet: Attempt to execute function when not initialized </error>
+    <error num="13202" severity="2" scope="system">SBinet: Cache initialization failure </error>
+    <error num="13203" severity="2">SBinet: Prefetch error </error>
+    <error num="13204" severity="2">SBinet: Open error </error>
+    <error num="13205" severity="2">SBinet: Close error </error>
+    <error num="13206" severity="2">SBinet: Read error </error>
+    <error num="13207" severity="2">SBinet: Write error </error>
+    <error num="13208" severity="2">SBinet: Set cookie error </error>
+    <error num="13209" severity="2">SBinet: Get cookie error </error>
+    <error num="13210" severity="2">SBinet: Failed to add cookie (jar full) </error>
+    <error num="13211" severity="2">SBinet: Failed to create cookie list </error>
+    <error num="13212" severity="2">SBinet: Invalid cookie in the cookie
+    jar for SetCookieJar( ), null cookie </error>
+    <error num="13213" severity="2">SBinet: Invalid cookie in the cookie
+    jar for SetCookieJar( ), not a VXIMap </error>
+    <error num="13214" severity="2" scope="system">SBinet: Invalid validator argument,
+    invalid VXIValue based type </error>
+    <error num="13215" severity="2" scope="system">SBinet: Invalid validator argument,
+    corrupt VXIContent </error>
+    <error num="13216" severity="2" scope="system">SBinet: Invalid validator argument,
+    invalid MIME content type </error>
+    <error num="13217" severity="2">SBinet: Open failed (internal error) </error>
+    <error num="13218" severity="2">SBinet: Read failed (internal error) </error>
+    <error num="13219" severity="2">SBinet: Fetch returned HTTP error </error>
+    <error num="13220" severity="2">SBinet: Get absolute name error </error>
+    <error num="13221" severity="2">SBinet: Failed to get HTTP status </error>
+    <error num="13222" severity="2">SBinet: Unable to get file 'stat' information </error>
+    <error num="13223" severity="2">SBinet: File does not exist, open failed </error>
+    <error num="13224" severity="2">SBinet: Failed reading from file </error>
+    <error num="13225" severity="2">SBinet: Failed to parse URL </error>
+    <error num="13226" severity="2" scope="system">SBinet: Error unpacking validator,
+    corrupt content </error>
+    <error num="13227" severity="2" scope="system">SBinet: Cache lock table full </error>
+    <error num="13228" severity="2">SBinet: Fetch operation timed out </error>
+    <error num="13229" severity="2">SBinet: Too many redirects. </error>
+
+    <error num="13230" severity="2" scope="system">SBinet: Error opening cache entry </error>
+    <error num="13231" severity="2" scope="system">SBinet: Error reading cache entry </error>
+    <error num="13232" severity="2" scope="system">SBinet: Error writing cache entry </error>
+    <error num="13233" severity="2" scope="system">SBinet: Error fetching property from cache entry </error>
+    <error num="13234" severity="2" scope="system">SBinet: Timeout locking cache entry for reading </error>
+    <error num="13235" severity="2" scope="system">SBinet: Timeout locking cache entry for writing </error>
+    <error num="13236" severity="2">SBinet: Fetch timeout exceeded during Open </error>
+    <error num="13237" severity="2">SBinet: Fetch timeout exceeded during Read </error>
+    <error num="13238" severity="2">SBinet: Fetch timeout exceeded during Write </error>
+    <error num="13239" severity="2" scope="system">SBinet: Error closing cache entry </error>
+    <error num="13240" severity="2">SBinet: Socket error - cannot read from socket </error>
+    <error num="13241" severity="2">SBinet: Socket error - time out
+    connecting to socket </error>
+    <error num="13242" severity="2">SBinet: Socket error - cannot set in non-blocking mode </error>
+    <error num="13243" severity="2">SBinet: Socket error - cannot set in blocking mode </error>
+    <error num="13244" severity="2">SBinet: Socket error - cannot connect </error>
+    <error num="13245" severity="2">SBinet: Could not get data chunk size </error>
+    <error num="13246" severity="2">SBinet: Could not parse data chunk size </error>
+    <error num="13247" severity="2">SBinet: Cannot Redirect - location missing or empty </error>
+    <error num="13248" severity="2">SBinet: Cannot Redirect - cannot parse location </error>
+    <error num="13249" severity="2">SBinet: No data available on socket for reading </error>
+    <error num="13250" severity="2">SBinet: Error reading or parsing HTTP headers </error>
+    <error num="13251" severity="2" scope="system">SBinet: Fetch timed out while reading from cache </error>
+    <error num="13252" severity="2">SBinet: Could not parse cookie's
+    name </error>
+    <error num="13253" severity="2">SBinet: Expecting '=' after cookie's
+    name </error>
+    <error num="13254" severity="2">SBinet: Could not parse cookie's
+    value </error>
+    <error num="13255" severity="2">SBinet: Expecting ';' or ',' after
+    cookie's value </error>
+    <error num="13256" severity="2">SBinet: Could not parse cookie attribute's
+    name </error>
+    <error num="13257" severity="2">SBinet: Expecting '=' after cookie
+    attribute's name </error>
+    <error num="13258" severity="2">SBinet: Could not parse cookie attribute's
+    value </error>
+    <error num="13259" severity="2">SBinet: Expecting ';' or ',' after
+    cookie attribute's value </error>
+    <error num="13260" severity="2">SBinet: Expecting ';' or ',' after
+    cookie attribute </error>
+    <error num="13261" severity="2">SBinet: Cookie attribute has no
+    associated value </error>
+    <error num="13262" severity="2">SBinet: could not create
+    HttpConnection. </error>
+    <error num="13263" severity="2">SBinet: Invalid protocol for HTTP
+    connection </error>
+    <error num="13264" severity="5">SBinet: Connection aborted: attempting to create a new connection </error>
+    <error num="13299" severity="2" scope="system">SBinet: Unknown VXIcache error code, cannot map to VXIinet error code </error>
+    <error num="13300" severity="3">SBinet: MIME content type not returned by
+    web server, extension mapping rule used </error>
+    <error num="13301" severity="3">SBinet: MIME content type not returned by
+    web server, no matching extension mapping rule </error>
+    <error num="13302" severity="3">SBinet: No expiration directive found in
+    response headers returned by web server, assuming immediate expiration </error>
+    <error num="13303" severity="3">SBinet: Unknown MIME content type,
+    no matching extension mapping rule </error>
+    <error num="13304" severity="3">SBinet: Unknown media (MIME) encoding type
+    specified for submit, will use default type </error>
+    <error num="13305" severity="3">SBinet: Data too large, document will not be cached </error>
+    <error num="13500" severity="2">SBinet: Socket operations: System call failed </error>
+    <error num="13501" severity="2">SBinet: Socket operations: System call timed out </error>
+    <error num="13502" severity="2">SBinet: Socket operations: System call exception.
+    Possible reason: connection attempt failed. </error>
+    <error num="13503" severity="2">SBinet: Socket operations: connection failed, address in use</error>
+    <error num="13504" severity="2">SBinet: Socket operations: connection failed, host down</error>
+    <error num="13505" severity="2">SBinet: Socket operations: connection failed, host unreachable</error>
+    <error num="13506" severity="2">SBinet: Socket operations: connection failed, network unreachable</error>
+    <error num="13507" severity="2">SBinet: Socket operations: connection failed, network down</error>
+    <error num="13508" severity="2">SBinet: Socket operations: connection failed, invalid address</error>
+    <error num="13509" severity="2">SBinet: Socket operations: connection refused</error>
+    <error num="13600" severity="3">SBinet: could not parse proxy rule,
+    Invalid character in domain. </error>
+    <error num="13601" severity="3">SBinet: could not parse proxy rule,
+    expecting a colon after proxy server name. </error>
+    <error num="13602" severity="3">SBinet: could not parse proxy rule,
+    Invalid proxy server port. </error>
+    <error num="13603" severity="3">SBinet: could not parse proxy rule,
+    Extraneous character after the port specification. </error>
+    <error num="13604" severity="3">SBinet: could not parse proxy rule,
+    No proxy server specified before the port number. </error>
+    <error num="13700" severity="2">SBinet: SSL operation failed. </error>
+    <error num="13702" severity="2">SBinet: SSL load failed.  </error>
+
+    <!-- Internet fetch cache errors -->
+    <error num="14100" severity="1" scope="system">SBcache: Out of memory </error>
+    <error num="14101" severity="1" scope="system">SBcache: Initialized twice </error>
+    <error num="14102" severity="1" scope="system">SBcache: No cache directory
+    configured </error>
+    <error num="14103" severity="1" scope="system">SBcache: Invalid cache directory
+    name, must be ASCII characters </error>
+    <error num="14104" severity="1" scope="system">SBcache: Invalid cache total size
+    configured </error>
+    <error num="14105" severity="1" scope="system">SBcache: Invalid cache entry size
+    limit configured </error>
+    <error num="14106" severity="1" scope="system">SBcache: Invalid cache entry
+    expiration time (in seconds) </error>
+    <error num="14107" severity="1" scope="system">SBcache: Cache entry size limit must
+    not exceed the cache total size limit </error>
+    <error num="14108" severity="1" scope="system">SBcache: Invalid argument for
+    SBcacheCreateResource( ) </error>
+    <error num="14109" severity="1" scope="system">SBcache: Mutex create failed </error>
+    <error num="14110" severity="1" scope="system">SBcache: Mutex lock failed </error>
+    <error num="14111" severity="1" scope="system">SBcache: Mutex unlock failed </error>
+    <error num="14112" severity="1" scope="system">SBcache: Internal error, cache
+    manager already created </error>
+    <error num="14113" severity="1" scope="system">SBcache: Configured cache directory
+    is not a directory, it is a file </error>
+    <error num="14114" severity="1" scope="system">SBcache: Could not create the cache
+    directory </error>
+    <error num="14200" severity="2" scope="system">SBcache: Invalid argument for Open( )
+    or OpenEx( ) </error>
+    <error num="14201" severity="2" scope="system">SBcache: Invalid argument for 
+    Close( ) or CloseEx( ) </error>
+    <error num="14202" severity="2" scope="system">SBcache: Invalid argument for
+    Unlock( ) or UnlockEx( ) </error>
+    <error num="14203" severity="2" scope="system">SBcache: Invalid argument for
+    Read( ) </error>
+    <error num="14204" severity="2" scope="system">SBcache: Invalid argument for
+    Write( ) </error>
+    <error num="14205" severity="2" scope="system">SBcache: Cache already shut down </error>
+    <error num="14206" severity="2" scope="system">SBcache: Read failed, attempted to
+    read from a stream opened for writing </error>
+    <error num="14207" severity="2" scope="system">SBcache: Internal error, Read failed
+    due to file not open </error>
+    <error num="14208" severity="2" scope="system">SBcache: Read failed due to an I/O
+    error </error>
+    <error num="14209" severity="2" scope="system">SBcache: Write failed, attempted to
+    write to a stream opened for reading </error>
+    <error num="14210" severity="2" scope="system">SBcache: Internal error, Write
+    failed due to file not open </error>
+    <error num="14211" severity="2" scope="system">SBcache: Internal error, invalid
+    cache entry mode for close </error>
+    <error num="14212" severity="2" scope="system">SBcache: Write failed due to an I/O
+    error </error>
+    <error num="14213" severity="2" scope="system">SBcache: File open for writing a cache
+    entry failed </error>
+    <error num="14214" severity="2" scope="system">SBcache: File open for reading a cache
+    entry failed </error>
+    <error num="14215" severity="2" scope="system">SBcache: Internal error, invalid
+    cache entry open mode </error>
+    <error num="14216" severity="2" scope="system">SBcache: Deletion of a cache entry
+    failed </error>
+    <error num="14300" severity="3">SBcache: File close failed </error>
+    <error num="14301" severity="3">SBcache: Invalid CACHE_CREATION_COST
+    value type, VXIInteger required </error>
+    <error num="14302" severity="4">One-time notification: Disk cache
+    is full for the first time, performing cleanup</error>
+    <error num="14303" severity="3">SBcache: Cache operation timed out</error>
+
+    <!-- xcoder errors -->
+    <error num="15000" severity="2" scope="system">Out of memory</error>
+    <error num="15001" severity="3">Could not initialize the ICU data
+    path</error>
+    <error num="15002" severity="2" scope="system">Open failed, missing input
+    or output character type</error>
+    <error num="15003" severity="2" scope="system">UTF-16 transcoder open
+    failed</error>
+    <error num="15004" severity="3">Input transcoder open
+    failed</error>
+    <error num="15005" severity="3">Output transcoder open
+    failed</error>
+    <error num="15006" severity="3">wchar_t to UTF-16 conversion
+    failed</error>
+    <error num="15007" severity="3">Transcode from wchar_t
+    failed, truncated character</error>
+    <error num="15008" severity="3">Transcode from wchar_t
+    failed, buffer overflow</error>
+    <error num="15009" severity="3">Transcode from wchar_t
+    failed</error>
+    <error num="15010" severity="3">Transcode to UTF-16 failed</error>
+    <error num="15011" severity="3">Transcode to wchar_t
+    failed, truncated character</error>
+    <error num="15012" severity="3">Transcode to wchar_t
+    failed, buffer overflow</error>
+    <error num="15013" severity="3">Transcode to wchar_t failed</error>
+    <error num="15014" severity="3">Transcode between character
+    sets failed, truncated character</error>
+    <error num="15015" severity="3">Transcode between character
+    sets failed, buffer overflow</error>
+    <error num="15016" severity="3">Transcode between character
+    sets failed</error>
+    <error num="15017" severity="3">Transcode failed, no
+    conversion to be done</error>
+    <error num="15018" severity="3">Invalid Xcoder output character set</error>
+    <error num="15019" severity="2" scope="system">Invalid argument for Xcoder get
+    input function</error>
+    <error num="15020" severity="3">Transcode failed, truncated
+    input character at the end of the buffer</error>
+    <error num="15021" severity="3">Transcode failed, no
+    conversion needed</error>
+    <error num="15022" severity="2" scope="system">Get marker text position
+    failed, synch object not found</error>
+    <error num="15023" severity="2" scope="system">Get marker text position
+    failed, beyond the end of the synch object</error>
+    <error num="15024" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="15025" severity="2" scope="system">Could not get the native character
+    type</error>
+    <error num="15026" severity="2" scope="system">Could not open an input stream</error>
+    <error num="15027" severity="3">Could not open an output stream</error>
+    <error num="15028" severity="3">Could not get the remaining input
+    bytes for an input stream</error>
+    <error num="15029" severity="3">Could not get the stream position</error>
+    <error num="15030" severity="3">Could not read from an input stream</error>
+    <error num="15031" severity="3">Could not write to an output stream</error>
+
+    <!-- ttseg errors -->
+    <error num="16000" severity="2" scope="system">Out of memory</error>
+    <error num="16001" severity="2" scope="system">Synthesis component open failed</error>
+    <error num="16002" severity="2" scope="system">Synthesis component close failed</error>
+    <error num="16003" severity="2">TTS engine operation failed, the
+    engine is already active</error>
+    <error num="16004" severity="2" scope="system">TTS engine operation failed,
+    internal state machine error</error>
+    <error num="16005" severity="2" scope="system">Critical section object close
+    failed</error>
+    <error num="16006" severity="2" scope="system">Audio throttle object close failed
+    </error>
+    <error num="16007" severity="2" scope="system">License object close failed</error>
+    <error num="16008" severity="2" scope="system">TTS engine could not unregister
+    the parameter container diagnostic listener</error>
+    <error num="16009" severity="2" scope="system">Could not determine the licensing
+    mode for validating a license</error>
+    <error num="16010" severity="2">Get input callback returned
+    success but a zero length, presuming the end of input</error>
+    <error num="16011" severity="2">Get input callback returned a
+    failure</error>
+    <error num="16012" severity="2" scope="system">Could not determine the frequency
+    for the audio output</error>
+    <error num="16013" severity="2" scope="system">Could not start the audio
+    throttling object</error>
+    <error num="16014" severity="2" scope="system">Could not open a synthesis stream
+    object</error>
+    <error num="16015" severity="2" scope="system">Could not determine the required
+    language's native input character set</error>
+    <error num="16016" severity="2" scope="system">Could not open the synthesis
+    stream for providing the input text</error>
+    <error num="16017" severity="2">Could not initialize a synthesis
+    component for a new synthesis operation</error>
+    <error num="16018" severity="2">Synthesis component failed during
+    synthesis</error>
+    <error num="16019" severity="2">Synthesis component failed to
+    clean up after synthesis</error>
+    <error num="16020" severity="2" scope="system">Critical section object open
+    failed</error>
+    <error num="16021" severity="2" scope="system">Parameter container object open
+    failed</error>
+    <error num="16022" severity="2" scope="system">Internal error, no known licensing mode
+    is supported</error>
+    <error num="16023" severity="2" scope="system">Cannot close the TTS engine class,
+    there are still TTS instances open</error>
+    <error num="16024" severity="2" scope="system">State machine object open failed</error>
+    <error num="16025" severity="3" scope="system">TTS engine could not register the
+    parameter container diagnostic listener</error>
+    <error num="16026" severity="2" scope="system">License object open failed</error>
+    <error num="16027" severity="2" scope="system">Failed to establish the default
+    licensing mode when opening a TTS engine</error>
+    <error num="16028" severity="2" scope="system">Failed to get the licensing mode
+    for opening a TTS engine</error>
+    <error num="16029" severity="2" scope="system">Throttle object open failed</error>
+    <error num="16030" severity="2" scope="system">TTS engine object close failed,
+    invalid class handle</error>
+    <error num="16031" severity="2" scope="system">License allocation failed, could
+    not get the licensing mode</error>
+    <error num="16032" severity="2" scope="system">License allocation failed, invalid
+    license feature specified</error>
+    <error num="16033" severity="2" scope="system">License allocation failed, cannot
+    explicitly allocate licenses for the current licensing mode</error>
+    <error num="16034" severity="2" scope="system">License free failed, could
+    not get the licensing mode</error>
+    <error num="16035" severity="2" scope="system">License free failed, invalid
+    license feature specified</error>
+    <error num="16036" severity="2" scope="system">License free failed, cannot
+    explicitly free licenses for the current licensing mode</error>
+    <error num="16037" severity="2" scope="system">Resource load failed,
+    there is no loaded synthesis pipeline</error>
+    <error num="16038" severity="2">Resource load failed</error>
+    <error num="16039" severity="2" scope="system">Resource load failed,
+    component does not support resource loads</error>
+    <error num="16040" severity="2" scope="system">Resource unload failed,
+    there is no loaded synthesis pipeline</error>
+    <error num="16041" severity="2">Resource unload failed</error>
+    <error num="16042" severity="2" scope="system">Resource unload failed,
+    component does not support resource unloads</error>
+    <error num="16043" severity="2" scope="system">Synthesis operation failed, there
+    is no loaded synthesis pipeline</error>
+    <error num="16044" severity="2" scope="system">Speak from URI failed, no Internet
+    fetch resource available</error>
+    <error num="16045" severity="3">Speak from URI failed, Internet
+    fetch failed</error>
+    <error num="16046" severity="3">Internet fetch for speak text did
+    not return the data size</error>
+    <error num="16047" severity="3">Internet fetch for speak text
+    returned zero length data</error>
+    <error num="16048" severity="3">Internet fetch for speak text did
+    not return the data MIME content type</error>
+    <error num="16049" severity="3">Internet fetch for speak text
+    returned the MIME content type incorrectly</error>
+    <error num="16050" severity="3">Failed to free the MIME content
+    type from the Internet fetch data block</error>
+    <error num="16051" severity="3">Failed to free the Internet fetch
+    data block</error>
+    <error num="16052" severity="2">Internet fetch close failed</error>
+    <error num="16053" severity="2" scope="system">Could not release the Internet
+    fetch resource</error>
+    <error num="16054" severity="2" scope="system">Get product list failed, invalid
+    output arguments</error>
+    <error num="16057" severity="2" scope="system">Could not get the language
+    list from the broker</error>
+    <error num="16058" severity="2" scope="system">Could not get the TTS engine list
+    from the broker</error>
+    <error num="16066" severity="2" scope="system">Resource enable failed,
+    there is no loaded synthesis pipeline</error>
+    <error num="16067" severity="2">Resource enable failed</error>
+    <error num="16068" severity="2">Resource enable failed,
+    component does not support resource enables</error>
+    <error num="16069" severity="2" scope="system">Resource disable failed,
+    there is no loaded synthesis pipeline</error>
+    <error num="16070" severity="2">Resource disable failed</error>
+    <error num="16071" severity="2">Resource disable failed,
+    component does not support resource disables</error>
+    <error num="16072" severity="2">Could not load the synthesis
+    pipeline. This is usually because the requested voice is not
+    installed.</error>
+    <error num="16073" severity="2" scope="system">Could not open a linguistic database
+    object</error>
+    <error num="16074" severity="2" scope="system">Could not set a parameter
+    container backup point</error>
+    <error num="16075" severity="2" scope="system">Could not restore a parameter
+    container backup point</error>
+    <error num="16076" severity="2" scope="system">Could not free a parameter
+    container backup point</error>
+    <error num="16077" severity="3">Resource load failed, could not
+    find a component to handle the requested MIME content type</error>
+    <error num="16078" severity="3">Resource unload failed, stale
+    resource handle (component was unloaded)</error>
+    <error num="16079" severity="3">Resource enable failed, stale
+    resource handle (component was unloaded)</error>
+    <error num="16080" severity="3">Resource disable failed, stale
+    resource handle (component was unloaded)</error>
+    <error num="16081" severity="2" scope="system">TTS engine close failed, could not
+    unregister the synthesizer output sink</error>
+    <error num="16082" severity="2" scope="system">TTS engine close failed, could not
+    unregister the linguistic database</error>
+    <error num="16083" severity="2" scope="system">TTS engine close failed, could not
+    release the linguistic database</error>
+    <error num="16084" severity="2" scope="system">TTS engine close failed, could not
+    unregister the synthesis stream interface</error>
+    <error num="16085" severity="2" scope="system">TTS engine close failed, could not
+    release the synthesis stream interface</error>
+    <error num="16086" severity="2" scope="system">TTS engine open failed, could not
+    register the synthesis stream interface</error>
+    <error num="16087" severity="2" scope="system">TTS engine open failed, could not
+    register the linguistic database</error>
+    <error num="16088" severity="2" scope="system">TTS engine open failed, could not
+    register the synthesizer output sink</error>
+    <error num="16089" severity="2" scope="system">Could not register the Internet
+    fetch property settings for a speak request</error>
+    <error num="16090" severity="2" scope="system">Could not unregister the Internet
+    fetch property settings after a speak request</error>
+    <error num="16091" severity="2" scope="system">Could not load a synthesis
+    pipeline, invalid sub-tag in the pipeline file's COMPONENTS section</error>
+    <error num="16092" severity="2" scope="system">Could not load a synthesis
+    pipeline, a component in the pipeline file's COMPONENTS section has
+    an invalid value</error>
+    <error num="16093" severity="3">Invalid resource in the RESOURCES
+    section of a synthesis pipeline file, invalid sub-tag name</error>
+    <error num="16094" severity="3">Invalid resource in the RESOURCES
+    section of a synthesis pipeline file, value must be a URI</error>
+    <error num="16095" severity="3">Invalid resource in the RESOURCES
+    section of a synthesis pipeline file, must have a content-type
+    attribute</error>
+    <error num="16096" severity="2" scope="system">TTS engine class close failed,
+    could not unregister the component query interface</error>
+    <error num="16097" severity="2" scope="system">TTS engine class close failed,
+    could not release the component query interface</error>
+    <error num="16098" severity="2" scope="system">TTS engine class open failed,
+    could not register the component query interface</error>
+    <error num="16099" severity="2" scope="system">Could not load a synthesis
+    pipeline, syntax error in the pipeline file's OBJECTS section</error>
+    <error num="16100" severity="2" scope="system">Could not close a loaded object</error>
+    <error num="16101" severity="2" scope="system">Could not unregister a loaded
+    object</error>
+    <error num="16102" severity="2" scope="system">Cannot store the input MIME
+    content type</error>
+    <error num="16103" severity="2">Infinite loop detected during
+    synthesis, aborting</error>
+    <error num="16104" severity="3" scope="system">Failed to establish the default
+    infinite loop detect limit when opening a TTS engine</error>
+    <error num="16105" severity="1" scope="system">No licenses are configured</error>
+    <error num="16107" severity="3">Adapted TTS licenses threshold value: value was 0</error>
+    <error num="16108" severity="3">Adapted CPR licenses threshold value: value was 0</error>
+    <error num="16109" severity="3">Adapted TTS licenses threshold value: value was greater than amount of licenses in pool</error>
+    <error num="16110" severity="3">Adapted CPR licenses threshold value: value was greater than amount of licenses in pool</error>
+    <error num="16111" severity="2" scope="system">Critical section for class open failed</error>
+    <error num="16112" severity="2" scope="system">TTS engine operation failed, entering critical section</error>
+    <error num="16113" severity="3">TTS license allocation exceeds the overdraft threshhold</error>
+    <error num="16114" severity="3">CPR license allocation exceeds the overdraft threshhold</error>
+    <error num="16115" severity="3">TTS license is not available</error>
+    <error num="16116" severity="3">CPR license is not available</error>
+    <error num="16117" severity="3">CPR license is not available, falling back to a TTS license</error>
+    <error num="16118" severity="1" scope="system">Could not aquire enough licenses for the TTS license pool</error>
+    <error num="16119" severity="1" scope="system">Could not aquire enough licenses for the CPR license pool</error>
+    <error num="16120" severity="3">Could not do a mid-synthesis voice switch, the voices use incompatible technologies</error>
+    <error num="16121" severity="3">Could not do a mid-synthesis voice switch, invalid voice name</error>
+    <error num="16122" severity="2" scope="system">Could not do a mid-synthesis voice switch, the component query module is not available</error>
+    <error num="16123" severity="2">Could not do a mid-synthesis voice switch, voice load failed</error>
+    <error num="16124" severity="3">Could not do a mid-synthesis voice switch, cannot switch to a full TTS voice when using a CPR-only license</error>
+    <error num="16125" severity="2" scope="system">Synthesis stream write failed for the text input stream</error>
+    <error num="16126" severity="3">Invalid license expiration time provided.  Using minimum value instead.</error>
+
+    <!-- Mobile and Automotive public API errors -->
+    <error num="18000" severity="2" scope="system">Out of memory</error>
+    <error num="18001" severity="2" scope="system">This Vocalizer build only supports having one open instance</error>
+    <error num="18002" severity="2" scope="system">brk_ObjOpen failed</error>
+    <error num="18003" severity="2" scope="system">rsrc_Open failed</error>
+    <error num="18004" severity="2" scope="system">paramc_ObjOpen failed</error>
+    <error num="18005" severity="2" scope="system">objc_ObjOpen failed</error>
+    <error num="18006" severity="2" scope="system">objc_RegisterObject synthstream failed</error>
+    <error num="18007" severity="2" scope="system">objc_RegisterObject lingdb failed</error>
+    <error num="18008" severity="2" scope="system">ttseg_ObjOpen failed</error>
+    <error num="18009" severity="2" scope="system">phonmap_ObjOpen failed</error>
+    <error num="18010" severity="2" scope="system">objc_RegisterObject phonmap failed</error>
+    <error num="18011" severity="2" scope="system">lipsync_ObjOpen failed</error>
+    <error num="18012" severity="2" scope="system">ttsOpen failed</error>
+    <error num="18013" severity="2">The specified frequency is not supported</error>
+    <error num="18014" severity="2">The specified marker mode is not supported</error>
+    <error num="18015" severity="2">The specified init mode is not supported</error>
+    <error num="18016" severity="2">The specified text mode is not supported</error>
+    <error num="18017" severity="2">The specified type of char is not supported</error>
+    <error num="18018" severity="2">The specified parameter ID is not supported</error>
+    <error num="18019" severity="2">ttsSetParamList failed</error>
+    <error num="18020" severity="2" scope="system">ssft_hlp_PipelineName failed</error>
+    <error num="18021" severity="2">Voice/language switching is not supported, close the instance and open a new instance</error>
+    <error num="18022" severity="2">ttseg_PipelineSet failed</error>
+    <error num="18023" severity="2" scope="system">An invalid type of char value was returned by the engine</error>
+    <error num="18024" severity="2" scope="system">Broker object open failure</error>
+    <error num="18026" severity="2" scope="system">ssft_loc_ConvertToLanguageTLW failure</error>
+    <error num="18027" severity="2" scope="system">GetNbrOfFilesInstalled failure</error>
+    <error num="18028" severity="2" scope="system">GetListOfFilesInstalled failure</error>
+    <error num="18029" severity="2" scope="system">Broker component query failure</error>
+    <error num="18030" severity="2" scope="system">ttseg_GetPhonemeInfo failed</error>
+    <error num="18031" severity="2" scope="system">lipsync_GetSyncInfo failed</error>
+
+    <error num="18032" severity="3">TTS operation failed, the
+    engine is already active</error>
+    <error num="18033" severity="2" scope="system">TTS operation failed,
+    internal state machine error</error>
+    <error num="18034" severity="2" scope="system">Critical section object close
+    failed</error>
+    <error num="18035" severity="2" scope="system">State machine object open failed</error>
+    <error num="18041" severity="2" scope="system">audiofetch_GetInterface failed</error>
+    <error num="18042" severity="2" scope="system">audiofetch ObjOpen failed</error>
+    <error num="18043" severity="2" scope="system">audiofetch objc_RegisterObject failed</error>
+    <error num="18044" severity="2" scope="system">audioinserter_GetInterface failed</error>
+    <error num="18045" severity="2" scope="system">audioinserter ObjOpen failed</error>
+    <error num="18046" severity="2" scope="system">audioinserter objc_RegisterObject failed</error>
+    <error num="18047" severity="2" scope="system">domain_mngr_GetInterface failed</error>
+    <error num="18048" severity="2" scope="system">domain_mngr ObjOpen failed</error>
+    <error num="18049" severity="2" scope="system">domain_mngr objc_RegisterObject failed</error>
+
+
+    <!-- uselect errors -->
+    <error num="19000" severity="2" scope="system">Out of memory</error>
+    <error num="19001" severity="2" scope="system">Could not open an input synthesis
+    stream</error>
+    <error num="19002" severity="2" scope="system">Could not open an output synthesis
+    stream</error>
+    <error num="19003" severity="2" scope="system">Output synthesis stream write
+    failed</error>
+    <error num="19004" severity="2" scope="system">Input synthesis stream read
+    failed</error>
+    <error num="19005" severity="2" scope="system">Input synthesis stream text layer is
+    not properly NULL terminated</error>
+    <error num="19006" severity="2" scope="system">Synthesis stream close failed</error>
+    <error num="19007" severity="2" scope="system">Feature not supported during feature
+    extraction allocation</error>
+    <error num="19008" severity="2" scope="system">Parse error when loading the voice
+    uselect data file</error>
+    <error num="19009" severity="2" scope="system">Phoneme is not available in the speechbase
+    </error>
+    <error num="19010" severity="2" scope="system">Feature extraction was not
+    initialized</error>
+    <error num="19011" severity="2" scope="system">Feature extraction failed, incorrect
+    feature buffer sizes</error>
+    <error num="19012" severity="5" scope="system">Invalid phoneme ignored during feature
+    extraction</error>
+    <error num="19013" severity="5" scope="system">Sentence accent is not on a syllable
+    boundary during feature extraction</error>
+    <error num="19014" severity="5" scope="system">Primary stress is not on a syllable
+    boundary during feature extraction</error>
+    <error num="19015" severity="5" scope="system">Secondary stress is not on a syllable
+    boundary during feature extraction</error>
+    <error num="19016" severity="5" scope="system">Word boundary within a word record</error>
+    <error num="19017" severity="5" scope="system">Word without any phonemes</error>
+    <error num="19018" severity="3" scope="system">Internal error: internal tag doesn't match
+    the voice's tag alphabet</error>
+    <error num="19019" severity="5" scope="system">Word with an empty syllable</error>
+    <error num="19020" severity="5" scope="system">Word record with empty phonetization</error>
+    <error num="19021" severity="5" scope="system">Word record with invalid generic feature field</error>
+    <error num="19022" severity="2" scope="system">Unsupported generic context rule in uselect data file</error>
+    <error num="19023" severity="2" scope="system">Unsupported feature in generic context rule</error>
+    <error num="19024" severity="2" scope="system">Context rule action on unused preselection feature in uselect data file</error>
+    <error num="19025" severity="2" scope="system">Context rule action on unused transition feature in uselect data file</error>
+    <error num="19026" severity="3" scope="system">Incompatible uselect addon data</error>
+    <error num="19027" severity="5" scope="system">Not fully compatible uselect addon data</error>
+    <error num="19028" severity="2" scope="system">Unit is not available in the speechbase
+    </error>
+
+    <!-- lingdb errors -->
+    <error num="20000" severity="2" scope="system">Out of memory</error>
+    <error num="20001" severity="2" scope="system">Could not open input xml file</error>
+    <error num="20002" severity="2" scope="system">Could not read input xml file</error>
+    <error num="20003" severity="2" scope="system">Attempt to reset non_empty db</error>
+    <error num="20004" severity="2" scope="system">Failed to realloc record list</error>
+    <error num="20005" severity="2" scope="system">Invalid child key parameter</error>
+    <error num="20006" severity="2" scope="system">Invalid child/parent type</error>
+    <error num="20007" severity="2" scope="system">Attempt to create multiple sentence records (next)</error>
+    <error num="20008" severity="2" scope="system">Attempt to create multiple sentence records (prev)</error>
+    <error num="20009" severity="2" scope="system">No parent record</error>
+    <error num="20010" severity="2" scope="system">Invalid child/parent relationship</error>
+    <error num="20011" severity="2" scope="system">Child not found and must exist</error>
+    <error num="20012" severity="2" scope="system">Invalid record type</error>
+    <error num="20013" severity="2" scope="system">No word record exists</error>
+    <error num="20014" severity="2" scope="system">No syllable record exists</error>
+    <error num="20015" severity="2" scope="system">No phoneme record exists</error>
+    <error num="20016" severity="2" scope="system">Invalid record or field requested</error>
+    <error num="20017" severity="2" scope="system">Field contents are undefined</error>
+    <error num="20018" severity="2" scope="system">Missing child pointer in parent</error>
+    <error num="20019" severity="2" scope="system">Exceeded maximum database records</error>
+    <error num="20020" severity="2" scope="system">Null pointer encountered</error>
+    <error num="20021" severity="2" scope="system">LoadXML Expected sentence record</error>
+    <error num="20022" severity="2" scope="system">LoadXML Unrecognised field</error>
+    <error num="20023" severity="2" scope="system">LoadXML New syllable no word record to attach to</error>
+    <error num="20024" severity="2" scope="system">LoadXML New phoneme no word record to attach to</error>
+    <error num="20025" severity="2" scope="system">LoadXML New phoneme no syllable record to attach to</error>
+    <error num="20026" severity="2" scope="system">LoadXML New unit no word record to attach to</error>
+    <error num="20027" severity="2" scope="system">LoadXML New unit no syllable record to attach to</error>
+    <error num="20028" severity="2" scope="system">LoadXML New unit no phoneme record to attach to</error>
+    <error num="20029" severity="2" scope="system">LoadXML Phoneme cannot have more than one unit</error>
+    <error num="20030" severity="2" scope="system">Coold not add a child record, too many children</error>
+    <error num="20031" severity="5" scope="system">Unsupported weak phrase boundary in SPT input</error>
+    <error num="20032" severity="5" scope="system">Unsupported word prominence in SPT input</error>
+    <error num="20033" severity="2" scope="system">LoadXML Line too long</error>
+
+    <!-- audiocvt errors -->
+    <error num="21000" severity="2" scope="system">Audio output type is not supported</error>
+    <error num="21001" severity="2" scope="system">Could not open the required audio
+    output codec</error>
+    <error num="21002" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="21003" severity="2" scope="system">Could not get the audio frequency</error>
+    <error num="21004" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <!-- 21005, 21006 were deleted and may be reused -->
+    <error num="21007" severity="2" scope="system">Could not get the amount of
+    available audio input</error>
+    <error num="21008" severity="2" scope="system">Could not access the audio input</error>
+    <error num="21009" severity="2" scope="system">Could not initiate writing the
+    audio output</error>
+    <error num="21010" severity="2" scope="system">Could not complete writing the
+    audio output</error>
+    <error num="21011" severity="2" scope="system">Could not mark the consumed
+    audio input</error>
+
+    <!-- synthstream errors -->
+    <error num="22000" severity="2" scope="system">Out of memory</error>
+    <error num="22001" severity="3" scope="system">Synthesis stream handles are still
+    open while closing</error>
+    <error num="22002" severity="2" scope="system">Synthesis stream could not be
+    created, duplicate stream</error>
+    <error num="22003" severity="3">Synthesis stream read handle close
+    failed, could not find the stream</error>
+    <error num="22004" severity="2" scope="system">Synthesis stream buffer overrun on
+    read</error>
+    <error num="22005" severity="2" scope="system">Synthesis stream buffer overrun on
+    write</error>
+    <error num="22006" severity="2" scope="system">Invalid arguments to a synthesis
+    stream function</error>
+    <error num="22007" severity="2" scope="system">Invalid synthesis stream open mode</error>
+    <error num="22008" severity="2" scope="system">Invalid operation for a synthesis
+    stream read handle</error>
+    <error num="22009" severity="2" scope="system">Invalid operation for a synthesis
+    stream write handle</error>
+    <error num="22010" severity="2" scope="system">Invalid synthesis stream seek mode</error>
+    <error num="22011" severity="2" scope="system">Synthesis read failed, data no
+    longer available</error>
+    <error num="22012" severity="2" scope="system">Synthesis write failed, data
+    position was already flushed</error>
+    <error num="22013" severity="2" scope="system">Component changed a read-only
+    synthesis stream buffer</error>
+    <error num="22014" severity="3">Component called read for a data
+    type with deep copied pointers, switch to the read direct
+    functions otherwise synthstream cannot properly recover the memory</error>
+
+    <!-- compquery errors -->
+    <error num="23000" severity="2" scope="system">Out of memory</error>
+    <error num="23001" severity="2">Could not find a voice with a
+    language code that matches the desired language</error>
+    <error num="23002" severity="2">Could not find a voice that
+    matches the desired voice parameters</error>
+    <error num="23003" severity="2">Could not find a voice that
+    matches the desired language</error>
+    <error num="23004" severity="2">Could not find a voice that
+    matches the desired voice parameters</error>
+    <error num="23005" severity="2">Could not find a document type
+    that matches the desired voice parameters</error>
+    <error num="23006" severity="2" scope="system">Get product list failed, invalid
+    output arguments</error>
+    <error num="23007" severity="2" scope="system">Get language list failed, invalid
+    output arguments</error>
+    <error num="23008" severity="2" scope="system">Could not get product information
+    from the broker</error>
+    <error num="23009" severity="2" scope="system">Could not get the language
+    list from the broker</error>
+    <error num="23010" severity="2" scope="system">Could not get the voice list from
+    the broker</error>
+    <error num="23011" severity="2" scope="system">Could not get the pre-processor
+    list from the broker</error>
+    <error num="23012" severity="2" scope="system">Could not get the custom G2P list
+    from the broker</error>
+    <error num="23013" severity="2" scope="system">Get voice list failed, invalid
+    output arguments</error>
+    <error num="23014" severity="2" scope="system">Get document type list failed, invalid
+    output arguments</error>
+    <error num="23015" severity="2" scope="system">Get custom G2P list failed, invalid
+    output arguments</error>
+    <error num="23016" severity="2" scope="system">Get speech database list failed, invalid
+    output arguments</error>
+
+    <!-- tokentn errors -->
+    <error num="24001" severity="2" scope="system">TokenTN: Apply CHECK error - no function to call (main cause is incorrect nesting of rules)</error>
+    <error num="24002" severity="2" scope="system">TokenTN: invalid domain number</error>
+    <error num="24003" severity="2" scope="system">TokenTN: invalid dictionary value</error>
+    <error num="24004" severity="2" scope="system">TokenTN: empty orthographic field for word</error>
+    <error num="24005" severity="2" scope="system">TokenTN: attempt to check NULL submatch</error>
+    <error num="24006" severity="2" scope="system">TokenTN: invalid arg string, cannot convert to integer</error>
+    <error num="24007" severity="2" scope="system">TokenTN: badly formatted argument string, expected space</error>
+    <error num="24008" severity="2" scope="system">TokenTN: illegal matchIndex</error>
+    <error num="24009" severity="2" scope="system">TokenTN: expected domain definitions for current voice</error>
+    <error num="24010" severity="2" scope="system">TokenTN: error calling fe_depes_SetLayer</error>
+    <error num="24011" severity="2" scope="system">TokenTN: error calling fe_depes_SetMarker</error>
+    <error num="24012" severity="2" scope="system">TokenTN: error calling fe_depes_ExecModule</error>
+    <error num="24013" severity="2" scope="system">TokenTN: error calling fe_depes_GetMarker</error>
+    <error num="24014" severity="2" scope="system">TokenTN: error calling fe_depes_GetLayer 0</error>
+    <error num="24015" severity="2" scope="system">TokenTN: can't find expansion function</error>
+    <error num="24016" severity="2" scope="system">TokenTN: expansion evaluated to NULL</error>
+    <error num="24017" severity="2" scope="system">TokenTN: could not assign remapped word position for word </error>
+    <error num="24018" severity="2" scope="system">TokenTN: error moving to previous TOKEN record</error>
+    <error num="24019" severity="2" scope="system">TokenTN: error saving TOKEN record</error>
+    <error num="24020" severity="2" scope="system">TokenTN: error deleting subsumed TOKEN records</error>
+    <error num="24021" severity="2" scope="system">TokenTN: failure to open pcre resource</error>
+    <error num="24022" severity="2" scope="system">TokenTN: failure to open dictionary resource</error>
+    <error num="24023" severity="2" scope="system">TokenTN: failure to open depes resource</error>
+    <error num="24024" severity="2" scope="system">TokenTN: can't assign identifiers for processing</error>
+    <error num="24025" severity="2" scope="system">TokenTN: cant find expansion function</error>
+    <error num="24026" severity="2" scope="system">TokenTN: expansion evaluated to NULL</error>
+    <error num="24027" severity="2" scope="system">TokenTN: could not assign remapped word position for word </error>
+    <error num="24028" severity="2" scope="system">TokenTN: invalid domain number</error>
+    <error num="24029" severity="2" scope="system">TokenTN: failure in applying token expansions</error>
+    <error num="24030" severity="2" scope="system">TokenTN: error in reading token from pos from lingdb</error>
+    <error num="24031" severity="2" scope="system">TokenTN: error in reading token to pos from lingdb</error>
+    <error num="24032" severity="2" scope="system">TokenTN: error in reading token type from lingdb</error>
+    <error num="24033" severity="2" scope="system">TokenTN: error deleting token from lingdb</error>
+    <error num="24034" severity="2" scope="system">TokenTN: no sentence record in lingdb</error>
+    <error num="24035" severity="2" scope="system">TokenTN: call to getMem when memory not initialized</error>
+    <error num="24036" severity="2" scope="system">TokenTN: error increasing memory, exceeded maxblocks</error>
+    <error num="24037" severity="2" scope="system">TokenTN: invalid domain index</error>
+    <error num="24038" severity="2" scope="system">TokenTN: couldnt find active domain</error>
+    <error num="24039" severity="2" scope="system">TokenTN: error opening function map</error>
+    <error num="24040" severity="2" scope="system">TokenTN: error reading BOM</error>
+    <error num="24041" severity="2" scope="system">TokenTN: domain block index out of range</error>
+    <error num="24042" severity="2" scope="system">TokenTN: domain number out of range</error>
+    <error num="24043" severity="2" scope="system">TokenTN: priority list number out of range</error>
+    <error num="24044" severity="2" scope="system">TokenTN: error reading data file</error>
+    <error num="24045" severity="2" scope="system">TokenTN: error assigning dynamic token domain numbers</error>
+    <error num="24046" severity="2" scope="system">TokenTN: error parsing function arguments</error>
+    <error num="24047" severity="2" scope="system">TokenTN: Invalid function index</error>
+    <error num="24048" severity="2" scope="system">TokenTN: Out of Memory</error>
+    <error num="24049" severity="2" scope="system">TokenTN: Invalid argument</error>
+    <error num="24050" severity="2" scope="system">TokenTN: No active domains found</error>
+    <error num="24051" severity="2" scope="system">TokenTN: failure initializing pcre resource</error>
+    <error num="24052" severity="2" scope="system">TokenTN: error in reading binary file</error>
+    <error num="24053" severity="2" scope="system">TokenTN: mismatch in ESC normal mapping</error>
+    <error num="24054" severity="2" scope="system">TokenTN: missing ESC normal mapping</error>
+    <error num="24055" severity="2" scope="system">TokenTN: bad linguistic database position</error>
+    <error num="24056" severity="2" scope="system">TokenTN: Could not load a data file, invalid language identifier index</error>
+    <error num="24057" severity="2" scope="system">TokenTN: Could not load a data file</error>
+    <error num="24058" severity="2" scope="system">TokenTN: error calling fe_depes_GetLayer 1</error>
+    <error num="24059" severity="2" scope="system">TokenTN: mismatch in langmap and expansion string</error>
+    <error num="24060" severity="2" scope="system">TokenTN: error updating lingDB with language mappings</error>
+    <error num="24061" severity="2" scope="system">TokenTN: inconsistent language mapping length</error>
+    <error num="24062" severity="2" scope="system">TokenTN: old data format requires a non-empty priority list</error>
+
+    <!-- select/bet2 errors -->
+    <error num="25000" severity="2" scope="system">Out of memory</error>
+    <error num="25001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="25002" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <!-- 25003, 25004 were removed and may be reused -->
+    <error num="25005" severity="2" scope="system">Could not get the amount of
+    available selection input</error>
+    <error num="25006" severity="2" scope="system">Could not read selection input</error>
+    <error num="25007" severity="2" scope="system">Could not complete reading
+    selection input</error>
+    <error num="25008" severity="2" scope="system">Could not write selection output</error>
+    <error num="25009" severity="2" scope="system">Could not set a voice parameter in
+    the parameter container</error>
+    <error num="25010" severity="2" scope="system">Could not get a required
+    configuration parameter</error>
+    <error num="25011" severity="2" scope="system">Internal feature extraction error</error>
+    <error num="25012" severity="2" scope="system">Data file load error</error>
+    <error num="25013" severity="2" scope="system">Invalid phoneme</error>
+    <error num="25014" severity="2" scope="system">Feature not supported during feature
+    extraction allocation</error>
+    <error num="25015" severity="2" scope="system">Feature not supported during feature
+    extraction output</error>
+    <error num="25016" severity="2" scope="system">Feature not available during feature
+    extraction output</error>
+    <error num="25017" severity="3">Invalid value for a parameter</error>
+
+    <!-- synth/bet2 errors -->
+    <error num="26000" severity="2" scope="system">Out of memory</error>
+    <error num="26001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="26002" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <error num="26003" severity="2" scope="system">Could not open a synthesizer input
+    stream</error>
+    <error num="26004" severity="2" scope="system">Could not open a synthesizer output
+    stream</error>
+    <error num="26005" severity="2" scope="system">Could not get the amount of
+    available synthesizer input</error>
+    <error num="26006" severity="2" scope="system">Could not read synthesizer input</error>
+    <error num="26007" severity="2" scope="system">Could not get the audio
+    frequency</error>
+    <error num="26008" severity="2" scope="system">Could not complete reading
+    synthesizer input</error>
+    <error num="26009" severity="2" scope="system">Could not write synthesizer output</error>
+    <error num="26010" severity="2" scope="system">Could not complete writing
+    synthesizer output</error>
+    <error num="26011" severity="2" scope="system">Could not get an initialization
+    parameter</error>
+    <error num="26012" severity="2" scope="system">Could not set the default for an
+    initialization parameter</error>
+    <error num="26013" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <error num="26014" severity="2" scope="system">Could not find the configured equalizer
+    setting in the equalizer data</error>
+
+    <!-- Data file reader/writer errors -->
+    <error num="27000" severity="2" scope="system">Out of memory</error>
+    <error num="27001" severity="2" scope="system">OS not supported, incorrect data
+    representation</error>
+    <error num="27002" severity="2" scope="system">File open for read failed, file
+    access error</error>
+    <error num="27003" severity="2" scope="system">File open for read failed, invalid
+    open mode</error>
+    <error num="27004" severity="2">File open for read failed, invalid
+    data header</error>
+    <error num="27005" severity="2">File open for read failed,
+    incorrect data file type</error>
+    <error num="27006" severity="2" scope="system">File open for read failed, data
+    file version not found</error>
+    <error num="27008" severity="2" scope="system">File open for read failed, invalid
+    file version format</error>
+    <error num="27009" severity="2" scope="system">File open for read failed,
+    unsupported data file version</error>
+    <error num="27010" severity="2">Data chunk open failed,
+    corrupt chunk header</error>
+    <error num="27011" severity="2">Data chunk open failed,
+    corrupt chunk name</error>
+    <error num="27012" severity="2">Data chunk open failed,
+    corrupt chunk size</error>
+    <error num="27013" severity="2" scope="system">Data chunk find failed, corrupt
+    chunk stack</error>
+    <error num="27014" severity="2" scope="system">Data chunk find failed, invalid
+    find mode</error>
+    <error num="27015" severity="2" scope="system">Data chunk close failed, no open
+    chunks</error>
+    <error num="27016" severity="2" scope="system">Data chunk close failed, corrupt
+    chunk stack</error>
+    <error num="27017" severity="2">File open for write failed, file
+    access error</error>
+    <error num="27018" severity="2">Data header write failed, could
+    not get the current date and time</error>
+    <error num="27019" severity="2" scope="system">File close failed</error>
+    <error num="27020" severity="2" scope="system">Data chunk close failed, no chunk
+    is currently open</error>
+    <error num="27021" severity="2">File seek failed</error>
+    <error num="27022" severity="2" scope="system">Data chunk write failed, invalid
+    argument</error>
+    <error num="27023" severity="2" scope="system">Data chunk write failed, file
+    already closed</error>
+    <error num="27024" severity="2">Data chunk write failed, I/O error</error>
+    <error num="27025" severity="2">File parse failed</error>
+    <error num="27026" severity="2">Data chunk write failed, write would
+    exceed the maximum file size limit</error>
+    <error num="27027" severity="2" scope="system">Data chunk open failed,
+    chunk not opened on the proper alignment boundary</error>
+
+    <!-- String map reader/writer errors -->
+    <error num="28000" severity="2" scope="system">Out of memory</error>
+    <error num="28001" severity="2" scope="system">String mapper data load error,
+    missing data block</error>
+    <error num="28002" severity="2" scope="system">String mapper data load error,
+    data block is too small</error>
+
+    <!-- phonmap errors -->
+    <error num="29000" severity="2" scope="system">Out of memory</error>
+    <error num="29001" severity="2" scope="system">Phone mapper creation error,
+    cannot get a required parameter</error>
+    <error num="29002" severity="2" scope="system">Phone mapper creation error,
+    cannot register to listen for parameter changes</error>
+
+    <!-- fe initlingdb errors -->
+    <error num="30000" severity="2" scope="system">Front end initlingdb: Out of memory</error>
+    <error num="30001" severity="2" scope="system">Front end initlingdb: Invalid argument</error>
+    <error num="30002" severity="2" scope="system">Front end initlingdb: Error writing in the lingDB</error>
+    <error num="30003" severity="2" scope="system">Front end initlingdb: Error reading in the lingDB</error>
+    <error num="30004" severity="3">Requested text normalization type is not supported: falling back to normal type</error>
+    <error num="30005" severity="3">Full requested text normalization type is not supported: falling back to base type</error>
+
+
+
+    <!-- fe deinitlingdb errors -->
+    <error num="31000" severity="2" scope="system">Front end deinitlingdb: Out of memory</error>
+    <error num="31001" severity="2" scope="system">Front end deinitlingdb: Invalid argument</error>
+
+    <!-- fe abbrtn errors -->
+    <error num="32000" severity="2" scope="system">Front end abbrtn: Out of memory</error>
+    <error num="32001" severity="2" scope="system">Front end abbrtn: Invalid argument</error>
+    <error num="32002" severity="2">Front end abbrtn: Input contains only user tokens</error>
+
+    <!-- fe puncsptn errors -->
+    <error num="33000" severity="2" scope="system">Front end puncsptn: Out of memory</error>
+    <error num="33001" severity="2" scope="system">Front end puncsptn: Invalid argument</error>
+    <error num="33002" severity="2">Front end puncsptn: Depes expansion error</error>
+    <error num="33003" severity="2">Front end puncsptn: Invalid case-gender info in normalized orthography</error>
+    <error num="33004" severity="2">Incorrect language map insertion</error>
+
+    <!-- fe oneword errors -->
+    <error num="34000" severity="2" scope="system">Front end oneword: Out of memory</error>
+    <error num="34001" severity="2" scope="system">Front end oneword: Invalid argument</error>
+    <error num="34002" severity="2">Front end oneword: Input contains only user tokens</error>
+    <error num="34003" severity="5">Front end oneword: Digit or punctuation not in G2P dictionary</error>
+    <error num="34004" severity="2">Front end oneword: Decision tree error</error>
+    <error num="34005" severity="3">Front end oneword: Decision tree warning</error>
+
+
+    <!-- fe pos errors -->
+    <error num="35000" severity="2" scope="system">Front end pos: Out of memory</error>
+    <error num="35001" severity="2" scope="system">Front end pos: Invalid argument</error>
+    <error num="35002" severity="2" scope="system">Missing POS entry in dictionary</error>
+    <error num="35003" severity="2" scope="system">Missing PROM entry in dictionary</error>
+    <error num="35004" severity="2" scope="system">Missing IGTREE entry in data</error>
+    <error num="35005" severity="2" scope="system">Missing mapping entry in compound word dictionary</error>
+    <error num="35006" severity="2" scope="system">Unknown Feature Name in igtree data</error>
+    <error num="35007" severity="2" scope="system">Exceeded maximum number of words in a compound word</error>
+    <error num="35008" severity="2" scope="system">no POS tags for word</error>
+
+  <!-- fe homgrph errors -->
+    <error num="36000" severity="2" scope="system">Front end homgrph: Out of memory</error>
+    <error num="36001" severity="2" scope="system">Front end homgrph: Invalid argument</error>
+
+    <!-- fe phrasing errors -->
+    <error num="37000" severity="2" scope="system">Front end phrasing: Out of memory</error>
+    <error num="37001" severity="2" scope="system">Front end phrasing: Invalid argument</error>
+
+    <!-- fe global errors -->
+    <error num="38000" severity="2" scope="system">Front end global: Out of memory</error>
+    <error num="38001" severity="2" scope="system">Front end global: Invalid argument</error>
+
+    <!-- fe unixlit errors -->
+    <error num="39000" severity="2" scope="system">Front end unixlit: Out of memory</error>
+    <error num="39001" severity="2" scope="system">Front end unixlit: Invalid argument</error>
+
+    <!-- fe udwl errors -->
+    <error num="40000" severity="2" scope="system">Front end udwl: Out of memory</error>
+    <error num="40001" severity="2" scope="system">Front end udwl: Invalid argument</error>
+    <error num="40002" severity="2">Front end udwl: current product only supports a single user dictionary</error>
+    <error num="40003" severity="2">Front end udwl: current product does not support loading user dictionaries from a URI</error>
+    <error num="40004" severity="2">Front end udwl: Vocon dct error</error>
+
+
+    <!-- fe dctlkp errors -->
+    <error num="41000" severity="2" scope="system">Front end dictionary lookup: Out of memory</error>
+    <error num="41001" severity="2" scope="system">Front end dictionary lookup: Invalid argument</error>
+    <error num="41002" severity="2" scope="system">Front end dictionary lookup: Error writing in the lingDB</error>
+    <error num="41003" severity="2" scope="system">Front end dictionary lookup: token definition line in configuration file is too long</error>
+    <error num="41004" severity="2" scope="system">Front end dictionary lookup: missing values for token domain</error>
+    <error num="41005" severity="2" scope="system">Front end dictionary lookup: missing common sysdct data</error>
+    <error num="41006" severity="2" scope="system">Front end dictionary lookup: inconsistent version data</error>
+
+    <!-- fe depes errors -->
+    <error num="42000" severity="2" scope="system">Front end depes engine: Out of memory</error>
+    <error num="42001" severity="2" scope="system">Front end depes engine: Invalid argument</error>
+    <error num="42002" severity="2" scope="system">Front end depes engine: Missing depes data file</error>
+    <error num="42003" severity="2" scope="system">Front end depes engine: Wrong number of depes layers</error>
+    <error num="42004" severity="2">Front end depes engine: Depes sequence not found</error>
+    <error num="42005" severity="2">Front end depes engine: Depes overflow</error>
+    <error num="42006" severity="2" scope="system">Front end depes engine: Wrong header in data file</error>
+
+    <!-- fe normout errors -->
+    <error num="43000" severity="2" scope="system">Front end normout: Out of memory</error>
+    <error num="43001" severity="2" scope="system">Front end normout: Invalid argument</error>
+
+    <!-- synth/bet1 errors -->
+    <error num="45000" severity="2">Marker counts and available
+    markers are not aligned</error>
+    <error num="45001" severity="2">Incorrect number of markers
+    processed</error>
+    <error num="45002" severity="3">Pitch changes are not supported by the BET1 voice model</error>
+    <error num="45003" severity="3">Failed to load synth data</error>
+
+    <!-- phonmapmrk errors -->
+    <error num="45101" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="45102" severity="3">Could not get the phonmap interface</error>
+    <!-- 45103, 45104 were deleted and may be reused -->
+    <error num="45105" severity="3">Marker stream read failed</error>
+    <error num="45106" severity="3">Marker stream write failed</error>
+    <error num="45107" severity="3">Could not convert a phoneme</error>
+
+    <!-- fe prompt errors -->
+    <error num="45200" severity="2" scope="system">Front end prompt: Out of memory</error>
+    <error num="45201" severity="2" scope="system">Front end prompt: Invalid argument</error>
+
+    <!-- fe prompt orth errors -->
+    <error num="46000" severity="2" scope="system">Front end prompt orth: Out of memory</error>
+    <error num="46001" severity="2" scope="system">Front end prompt orth: Invalid argument</error>
+
+    <!-- domain_mngr errors -->
+    <error num="47000" severity="2" scope="system">Out of memory</error>
+    <error num="47001" severity="3">Could not create a query to
+    find the available ActivePrompt databases</error>
+    <error num="47002" severity="3">ActivePrompt database cannot
+    be applied, it does not match the voice version</error>
+    <error num="47003" severity="3">Invalid broker string for an
+    ActivePrompt database</error>
+    <error num="47004" severity="3">Could not open a domain</error>
+    <error num="47005" severity="3">Could not add a domain</error>
+    <error num="47006" severity="3">Could not get the ActivePrompt
+    database for a domain</error>
+    <error num="47007" severity="3">Multiple ActivePrompt
+    databases for a single domain is not allowed</error>
+    <error num="47008" severity="3">Could not enable a domain</error>
+    <error num="47009" severity="3">Could not store an
+    ActivePrompt database for a domain</error>
+    <error num="47010" severity="3">Could not enable an
+    ActivePrompt database at load time</error>
+    <error num="47011" severity="3">ActivePrompt database cannot
+    be applied, it does not match the voice</error>
+    <error num="47012" severity="3">Could not disable a domain</error>
+    <error num="47013" severity="3">Could not disable the last
+    domain, no domains are activated</error>
+    <error num="47014" severity="3">Could not disable all domains</error>
+    <error num="47015" severity="3">Internal error, could not
+    consult ActivePrompt databases due to an invalid argument</error>
+    <error num="47016" severity="3">Could not find a requested
+    ActivePrompt</error>
+    <error num="47017" severity="3">Corrupt ActivePrompt
+    database</error>
+    <error num="47018" severity="3">Cannot load an ActivePrompt database with
+    recorded prompts, cannot find a matching speechbase and cannot determine
+    a recording path</error>
+    <error num="47019" severity="3">ActivePrompt database load failed,
+    no Internet fetcher configured</error>
+    <error num="47020" severity="3">Multiple TN-groups for tuned ActivePrompts are not allowed</error>
+    <error num="47021" severity="3">Voice data addon already loaded</error>
+    <error num="47022" severity="3">Voice data addon not found for unloading</error>
+
+    <!-- LID errors -->
+    <error num="48000" severity="2" scope="system">Out of memory</error>
+    <error num="48001" severity="2" scope="system">Invalid language identifier argument</error>
+    <error num="48002" severity="2" scope="system">LID data not available</error>
+    <error num="48003" severity="3">Language cannot be added to the language
+    identifier active languages list because it is not installed</error>
+    <error num="48004" severity="3">Language cannot be added to the language
+    identifier active languages list because it is not supported by the
+    Vocalizer models</error>
+    <error num="48005" severity="3">Invalid language codes within the language
+    identifier active languages list were ignored</error>
+
+    <!-- FE CLM errors -->
+    <error num="49000" severity="2" scope="system">Front end cross language mapping: Out of memory</error>
+    <error num="49001" severity="2" scope="system">Front end cross language mapping: Invalid argument</error>
+
+    <!-- CLM errors -->
+    <error num="50000" severity="2" scope="system">Cross language mapping: Out of memory</error>
+    <error num="50001" severity="2" scope="system">Cross language mapping: Invalid argument</error>
+    <error num="50002" severity="2" scope="system">Cross language mapping: Buffer too small</error>
+    <error num="50003" severity="2">Cross language mapping: Internal error</error>
+
+    <!-- CLC errors -->
+    <error num="51000" severity="2" scope="system">Out of memory</error>
+    <error num="51001" severity="2" scope="system">Infinite loop detected during
+    synthesis, aborting</error>
+    <error num="51002" severity="2">Synthesis component failed during
+    synthesis</error>
+    <error num="51003" severity="2" scope="system">Parameter container object open
+    failed</error>
+    <error num="51004" severity="2" scope="system">Object container object open failed</error>
+    <error num="51005" severity="2" scope="system">Invalid pipeline string, contains data
+    for multiple hdr files</error>
+    <error num="51006" severity="2" scope="system">Invalid pipeline string, parse
+    failed</error>
+    <error num="51007" severity="2" scope="system">Could not register the synthesis stream
+    interface</error>
+    <error num="51008" severity="2" scope="system">Could not register the linguistic database
+    interface</error>
+    <error num="51009" severity="2" scope="system">Could not release the linguistic 
+    database object</error>
+    <error num="51010" severity="2" scope="system">Could not release the synthesis stream 
+    object</error>
+    <error num="51011" severity="2" scope="system">Could not open a synthesis stream
+    object</error>
+    <error num="51012" severity="2" scope="system">Could not open a linguistic database
+    object</error>
+    <error num="51013" severity="2" scope="system">Could not set a parameter
+    container backup point</error>
+    <error num="51014" severity="2" scope="system">Could not open the synthesis
+    stream for providing the input text</error>
+    <error num="51015" severity="2" scope="system">Could not initialize a synthesis
+    component for a new synthesis operation</error>
+    <error num="51016" severity="2" scope="system">Could not write the input text to
+    the synthesis stream</error>
+    <error num="51017" severity="2" scope="system">Synthesis component failed to
+    clean up after synthesis</error>
+    <error num="51018" severity="2" scope="system">Could not restore a parameter
+    container backup point</error>
+    <error num="51019" severity="2" scope="system">Could not free a parameter
+    container backup point</error>
+    <error num="51020" severity="2">Could not set a parameter</error>
+    <error num="51021" severity="2">Could not get a parameter, the output
+    buffer is too small</error>
+    <error num="51022" severity="2">Could not get a parameter</error>
+
+    <!-- WParser Implementation errors -->
+    <error num="52000" severity="2">Jparser: Exceeded maximum length</error>
+    <error num="52001" severity="2">Jparser: Dictionary lookup failed</error>
+    <error num="52002" severity="2" scope="system">Thai Parser : Failure initializing rules</error>
+    <error num="52003" severity="2" scope="system">Jparser: Badly formatted dictionary</error>
+
+    <!-- select/cpr errors -->
+    <error num="53000" severity="2" scope="system">Out of memory</error>
+    <error num="53001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <!-- 53003, 53004 were deleted and may be reused -->
+    <error num="53005" severity="2" scope="system">Could not get the amount of
+    available selection input</error>
+    <error num="53006" severity="2" scope="system">Could not read selection input</error>
+    <error num="53007" severity="2" scope="system">Could not complete reading
+    selection input</error>
+    <error num="53008" severity="2" scope="system">Could not write selection output</error>
+    <error num="53009" severity="3">Concatenated prompt recording voice
+    cannot find enough recorded ActivePrompts to fully speak the input
+    text</error>
+    <error num="53010" severity="3">Concatenated prompt recording voice
+    cannot use tuned ActivePrompts</error>
+
+    <!--araParser Implementation errors -->
+    <error num="54000" severity="2" scope="system">Out of memory</error>
+    <error num="54001" severity="2">Could not sync phonetic and-or domain markers</error>
+    <error num="54002" severity="2" scope="system">N-gram level specified but missing dictionary</error>
+    <error num="54003" severity="2" scope="system">Mismatch in number of dictionaries and n-grams</error>
+    <error num="54004" severity="2" scope="system">could not resolve references pos</error>
+    <error num="54005" severity="2" scope="system">can't load/missing igtree data</error>
+
+
+  <!-- select/bet3 errors -->
+    <error num="55000" severity="2" scope="system">Out of memory</error>
+    <error num="55001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="55002" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <error num="55003" severity="2" scope="system">Could not load a voice data file</error>
+    <!-- 55004 was deleted and may be reused -->
+    <error num="55005" severity="2" scope="system">Could not get the amount of
+    available selection input</error>
+    <error num="55006" severity="2" scope="system">Could not load a voice data file,
+    required data sections are missing</error>
+    <error num="55007" severity="3">Selection run-time doesn't support
+    a requested feature</error>
+    <error num="55008" severity="2" scope="system">Could not write selection output</error>
+    <error num="55009" severity="2" scope="system">Could not set a voice parameter in
+    the parameter container</error>
+    <error num="55010" severity="2" scope="system">Selection run-time doesn't support
+    a requested feature</error>
+    <error num="55011" severity="2" scope="system">Could not load a voice data file,
+    invalid data section version</error>
+    <error num="55012" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55013" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55014" severity="2" scope="system">Internal error, structure size is
+    not the expected size</error>
+    <error num="55015" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55016" severity="2" scope="system">Synthesis failed, voice uses an
+    unsupported configuration</error>
+    <error num="55017" severity="2" scope="system">Synthesis failed, voice uses an
+    unsupported configuration</error>
+    <error num="55018" severity="2" scope="system">Synthesis failed, requested
+    synthesis length is too short</error>
+    <error num="55019" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55020" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55021" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55022" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55023" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55024" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55025" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55026" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55027" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55028" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55029" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section header</error>
+    <error num="55030" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55031" severity="2" scope="system">Could not load a voice data file,
+    corrupt data section</error>
+    <error num="55032" severity="2" scope="system">Could not load a voice data file,
+    missing a required data section</error>
+    <error num="55033" severity="2" scope="system">Could not load a voice data file,
+    missing a required data section</error>
+    <error num="55034" severity="2" scope="system">Could not load a voice data file,
+    missing a required data section</error>
+    <error num="55035" severity="2" scope="system">Could not load a voice data file,
+    invalid data section</error>
+    <error num="55036" severity="2" scope="system">Could not load a voice data file,
+    invalid voice configuration</error>
+
+    <!-- synth/bet3 errors -->
+    <error num="56000" severity="2" scope="system">Out of memory</error>
+    <error num="56001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <!-- 56002, 56003 were deleted and may be reused -->
+    <error num="56004" severity="2" scope="system">Could not get the amount of
+    available synthesizer input</error>
+    <error num="56005" severity="2" scope="system">Could not read synthesizer input</error>
+    <error num="56006" severity="2" scope="system">Could not complete reading
+    synthesizer input</error>
+    <error num="56007" severity="2" scope="system">Could not write synthesizer output</error>
+    <error num="56008" severity="2" scope="system">Could not get an initialization
+    parameter</error>
+    <error num="56009" severity="2" scope="system">Could not set the default for an
+    initialization parameter</error>
+    <error num="56010" severity="2" scope="system">Could not register parameter
+    listeners</error>
+
+    <!-- fe promptoriorth errors -->
+    <error num="57000" severity="2" scope="system">Front end prompt: Out of memory</error>
+    <error num="57001" severity="2" scope="system">Front end prompt: Invalid argument</error>
+
+    <!-- select/bet4 errors -->
+    <error num="58000" severity="2" scope="system">Out of memory</error>
+    <error num="58001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <error num="58002" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <error num="58003" severity="2" scope="system">Could not load a voice data file</error>
+    <!-- 58004 was deleted and may be reused -->
+    <error num="58005" severity="2" scope="system">Could not get the amount of
+    available selection input</error>
+    <error num="58006" severity="2" scope="system">Could not load a voice data file,
+    required data sections are missing</error>
+    <error num="58008" severity="2" scope="system">Could not write selection output</error>
+    <error num="58009" severity="2" scope="system">Could not set a voice parameter in
+    the parameter container</error>
+    <error num="58010" severity="2" scope="system">Could not load a voice data file,
+    invalid voice data feature</error>
+    <error num="58011" severity="2" scope="system">Voice data requests an unsupported
+    voice configuration option</error>
+    <error num="58012" severity="2" scope="system">Corrupt voice data, invalid data
+    offset</error>
+    <error num="58013" severity="2" scope="system">Internal error: misaligned segments</error>
+    <error num="58016" severity="2" scope="system">Synthesis failed, voice uses an
+    unsupported configuration</error>
+    <error num="58017" severity="2" scope="system">Synthesis failed, voice uses an
+    unsupported configuration</error>
+    <error num="58018" severity="2" scope="system">Synthesis failed, requested
+    synthesis length is too short</error>
+    <error num="58019" severity="2" scope="system">Could not load a voice data file,
+    invalid voice configuration</error>
+
+    <!-- synth/bet4 errors -->
+    <error num="59000" severity="2" scope="system">Out of memory</error>
+    <error num="59001" severity="2" scope="system">Could not get the synthstream
+    interface</error>
+    <!-- 59002, 59003 were removed and may be reused -->
+    <error num="59004" severity="2" scope="system">Could not get the amount of
+    available synthesizer input</error>
+    <error num="59005" severity="2" scope="system">Could not read synthesizer input</error>
+    <error num="59006" severity="2" scope="system">Could not complete reading
+    synthesizer input</error>
+    <error num="59007" severity="2" scope="system">Could not write synthesizer output</error>
+    <error num="59008" severity="2" scope="system">Could not get an initialization
+    parameter</error>
+    <error num="59009" severity="2" scope="system">Could not set the default for an
+    initialization parameter</error>
+    <error num="59010" severity="2" scope="system">Could not register parameter
+    listeners</error>
+    <error num="59011" severity="2" scope="system">Could not read segment from parametric PCM,
+    invalid data offset</error>
+    <error num="59012" severity="2" scope="system">Could not read segment from AudioInsert PCM,
+    invalid data offset</error>
+
+    <!-- fe clcml errors -->
+    <error num="60000" severity="2" scope="system">Front end clc ml: Out of memory</error>
+    <error num="60001" severity="2" scope="system">Front end clc ml: Invalid argument</error>
+    <error num="60002" severity="3" scope="system">Ignoring extraesctn</error>
+    <error num="60003" severity="3" scope="system">Ignoring extraesclang</error>
+    <error num="60004" severity="3" scope="system">Front end clc ml: Ignoring language in extraesclang</error>
+
+
+    <!--wordSeg Implementation errors -->
+    <error num="61000" severity="2" scope="system">WordSeg: Out of memory</error>
+    <error num="61001" severity="2" scope="system">WordSeg: Error processing regions: consecutive regions not found</error>
+    <error num="61002" severity="2" scope="system">WordSeg: Error processing pinyin or hex</error>
+    <error num="61003" severity="2" scope="system">WordSeg: cannot find TN region for TOI region</error>
+    <error num="61004" severity="2" scope="system">WordSeg: TOI region not processed</error>
+    <error num="61005" severity="2" scope="system">WordSeg: abandoning post-processing</error>
+    <error num="61006" severity="2" scope="system">WordSeg: error calling depes</error>
+    <error num="61007" severity="2" scope="system">WordSeg: got invalid hex str from depes</error>
+    <error num="61008" severity="2" scope="system">WordSeg: different length depes return strings</error>
+    <error num="61009" severity="2" scope="system">WordSeg: error in alignment (asterisk or spaces) in depes return strings</error>
+    <error num="61010" severity="2" scope="system">WordSeg: error in processing word insertion or deletion</error>
+    <error num="61011" severity="2" scope="system">WordSeg: pinyin word too long</error>
+    <error num="61012" severity="2" scope="system">WordSeg: corrupted or mismatch in hex characters</error>
+    <error num="61013" severity="2" scope="system">WordSeg: could not parse chinese word</error>
+    <error num="61014" severity="2" scope="system">WordSeg: error aligning word markers</error>
+
+    <!--pandp Implementation errors -->
+    <error num="62000" severity="2" scope="system">missing boundary thresholds</error>
+    
+    <!--statpos Implementation errors -->
+    <error num="63000" severity="2" scope="system">can't load igtree data</error>
+
+    <!-- be adapt errors -->
+    <error num="64000" severity="2" scope="system">Front end back end adaptations: Out of memory</error>
+  
+    <!-- general errors -->
+    <error num="65000" severity="3">Cannot open input stream</error>
+    <error num="65001" severity="3">Cannot open output stream</error>
+
+    <!-- global be adapt errors -->
+    <error num="66000" severity="2" scope="system">Global and back end adaptations: Out of memory</error>
+
+    <!-- tbm errors -->
+    <error num="67000" severity="2" scope="system">Global and back end adaptations: Out of memory</error>
+    <error num="67001" severity="3" scope="system">Prompt template load failed, can't load more than one </error>
+    <error num="67002" severity="3">Prompt template load failed, no Internet
+    fetcher configured</error>
+
+    <!--PosParser Implementation errors -->
+    <error num="68000" severity="2" scope="system">Out of memory</error>
+    <error num="68001" severity="2">Could not sync phonetic and-or domain markers</error>
+    <error num="68002" severity="2" scope="system">N-gram level specified but missing dictionary</error>
+    <error num="68003" severity="2" scope="system">Mismatch in number of dictionaries and n-grams</error>
+    <error num="68004" severity="2" scope="system">could not resolve references pos</error>
+    <error num="68005" severity="2" scope="system">can't load/missing igtree data</error>
+
+
+</ErrorMessages>

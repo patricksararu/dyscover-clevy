@@ -1,0 +1,30 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "frmReadingPaneUnit.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TfrmReadingPane *frmReadingPane;
+//---------------------------------------------------------------------------
+__fastcall TfrmReadingPane::TfrmReadingPane(TComponent* Owner)
+	: TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TfrmReadingPane::Timer1Timer(TObject *Sender)
+{
+	Timer1->Enabled = false;
+	Hide();
+}
+//---------------------------------------------------------------------------
+
+void TfrmReadingPane::SetCaption(String aCaption)
+{
+	lblSpeech->Caption = aCaption;
+	Timer1->Enabled = true;
+	Show();
+}
+

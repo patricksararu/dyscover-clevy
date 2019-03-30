@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Nuance Vocalizer Error Mapping File Schema
+Copyright (c) 2001-2007 Nuance Communications, Inc. All Rights Reserved.
+
+-->
+<xs:schema xmlns="http://www.nuance.com/vocalizer50/ErrorMessages" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.nuance.com/vocalizer50/ErrorMessages" elementFormDefault="qualified" attributeFormDefault="unqualified">
+  <xs:element name="ErrorMessages">
+    <xs:annotation>
+      <xs:documentation>Root element for error messages</xs:documentation>
+    </xs:annotation>
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element name="error">
+          <xs:complexType>
+            <xs:simpleContent>
+              <xs:extension base="xs:string">
+                <xs:attribute name="num" type="xs:NMTOKEN" use="required"/>
+                <xs:attribute name="severity" use="required">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:positiveInteger">
+                      <xs:minInclusive value="1"/>
+                      <xs:maxInclusive value="5"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+                <xs:attribute name="scope" default="application">
+                  <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                      <xs:enumeration value="application"/>
+                      <xs:enumeration value="system"/>
+                    </xs:restriction>
+                  </xs:simpleType>
+                </xs:attribute>
+              </xs:extension>
+            </xs:simpleContent>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      <xs:attribute name="moduleName" type="xs:string" use="required"/>
+      <xs:attribute name="version" type="xs:normalizedString" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

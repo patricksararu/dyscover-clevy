@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{41F70034-59F7-4DED-8469-4FE0BA25E8C7}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Clevy.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="E:\00 Devel-Windows\__examples\VCL\Clipboard\CopyPasteClipboard.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Clevy">
+        <MSBuild Projects="Clevy.cbproj"/>
+    </Target>
+    <Target Name="Clevy:Clean">
+        <MSBuild Projects="Clevy.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Clevy:Make">
+        <MSBuild Projects="Clevy.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="CopyPasteClipboard">
+        <MSBuild Projects="E:\00 Devel-Windows\__examples\VCL\Clipboard\CopyPasteClipboard.cbproj"/>
+    </Target>
+    <Target Name="CopyPasteClipboard:Clean">
+        <MSBuild Projects="E:\00 Devel-Windows\__examples\VCL\Clipboard\CopyPasteClipboard.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CopyPasteClipboard:Make">
+        <MSBuild Projects="E:\00 Devel-Windows\__examples\VCL\Clipboard\CopyPasteClipboard.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Clevy;CopyPasteClipboard"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Clevy:Clean;CopyPasteClipboard:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Clevy:Make;CopyPasteClipboard:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

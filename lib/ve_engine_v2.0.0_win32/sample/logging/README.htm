@@ -1,0 +1,44 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Diagnostic logging</title>
+</head>
+
+<body>
+
+<h2>Diagnostic logging</h2>
+<h3>What</h3>
+<p>
+  The Vocalizer engine publishes a lot of information useful to assist
+  in debugging or to collect performance metrics. A diagnostic logger
+  captures this log information and may write it to a text file. It is
+  possible to configure this diagnostic logger through a header file.
+</p>
+<h3>How</h3>
+<p>Setup is simple.</p>
+<ul>
+  <li>
+    Create the directory <i>ve</i> under <i>~\common\speech</i>.
+  </li>
+  <li>
+    Copy the header file <i>ve_logging.hdr</i> from
+    <i>~\sample\logging</i> to <i>~\common\speech\ve</i>.
+  </li>
+  <li>
+    Edit <i>ve_logging.hdr</i> to set the log level to your needs.
+  </li>
+</ul>
+<p>The different diagnostic levels are</p>
+<ul>
+  <li>0: log errors</li>
+  <li>1: also log warnings</li>
+  <li>2: also log computational statistics (memory and processing footprints)</li>
+  <li>3: also log debugging info</li>
+  <li>4: also log trace info</li>
+</ul>
+
+</body>
+
+</html>

@@ -58,6 +58,10 @@ bld/
 # Nuget
 packages/
 
+# Embarcadero C++Builder
+__history
+*.local
+
 # Other
 Thumbs.db
 desktop.ini

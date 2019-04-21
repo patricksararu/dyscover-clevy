@@ -6,7 +6,7 @@
 // ---------------------------------------------------------------------------
 #include "frmTrayIconUnit.h"
 #include "frmMainUnit.h"
-#include "lokiCpp/common/Language.h"
+#include "LokiCpp/common/Language.h"
 
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)

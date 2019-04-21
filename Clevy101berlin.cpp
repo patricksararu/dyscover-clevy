@@ -7,7 +7,7 @@
 #include "LokiCpp/common/Settings.h"
 #include "LokiCpp/model/views/frmSplashScreenUnit.h"
 // ---------------------------------------------------------------------------
-#include "frame/model/controllers/ctlDatabase.h"
+#include "Frame/model/controllers/ctlDatabase.h"
 // ---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
@@ -17,7 +17,6 @@
 #include <TlHelp32.h>
 #include <Dialogs.hpp>
 
-USEFORM("LokiCpp\model\views\frmSplashScreenUnit.cpp", frmSplashScreen);
 USEFORM("Frame\frmMainUnit.cpp", frmMain);
 USEFORM("Frame\frmLayoutChooserUnit.cpp", frmLayoutChooser);
 USEFORM("Frame\model\views\frmReadingPaneUnit.cpp", frmReadingPane);

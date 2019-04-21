@@ -314,6 +314,8 @@ namespace lokiCpp
 			String FileSubject = context->JsonString->Value();
 			SaveConfig(FileSubject);
 		}
+
+		return true;
 	}
 
 	bool TSettings::SaveConfig(String aContext)
@@ -364,6 +366,7 @@ namespace lokiCpp
 		d_fileHandle << context->ToString().w_str();
 		d_fileHandle.close();
 
+		return true;
 	}
 
 }

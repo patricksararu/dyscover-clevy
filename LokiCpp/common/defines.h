@@ -3,7 +3,7 @@
 
 namespace lokiCpp
 {
-	wchar_t * const APPLICATION_NAME = L"Clevy Dyscover";
+	static const wchar_t APPLICATION_NAME[] = L"Clevy Dyscover";
 
 	namespace version
 	{

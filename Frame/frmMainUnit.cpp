@@ -8,8 +8,8 @@
 
 #include "frmMainUnit.h"
 // ---------------------------------------------------------------------------
-#include "lokiCpp/common/Language.h"
-#include "frame/model/controllers/ctlDatabase.h"
+#include "LokiCpp/common/Language.h"
+#include "Frame/model/controllers/ctlDatabase.h"
 // ---------------------------------------------------------------------------
 #include <Dbt.h>
 #include <vector>
@@ -384,10 +384,9 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 			break;
 		}
-
-		return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
 	}
 
+	return CallNextHookEx(keyboardHook, nCode, wParam, lParam);
 }
 
 bool TfrmMain::CheckKey(int key, bool ctrl, bool shft, bool alt, bool IgnoreKeyStatus)
@@ -896,7 +895,7 @@ bool TfrmMain::ProcessChar(wchar_t aChar)
 	String filename = value + ".wav";
 	if (FileExists(d_dataDir + filename))
 	{
-		sndPlaySound((d_dataDir + filename).c_str(), SND_SYNC || SND_NODEFAULT || SND_NOSTOP);
+		sndPlaySound((d_dataDir + filename).c_str(), SND_SYNC | SND_NODEFAULT | SND_NOSTOP);
 	}
 	else
 	{

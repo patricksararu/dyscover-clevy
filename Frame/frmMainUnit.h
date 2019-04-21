@@ -13,10 +13,10 @@
 #include <Vcl.ImgList.hpp>
 // ---------------------------------------------------------------------------
 #include "lib/cfgmgr32.h"
-#include "lokiCpp/common/Settings.h"
+#include "LokiCpp/common/Settings.h"
 // ---------------------------------------------------------------------------
 #include "Frame/frmLayoutChooserUnit.h"
-#include "frame/model/views/frmReadingPaneUnit.h"
+#include "Frame/model/views/frmReadingPaneUnit.h"
 #include "frmTrayIconUnit.h"
 // ---------------------------------------------------------------------------
 // #include "frame/model/controllers/ctlSelfElevation.h"

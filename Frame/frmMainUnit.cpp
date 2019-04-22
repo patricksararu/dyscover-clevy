@@ -6,6 +6,7 @@
 // #include <windows.h>
 #pragma hdrstop
 
+#include "Debug.h"
 #include "frmMainUnit.h"
 // ---------------------------------------------------------------------------
 #include "LokiCpp/common/Language.h"
@@ -104,6 +105,8 @@ void TfrmMain::ReadTextSelection()
 // ---------------------------------------------------------------------------
 LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
+	DebugTimer dt(TEXT("LowLevelKeyboardProc()"));
+
 	static std::vector < wchar_t > chars;
 	volatile bool keyboardDisconnected = !frmMain->d_config.KeboardConnected;
 	volatile bool NoSound              = !frmMain->d_config.Sound;
@@ -113,6 +116,8 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 	if (nCode == HC_ACTION)
 	{
 		TKBDLLHOOKSTRUCT *obj = reinterpret_cast < TKBDLLHOOKSTRUCT * > (lParam);
+
+		DebugLog(TEXT("LowLevelKeyboardProc(nCode = %d, wParam = %d, lParam = %d) vkCode = %d"), nCode, wParam, lParam, obj->vkCode);
 
 		volatile static bool win  = false;
 		volatile static bool ctrl = false;
@@ -391,6 +396,8 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 bool TfrmMain::CheckKey(int key, bool ctrl, bool shft, bool alt, bool IgnoreKeyStatus)
 {
+	DebugTimer dt(TEXT("> TfrmMain::CheckKey()"));
+
 	if (bSkipKeyStroke)
 		return IgnoreKeyStatus;
 
@@ -593,10 +600,12 @@ void __fastcall TfrmMain::WndProc(TMessage &Message)
 	}
 	else if (Message.Msg == WM_ALT_KEY)
 	{
+		DebugTimer dt(TEXT("TfrmMain::WndProc()  WM_ALT_KEY"));
 		StopProcessing();
 	}
 	else if (Message.Msg == WM_SHOW_KEY)
 	{
+		DebugTimer dt(TEXT("TfrmMain::WndProc()  WM_SHOW_KEY"));
 
 		static std::vector < wchar_t > chars;
 		// TKBDLLHOOKSTRUCT *obj = reinterpret_cast < TKBDLLHOOKSTRUCT * > (Message.LParam);
@@ -823,6 +832,8 @@ void __fastcall TfrmMain::FormCloseQuery(TObject *Sender, bool &CanClose)
 
 bool TfrmMain::ProcessChar(wchar_t aChar)
 {
+	DebugTimer dt(TEXT("> TfrmMain::ProcessChar()"));
+
 	// if (value.Trim().Length() == 0)
 	// {
 	// return;
@@ -913,6 +924,8 @@ bool TfrmMain::ProcessChar(wchar_t aChar)
 
 void TfrmMain::ProcessText(String value, bool ignoreKeboardStatus)
 {
+	DebugTimer dt(TEXT("> TfrmMain::ProcessText()"));
+
 	if (value.Trim().Length() == 0)
 	{
 		return;
@@ -946,6 +959,8 @@ void TfrmMain::StopProcessing()
 
 void TfrmMain::ProcessWord(String value, bool ignoreKeboardStatus)
 {
+	DebugTimer dt(TEXT("> TfrmMain::ProcessWord()"));
+
 	if (!d_config.ActivateAfterWords)
 		return;
 

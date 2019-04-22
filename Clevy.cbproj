@@ -188,6 +188,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
+        <CppCompile Include="Debug.cpp">
+            <DependentOn>Debug.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Frame\frmLayoutChooserUnit.cpp">
             <Form>frmLayoutChooser</Form>
             <FormType>dfm</FormType>

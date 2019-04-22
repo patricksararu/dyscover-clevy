@@ -51,6 +51,10 @@ namespace lokiCpp
 		// load languages from file
 		d_languageFilesLocation = IncludeTrailingBackslash(ExtractFilePath(Application->ExeName)) + "Language\\";
 
+		if (!TDirectory::Exists(d_languageFilesLocation)) {
+			TDirectory::CreateDirectory(d_languageFilesLocation);
+		}
+
 		d_languageFiles = TDirectory::GetFiles(d_languageFilesLocation, L"*.lang.json");
 
 		String LangCode = L"nl"; // set the language code default to en.. if nothing exists we continue in English

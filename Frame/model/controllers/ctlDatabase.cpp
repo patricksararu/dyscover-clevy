@@ -63,6 +63,11 @@ void TctlDatabase::Configure()
 	d_SQLite->AfterConnect    = SQLiteAfterConnect;
 	d_SQLite->AfterDisconnect = SQLiteAfterDisconnect;
 
+	String databaseFileLocation = d_programPath + "data";
+	if (!TDirectory::Exists(databaseFileLocation)) {
+		TDirectory::CreateDirectory(databaseFileLocation);
+	}
+
 	if (d_SQLite->Connected)
 	{
 		d_SQLite->Close();

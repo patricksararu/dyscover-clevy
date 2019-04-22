@@ -50,6 +50,10 @@ namespace lokiCpp
 		// load Settingss from file
 		d_settingsFileLocation = IncludeTrailingBackslash(ExtractFilePath(Application->ExeName)) + "config\\";
 
+		if (!TDirectory::Exists(d_settingsFileLocation)) {
+			TDirectory::CreateDirectory(d_settingsFileLocation);
+		}
+
 		d_settingsFiles = TDirectory::GetFiles(d_settingsFileLocation, L"*.conf.json");
 
 		LoadSettings();

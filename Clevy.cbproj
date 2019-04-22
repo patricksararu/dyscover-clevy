@@ -80,6 +80,7 @@
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
         <PostBuildEvent><![CDATA[copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)
 xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i
+xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i
 $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -307,14 +308,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName=".\Win32\Debug\Clevy.exe" Configuration="Debug" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>Clevy.exe</RemoteName>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
-                    <Platform Name="Win64">
+                <DeployFile LocalName=".\Win32\Debug\Clevy.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Clevy.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -989,7 +990,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -997,7 +998,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -1005,7 +1006,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -1013,7 +1014,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

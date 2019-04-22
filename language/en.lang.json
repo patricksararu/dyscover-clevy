@@ -1,0 +1,37 @@
+{
+	"TfrmMain": {
+		"mnuSound": "Sound",
+		"mnuSounds": "Sounds",
+		"mnuTTS": "Text To Speech",
+		"mnuSettings": "Settings",
+		"mnuManual": "Manual",
+		"mnuClose": "Close",
+		"cmdSave": "Save",
+		"cmdApply": "Apply",
+		"cmdCancel": "Cancel",
+		"frmMain": "Main",
+		"lblVolume": "Volume",
+		"lblSpeed": "Speed",
+		"rbClassic": "Classic",
+		"rbCover": "Cover",
+		"chkSound": "Sound",
+		"chkSounds": "Sounds",
+		"chkTTS": "TTS(Text to Speech)",
+		"lblActivateAfter": "Activate After",
+		"chkWord": "Word",
+		"chkSelectionSpeakerKey": "Selection and Speaker key",
+		"chkReadAlong": "Read Along",
+		"chkAutomaticBoot": "Start with windows",
+		"chkPaused": "Paused",
+		"mnuPaused": "Paused"
+	},
+	"Configuration": {
+		"gbSoundSettings": "Sound Settings",
+		"gbTextToSpeech": "Text To Speech",
+		"gbOtherSettings": "Other Settings"
+	},
+	"Actions": {
+		"KeyboardDisconnected": "Keyboard is Disconnected",
+		"KeyboardConnected": "Keyboard is Connected"
+	}
+}

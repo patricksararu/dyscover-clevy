@@ -1,0 +1,37 @@
+{
+	"TfrmMain": {
+		"mnuSound": "Geluid",
+		"mnuSounds": "Klanken",
+		"mnuTTS": "Text to Speech",
+		"mnuSettings": "Instellingen",
+		"mnuManual": "Handleiding",
+		"mnuClose": "Afsluiten",
+		"cmdSave": "Opslaan",
+		"cmdApply": "Toepassen",
+		"cmdCancel": "Annuleren",
+		"frmMain": "Instellingen",
+		"lblVolume": "Volume",
+		"lblSpeed": "Snelheid",
+		"rbClassic": "Dyscover",
+		"rbCover": "KWeC",
+		"chkSound": "Geluid",
+		"chkSounds": "Klanken",
+		"chkTTS": "Text to Speech",
+		"lblActivateAfter": "Toepassen na",
+		"chkWord": "Woord",
+		"chkSelectionSpeakerKey": "Selectie en luidspreker toets",
+		"chkReadAlong": "Lees mee",
+		"chkAutomaticBoot": "Automatisch opstarten",
+		"chkPaused": "Pauze",
+		"mnuPaused": "Pauze"
+	},
+	"Configuration": {
+		"gbSoundSettings": "Geluidsinstellingen",
+		"gbTextToSpeech": "Text to Speech",
+		"gbOtherSettings": "Overige instellingen"
+	},
+	"Actions": {
+		"KeyboardDisconnected": "Keyboard is Disconnected",
+		"KeyboardConnected": "Keyboard is Connected"
+	}
+}

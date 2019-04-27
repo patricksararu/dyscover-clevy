@@ -906,7 +906,7 @@ bool TfrmMain::ProcessChar(wchar_t aChar)
 	String filename = value + ".wav";
 	if (FileExists(d_dataDir + filename))
 	{
-		sndPlaySound((d_dataDir + filename).c_str(), SND_SYNC | SND_NODEFAULT | SND_NOSTOP);
+		sndPlaySound((d_dataDir + filename).c_str(), SND_ASYNC | SND_NODEFAULT | SND_NOSTOP);
 	}
 	else
 	{

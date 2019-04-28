@@ -5,7 +5,6 @@
 #include <tchar.h>
 // ---------------------------------------------------------------------------
 #include "LokiCpp/common/Settings.h"
-#include "LokiCpp/model/views/frmSplashScreenUnit.h"
 // ---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
@@ -15,11 +14,14 @@
 #include <TlHelp32.h>
 #include <Dialogs.hpp>
 
-USEFORM("Frame\frmLayoutChooserUnit.cpp", frmLayoutChooser);
-USEFORM("Frame\frmMainUnit.cpp", frmMain);
+USEFORM("LokiCpp\model\views\frmSplashScreenUnit.cpp", frmSplashScreen);
 USEFORM("Frame\model\views\frmReadingPaneUnit.cpp", frmReadingPane);
+USEFORM("Frame\frmLayoutChooserUnit.cpp", frmLayoutChooser);
 USEFORM("Frame\frmTrayIconUnit.cpp", frmTrayIcon);
-
+USEFORM("Frame\frmMainUnit.cpp", frmMain);
+//---------------------------------------------------------------------------
+#include "LokiCpp/model/views/frmSplashScreenUnit.h"
+//---------------------------------------------------------------------------
 int ProcessCount(String const ExeName)
 {
 	bool ContinueLoop;

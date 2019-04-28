@@ -188,6 +188,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
+        <CppCompile Include="Data.cpp">
+            <DependentOn>Data.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Debug.cpp">
             <DependentOn>Debug.h</DependentOn>
             <BuildOrder>17</BuildOrder>
@@ -210,10 +214,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>Frame\frmTrayIconUnit.h</DependentOn>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Frame\model\controllers\ctlDatabase.cpp">
+        <None Include="Frame\model\controllers\ctlDatabase.cpp">
+            <Exclude>True</Exclude>
             <DependentOn>Frame\model\controllers\ctlDatabase.h</DependentOn>
             <BuildOrder>13</BuildOrder>
-        </CppCompile>
+        </None>
         <None Include="Frame\model\controllers\ctlSelfElevation.cpp">
             <Exclude>True</Exclude>
             <DependentOn>Frame\model\controllers\ctlSelfElevation.h</DependentOn>
@@ -261,8 +266,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>16</BuildOrder>
         </LibFiles>
         <FormResources Include="LokiCpp\model\views\frmSplashScreenUnit.dfm"/>
-        <FormResources Include="Frame\frmMainUnit.dfm"/>
         <FormResources Include="Frame\frmLayoutChooserUnit.dfm"/>
+        <FormResources Include="Frame\frmMainUnit.dfm"/>
         <FormResources Include="Frame\model\views\frmReadingPaneUnit.dfm"/>
         <FormResources Include="Frame\frmTrayIconUnit.dfm"/>
         <BuildConfiguration Include="Release">
@@ -312,14 +317,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
-                    <Platform Name="Win64">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName=".\Win32\Debug\Clevy.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Clevy.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

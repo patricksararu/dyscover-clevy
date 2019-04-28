@@ -7,8 +7,6 @@
 #include "LokiCpp/common/Settings.h"
 #include "LokiCpp/model/views/frmSplashScreenUnit.h"
 // ---------------------------------------------------------------------------
-#include "Frame/model/controllers/ctlDatabase.h"
-// ---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 #include <Registry.hpp>
@@ -17,8 +15,8 @@
 #include <TlHelp32.h>
 #include <Dialogs.hpp>
 
-USEFORM("Frame\frmMainUnit.cpp", frmMain);
 USEFORM("Frame\frmLayoutChooserUnit.cpp", frmLayoutChooser);
+USEFORM("Frame\frmMainUnit.cpp", frmMain);
 USEFORM("Frame\model\views\frmReadingPaneUnit.cpp", frmReadingPane);
 USEFORM("Frame\frmTrayIconUnit.cpp", frmTrayIcon);
 
@@ -64,10 +62,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		frmSplash->SetMessage("Loading Settings");
 		lokiCpp::TSettings *conf = lokiCpp::TSettings::Instance();
 
-		// load the available settings
-		frmSplash->SetMessage("Loading Database");
-		TctlDatabase::Instance();
-
 		String ApplicationTitle = "";
 		String ApplicationName  = "";
 		String tmp              = "";
@@ -106,8 +100,6 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->ShowMainForm = false;
 		Application->CreateForm(__classid(TfrmMain), &frmMain);
 		Application->Run();
-
-		TctlDatabase::DestroyInstance();
 	}
 	catch (Exception &exception)
 	{

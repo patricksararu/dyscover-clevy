@@ -6,11 +6,11 @@
 // #include <windows.h>
 #pragma hdrstop
 
+#include "Data.h"
 #include "Debug.h"
 #include "frmMainUnit.h"
 // ---------------------------------------------------------------------------
 #include "LokiCpp/common/Language.h"
-#include "Frame/model/controllers/ctlDatabase.h"
 // ---------------------------------------------------------------------------
 #include <Dbt.h>
 #include <vector>
@@ -401,7 +401,7 @@ bool TfrmMain::CheckKey(int key, bool ctrl, bool shft, bool alt, bool IgnoreKeyS
 	if (bSkipKeyStroke)
 		return IgnoreKeyStatus;
 
-	String value = TctlDatabase::Instance()->GetSound((int)key, d_ctrl, d_shift, alt, rbCover->Checked);
+	String value = GetSoundForKey((int)key, d_ctrl, d_shift, alt, rbCover->Checked);
 	if (value.IsEmpty()) // || value.CompareIC(key) == 0)
 			return false;
 	else
@@ -655,7 +655,7 @@ void __fastcall TfrmMain::WndProc(TMessage &Message)
 
 					if (CheckKey(c, d_ctrl, d_shift, false))
 					{
-						String value = TctlDatabase::Instance()->GetValue((int)c, d_ctrl, d_shift, false).LowerCase();
+						String value = GetValueForKey((int)c, d_ctrl, d_shift, false).LowerCase();
 						for (int idx = 1; idx <= value.Length(); ++idx)
 						{
 							chars.push_back(value[idx]);
@@ -849,8 +849,8 @@ bool TfrmMain::ProcessChar(wchar_t aChar)
 	if (d_config.Sounds)
 	{
 		// link the value to a sound
-		value         = TctlDatabase::Instance()->GetSound((int)aChar, d_ctrl, d_shift, false, rbCover->Checked).LowerCase();
-		String value2 = TctlDatabase::Instance()->GetValue((int)aChar, d_ctrl, d_shift, false, rbCover->Checked).LowerCase();
+		value         = GetSoundForKey((int)aChar, d_ctrl, d_shift, false, rbCover->Checked).LowerCase();
+		String value2 = GetValueForKey((int)aChar, d_ctrl, d_shift, false, rbCover->Checked).LowerCase();
 
 		if (!value.IsEmpty() && !value2.IsEmpty())
 		{

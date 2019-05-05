@@ -21,8 +21,6 @@
 // ---------------------------------------------------------------------------
 // #include "frame/model/controllers/ctlSelfElevation.h"
 // ---------------------------------------------------------------------------
-#include "readSpeak\classes\RSpeakTTS.h"
-// ---------------------------------------------------------------------------
 #include <Vcl.ComCtrls.hpp>
 #include <Vcl.AppEvnts.hpp>
 #include <System.Win.TaskbarCore.hpp>
@@ -69,6 +67,8 @@ struct TCurrentConfig
 
 // String GetText(HWND handle);
 
+class Speech;
+
 // ---------------------------------------------------------------------------
 // #include "lib/ve_engine_v2.0.0_win32/inc/ve_platform.h"
 // #include "lib/ve_engine_v2.0.0_win32/inc/ve_ttsapi.h"
@@ -86,7 +86,7 @@ private:
 	volatile bool d_ctrl;
 	volatile bool d_shift;
 
-	rstts::TRSpeakTTS *d_TTS;
+	Speech *d_TTS;
 
 	lokiCpp::TSettings *d_settings;
 

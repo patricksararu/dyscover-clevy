@@ -181,6 +181,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
+        <CppCompile Include="Audio.cpp">
+            <DependentOn>Audio.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
         <CppCompile Include="Clevy101berlin.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
@@ -251,13 +255,22 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>LokiCpp\model\views\frmSplashScreenUnit.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
-        <CppCompile Include="readSpeak\classes\RSpeakTTS.cpp">
+        <None Include="Queue.h">
+            <BuildOrder>21</BuildOrder>
+        </None>
+        <None Include="readSpeak\classes\RSpeakTTS.cpp">
+            <Exclude>True</Exclude>
             <DependentOn>readSpeak\classes\RSpeakTTS.h</DependentOn>
             <BuildOrder>16</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="readSpeak\WaveOut.cpp">
+        </None>
+        <None Include="readSpeak\WaveOut.cpp">
+            <Exclude>True</Exclude>
             <DependentOn>readSpeak\WaveOut.h</DependentOn>
             <BuildOrder>15</BuildOrder>
+        </None>
+        <CppCompile Include="Speech.cpp">
+            <DependentOn>Speech.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
         <LibFiles Include="Win32\Debug\librstts-2.lib" Condition="'$(Platform)'=='Win32'">
             <BuildOrder>15</BuildOrder>
@@ -266,8 +279,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>16</BuildOrder>
         </LibFiles>
         <FormResources Include="LokiCpp\model\views\frmSplashScreenUnit.dfm"/>
-        <FormResources Include="Frame\model\views\frmReadingPaneUnit.dfm"/>
         <FormResources Include="Frame\frmLayoutChooserUnit.dfm"/>
+        <FormResources Include="Frame\model\views\frmReadingPaneUnit.dfm"/>
         <FormResources Include="Frame\frmTrayIconUnit.dfm"/>
         <FormResources Include="Frame\frmMainUnit.dfm"/>
         <BuildConfiguration Include="Release">
@@ -317,14 +330,14 @@ $(PostBuildEvent)]]></PostBuildEvent>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
-                    <Platform Name="Win64">
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName=".\Win32\Debug\Clevy.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Clevy.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile Condition="'$(DynamicRTL)'=='true' And '$(Multithreaded)'=='true'" LocalName="$(BDS)\bin64\cc64260mt.dll" Class="DependencyModule">
+                    <Platform Name="Win64">
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

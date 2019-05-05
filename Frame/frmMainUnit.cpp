@@ -8,6 +8,7 @@
 
 #include "Data.h"
 #include "Debug.h"
+#include "Speech.h"
 #include "frmMainUnit.h"
 // ---------------------------------------------------------------------------
 #include "LokiCpp/common/Language.h"
@@ -466,6 +467,10 @@ void TfrmMain::Init()
 	HandleConnectDisconnect();
 	keyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, LowLevelKeyboardProc, HInstance, 0);
 
+	d_TTS = new Speech();
+	d_TTS->Init("data/tts/", "nl", "Ilse");
+
+	/*
 	try
 	{
 		d_TTS = rstts::TRSpeakTTS::Instance(); // new Ssftrssololib_tlb::TSsftRSSoloA(this);
@@ -513,6 +518,7 @@ void TfrmMain::Init()
 	{
 		ShowMessage(ex.Message);
 	}
+	*/
 
 	LoadSettings();
 }

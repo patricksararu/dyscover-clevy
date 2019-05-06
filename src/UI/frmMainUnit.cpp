@@ -11,7 +11,7 @@
 #include "Speech.h"
 #include "frmMainUnit.h"
 // ---------------------------------------------------------------------------
-#include "LokiCpp/common/Language.h"
+#include "Language.h"
 // ---------------------------------------------------------------------------
 #include <Dbt.h>
 #include <vector>

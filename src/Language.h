@@ -6,7 +6,7 @@
 #include <system.hpp>
 #include <System.Json.hpp>
 
-#include "LokiCpp/common/defines.h"
+#include "Defines.h"
 // ---------------------------------------------------------------------------
 namespace lokiCpp
 {

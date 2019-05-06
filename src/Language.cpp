@@ -2,7 +2,7 @@
 #pragma hdrstop
 // ---------------------------------------------------------------------------
 #include "Language.h"
-#include "LokiCpp/common/Settings.h"
+#include "Settings.h"
 // ---------------------------------------------------------------------------
 #include <vcl.h>
 #include <iostream>

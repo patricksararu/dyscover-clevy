@@ -4,7 +4,7 @@
         <ProjectVersion>18.6</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>Clevy101berlin.cpp</MainSource>
+        <MainSource>src\Clevy.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
@@ -67,8 +67,8 @@
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <SanitizedProjectName>Clevy</SanitizedProjectName>
         <VCL_Custom_Styles>&quot;Windows10 Dark|VCLSTYLE|$(PUBLIC)\Documents\Embarcadero\Studio\16.0\Styles\Windows10Dark.vsf&quot;</VCL_Custom_Styles>
-        <ILINK_LibraryPath>Frame\model\controllers\;Frame\;LokiCpp\model\views\;readSpeak\;Frame\model\views\;readSpeak\classes\;LokiCpp\common\;lib\readSpeak;lib\readSpeak\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
-        <IncludePath>Frame\model\controllers\;Frame\;LokiCpp\model\views\;readSpeak\;Frame\model\views\;readSpeak\classes\;LokiCpp\common\;lib\readSpeak;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>lib\readSpeak\;src\;src\UI\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>lib\readSpeak;src\;src\UI\;$(IncludePath)</IncludePath>
         <DCC_CBuilderOutput>JPHNE</DCC_CBuilderOutput>
         <IntermediateOutputDir>.\$(Platform)\$(Config)</IntermediateOutputDir>
         <FinalOutputDir>.\$(Platform)\$(Config)</FinalOutputDir>
@@ -181,96 +181,76 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="Audio.cpp">
-            <DependentOn>Audio.h</DependentOn>
-            <BuildOrder>19</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Clevy101berlin.cpp">
+        <CppCompile Include="src\Audio.cpp">
+            <DependentOn>src\Audio.h</DependentOn>
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="Clevy101berlinPCH1.h">
+        <CppCompile Include="src\Clevy.cpp">
+            <BuildOrder>1</BuildOrder>
+        </CppCompile>
+        <PCHCompile Include="src\ClevyPCH.h">
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <CppCompile Include="Data.cpp">
-            <DependentOn>Data.h</DependentOn>
-            <BuildOrder>18</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Debug.cpp">
-            <DependentOn>Debug.h</DependentOn>
-            <BuildOrder>17</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Frame\frmLayoutChooserUnit.cpp">
-            <Form>frmLayoutChooser</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Frame\frmLayoutChooserUnit.h</DependentOn>
-            <BuildOrder>10</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="Frame\frmMainUnit.cpp">
-            <Form>frmMain</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Frame\frmMainUnit.h</DependentOn>
+        <CppCompile Include="src\Data.cpp">
+            <DependentOn>src\Data.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="Frame\frmTrayIconUnit.cpp">
-            <Form>frmTrayIcon</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Frame\frmTrayIconUnit.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
-        </CppCompile>
-        <None Include="Frame\model\controllers\ctlDatabase.cpp">
-            <Exclude>True</Exclude>
-            <DependentOn>Frame\model\controllers\ctlDatabase.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
-        </None>
-        <None Include="Frame\model\controllers\ctlSelfElevation.cpp">
-            <Exclude>True</Exclude>
-            <DependentOn>Frame\model\controllers\ctlSelfElevation.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
-        </None>
-        <CppCompile Include="Frame\model\views\frmReadingPaneUnit.cpp">
-            <Form>frmReadingPane</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>Frame\model\views\frmReadingPaneUnit.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
-        </CppCompile>
-        <None Include="LokiCpp\common\defines.h">
+        <CppCompile Include="src\Debug.cpp">
+            <DependentOn>src\Debug.h</DependentOn>
             <BuildOrder>3</BuildOrder>
+        </CppCompile>
+        <None Include="src\Defines.h">
+            <BuildOrder>7</BuildOrder>
         </None>
-        <CppCompile Include="LokiCpp\common\Language.cpp">
-            <DependentOn>LokiCpp\common\Language.h</DependentOn>
+        <CppCompile Include="src\Language.cpp">
+            <DependentOn>src\Language.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
-        <CppCompile Include="LokiCpp\common\Result.cpp">
-            <DependentOn>LokiCpp\common\Result.h</DependentOn>
+        <None Include="src\Queue.h">
+            <BuildOrder>9</BuildOrder>
+        </None>
+        <CppCompile Include="src\Result.cpp">
+            <DependentOn>src\Result.h</DependentOn>
             <BuildOrder>5</BuildOrder>
         </CppCompile>
-        <CppCompile Include="LokiCpp\common\Settings.cpp">
-            <DependentOn>LokiCpp\common\Settings.h</DependentOn>
+        <CppCompile Include="src\Settings.cpp">
+            <DependentOn>src\Settings.h</DependentOn>
             <BuildOrder>6</BuildOrder>
         </CppCompile>
-        <CppCompile Include="LokiCpp\model\views\frmSplashScreenUnit.cpp">
-            <Form>frmSplashScreen</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>LokiCpp\model\views\frmSplashScreenUnit.h</DependentOn>
+        <CppCompile Include="src\Speech.cpp">
+            <DependentOn>src\Speech.h</DependentOn>
             <BuildOrder>7</BuildOrder>
         </CppCompile>
-        <None Include="Queue.h">
-            <BuildOrder>21</BuildOrder>
-        </None>
-        <None Include="readSpeak\classes\RSpeakTTS.cpp">
-            <Exclude>True</Exclude>
-            <DependentOn>readSpeak\classes\RSpeakTTS.h</DependentOn>
-            <BuildOrder>16</BuildOrder>
-        </None>
-        <None Include="readSpeak\WaveOut.cpp">
-            <Exclude>True</Exclude>
-            <DependentOn>readSpeak\WaveOut.h</DependentOn>
-            <BuildOrder>15</BuildOrder>
-        </None>
-        <CppCompile Include="Speech.cpp">
-            <DependentOn>Speech.h</DependentOn>
-            <BuildOrder>21</BuildOrder>
+        <CppCompile Include="src\UI\frmLayoutChooserUnit.cpp">
+            <Form>frmLayoutChooser</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>src\UI\frmLayoutChooserUnit.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="src\UI\frmMainUnit.cpp">
+            <Form>frmMain</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>src\UI\frmMainUnit.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="src\UI\frmReadingPaneUnit.cpp">
+            <Form>frmReadingPane</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>src\UI\frmReadingPaneUnit.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="src\UI\frmSplashScreenUnit.cpp">
+            <Form>frmSplashScreen</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>src\UI\frmSplashScreenUnit.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="src\UI\frmTrayIconUnit.cpp">
+            <Form>frmTrayIcon</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>src\UI\frmTrayIconUnit.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
         </CppCompile>
         <LibFiles Include="Win32\Debug\librstts-2.lib" Condition="'$(Platform)'=='Win32'">
             <BuildOrder>15</BuildOrder>
@@ -278,11 +258,11 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <LibFiles Include="Win64\Debug\librstts-2.a" Condition="'$(Platform)'=='Win64'">
             <BuildOrder>16</BuildOrder>
         </LibFiles>
-        <FormResources Include="LokiCpp\model\views\frmSplashScreenUnit.dfm"/>
-        <FormResources Include="Frame\frmLayoutChooserUnit.dfm"/>
-        <FormResources Include="Frame\model\views\frmReadingPaneUnit.dfm"/>
-        <FormResources Include="Frame\frmTrayIconUnit.dfm"/>
-        <FormResources Include="Frame\frmMainUnit.dfm"/>
+        <FormResources Include="src\UI\frmMainUnit.dfm"/>
+        <FormResources Include="src\UI\frmLayoutChooserUnit.dfm"/>
+        <FormResources Include="src\UI\frmReadingPaneUnit.dfm"/>
+        <FormResources Include="src\UI\frmTrayIconUnit.dfm"/>
+        <FormResources Include="src\UI\frmSplashScreenUnit.dfm"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -307,7 +287,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
                 <Source>
-                    <Source Name="MainSource">Clevy101berlin.cpp</Source>
+                    <Source Name="MainSource">src\Clevy.cpp</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k260.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
@@ -1012,7 +992,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -1020,7 +1000,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -1028,7 +1008,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -1036,7 +1016,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
+        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\data\*.* $(OUTPUTDIR)\data\ /y /i</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

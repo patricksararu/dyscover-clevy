@@ -4,8 +4,6 @@
 #pragma hdrstop
 #include <tchar.h>
 // ---------------------------------------------------------------------------
-#include "LokiCpp/common/Settings.h"
-// ---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
 #include <Vcl.Themes.hpp>
 #include <Registry.hpp>
@@ -13,14 +11,15 @@
 #include <Windows.hpp>
 #include <TlHelp32.h>
 #include <Dialogs.hpp>
-
-USEFORM("LokiCpp\model\views\frmSplashScreenUnit.cpp", frmSplashScreen);
-USEFORM("Frame\model\views\frmReadingPaneUnit.cpp", frmReadingPane);
-USEFORM("Frame\frmLayoutChooserUnit.cpp", frmLayoutChooser);
-USEFORM("Frame\frmTrayIconUnit.cpp", frmTrayIcon);
-USEFORM("Frame\frmMainUnit.cpp", frmMain);
 //---------------------------------------------------------------------------
-#include "LokiCpp/model/views/frmSplashScreenUnit.h"
+USEFORM("UI\frmMainUnit.cpp", frmMain);
+USEFORM("UI\frmLayoutChooserUnit.cpp", frmLayoutChooser);
+USEFORM("UI\frmReadingPaneUnit.cpp", frmReadingPane);
+USEFORM("UI\frmTrayIconUnit.cpp", frmTrayIcon);
+USEFORM("UI\frmSplashScreenUnit.cpp", frmSplashScreen);
+//---------------------------------------------------------------------------
+#include "Settings.h"
+#include "UI/frmSplashScreenUnit.h"
 //---------------------------------------------------------------------------
 int ProcessCount(String const ExeName)
 {

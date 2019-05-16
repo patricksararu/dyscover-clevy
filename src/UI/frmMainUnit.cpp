@@ -397,8 +397,6 @@ LRESULT CALLBACK LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 
 bool TfrmMain::CheckKey(int key, bool ctrl, bool shft, bool alt, bool IgnoreKeyStatus)
 {
-	DebugTimer dt(TEXT("> TfrmMain::CheckKey()"));
-
 	if (bSkipKeyStroke)
 		return IgnoreKeyStatus;
 

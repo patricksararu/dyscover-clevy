@@ -7,25 +7,6 @@ namespace lokiCpp
 
 	namespace version
 	{
-
-#ifndef _DEBUG
-
-		namespace app
-		{
-			int const iMAJOR = 3;
-			int const iMINOR = 0;
-			int const iBUILD = 0; // even = production, odd = development
-		}
-#else
-
-		namespace app
-		{
-			int const iMAJOR = 2;
-			int const iMINOR = 9;
-			int const iBUILD = 9; // even = production, odd = development
-		}
-#endif
-
 		namespace db
 		{ // the db version only changes when the stucture changes
 			const bool Available = false;

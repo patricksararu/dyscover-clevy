@@ -16,6 +16,7 @@
 #pragma hdrstop
 // ---------------------------------------------------------------------------
 #include "Settings.h"
+#include "Version.h"
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 // ---------------------------------------------------------------------------
@@ -135,8 +136,11 @@ namespace lokiCpp
 
 	void TSettings::CheckVersionStatus()
 	{
+		Version appVersion;
+		GetAppVersion(appVersion);
+
 		String ApplicationName    = lokiCpp::APPLICATION_NAME;
-		String ApplicationVersion = String(lokiCpp::version::app::iMAJOR) + "." + String(lokiCpp::version::app::iMINOR) + "." + String(lokiCpp::version::app::iBUILD);
+		String ApplicationVersion = String(appVersion.major) + "." + String(appVersion.minor) + "." + String(appVersion.build);
 		String DatabaseVersion    = String(lokiCpp::version::db::iMAJOR) + "." + String(lokiCpp::version::db::iMINOR) + "." + String(lokiCpp::version::db::iBUILD);
 		String ApplicationBuildDT = String(__DATE__) + " " + String(__TIME__);
 

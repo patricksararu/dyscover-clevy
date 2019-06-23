@@ -240,6 +240,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <DependentOn>src\UI\frmTrayIconUnit.h</DependentOn>
             <BuildOrder>12</BuildOrder>
         </CppCompile>
+        <CppCompile Include="src\Version.cpp">
+            <DependentOn>src\Version.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <LibFiles Include="Win32\Debug\librstts-2.lib" Condition="'$(Platform)'=='Win32'">
             <BuildOrder>15</BuildOrder>
         </LibFiles>

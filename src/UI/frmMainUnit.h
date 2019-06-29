@@ -15,7 +15,6 @@
 #include "lib/cfgmgr32.h"
 #include "Settings.h"
 // ---------------------------------------------------------------------------
-#include "frmLayoutChooserUnit.h"
 #include "frmReadingPaneUnit.h"
 #include "frmTrayIconUnit.h"
 // ---------------------------------------------------------------------------
@@ -92,8 +91,6 @@ private:
 	TfrmTrayIcon *d_frmTrayIcon;
 
 	bool d_terminate;
-
-	TfrmLayoutChooser *d_layoutSelection;
 
 	NOTIFYICONDATA nid;
 	HWND           hwnd;

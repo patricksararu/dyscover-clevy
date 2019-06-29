@@ -198,10 +198,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <None Include="src\Queue.h">
             <BuildOrder>9</BuildOrder>
         </None>
-        <CppCompile Include="src\Result.cpp">
-            <DependentOn>src\Result.h</DependentOn>
-            <BuildOrder>5</BuildOrder>
-        </CppCompile>
         <CppCompile Include="src\Settings.cpp">
             <DependentOn>src\Settings.h</DependentOn>
             <BuildOrder>6</BuildOrder>
@@ -209,12 +205,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <CppCompile Include="src\Speech.cpp">
             <DependentOn>src\Speech.h</DependentOn>
             <BuildOrder>7</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="src\UI\frmLayoutChooserUnit.cpp">
-            <Form>frmLayoutChooser</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>src\UI\frmLayoutChooserUnit.h</DependentOn>
-            <BuildOrder>8</BuildOrder>
         </CppCompile>
         <CppCompile Include="src\UI\frmMainUnit.cpp">
             <Form>frmMain</Form>
@@ -251,7 +241,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <BuildOrder>16</BuildOrder>
         </LibFiles>
         <FormResources Include="src\UI\frmMainUnit.dfm"/>
-        <FormResources Include="src\UI\frmLayoutChooserUnit.dfm"/>
         <FormResources Include="src\UI\frmReadingPaneUnit.dfm"/>
         <FormResources Include="src\UI\frmTrayIconUnit.dfm"/>
         <FormResources Include="src\UI\frmSplashScreenUnit.dfm"/>

@@ -36,7 +36,6 @@ __fastcall TfrmMain::TfrmMain(TComponent * Owner)
 	// d_selfElevate(new TctlSelfElevation()),
 	d_frmTrayIcon(nullptr),
 	d_terminate(false),
-	d_layoutSelection(nullptr),
 	d_readingPane(new TfrmReadingPane(nullptr)),
 	bSkipKeyStroke(false),
 	d_ctrl(false),
@@ -409,10 +408,6 @@ bool TfrmMain::CheckKey(int key, bool ctrl, bool shft, bool alt, bool IgnoreKeyS
 
 __fastcall TfrmMain::~TfrmMain()
 {
-	if (d_layoutSelection != nullptr)
-	{
-		delete d_layoutSelection;
-	}
 	if (d_readingPane != nullptr)
 	{
 		delete d_readingPane;

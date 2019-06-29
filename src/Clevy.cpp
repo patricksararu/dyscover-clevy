@@ -13,7 +13,6 @@
 #include <Dialogs.hpp>
 //---------------------------------------------------------------------------
 USEFORM("UI\frmMainUnit.cpp", frmMain);
-USEFORM("UI\frmLayoutChooserUnit.cpp", frmLayoutChooser);
 USEFORM("UI\frmReadingPaneUnit.cpp", frmReadingPane);
 USEFORM("UI\frmTrayIconUnit.cpp", frmTrayIcon);
 USEFORM("UI\frmSplashScreenUnit.cpp", frmSplashScreen);

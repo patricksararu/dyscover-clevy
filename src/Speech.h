@@ -25,6 +25,9 @@ public:
 	int GetVolume();
 	bool SetVolume(int value);
 
+	int GetAudioVolume();
+	bool SetAudioVolume(int value);
+
 	void Speak(String text);
 	void Stop();
 

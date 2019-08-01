@@ -3,7 +3,6 @@
 #include <vcl.h>
 #include <Vcl.Clipbrd.hpp>
 #include <mmsystem.h>
-// #include <windows.h>
 #pragma hdrstop
 
 #include "Data.h"
@@ -1095,30 +1094,7 @@ void TfrmMain::SaveSettings()
 
 	d_settings->SaveConfig();
 
-	tWAVEFORMATEX WFE;
-	HWAVEOUT hWO;
-
-	WFE.wFormatTag      = WAVE_FORMAT_PCM;
-	WFE.nChannels       = 2;
-	WFE.nSamplesPerSec  = 44100;
-	WFE.nAvgBytesPerSec = 176400;
-	WFE.nBlockAlign     = 4;
-	WFE.wBitsPerSample  = 16;
-	WFE.cbSize          = 0;
-	waveOutOpen(&hWO, WAVE_MAPPER, &WFE, 0, 0, CALLBACK_NULL);
-	// if (FResetVolume == 0)
-	// { // als FResetVolume <> 0 is dan hebben we het volume zelf aangepast!
-	// waveOutGetVolume(hWO, @ KeyHandler.SystemVolume);
-	// }
-
-	WORD vol = (100 - tbVolume->Position) * 0xffff / 100; // (0xffff*tbVolume->Position) + 0xffff*(0xffff*tbVolume->Position);
-
-	if (hWO != nullptr)
-	{
-		waveOutSetVolume(hWO, vol);
-		waveOutClose(hWO);
-	}
-	// FResetVolume = Now + EncodeTime(0, 0, 1, 500);
+	d_TTS->SetAudioVolume((100 - tbVolume->Position) * 0xFFFF / 100);
 
 	UpdateIcon();
 }
@@ -1219,29 +1195,7 @@ void __fastcall TfrmMain::chkWordClick(TObject *Sender)
 // ---------------------------------------------------------------------------
 void __fastcall TfrmMain::tbVolumeChange(TObject *Sender)
 {
-	tWAVEFORMATEX WFE;
-	HWAVEOUT hWO;
-
-	WFE.wFormatTag      = WAVE_FORMAT_PCM;
-	WFE.nChannels       = 2;
-	WFE.nSamplesPerSec  = 44100;
-	WFE.nAvgBytesPerSec = 176400;
-	WFE.nBlockAlign     = 4;
-	WFE.wBitsPerSample  = 16;
-	WFE.cbSize          = 0;
-	waveOutOpen(&hWO, WAVE_MAPPER, &WFE, 0, 0, CALLBACK_NULL);
-	// if (FResetVolume == 0)
-	// { // als FResetVolume <> 0 is dan hebben we het volume zelf aangepast!
-	// waveOutGetVolume(hWO, @ KeyHandler.SystemVolume);
-	// }
-
-	WORD vol = (100 - tbVolume->Position) * 0xffff / 100; // (0xffff*tbVolume->Position) + 0xffff*(0xffff*tbVolume->Position);
-
-	if (hWO != nullptr)
-	{
-		waveOutSetVolume(hWO, vol);
-		waveOutClose(hWO);
-	}
+	d_TTS->SetAudioVolume((100 - tbVolume->Position) * 0xFFFF / 100);
 }
 
 // ---------------------------------------------------------------------------

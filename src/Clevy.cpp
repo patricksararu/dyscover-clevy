@@ -9,7 +9,6 @@
 #include <Registry.hpp>
 #include <SysUtils.hpp>
 #include <Windows.hpp>
-#include <TlHelp32.h>
 #include <Dialogs.hpp>
 //---------------------------------------------------------------------------
 USEFORM("UI\frmMainUnit.cpp", frmMain);
@@ -17,34 +16,9 @@ USEFORM("UI\frmReadingPaneUnit.cpp", frmReadingPane);
 USEFORM("UI\frmTrayIconUnit.cpp", frmTrayIcon);
 USEFORM("UI\frmSplashScreenUnit.cpp", frmSplashScreen);
 //---------------------------------------------------------------------------
+#include "Helpers.h"
 #include "Settings.h"
 #include "UI/frmSplashScreenUnit.h"
-//---------------------------------------------------------------------------
-int ProcessCount(String const ExeName)
-{
-	bool ContinueLoop;
-	HANDLE SnapshotHandle;
-	PROCESSENTRY32 ProcessEntry32;
-
-	SnapshotHandle         = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
-	ProcessEntry32.dwSize = sizeof(ProcessEntry32);
-
-	ContinueLoop = Process32First(SnapshotHandle, &ProcessEntry32);
-
-	int Result = 0;
-
-	while (ContinueLoop)
-	{
-		if ((ExtractFileName(ProcessEntry32.szExeFile).CompareIC(ExeName) == 0) || (String(ProcessEntry32.szExeFile).CompareIC(ExeName) == 0))
-			++Result;
-
-		ContinueLoop = Process32Next(SnapshotHandle, &ProcessEntry32);
-	}
-	CloseHandle(SnapshotHandle);
-
-	return Result;
-}
-
 // ---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -89,7 +63,7 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		delete frmSplash;
 		frmSplash = nullptr;
 
-		if (ProcessCount(ExtractFileName(Application->ExeName)) > 1)
+		if (IsAnotherInstanceRunning())
 		{
 			MessageDlg(L"Application is already running!", mtError, TMsgDlgButtons() << mbOK, 0);
 			Application->Terminate();

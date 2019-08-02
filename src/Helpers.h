@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef VersionH
-#define VersionH
+#ifndef HelpersH
+#define HelpersH
 
 //---------------------------------------------------------------------------
 
@@ -14,5 +14,7 @@ struct Version
 };
 
 bool GetAppVersion(Version&);
+
+bool IsAnotherInstanceRunning();
 
 #endif

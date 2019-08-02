@@ -191,6 +191,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <None Include="src\Defines.h">
             <BuildOrder>7</BuildOrder>
         </None>
+        <CppCompile Include="src\Helpers.cpp">
+            <DependentOn>src\Helpers.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
         <CppCompile Include="src\Language.cpp">
             <DependentOn>src\Language.h</DependentOn>
             <BuildOrder>4</BuildOrder>
@@ -229,10 +233,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             <FormType>dfm</FormType>
             <DependentOn>src\UI\frmTrayIconUnit.h</DependentOn>
             <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="src\Version.cpp">
-            <DependentOn>src\Version.h</DependentOn>
-            <BuildOrder>18</BuildOrder>
         </CppCompile>
         <LibFiles Include="Win32\Debug\librstts-2.lib" Condition="'$(Platform)'=='Win32'">
             <BuildOrder>15</BuildOrder>

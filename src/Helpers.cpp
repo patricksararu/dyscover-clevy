@@ -1,11 +1,13 @@
 //---------------------------------------------------------------------------
 
-#pragma hdrstop
-
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
+#include <tlhelp32.h>
+#include <tchar.h>
 
-#include "Version.h"
+#pragma hdrstop
+
+#include "Helpers.h"
 
 //---------------------------------------------------------------------------
 
@@ -36,7 +38,7 @@ bool GetAppVersion(Version& version)
 
 	if (!GetFileVersionInfo(szFilename, 0L, dwSize, pbData))
 	{
-		delete pbData;
+		delete[] pbData;
 		return false;
 	}
 
@@ -44,13 +46,13 @@ bool GetAppVersion(Version& version)
 	UINT uFileInfoLen;
 	if (!VerQueryValue(pbData, TEXT("\\"), (LPVOID*)&pFileInfo, &uFileInfoLen))
 	{
-		delete pbData;
+		delete[] pbData;
 		return false;
 	}
 
 	if (pFileInfo->dwSignature != 0xFEEF04BD)
 	{
-		delete pbData;
+		delete[] pbData;
 		return false;
 	}
 
@@ -62,3 +64,52 @@ bool GetAppVersion(Version& version)
 	return true;
 }
 
+bool IsAnotherInstanceRunning()
+{
+	TCHAR szFilename[MAXFILENAME];
+	DWORD dwResult = GetModuleFileName(NULL, szFilename, MAXFILENAME);
+	if (dwResult == 0)
+	{
+		return false;
+	}
+
+	// We need just the filename, without path
+	LPCTSTR lpszFilename = _tcsrchr(szFilename, '\\');
+	if (lpszFilename != nullptr)
+	{
+		lpszFilename++;
+	}
+	else
+	{
+		lpszFilename = szFilename;
+	}
+
+	HANDLE hProcessSnap = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
+
+	PROCESSENTRY32 pe32;
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+
+	if (!Process32First(hProcessSnap, &pe32))
+	{
+		CloseHandle(hProcessSnap);
+		return false;
+	}
+
+	int count = 0;
+	while (true)
+	{
+		if (_tcsicmp(pe32.szExeFile, lpszFilename) == 0)
+		{
+			count++;
+		}
+
+		if (!Process32Next(hProcessSnap, &pe32))
+		{
+			break;
+		}
+	}
+
+	CloseHandle(hProcessSnap);
+
+	return count > 1;
+}

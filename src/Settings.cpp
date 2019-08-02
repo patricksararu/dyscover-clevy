@@ -1,17 +1,8 @@
 // ---------------------------------------------------------------------------
 #include <vcl.h>
-#include <iostream>
-#include <fstream>
-#include <string>
 #include <IOUtils.hpp>
-#include <System.SysUtils.hpp>
-#include <map>
-// ---------------------------------------------------------------------------
-#include <locale>
-// #include <codecvt>
-#include <string>
 #include <fstream>
-#include <cstdlib>
+#include <map>
 // ---------------------------------------------------------------------------
 #pragma hdrstop
 // ---------------------------------------------------------------------------

@@ -1,15 +1,8 @@
 // ---------------------------------------------------------------------------
 
 #include <vcl.h>
-#pragma hdrstop
-#include <tchar.h>
-// ---------------------------------------------------------------------------
 #include <Vcl.Styles.hpp>
-#include <Vcl.Themes.hpp>
-#include <Registry.hpp>
-#include <SysUtils.hpp>
-#include <Windows.hpp>
-#include <Dialogs.hpp>
+#pragma hdrstop
 //---------------------------------------------------------------------------
 USEFORM("UI\frmMainUnit.cpp", frmMain);
 USEFORM("UI\frmReadingPaneUnit.cpp", frmReadingPane);

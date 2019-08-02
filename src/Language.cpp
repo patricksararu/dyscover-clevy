@@ -1,22 +1,13 @@
 // ---------------------------------------------------------------------------
+#include <vcl.h>
+#include <IOUtils.hpp>
+#include <fstream>
+#include <string>
+// ---------------------------------------------------------------------------
 #pragma hdrstop
 // ---------------------------------------------------------------------------
 #include "Language.h"
 #include "Settings.h"
-// ---------------------------------------------------------------------------
-#include <vcl.h>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <IOUtils.hpp>
-#include <System.SysUtils.hpp>
-
-// ---------------------------------------------------------------------------
-#include <locale>
-// #include <codecvt>
-#include <string>
-#include <fstream>
-#include <cstdlib>
 // ---------------------------------------------------------------------------
 #pragma package(smart_init)
 // ---------------------------------------------------------------------------

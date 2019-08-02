@@ -2,6 +2,7 @@
 
 #include <vcl.h>
 #include <Vcl.Clipbrd.hpp>
+#include <Dbt.h>
 #include <mmsystem.h>
 #pragma hdrstop
 
@@ -12,9 +13,6 @@
 // ---------------------------------------------------------------------------
 #include "Language.h"
 // ---------------------------------------------------------------------------
-#include <Dbt.h>
-#include <vector>
-#include <algorithm>
 
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -23,10 +21,6 @@ TfrmMain *frmMain;
 typedef lokiCpp::TLanguage LANG;
 
 HHOOK keyboardHook;
-
-#include <thread>
-#include <mutex>
-std::mutex g_mutex;
 
 // ---------------------------------------------------------------------------
 __fastcall TfrmMain::TfrmMain(TComponent * Owner)

@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 14)  # Use C++14
 
 project(Clevy)
 
-add_executable(Clevy
+add_executable(Clevy WIN32
   src/App.cpp
   src/TrayIcon.cpp
 )

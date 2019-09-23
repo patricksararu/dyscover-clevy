@@ -13,3 +13,10 @@ add_executable(Clevy WIN32
 find_package(wxWidgets REQUIRED)
 include(${wxWidgets_USE_FILE})
 target_link_libraries(Clevy ${wxWidgets_LIBRARIES})
+
+# Resources
+if (APPLE)
+  file(COPY res/ClevyIcon.icns DESTINATION ${CMAKE_BINARY_DIR})
+else()
+  file(COPY res/ClevyIcon.ico DESTINATION ${CMAKE_BINARY_DIR})
+endif()

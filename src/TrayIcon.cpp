@@ -9,9 +9,9 @@
 TrayIcon::TrayIcon()
 {
 #ifdef __APPLE__
-    wxIcon icon("../res/ClevyIcon.icns", wxBITMAP_TYPE_ICON);
+    wxIcon icon("ClevyIcon.icns", wxBITMAP_TYPE_ICON);
 #else
-    wxIcon icon("../res/ClevyIcon.ico", wxBITMAP_TYPE_ICO);
+    wxIcon icon("ClevyIcon.ico", wxBITMAP_TYPE_ICO);
 #endif
     SetIcon(icon, "Clevy");
 }

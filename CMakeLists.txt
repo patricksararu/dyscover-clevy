@@ -6,6 +6,7 @@ project(Clevy)
 
 add_executable(Clevy WIN32
   src/App.cpp
+  src/PreferencesDialog.cpp
   src/TrayIcon.cpp
 )
 

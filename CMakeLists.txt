@@ -6,9 +6,15 @@ project(Clevy)
 
 add_executable(Clevy WIN32
   src/App.cpp
+  src/Keyboard.cpp
   src/PreferencesDialog.cpp
   src/TrayIcon.cpp
 )
+
+# Add platform-specific files
+if (WIN32)
+  target_sources(Clevy PRIVATE src/KeyboardWindows.cpp)
+endif()
 
 # Use wxWidgets
 find_package(wxWidgets REQUIRED)

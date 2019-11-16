@@ -2,17 +2,24 @@
 // PreferencesDialog.cpp
 //
 
-#include "PreferencesDialog.h"
 #include "Keyboard.h"
+#include "PreferencesDialog.h"
+
+wxBEGIN_EVENT_TABLE(PreferencesDialog, wxDialog)
+    EVT_THREAD(wxEVT_KEY, PreferencesDialog::OnKeyboardEvent)
+wxEND_EVENT_TABLE()
 
 PreferencesDialog::PreferencesDialog(App* pApp)
     : wxDialog(nullptr, wxID_ANY, "Preferences", wxDefaultPosition, wxSize(800, 600), wxDEFAULT_DIALOG_STYLE | wxRESIZE_BORDER)
 {
     m_pApp = pApp;
 
-    m_pKeyboard = Keyboard::create(PreferencesDialog::KeyboardCallback, this);
-
     m_pListBox = new wxListBox(this, wxID_ANY);
+}
+
+void PreferencesDialog::OnKeyboardEvent(wxThreadEvent &event)
+{
+    wxLogDebug("PreferencesDialog::OnKeyboardEvent(event = %p)", event.GetRefData());
 }
 
 void PreferencesDialog::KeyboardCallback(KeyEventType type, int keyCode, int scanCode, int flags, int time, void* p)

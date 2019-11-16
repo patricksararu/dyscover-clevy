@@ -6,8 +6,11 @@ project(Clevy)
 
 add_executable(Clevy WIN32
   src/App.cpp
+  src/App.h
   src/PreferencesDialog.cpp
+  src/PreferencesDialog.h
   src/TrayIcon.cpp
+  src/TrayIcon.h
 )
 
 # Use wxWidgets

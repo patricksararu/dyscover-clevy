@@ -13,6 +13,13 @@ add_executable(Clevy WIN32
   src/TrayIcon.h
 )
 
+# Warnings
+if(MSVC)
+  target_compile_options(Clevy PRIVATE /W4 /WX)
+else()
+  target_compile_options(Clevy PRIVATE -Wall -Wextra -Werror -pedantic)
+endif()
+
 # Use wxWidgets
 find_package(wxWidgets REQUIRED)
 include(${wxWidgets_USE_FILE})

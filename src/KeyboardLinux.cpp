@@ -271,20 +271,101 @@ void* KeyboardLinux::Entry()
                         if (ie.value == 1 || ie.value == 2)
                         {
                             std::stringstream ss;
-                            for (Key key : kt.keys)
+                            for (KeyStroke ks : kt.keys)
                             {
-                                ss << (int)key << " ";
+                                if (ks.shift)  ss << "Shift+";
+                                if (ks.ctrl)  ss << "Ctrl+";
+                                if (ks.alt)  ss << "Alt+";
+                                ss << (int)ks.key << " ";
                             }
-                            wxLogDebug("Translated keys: %s", ss.str());
+                            wxLogDebug("Translated key strokes: %s", ss.str());
 
-                            for (Key key : kt.keys)
+                            for (KeyStroke ks : kt.keys)
                             {
-                                int keycode = KeyCodeFromKey(key);
+                                if (shift && !ks.shift)
+                                {
+                                    // Release Shift
+                                    emit_event(uifd, EV_KEY, KEY_LEFTSHIFT, 0);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+                                else if (!shift && ks.shift)
+                                {
+                                    // Press Shift
+                                    emit_event(uifd, EV_KEY, KEY_LEFTSHIFT, 1);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+
+                                if (ctrl && !ks.ctrl)
+                                {
+                                    // Release Ctrl
+                                    emit_event(uifd, EV_KEY, KEY_LEFTCTRL, 0);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+                                else if (!ctrl && ks.ctrl)
+                                {
+                                    // Press Ctrl
+                                    emit_event(uifd, EV_KEY, KEY_LEFTCTRL, 1);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+
+                                if (alt && !ks.alt)
+                                {
+                                    // Release Alt
+                                    emit_event(uifd, EV_KEY, KEY_LEFTALT, 0);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+                                else if (!alt && ks.alt)
+                                {
+                                    // Press Alt
+                                    emit_event(uifd, EV_KEY, KEY_LEFTALT, 1);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+
+                                int keycode = KeyCodeFromKey(ks.key);
 
                                 emit_event(uifd, EV_KEY, keycode, 1);
                                 emit_event(uifd, EV_SYN, SYN_REPORT, 0);
                                 emit_event(uifd, EV_KEY, keycode, 0);
                                 emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+
+                                if (shift && !ks.shift)
+                                {
+                                    // Re-press Shift
+                                    emit_event(uifd, EV_KEY, KEY_LEFTSHIFT, 1);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+                                else if (!shift && ks.shift)
+                                {
+                                    // Release Shift
+                                    emit_event(uifd, EV_KEY, KEY_LEFTSHIFT, 0);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+
+                                if (ctrl && !ks.ctrl)
+                                {
+                                    // Re-press Ctrl
+                                    emit_event(uifd, EV_KEY, KEY_LEFTCTRL, 1);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+                                else if (!ctrl && ks.ctrl)
+                                {
+                                    // Release Ctrl
+                                    emit_event(uifd, EV_KEY, KEY_LEFTCTRL, 0);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+
+                                if (alt && !ks.alt)
+                                {
+                                    // Re-press Alt
+                                    emit_event(uifd, EV_KEY, KEY_LEFTALT, 1);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
+                                else if (!alt && ks.alt)
+                                {
+                                    // Release Alt
+                                    emit_event(uifd, EV_KEY, KEY_LEFTALT, 0);
+                                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                }
                             }
                         }
 

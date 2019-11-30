@@ -85,9 +85,17 @@ enum class Layout
     DutchKWeC,
 };
 
+struct KeyStroke
+{
+    Key key;
+    bool shift;
+    bool ctrl;
+    bool alt;
+};
+
 struct KeyTranslation
 {
-    std::vector<Key> keys;
+    std::vector<KeyStroke> keys;
     std::string sound;
 };
 

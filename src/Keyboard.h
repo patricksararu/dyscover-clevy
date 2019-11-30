@@ -40,7 +40,10 @@ protected:
     //Keyboard();
     void InvokeCallback(KeyEventType keyEventType, int keyCode, int scanCode, int flags, int time);
 
+    Key* ProcessKeyEvent(KeyEventType eventType, Key key, bool shift, bool ctrl, bool alt);
+
 private:
+    IKeyTranslator* m_pTranslator;
     wxEvtHandler* m_pHandler;
     PFNKBDHOOKCB m_pfnCallback;
     void* m_pUserData;

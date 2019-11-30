@@ -4,10 +4,12 @@
 
 #include <fcntl.h>
 #include <unistd.h>
+#include <linux/input.h>
 #include <linux/uinput.h>
 #include <sys/epoll.h>
 #include <sys/eventfd.h>
 
+#include <sstream>
 #include <vector>
 
 #include "KeyboardLinux.h"
@@ -56,6 +58,19 @@ KeyboardLinux::~KeyboardLinux()
 int is_event_device(const struct dirent* de)
 {
     return strncmp("event", de->d_name, 5) == 0;
+}
+
+int emit_event(int fd, int type, int code, int value)
+{
+    struct input_event ie;
+    ie.type = type;
+    ie.code = code;
+    ie.value = value;
+    ie.time.tv_sec = 0;
+    ie.time.tv_usec = 0;
+
+    ssize_t written = write(fd, &ie, sizeof(ie));
+    return written > 0 ? 0 : errno;
 }
 
 void* KeyboardLinux::Entry()
@@ -177,10 +192,20 @@ void* KeyboardLinux::Entry()
     ioctl(uifd, UI_DEV_SETUP, &usetup);
     ioctl(uifd, UI_DEV_CREATE);
 
+#if 1
     for (int fd : fds)
     {
-        ioctl(fd, EVIOCGRAB, 1);
+        int rc = ioctl(fd, EVIOCGRAB, 1);
+        if (rc != 0)
+        {
+            wxLogError("Can't grab keyboard open as fd %d. %s", fd, strerror(errno));
+        }
     }
+#endif
+
+    bool shift = false;
+    bool ctrl = false;
+    bool alt = false;
 
     while (!TestDestroy())
     {
@@ -210,12 +235,115 @@ void* KeyboardLinux::Entry()
                 break;
             }
 
+            wxLogDebug("Fd %d  Time %ld.%ld  Type %d  Code %d  Value %d", fd, ie.time.tv_sec, ie.time.tv_usec, ie.type, ie.code, ie.value);
+
             if (ie.type == EV_KEY && (ie.value == 0 || ie.value == 1))
             {
+                if (ie.code == KEY_LEFTSHIFT || ie.code == KEY_RIGHTSHIFT)
+                {
+                    shift = ie.value;
+                }
+                else if (ie.code == KEY_LEFTCTRL || ie.code == KEY_RIGHTCTRL)
+                {
+                    ctrl = ie.value;
+                }
+                else if (ie.code == KEY_LEFTALT || ie.code == KEY_RIGHTALT)
+                {
+                    alt = ie.value;
+                }
+
                 KeyEventType ket = ie.value ? KeyEventType::KeyDown : KeyEventType::KeyUp;
-                wxLogDebug("Key press detected on %d: %d %d", fd, ie.code, ie.value);
+                //wxLogDebug("Key press detected on %d: %d %d", fd, ie.code, ie.value);
                 InvokeCallback(ket, ie.code, ie.code, 0, ie.time.tv_sec);
             }
+
+            // Do key translation
+            if (ie.type == EV_KEY)
+            {
+                bool processed = false;
+
+                Key key = KeyFromKeyCode(ie.code);
+                if (key != Key::Unknown)
+                {
+                    KeyTranslation kt = TranslateKey(key, shift, ctrl, alt, Layout::DutchClassic);
+                    if (!kt.keys.empty())
+                    {
+                        if (ie.value == 1 || ie.value == 2)
+                        {
+                            std::stringstream ss;
+                            for (Key key : kt.keys)
+                            {
+                                ss << (int)key << " ";
+                            }
+                            wxLogDebug("Translated keys: %s", ss.str());
+
+                            for (Key key : kt.keys)
+                            {
+                                int keycode = KeyCodeFromKey(key);
+
+                                emit_event(uifd, EV_KEY, keycode, 1);
+                                emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                                emit_event(uifd, EV_KEY, keycode, 0);
+                                emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                            }
+                        }
+
+                        processed = true;
+                    }
+                }
+
+                if (!processed)
+                {
+                    emit_event(uifd, EV_KEY, ie.code, ie.value);
+                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                }
+            }
+
+#if 0
+            if (ie.type == EV_KEY)
+            {
+                if (ie.code == KEY_1)
+                {
+                    if (ie.value == 1)
+                    {
+                        emit_event(uifd, EV_KEY, KEY_A, 1);
+                        emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                        emit_event(uifd, EV_KEY, KEY_A, 0);
+                        emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                        emit_event(uifd, EV_KEY, KEY_A, 1);
+                        emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                    }
+                    else if (ie.value == 2)
+                    {
+                        emit_event(uifd, EV_KEY, KEY_A, 2);
+                        emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                    }
+                    else if (ie.value == 0)
+                    {
+                        emit_event(uifd, EV_KEY, KEY_A, 0);
+                        emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                    }
+                }
+                else
+                {
+                    emit_event(uifd, EV_KEY, ie.code, ie.value);
+                    emit_event(uifd, EV_SYN, SYN_REPORT, 0);
+                }
+            }
+
+            if (ie.type == EV_KEY && )
+            {
+            }
+            else
+            {
+                size_t written = write(uifd, &ie, sizeof(ie));
+                if (written <= 0)
+                {
+                    wxLogError("write() failed");
+                    break;
+                }
+            }
+#endif
         }
     }
 
@@ -240,4 +368,87 @@ void* KeyboardLinux::Entry()
     close(epollfd);
 
     return nullptr;
+}
+
+static constexpr KeyMapping s_keyMappings[] = {
+    { Key::Esc, KEY_ESC },
+    { Key::One, KEY_1 },
+    { Key::Two, KEY_2 },
+    { Key::Three, KEY_3 },
+    { Key::Four, KEY_4 },
+    { Key::Five, KEY_5 },
+    { Key::Six, KEY_6 },
+    { Key::Seven, KEY_7 },
+    { Key::Eight, KEY_8 },
+    { Key::Nine, KEY_9 },
+    { Key::Zero, KEY_0 },
+    { Key::Minus, KEY_MINUS },
+    { Key::Equal, KEY_EQUAL },
+    { Key::Backspace, KEY_BACKSPACE },
+    { Key::Tab, KEY_TAB },
+    { Key::Q, KEY_Q },
+    { Key::W, KEY_W },
+    { Key::E, KEY_E },
+    { Key::R, KEY_R },
+    { Key::T, KEY_T },
+    { Key::Y, KEY_Y },
+    { Key::U, KEY_U },
+    { Key::I, KEY_I },
+    { Key::O, KEY_O },
+    { Key::P, KEY_P },
+    { Key::OpenBracket, KEY_LEFTBRACE },
+    { Key::CloseBracket, KEY_RIGHTBRACE },
+    { Key::Enter, KEY_ENTER },
+    { Key::Ctrl, KEY_LEFTCTRL },
+    { Key::A, KEY_A },
+    { Key::S, KEY_S },
+    { Key::D, KEY_D },
+    { Key::F, KEY_F },
+    { Key::G, KEY_G },
+    { Key::H, KEY_H },
+    { Key::J, KEY_J },
+    { Key::K, KEY_K },
+    { Key::L, KEY_L },
+    { Key::Semicolon, KEY_SEMICOLON },
+    { Key::Apostrophe, KEY_APOSTROPHE },
+    { Key::Shift, KEY_LEFTSHIFT },
+    { Key::Backslash, KEY_BACKSLASH },
+    { Key::Z, KEY_Z },
+    { Key::X, KEY_X },
+    { Key::C, KEY_C },
+    { Key::V, KEY_V },
+    { Key::B, KEY_B },
+    { Key::N, KEY_N },
+    { Key::M, KEY_M },
+    { Key::Comma, KEY_COMMA },
+    { Key::Dot, KEY_DOT },
+    { Key::Slash, KEY_SLASH },
+    { Key::Shift, KEY_RIGHTSHIFT },
+    { Key::Alt, KEY_LEFTALT },
+    { Key::Space, KEY_SPACE },
+    { Key::CapsLock, KEY_CAPSLOCK },
+};
+
+Key KeyboardLinux::KeyFromKeyCode(int keyCode)
+{
+    for (KeyMapping mapping : s_keyMappings)
+    {
+        if (mapping.code == keyCode)
+        {
+            return mapping.key;
+        }
+    }
+    return Key::Unknown;
+}
+
+int KeyboardLinux::KeyCodeFromKey(Key key)
+{
+    for (KeyMapping mapping : s_keyMappings)
+    {
+        if (mapping.key == key)
+        {
+            return mapping.code;
+        }
+    }
+    return -1;
 }

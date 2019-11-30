@@ -4,8 +4,12 @@
 
 #pragma once
 
+#include <string>
+#include <vector>
+
 enum class Key
 {
+    Unknown,
     A,
     B,
     C,
@@ -56,17 +60,19 @@ enum class Key
     Apostrophe,
     Backslash,
     Semicolon,
+    Comma,
+    Dot,
     Minus,
     Slash,
     Equal,
+    OpenBracket,
+    CloseBracket,
     Ins,
     Del,
     Home,
     End,
     PageUp,
     PageDown,
-    OpenBracket,
-    CloseBracket,
     Up,
     Down,
     Left,
@@ -81,9 +87,12 @@ enum class Layout
 
 struct KeyTranslation
 {
-    Key* keys;
-    char* sound;
+    std::vector<Key> keys;
+    std::string sound;
 };
+
+std::string KeyToString(Key);
+Key KeyFromString(std::string);
 
 /*
 KeyTranslation(Key* keys, char* sound) : keys(keys), sound(sound) {}

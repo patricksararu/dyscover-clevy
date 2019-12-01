@@ -5,6 +5,7 @@
 #pragma once
 
 #include <wx/event.h>
+#include <wx/log.h>
 
 #include "Keys.h"
 

@@ -29,6 +29,7 @@ int App::OnExit()
 
 Key* App::Translate(KeyEventType eventType, Key key, bool shift, bool ctrl, bool alt, time_t time)
 {
+    return nullptr;
 }
 
 void App::ShowPreferencesDialog()

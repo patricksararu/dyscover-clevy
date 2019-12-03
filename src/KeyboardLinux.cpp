@@ -247,7 +247,7 @@ void* KeyboardLinux::Entry()
                 {
                     ctrl = ie.value;
                 }
-                else if (ie.code == KEY_LEFTALT || ie.code == KEY_RIGHTALT)
+                else if (ie.code == KEY_LEFTALT /*|| ie.code == KEY_RIGHTALT*/)
                 {
                     alt = ie.value;
                 }
@@ -508,6 +508,13 @@ static constexpr KeyMapping s_keyMappings[] = {
     { Key::Alt, KEY_LEFTALT },
     { Key::Space, KEY_SPACE },
     { Key::CapsLock, KEY_CAPSLOCK },
+    { Key::AltGr, KEY_RIGHTALT },
+    { Key::Ins, KEY_INSERT },
+    { Key::Del, KEY_DELETE },
+    { Key::Home, KEY_HOME },
+    { Key::End, KEY_END },
+    { Key::PageUp, KEY_PAGEUP },
+    { Key::PageDown, KEY_PAGEDOWN },
 };
 
 Key KeyboardLinux::KeyFromKeyCode(int keyCode)

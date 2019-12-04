@@ -88,7 +88,16 @@ private:
         { Key::X, 0x58 },
         { Key::Y, 0x59 },
         { Key::Z, 0x5A },
+        { Key::AltGr, VK_RMENU },
+        { Key::Equal, VK_OEM_PLUS },
+        { Key::Comma, VK_OEM_COMMA },
+        { Key::Minus, VK_OEM_MINUS },
+        { Key::Dot, VK_OEM_PERIOD },
+        { Key::Semicolon, VK_OEM_1 },
+        { Key::Slash, VK_OEM_2 },
         { Key::OpenBracket, VK_OEM_4 },
+        { Key::Backslash, VK_OEM_5 },
         { Key::CloseBracket, VK_OEM_6 },
+        { Key::Apostrophe, VK_OEM_7 },
     };
 };

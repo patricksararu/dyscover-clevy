@@ -102,16 +102,4 @@ struct KeyTranslation
 std::string KeyToString(Key);
 Key KeyFromString(std::string);
 
-/*
-KeyTranslation(Key* keys, char* sound) : keys(keys), sound(sound) {}
-KeyTranslation(const KeyTranslation& other) : keys(other.keys), sound(other.sound) {}
-KeyTranslation(KeyTranslation&& other) : keys(other.keys), sound(other.sound) {}
-
-constexpr KeyTranslation& operator=(const KeyTranslation& other)
-{
-    keys = other.keys;
-    sound = other.sound;
-}
-*/
-
 KeyTranslation TranslateKey(Key input, bool shift, bool ctrl, bool alt, Layout layout);

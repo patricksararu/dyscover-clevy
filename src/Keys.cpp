@@ -234,7 +234,7 @@ KeyTranslation FindTranslation(const std::vector<KeyTranslationEntry>& entries, 
         if (entry.input == key && entry.shift == shift && entry.ctrl == ctrl && entry.alt == alt)
         {
             KeyTranslation kt;
-            kt.keys = entry.output;
+            kt.keystrokes = entry.output;
             kt.sound = entry.sound;
             return kt;
         }

@@ -68,11 +68,11 @@ bool KeyboardWindows::OnKeyboardEvent(KeyEventType eventType, Key key)
     }
 
     KeyTranslation kt = TranslateKey(key, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed, Layout::DutchClassic);
-    if (!kt.keys.empty())
+    if (!kt.keystrokes.empty())
     {
         if (eventType == KeyEventType::KeyDown)
         {
-            for (KeyStroke ks : kt.keys)
+            for (KeyStroke ks : kt.keystrokes)
             {
                 if (m_bShiftPressed && !ks.shift)
                 {

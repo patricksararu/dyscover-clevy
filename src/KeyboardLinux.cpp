@@ -266,12 +266,12 @@ void* KeyboardLinux::Entry()
                 if (key != Key::Unknown)
                 {
                     KeyTranslation kt = TranslateKey(key, shift, ctrl, alt, Layout::DutchClassic);
-                    if (!kt.keys.empty())
+                    if (!kt.keystrokes.empty())
                     {
                         if (ie.value == 1 || ie.value == 2)
                         {
                             std::stringstream ss;
-                            for (KeyStroke ks : kt.keys)
+                            for (KeyStroke ks : kt.keystrokes)
                             {
                                 if (ks.shift)  ss << "Shift+";
                                 if (ks.ctrl)  ss << "Ctrl+";
@@ -280,7 +280,7 @@ void* KeyboardLinux::Entry()
                             }
                             wxLogDebug("Translated key strokes: %s", ss.str());
 
-                            for (KeyStroke ks : kt.keys)
+                            for (KeyStroke ks : kt.keystrokes)
                             {
                                 if (shift && !ks.shift)
                                 {

@@ -95,7 +95,7 @@ struct KeyStroke
 
 struct KeyTranslation
 {
-    std::vector<KeyStroke> keys;
+    std::vector<KeyStroke> keystrokes;
     std::string sound;
 };
 

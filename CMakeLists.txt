@@ -7,6 +7,10 @@ project(Clevy)
 add_executable(Clevy WIN32
   src/App.cpp
   src/App.h
+  src/KeyboardWindows.cpp
+  src/KeyboardWindows.h
+  src/Keys.cpp
+  src/Keys.h
   src/PreferencesDialog.cpp
   src/PreferencesDialog.h
   src/TrayIcon.cpp

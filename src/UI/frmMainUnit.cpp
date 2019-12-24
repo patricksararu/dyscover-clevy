@@ -907,7 +907,7 @@ bool TfrmMain::ProcessChar(wchar_t aChar)
 		d_TTS->SetVolume(100 - tbVolume->Position);
 		d_TTS->SetSpeed(-1 *tbSpeed->Position *d_config.ReadingSpeedFactor);
 		// SsftRSSoloA1->Speak(s, enumTextFormat::NormalText);
-		d_TTS->Speak(value);
+		d_TTS->Speak(System::UTF8Encode(value).c_str());
 		// SysFreeString(s);
 	}
 
@@ -935,7 +935,7 @@ void TfrmMain::ProcessText(String value, bool ignoreKeboardStatus)
 	d_TTS->SetVolume(100 - tbVolume->Position);
 	d_TTS->SetSpeed(-1 *tbSpeed->Position *d_config.ReadingSpeedFactor);
 	// SsftRSSoloA1->Speak(s, enumTextFormat::NormalText);
-	d_TTS->Speak(value);
+	d_TTS->Speak(System::UTF8Encode(value).c_str());
 	// SysFreeString(s);
 }
 
@@ -982,7 +982,7 @@ void TfrmMain::ProcessWord(String value, bool ignoreKeboardStatus)
 	d_TTS->SetVolume(100 - tbVolume->Position);
 	d_TTS->SetSpeed(-1 *tbSpeed->Position *d_config.ReadingSpeedFactor);
 	// SsftRSSoloA1->Speak(s, enumTextFormat::NormalText);
-	d_TTS->Speak(value);
+	d_TTS->Speak(System::UTF8Encode(value).c_str());
 	// SysFreeString(s);
 
 }

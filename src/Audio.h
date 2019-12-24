@@ -1,11 +1,14 @@
-//---------------------------------------------------------------------------
+//
+// Audio.h
+//
 
-#ifndef AudioH
-#define AudioH
+#pragma once
 
-#include <Queue.h>
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+#include <mmsystem.h>
 
-//---------------------------------------------------------------------------
+#include "Queue.h"
 
 class Audio
 {
@@ -28,5 +31,3 @@ private:
 
 	static void CALLBACK WaveOutCallback(HWAVEOUT, UINT, DWORD_PTR, DWORD_PTR, DWORD_PTR);
 };
-
-#endif

@@ -1,22 +1,20 @@
-//---------------------------------------------------------------------------
+//
+// Speech.cpp
+//
 
 #include <thread>
 
-#include <System.hpp>
-
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <mmsystem.h>
-
+#ifdef __BORLANDC__
 #pragma hdrstop
+#endif
 
-#include "Debug.h"
 #include "Audio.h"
+#include "Debug.h"
 #include "Speech.h"
 
-//---------------------------------------------------------------------------
-
+#ifdef  __BORLANDC__
 #pragma package(smart_init)
+#endif
 
 static const int kChannels = 1;
 static const int kSampleRate = 22050;
@@ -98,7 +96,7 @@ bool Speech::Init(const char* basedir, const char* lang, const char* voice)
 		return false;
 	}
 
-	m_thread = std::thread(ThreadProc);
+	m_thread = std::thread(&Speech::ThreadProc, this);
 
 	return true;
 }
@@ -124,27 +122,27 @@ void Speech::Term()
 	}
 }
 
-int Speech::GetSpeed()
+float Speech::GetSpeed()
 {
-	float speed = -1.0;
+	float speed = -1.0f;
 	int result = rsttsGetSpeed(m_rstts, &speed);
-	return speed;
+	return RSTTS_SUCCESS(result) ? speed : -1.0f;
 }
 
-bool Speech::SetSpeed(int value)
+bool Speech::SetSpeed(float value)
 {
-	int result = rsttsSetSpeed(m_rstts, RSTTS_SPEED_DEFAULT + value);
+	int result = rsttsSetSpeed(m_rstts, static_cast<float>(RSTTS_SPEED_DEFAULT) + value);
 	return RSTTS_SUCCESS(result);
 }
 
-int Speech::GetVolume()
+float Speech::GetVolume()
 {
-	float volume = -1.0;
+	float volume = -1.0f;
 	int result = rsttsGetVolume(m_rstts, &volume);
-	return volume;
+	return RSTTS_SUCCESS(result) ? volume : -1.0f;
 }
 
-bool Speech::SetVolume(int value)
+bool Speech::SetVolume(float value)
 {
 	int result = rsttsSetVolume(m_rstts, value);
 	return RSTTS_SUCCESS(result);
@@ -160,7 +158,7 @@ bool Speech::SetAudioVolume(int value)
 	return m_audio.SetVolume(value);
 }
 
-void Speech::Speak(String text)
+void Speech::Speak(std::string text)
 {
 	m_queue.Enqueue(text);
 }
@@ -181,16 +179,15 @@ void Speech::ThreadProc()
 {
 	while (!m_quit)
 	{
-		String text = m_queue.Dequeue();
-
-		char* utf8Str = System::UTF8Encode(text).c_str();
-
-		rsttsSynthesize(m_rstts, utf8Str, "text");
+		std::string text = m_queue.Dequeue();
+		rsttsSynthesize(m_rstts, text.c_str(), "text");
 	}
 }
 
 void Speech::TTSAudioCallback(RSTTSInst inst, const void* audiodata, size_t audiodatalen, void* userptr)
 {
+	(void)inst;
+
 	Speech* pThis = (Speech*)userptr;
 	pThis->m_audio.Write(audiodata, audiodatalen);
 }

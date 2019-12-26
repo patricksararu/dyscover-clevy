@@ -6,7 +6,7 @@
 
 #include <wx/wx.h>
 
-class KeyboardWindows;
+class Core;
 class PreferencesDialog;
 class TrayIcon;
 
@@ -20,7 +20,7 @@ public:
     void ShowPreferencesDialog();
 
 private:
-    KeyboardWindows* m_pKeyboardWindows;
+    Core* m_pCore;
     PreferencesDialog* m_pPreferencesDialog;
     TrayIcon* m_pTrayIcon;
 };

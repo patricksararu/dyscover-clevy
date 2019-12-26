@@ -7,6 +7,9 @@ project(Clevy)
 add_executable(Clevy WIN32
   src/App.cpp
   src/App.h
+  src/Core.cpp
+  src/Core.h
+  src/IKeyEventListener.h
   src/KeyboardWindows.cpp
   src/KeyboardWindows.h
   src/Keys.cpp

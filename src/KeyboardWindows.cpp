@@ -8,11 +8,13 @@
 
 KeyboardWindows* g_pInstance = nullptr;
 
-KeyboardWindows::KeyboardWindows()
+KeyboardWindows::KeyboardWindows(IKeyEventListener* pListener)
 {
     assert(g_pInstance == nullptr);
 
     g_pInstance = this;
+
+    m_pListener = pListener;
 
     m_hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardWindows::LowLevelKeyboardProc, NULL, 0);
 
@@ -105,6 +107,31 @@ void KeyboardWindows::SendKeyPress(Key key, bool shift, bool ctrl)
     }
 }
 
+bool KeyboardWindows::ProcessKeyEvent(Key key, KeyEventType eventType)
+{
+    if (key == Key::Shift)
+    {
+        m_bShiftPressed = eventType == KeyEventType::KeyDown;
+    }
+
+    if (key == Key::Ctrl)
+    {
+        m_bCtrlPressed = eventType == KeyEventType::KeyDown;
+    }
+
+    if (key == Key::Alt)
+    {
+        m_bAltPressed = eventType == KeyEventType::KeyDown;
+    }
+
+    if (key != Key::Unknown)
+    {
+        return m_pListener->OnKeyEvent(key, eventType, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed);
+    }
+
+    return false;
+}
+
 LRESULT CALLBACK KeyboardWindows::LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
 {
     KeyboardWindows* pThis = g_pInstance;
@@ -119,38 +146,10 @@ LRESULT CALLBACK KeyboardWindows::LowLevelKeyboardProc(int nCode, WPARAM wParam,
             KeyEventType eventType = KeyEventTypeFromWParam(wParam);
             Key key = KeyFromKeyCode(pData->vkCode);
 
-            if (key == Key::Shift)
+            if (pThis->ProcessKeyEvent(key, eventType))
             {
-                pThis->m_bShiftPressed = eventType == KeyEventType::KeyDown;
-            }
-
-            if (key == Key::Ctrl)
-            {
-                pThis->m_bCtrlPressed = eventType == KeyEventType::KeyDown;
-            }
-
-            if (key == Key::Alt)
-            {
-                pThis->m_bAltPressed = eventType == KeyEventType::KeyDown;
-            }
-
-            if (key != Key::Unknown)
-            {
-                KeyTranslation translation = TranslateKey(key, pThis->m_bShiftPressed, pThis->m_bCtrlPressed, pThis->m_bAltPressed, Layout::DutchClassic);
-                if (!translation.keystrokes.empty())
-                {
-                    // Ignore KeyUp events
-                    if (eventType == KeyEventType::KeyDown)
-                    {
-                        for (KeyStroke ks : translation.keystrokes)
-                        {
-                            pThis->SendKeyPress(ks.key, ks.shift, ks.ctrl);
-                        }
-                    }
-
-                    // Supress this event
-                    return 1;
-                }
+                // Supress this event
+                return 1;
             }
         }
     }

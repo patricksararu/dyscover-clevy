@@ -3,13 +3,13 @@
 //
 
 #include "App.h"
-#include "KeyboardWindows.h"
+#include "Core.h"
 #include "PreferencesDialog.h"
 #include "TrayIcon.h"
 
 bool App::OnInit()
 {
-    m_pKeyboardWindows = new KeyboardWindows();
+    m_pCore = new Core();
     m_pPreferencesDialog = new PreferencesDialog(this);
     m_pTrayIcon = new TrayIcon(this);
 
@@ -20,7 +20,7 @@ int App::OnExit()
 {
     delete m_pTrayIcon;
     delete m_pPreferencesDialog;
-    delete m_pKeyboardWindows;
+    delete m_pCore;
 
     return wxApp::OnExit();
 }

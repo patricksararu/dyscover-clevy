@@ -54,6 +54,8 @@ bld/
 *.scc
 *.pyc
 *.log
+*.exp
+*.lib
 
 # Nuget
 packages/

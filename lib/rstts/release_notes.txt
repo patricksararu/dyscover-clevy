@@ -1,0 +1,181 @@
+Release notes rSpeak SDK
+Copyright © 2017 rSpeak Technologies.
+Copyright © 2018 ReadSpeaker B.V.
+
+
+Changes in bug fix release 1.0.2 (since release 1.0)
+
+* Some data was missing from viseme events, fixed.
+
+* Fixes an issue where an end-of-sentence break could be generated
+  at the wrong position under certain circumstances.
+
+* Fixes an issue that could cause (non-critical) warning message
+  to appear on stderr (Windows platforms only).
+
+
+Changes in release 1.0 (since bug fix release 0.98a):
+
+* Added language: Norwegian Bokmål (nb_no)
+
+* Added voice: Lykke (nb_no)
+
+* Various performance improvements
+
+* Added an API call rsttsGetRuntimeVersion() to determine the
+  version of the rSpeak lib in use.
+
+* Added a C preprocessor symbol RSTTS_BUILDTIME_VERSION that can be
+  used to do version checks at build time by the C preprocessor,
+  for example to only include certain code if the header files
+  indicate a particular rSpeak SDK version or later.
+  Apps should only use this to check if certain functionality is
+  available at build/compile time, otherwise use the API call above.
+
+* Improved position reporting for word events generated from symbolic
+  characters. When position tracking is enabled (the parameter
+  RSTTS_PARAM_TEXT_POSITION_TRACKING), word events (RSTTSEvent_Word,
+  if enabled by the current event mask) will also be able to report
+  text positions of symbolic characters that get expanded into words
+  during normalization.
+
+* Improved position tracking with pre-parse lexicon in use:
+  Reported positions refer (when possible) to positions before the
+  lexicon was applied. (For optimal word position reporting, rules
+  should preferably replace one word at a time, when words are
+  replaced rather than just moved around; when multiple words are
+  replaced at once by a rule, the algorithm will not try
+  to match up matched words with substituted words in any (semi-)
+  intelligent manner.)
+
+* Language selection via rsttsSetLanguage() no longer pre-loads the
+  default voice for that language. Use a subsequent call to any
+  any of the rsttsSetVoice* functions if you want to pre-load a
+  voice for improved responsiveness. (Otherwise, loading of a
+  voice is deferred until the voice is actually needed.)
+
+* Voice selection via rsttsSetVoiceByName(), rsttsSetVoiceByGender()
+  now applies also to SSML. A thusly set current voice becomes the
+  default voice for the language of that voice. (Explicit voice
+  selection in SSML will still override if present.)
+
+* The rsttsSet* API calls could under some circumstances return an
+  error without setting an appropriate error message. Fixed.
+
+* Correct handling of breaks without set strength
+
+* Some missing strings in event callbacks could be represented as
+  empty strings rather than NULL, as they should be according to the
+  documentation if information is missing or not applicable to the
+  event. This has been fixed.
+
+* General voice improvements
+
+* Various improvements to text normalization and homograph
+  disambiguation.
+
+* Improved error handling in license verification for Microsoft
+  Windows-based platforms
+
+* Minor updates to the documentation for rsttsGetErrorMessage() and
+  rsttsFree().
+
+
+Changes in bug fix release 0.98a (since release 0.98):
+
+* Fixes minor memory management issues on Windows platforms
+
+* Fixes a bug that could cause crashes on 32-bit Windows
+
+
+Changes in release 0.98 (since release 0.97):
+
+* Added language: Italian (it_it)
+
+* Added voices: Benoit (fr_fr), Gina (it_it)
+
+* Various improvements in error reporting, error messages and internal
+  error handling
+
+* New API functions rsttsGetPitch(), rsttsGetSpeed(), rsttsSetVolume()
+  to retrieve the currently set pitch, speed and volume settings for a
+  TTS instance.
+
+* New API function rsttsGetSampleRate() to retrieve the currently set
+  output sample rate for a TTS instance.
+
+* New API functions rsttsLoadLexiconFromFile(), rsttsUnloadLexicon()
+  to load a lexicon into a TTS instance, and unload a loaded lexicon,
+  respectively.
+
+* The quality setting constants RSTTS_QUALITY_FAST and
+  RSTTS_QUALITY_FULL (for use with rsttsSetParameter()) are now
+  deprecated. Use RSTTS_QUALITY_LOW and RSTTS_QUALITY_NORMAL instead.
+
+* The API function rsttsSetParameter() can now configure a new
+  parameter RSTTS_PARAM_RESPONSIVENESS_SETTING (the associated
+  constants RSTTS_RESPONSIVENESS_NORMAL and RSTTS_RESPONSIVENESS_FAST
+  have also been added to the API). This parameter enables some
+  tradeoffs and voice loading strategies that may enable
+  rsttsSynthesize() and rsttsSynthesizeAsync() to start returning
+  audio quicker, at some costs in speech quality and use of system
+  resources. This can be useful in applications where low delays are
+  more important than overall speed and quality. See the documentation
+  of rsttsSetParameter() for more information.
+
+* It is now possible to configure the default length of pauses
+  generated by punctuation and SSML break elements, using
+  rsttsSetParameter() with any of the following parameter names:
+  RSTTS_PARAM_PUNCTUATION_PAUSE_MS, RSTTS_PARAM_SENTENCE_PAUSE_MS,
+  RSTTS_PARAM_X_WEAK_BREAK_PAUSE_MS, RSTTS_PARAM_WEAK_BREAK_PAUSE_MS,
+  RSTTS_PARAM_MEDIUM_BREAK_PAUSE_MS,
+  RSTTS_PARAM_STRONG_BREAK_PAUSE_MS,
+  RSTTS_PARAM_X_STRONG_BREAK_PAUSE_MS,
+  RSTTS_PARAM_MAX_BREAK_PAUSE_MS. See the documentation of
+  rsttsSetParameter() for more information.
+
+* rsttsGetErrorMessage() and rsttsGetErrorCodeString() from now on
+  always return a valid utf-8 string, never NULL.
+
+* Calling rsttsSetSampleRate() on a busy TTS instance is now safe
+  (sample rate modifications on a busy instance are now allowed but
+  will not take effect until the TTS instance is no longer busy).
+
+* In the previous release, rsttsWaitState() had a synchronization
+  error where a timeout could cause the TTS instance to lock up. This
+  has been fixed.
+
+* Fixed reporting of positions for word (RSTTSEvent_Word) and sentence
+  (RSTTSEvent_Sentence) events. When the parameter
+  RSTTS_PARAM_TEXT_POSITION_TRACKING is enabled, positions are now
+  also reported for transcriptions (SSML phoneme elements, which are
+  reported as RSTTSEvent_Word events, when such events are enabled by
+  the current event mask), and start and end positions for sentences
+  (RSTTSEvent_Sentence) are also more accurately reported (when
+  enabled by the current event mask).
+
+* Improved reporting of break events (RSTTSEvent_Break). The prosodic
+  strength of breaks (according to the levels defined in the SSML
+  spec) is now included in the break event information. Break events,
+  if enabled by the current event mask, are now generated for all
+  prosodic breaks and pauses which have a length greater than zero
+  (0ms) and/or a prosodic strength greater than "none".
+
+* The TTS engine now supports Failure events, which will be reported
+  via the event callback for certain runtime errors, in particular for
+  non-critical errors that allow synthesis to continue, such as
+  non-critical SSML parse failures/warnings, errors in transcriptions
+  and language switch failures. See the documentation and the
+  declarations in librstts_events.h for more information. Note that
+  failure events are enabled per default.
+
+* Voice audio data is now stored in a different format and uses .opu
+  files rather than .vor files. The data files provided with this
+  release are not compatible with those of previous releases.
+
+* General voice improvements.
+
+* Various improvements to text normalization and homograph
+  disambiguation.
+
+* Improved API documentation.

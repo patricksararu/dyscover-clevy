@@ -1,0 +1,3 @@
+librstts.a contains symbols from rSpeak SDK, and rSpeak SDK only. If this archive is used, you will need to link against the libraries written in the "doc/acknowledgements-rSpeak-SDK.txt" file to your project. 
+
+librstts-full.a is with all of the third-party libraries we use in rSepak TTS. If you use this one, you do not need to include any other libraries. 

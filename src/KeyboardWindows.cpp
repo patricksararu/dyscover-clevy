@@ -9,18 +9,13 @@
 KeyboardWindows* g_pInstance = nullptr;
 
 KeyboardWindows::KeyboardWindows(IKeyEventListener* pListener)
+    : Keyboard(pListener)
 {
     assert(g_pInstance == nullptr);
 
     g_pInstance = this;
 
-    m_pListener = pListener;
-
     m_hKeyboardHook = SetWindowsHookEx(WH_KEYBOARD_LL, KeyboardWindows::LowLevelKeyboardProc, NULL, 0);
-
-    m_bShiftPressed = false;
-    m_bCtrlPressed = false;
-    m_bAltPressed = false;
 }
 
 KeyboardWindows::~KeyboardWindows()
@@ -28,108 +23,18 @@ KeyboardWindows::~KeyboardWindows()
     UnhookWindowsHookEx(m_hKeyboardHook);
 }
 
-void SendKeyboardEvent(bool keyUp, WORD vkCode)
-{
-    INPUT input;
-    ZeroMemory(&input, sizeof(INPUT));
-    input.type = INPUT_KEYBOARD;
-    input.ki.wVk = vkCode;
-    input.ki.dwFlags = keyUp ? KEYEVENTF_KEYUP : 0;
-    SendInput(1, &input, sizeof(INPUT));
-}
-
-void Press(WORD vkCode)
-{
-    SendKeyboardEvent(false, vkCode);
-}
-
-void Release(WORD vkCode)
-{
-    SendKeyboardEvent(true, vkCode);
-}
-
 void KeyboardWindows::SendKeyEvent(KeyEventType eventType, Key key)
 {
     int keyCode = KeyCodeFromKey(key);
-    if (keyCode > 0)
+    if (keyCode != -1)
     {
-        SendKeyboardEvent(eventType == KeyEventType::KeyUp, static_cast<WORD>(keyCode));
+        INPUT input;
+        ZeroMemory(&input, sizeof(INPUT));
+        input.type = INPUT_KEYBOARD;
+        input.ki.wVk = static_cast<WORD>(keyCode);
+        input.ki.dwFlags = eventType == KeyEventType::KeyUp ? KEYEVENTF_KEYUP : 0;
+        SendInput(1, &input, sizeof(INPUT));
     }
-}
-
-void KeyboardWindows::SendKeyPress(Key key, bool shift, bool ctrl)
-{
-    if (m_bShiftPressed && !shift)
-    {
-        // Release Shift
-        Release(VK_SHIFT);
-    }
-    else if (!m_bShiftPressed && shift)
-    {
-        // Press Shift
-        Press(VK_SHIFT);
-    }
-
-    if (m_bCtrlPressed && !ctrl)
-    {
-        // Release Ctrl
-        Release(VK_CONTROL);
-    }
-    else if (!m_bCtrlPressed && ctrl)
-    {
-        // Press Ctrl
-        Press(VK_CONTROL);
-    }
-
-    SendKeyEvent(KeyEventType::KeyDown, key);
-    SendKeyEvent(KeyEventType::KeyUp, key);
-
-    if (m_bShiftPressed && !shift)
-    {
-        // Re-press Shift
-        Press(VK_SHIFT);
-    }
-    else if (!m_bShiftPressed && shift)
-    {
-        // Release Shift
-        Release(VK_SHIFT);
-    }
-
-    if (m_bCtrlPressed && !ctrl)
-    {
-        // Re-press Ctrl
-        Press(VK_CONTROL);
-    }
-    else if (!m_bCtrlPressed && ctrl)
-    {
-        // Release Ctrl
-        Release(VK_CONTROL);
-    }
-}
-
-bool KeyboardWindows::ProcessKeyEvent(Key key, KeyEventType eventType)
-{
-    if (key == Key::Shift)
-    {
-        m_bShiftPressed = eventType == KeyEventType::KeyDown;
-    }
-
-    if (key == Key::Ctrl)
-    {
-        m_bCtrlPressed = eventType == KeyEventType::KeyDown;
-    }
-
-    if (key == Key::Alt)
-    {
-        m_bAltPressed = eventType == KeyEventType::KeyDown;
-    }
-
-    if (key != Key::Unknown)
-    {
-        return m_pListener->OnKeyEvent(key, eventType, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed);
-    }
-
-    return false;
 }
 
 LRESULT CALLBACK KeyboardWindows::LowLevelKeyboardProc(int nCode, WPARAM wParam, LPARAM lParam)
@@ -146,7 +51,7 @@ LRESULT CALLBACK KeyboardWindows::LowLevelKeyboardProc(int nCode, WPARAM wParam,
             KeyEventType eventType = KeyEventTypeFromWParam(wParam);
             Key key = KeyFromKeyCode(pData->vkCode);
 
-            if (pThis->ProcessKeyEvent(key, eventType))
+            if (pThis->ProcessKeyEvent(eventType, key))
             {
                 // Supress this event
                 return 1;

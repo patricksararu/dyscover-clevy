@@ -3,16 +3,16 @@
 //
 
 #include "Core.h"
-#include "KeyboardWindows.h"
+#include "Keyboard.h"
 
 Core::Core()
 {
-    m_pKeyboardWindows = new KeyboardWindows(this);
+    m_pKeyboard = Keyboard::Create(this);
 }
 
 Core::~Core()
 {
-    delete m_pKeyboardWindows;
+    delete m_pKeyboard;
 }
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
@@ -25,7 +25,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         {
             for (KeyStroke ks : translation.keystrokes)
             {
-                m_pKeyboardWindows->SendKeyPress(ks.key, ks.shift, ks.ctrl);
+                m_pKeyboard->SendKeyStroke(ks.key, ks.shift, ks.ctrl);
             }
         }
 

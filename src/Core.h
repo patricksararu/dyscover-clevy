@@ -4,9 +4,7 @@
 
 #pragma once
 
-#include "IKeyEventListener.h"
-
-class KeyboardWindows;
+#include "Keyboard.h"
 
 class Core : public IKeyEventListener
 {
@@ -17,5 +15,5 @@ public:
     virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) override;
 
 private:
-    KeyboardWindows* m_pKeyboardWindows;
+    Keyboard* m_pKeyboard;
 };

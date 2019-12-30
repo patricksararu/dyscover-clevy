@@ -9,9 +9,8 @@ add_executable(Clevy WIN32
   src/App.h
   src/Core.cpp
   src/Core.h
-  src/IKeyEventListener.h
-  src/KeyboardWindows.cpp
-  src/KeyboardWindows.h
+  src/Keyboard.cpp
+  src/Keyboard.h
   src/Keys.cpp
   src/Keys.h
   src/PreferencesDialog.cpp
@@ -19,6 +18,13 @@ add_executable(Clevy WIN32
   src/TrayIcon.cpp
   src/TrayIcon.h
 )
+
+# Platform-specifics
+if(WIN32)
+  target_sources(Clevy PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)
+else()
+  message(FATAL_ERROR "Unsupported platform")
+endif()
 
 # Warnings
 if(MSVC)

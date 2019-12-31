@@ -78,9 +78,7 @@
         <ILINK_TranslatedLibraryPath>$(BDSLIB)\$(PLATFORM)\release\$(LANGDIR);$(ILINK_TranslatedLibraryPath)</ILINK_TranslatedLibraryPath>
         <VerInfo_Locale>1043</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
-        <PostBuildEvent><![CDATA[copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)
-xcopy $(PROJECTDIR)\res\language\*.lang.json $(OUTPUTDIR)\language\ /y /i
-xcopy $(PROJECTDIR)\res\data\*.* $(OUTPUTDIR)\data\ /s /y /i
+        <PostBuildEvent><![CDATA[ClevycbprojPostBuild.bat $(Platform) $(PROJECTDIR) $(OUTPUTDIR)
 $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -973,7 +971,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\res\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\res\data\*.* $(OUTPUTDIR)\data\ /s /y /i</PostBuildEvent>
+        <PostBuildEvent>ClevycbprojPostBuild.bat $(Platform) $(PROJECTDIR) $(OUTPUTDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -981,7 +979,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\res\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\res\data\*.* $(OUTPUTDIR)\data\ /s /y /i</PostBuildEvent>
+        <PostBuildEvent>ClevycbprojPostBuild.bat $(Platform) $(PROJECTDIR) $(OUTPUTDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -989,7 +987,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\res\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\res\data\*.* $(OUTPUTDIR)\data\ /s /y /i</PostBuildEvent>
+        <PostBuildEvent>ClevycbprojPostBuild.bat $(Platform) $(PROJECTDIR) $(OUTPUTDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -997,7 +995,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>copy $(PROJECTDIR)\lib\readSpeak\$(Platform)\librstts-2.dll $(OUTPUTDIR)&amp;&amp;xcopy $(PROJECTDIR)\res\language\*.lang.json $(OUTPUTDIR)\language\ /y /i&amp;&amp;xcopy $(PROJECTDIR)\res\data\*.* $(OUTPUTDIR)\data\ /s /y /i</PostBuildEvent>
+        <PostBuildEvent>ClevycbprojPostBuild.bat $(Platform) $(PROJECTDIR) $(OUTPUTDIR)</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

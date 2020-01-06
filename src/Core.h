@@ -10,7 +10,7 @@ class Core : public IKeyEventListener
 {
 public:
     Core();
-    ~Core();
+    virtual ~Core();
 
     virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) override;
 

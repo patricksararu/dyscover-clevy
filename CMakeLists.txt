@@ -22,6 +22,8 @@ add_executable(Clevy WIN32
 # Platform-specifics
 if(WIN32)
   target_sources(Clevy PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)
+elseif(UNIX)
+  target_sources(Clevy PRIVATE src/KeyboardLinux.cpp src/KeyboardLinux.h)
 else()
   message(FATAL_ERROR "Unsupported platform")
 endif()
@@ -30,7 +32,7 @@ endif()
 if(MSVC)
   target_compile_options(Clevy PRIVATE /W4 /WX)
 else()
-  target_compile_options(Clevy PRIVATE -Wall -Wextra -Werror -pedantic)
+  target_compile_options(Clevy PRIVATE -Wall -Wextra -Werror -pedantic -Wno-error=missing-field-initializers)
 endif()
 
 # Use wxWidgets

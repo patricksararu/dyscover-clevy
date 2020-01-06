@@ -7,7 +7,7 @@
 #ifdef WIN32
 #include "KeyboardWindows.h"
 #else
-#error Unsupported platform
+#include "KeyboardLinux.h"
 #endif
 
 Keyboard* Keyboard::Create(IKeyEventListener* pListener)
@@ -15,7 +15,7 @@ Keyboard* Keyboard::Create(IKeyEventListener* pListener)
 #ifdef WIN32
     return new KeyboardWindows(pListener);
 #else
-    return nullptr;
+    return new KeyboardLinux(pListener);
 #endif
 }
 

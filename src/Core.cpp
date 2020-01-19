@@ -4,20 +4,24 @@
 
 #include "Core.h"
 #include "Keyboard.h"
+#include "SoundPlayer.h"
 
 Core::Core()
 {
     m_pKeyboard = Keyboard::Create(this);
+    m_pSoundPlayer = new SoundPlayer();
 }
 
 Core::~Core()
 {
+    delete m_pSoundPlayer;
     delete m_pKeyboard;
 }
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
 {
     KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, Layout::DutchClassic);
+    bool bSupressEvent = false;
     if (!translation.keystrokes.empty())
     {
         // Ignore KeyUp events
@@ -30,8 +34,14 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         }
 
         // Supress this event
-        return true;
+        bSupressEvent = true;
     }
 
-    return false;
+    if (eventType == KeyEventType::KeyDown)
+    {
+        m_pSoundPlayer->StopPlaying();
+        m_pSoundPlayer->PlaySoundFile(translation.sound);
+    }
+
+    return bSupressEvent;
 }

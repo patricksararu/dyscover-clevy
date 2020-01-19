@@ -6,6 +6,8 @@
 
 #include "Keyboard.h"
 
+class SoundPlayer;
+
 class Core : public IKeyEventListener
 {
 public:
@@ -16,4 +18,5 @@ public:
 
 private:
     Keyboard* m_pKeyboard;
+    SoundPlayer* m_pSoundPlayer;
 };

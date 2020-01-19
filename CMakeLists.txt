@@ -18,6 +18,8 @@ add_executable(Clevy WIN32
   src/PreferencesDialog.cpp
   src/PreferencesDialog.h
   src/Queue.h
+  src/SoundPlayer.cpp
+  src/SoundPlayer.h
   src/Speech.cpp
   src/Speech.h
   src/TrayIcon.cpp
@@ -86,3 +88,14 @@ if (APPLE)
 else()
   file(COPY res/ClevyIcon.ico DESTINATION ${CMAKE_BINARY_DIR})
 endif()
+
+# Sounds
+file(GLOB SOUND_FILES "res/data/*.wav")
+add_custom_command(
+    TARGET Clevy POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/data
+)
+add_custom_command(
+    TARGET Clevy POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Clevy>/data
+)

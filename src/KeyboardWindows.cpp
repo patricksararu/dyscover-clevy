@@ -62,6 +62,24 @@ LRESULT CALLBACK KeyboardWindows::LowLevelKeyboardProc(int nCode, WPARAM wParam,
     return CallNextHookEx(pThis->m_hKeyboardHook, nCode, wParam, lParam);
 }
 
+std::string KeyboardWindows::TranslateKeyStroke(Key key, bool shift, bool ctrl)
+{
+    int vkCode = KeyCodeFromKey(key);
+
+    BYTE keyboardState[256];
+    ZeroMemory(keyboardState, sizeof(keyboardState));
+    keyboardState[VK_SHIFT] = shift ? 0xFF : 0x00;
+    keyboardState[VK_CONTROL] = ctrl ? 0xFF : 0x00;
+
+    WORD charBuffer[10];
+    ZeroMemory(charBuffer, sizeof(charBuffer));
+
+    int result = ToAscii(vkCode, 0, keyboardState, charBuffer, 0);
+    if (result < 0)  return std::string();
+
+    return std::string(reinterpret_cast<char*>(&charBuffer[0]));
+}
+
 struct KeyMapping
 {
     Key key;

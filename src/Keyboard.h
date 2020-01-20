@@ -24,6 +24,8 @@ public:
 
     void SendKeyStroke(Key key, bool shift, bool ctrl);
 
+    virtual std::string TranslateKeyStroke(Key key, bool shift, bool ctrl) = 0;
+
 protected:
     bool ProcessKeyEvent(KeyEventType eventType, Key key);
 

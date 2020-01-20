@@ -80,6 +80,12 @@ if(WIN32)
         TARGET Clevy POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy ${LIBRSTTS_DLL_FILE} $<TARGET_FILE_DIR:Clevy>
     )
+
+    # Copy data files
+    add_custom_command(
+        TARGET Clevy POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/res/data/tts/" $<TARGET_FILE_DIR:Clevy>/tts
+    )
 endif()
 
 # Resources

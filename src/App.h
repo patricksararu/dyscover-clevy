@@ -6,6 +6,7 @@
 
 #include <wx/wx.h>
 
+class Config;
 class Core;
 class PreferencesDialog;
 class TrayIcon;
@@ -20,6 +21,7 @@ public:
     void ShowPreferencesDialog();
 
 private:
+    Config* m_pConfig;
     Core* m_pCore;
     PreferencesDialog* m_pPreferencesDialog;
     TrayIcon* m_pTrayIcon;

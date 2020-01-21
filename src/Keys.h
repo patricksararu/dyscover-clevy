@@ -7,6 +7,8 @@
 #include <string>
 #include <vector>
 
+#include "Config.h"
+
 enum class KeyEventType
 {
     Unknown,
@@ -84,12 +86,6 @@ enum class Key
     Down,
     Left,
     Right,
-};
-
-enum class Layout
-{
-    DutchClassic,
-    DutchKWeC,
 };
 
 struct KeyStroke

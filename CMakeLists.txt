@@ -84,7 +84,8 @@ if(WIN32)
     # Copy data files
     add_custom_command(
         TARGET Clevy POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different "${CMAKE_SOURCE_DIR}/res/data/tts/" $<TARGET_FILE_DIR:Clevy>/tts
+        COMMAND xcopy \"${CMAKE_SOURCE_DIR}/res/data/tts\" \"$<TARGET_FILE_DIR:Clevy>/tts\" /s /y /i /d
+        COMMENT "Updating TTS data files ..."
     )
 endif()
 

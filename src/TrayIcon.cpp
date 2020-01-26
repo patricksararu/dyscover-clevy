@@ -46,31 +46,31 @@ wxMenu* TrayIcon::CreatePopupMenu()
     pMenu->Append(wxID_PREFERENCES);
     pMenu->Append(wxID_HELP);
     pMenu->Append(wxID_EXIT);
-    pMenu->Check(ID_SOUND, m_pConfig->sound);
-    pMenu->Check(ID_SOUNDS, m_pConfig->sounds);
-    pMenu->Check(ID_TTS, m_pConfig->tts);
-    pMenu->Check(ID_PAUSED, m_pConfig->paused);
+    pMenu->Check(ID_SOUND, m_pConfig->GetSound());
+    pMenu->Check(ID_SOUNDS, m_pConfig->GetSounds());
+    pMenu->Check(ID_TTS, m_pConfig->GetTTS());
+    pMenu->Check(ID_PAUSED, m_pConfig->GetPaused());
     return pMenu;
 }
 
 void TrayIcon::OnMenuSound(wxCommandEvent&)
 {
-    m_pConfig->sound = !m_pConfig->sound;
+    m_pConfig->SetSound(!m_pConfig->GetSound());
 }
 
 void TrayIcon::OnMenuSounds(wxCommandEvent&)
 {
-    m_pConfig->sounds = !m_pConfig->sounds;
+    m_pConfig->SetSounds(!m_pConfig->GetSounds());
 }
 
 void TrayIcon::OnMenuTTS(wxCommandEvent&)
 {
-    m_pConfig->tts = !m_pConfig->tts;
+    m_pConfig->SetTTS(!m_pConfig->GetTTS());
 }
 
 void TrayIcon::OnMenuPaused(wxCommandEvent&)
 {
-    m_pConfig->paused = !m_pConfig->paused;
+    m_pConfig->SetPaused(!m_pConfig->GetPaused());
 }
 
 void TrayIcon::OnMenuPreferences(wxCommandEvent&)

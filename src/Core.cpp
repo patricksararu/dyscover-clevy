@@ -27,7 +27,7 @@ Core::~Core()
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
 {
-    if (m_pConfig->paused)  return false;
+    if (m_pConfig->GetPaused())  return false;
 
     KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, Layout::DutchClassic);
     bool bSupressEvent = false;
@@ -46,7 +46,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         bSupressEvent = true;
     }
 
-    if (eventType == KeyEventType::KeyDown && m_pConfig->sound && m_pConfig->sounds)
+    if (eventType == KeyEventType::KeyDown && m_pConfig->GetSound() && m_pConfig->GetSounds())
     {
         m_pSoundPlayer->StopPlaying();
         m_pSoundPlayer->PlaySoundFile(translation.sound);
@@ -57,10 +57,10 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     {
         if (key == Key::Tab || key == Key::Space || key == Key::Enter)
         {
-            if (!m_speechBuffer.empty() && m_pConfig->sound && m_pConfig->tts && m_pConfig->word)
+            if (!m_speechBuffer.empty() && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetWord())
             {
-                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->volume));
-                m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->speed));
+                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
+                m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
                 m_pSpeech->Speak(m_speechBuffer);
             }
 

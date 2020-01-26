@@ -74,39 +74,39 @@ PreferencesDialog::PreferencesDialog(Config* pConfig)
 
 bool PreferencesDialog::TransferDataToWindow()
 {
-    m_pSoundCheckBox->SetValue(m_pConfig->sound);
-    m_pSoundsCheckBox->SetValue(m_pConfig->sounds);
-    m_pTTSCheckBox->SetValue(m_pConfig->tts);
-    m_pVolumeSlider->SetValue(m_pConfig->volume);
+    m_pSoundCheckBox->SetValue(m_pConfig->GetSound());
+    m_pSoundsCheckBox->SetValue(m_pConfig->GetSounds());
+    m_pTTSCheckBox->SetValue(m_pConfig->GetTTS());
+    m_pVolumeSlider->SetValue(m_pConfig->GetVolume());
 
-    m_pWordCheckBox->SetValue(m_pConfig->word);
-    m_pSelectionSpeakerKeyCheckBox->SetValue(m_pConfig->selection);
-    m_pReadAlongCheckBox->SetValue(m_pConfig->readalong);
-    m_pSpeedSlider->SetValue(m_pConfig->speed);
+    m_pWordCheckBox->SetValue(m_pConfig->GetWord());
+    m_pSelectionSpeakerKeyCheckBox->SetValue(m_pConfig->GetSelection());
+    m_pReadAlongCheckBox->SetValue(m_pConfig->GetReadAlong());
+    m_pSpeedSlider->SetValue(m_pConfig->GetSpeed());
 
-    m_pStartWithSystemCheckBox->SetValue(m_pConfig->startwithsystem);
-    m_pPausedCheckBox->SetValue(m_pConfig->paused);
-    m_pClassicRadioButton->SetValue(m_pConfig->layout == Layout::DutchClassic);
-    m_pCoverRadioButton->SetValue(m_pConfig->layout == Layout::DutchKWeC);
+    m_pStartWithSystemCheckBox->SetValue(m_pConfig->GetStartWithSystem());
+    m_pPausedCheckBox->SetValue(m_pConfig->GetPaused());
+    m_pClassicRadioButton->SetValue(m_pConfig->GetLayout() == Layout::DutchClassic);
+    m_pCoverRadioButton->SetValue(m_pConfig->GetLayout() == Layout::DutchKWeC);
 
     return true;
 }
 
 bool PreferencesDialog::TransferDataFromWindow()
 {
-    m_pConfig->sound = m_pSoundCheckBox->GetValue();
-    m_pConfig->sounds = m_pSoundsCheckBox->GetValue();
-    m_pConfig->tts = m_pTTSCheckBox->GetValue();
-    m_pConfig->volume = m_pVolumeSlider->GetValue();
+    m_pConfig->SetSound(m_pSoundCheckBox->GetValue());
+    m_pConfig->SetSounds(m_pSoundsCheckBox->GetValue());
+    m_pConfig->SetTTS(m_pTTSCheckBox->GetValue());
+    m_pConfig->SetVolume(m_pVolumeSlider->GetValue());
 
-    m_pConfig->word = m_pWordCheckBox->GetValue();
-    m_pConfig->selection = m_pSelectionSpeakerKeyCheckBox->GetValue();
-    m_pConfig->readalong = m_pReadAlongCheckBox->GetValue();
-    m_pConfig->speed = m_pSpeedSlider->GetValue();
+    m_pConfig->SetWord(m_pWordCheckBox->GetValue());
+    m_pConfig->SetSelection(m_pSelectionSpeakerKeyCheckBox->GetValue());
+    m_pConfig->SetReadAlong(m_pReadAlongCheckBox->GetValue());
+    m_pConfig->SetSpeed(m_pSpeedSlider->GetValue());
 
-    m_pConfig->startwithsystem = m_pStartWithSystemCheckBox->GetValue();
-    m_pConfig->paused = m_pPausedCheckBox->GetValue();
-    m_pConfig->layout = m_pClassicRadioButton->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC;
+    m_pConfig->SetStartWithSystem(m_pStartWithSystemCheckBox->GetValue());
+    m_pConfig->SetPaused(m_pPausedCheckBox->GetValue());
+    m_pConfig->SetLayout(m_pClassicRadioButton->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
 
     return true;
 }

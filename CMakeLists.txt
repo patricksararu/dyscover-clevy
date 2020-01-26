@@ -9,6 +9,8 @@ add_executable(Clevy WIN32
   src/App.h
   src/Audio.cpp
   src/Audio.h
+  src/Config.cpp
+  src/Config.h
   src/Core.cpp
   src/Core.h
   src/Keyboard.cpp

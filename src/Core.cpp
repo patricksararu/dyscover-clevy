@@ -29,7 +29,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
 {
     if (m_pConfig->GetPaused())  return false;
 
-    KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, Layout::DutchClassic);
+    KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, m_pConfig->GetLayout());
     bool bSupressEvent = false;
     if (!translation.keystrokes.empty())
     {

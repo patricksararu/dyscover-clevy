@@ -19,6 +19,7 @@ private:
 
 public:
     void ShowPreferencesDialog();
+    void UpdateTrayIcon();
 
 private:
     Config* m_pConfig;

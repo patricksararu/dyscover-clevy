@@ -18,20 +18,52 @@ enum
 
 TrayIcon::TrayIcon(App* pApp, Config* pConfig)
 {
-#ifdef __APPLE__
-    wxIcon icon("ClevyIcon.icns", wxBITMAP_TYPE_ICON);
-#else
-    wxIcon icon("ClevyIcon.ico", wxBITMAP_TYPE_ICO);
-#endif
-    SetIcon(icon, "Clevy");
-
     m_pApp = pApp;
     m_pConfig = pConfig;
+
+    m_pIcons = new wxIconArray();
+
+    for (int i = 0; i <= 6; i++)
+    {
+        const wxString& iconname = wxString::Format("%d.bmp", i);
+        m_pIcons->Add(wxIcon(iconname, wxBITMAP_TYPE_ANY));
+    }
+
+    UpdateIcon();
 }
 
 TrayIcon::~TrayIcon()
 {
     RemoveIcon();
+
+    delete m_pIcons;
+}
+
+void TrayIcon::UpdateIcon()
+{
+    int iconIndex;
+
+    if (m_pConfig->GetPaused())
+    {
+        iconIndex = 6;
+    }
+    else if (m_pConfig->GetSound())
+    {
+        if (m_pConfig->GetSounds())
+        {
+            iconIndex = m_pConfig->GetTTS() ? 0 : 1;
+        }
+        else
+        {
+            iconIndex = m_pConfig->GetTTS() ? 2 : 3;
+        }
+    }
+    else
+    {
+        iconIndex = m_pConfig->GetSounds() && !m_pConfig->GetTTS() ? 4 : 5;
+    }
+
+    SetIcon(m_pIcons->Item(iconIndex), "Clevy");
 }
 
 wxMenu* TrayIcon::CreatePopupMenu()
@@ -56,21 +88,29 @@ wxMenu* TrayIcon::CreatePopupMenu()
 void TrayIcon::OnMenuSound(wxCommandEvent&)
 {
     m_pConfig->SetSound(!m_pConfig->GetSound());
+
+    UpdateIcon();
 }
 
 void TrayIcon::OnMenuSounds(wxCommandEvent&)
 {
     m_pConfig->SetSounds(!m_pConfig->GetSounds());
+
+    UpdateIcon();
 }
 
 void TrayIcon::OnMenuTTS(wxCommandEvent&)
 {
     m_pConfig->SetTTS(!m_pConfig->GetTTS());
+
+    UpdateIcon();
 }
 
 void TrayIcon::OnMenuPaused(wxCommandEvent&)
 {
     m_pConfig->SetPaused(!m_pConfig->GetPaused());
+
+    UpdateIcon();
 }
 
 void TrayIcon::OnMenuPreferences(wxCommandEvent&)

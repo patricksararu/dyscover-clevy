@@ -15,6 +15,8 @@ public:
     TrayIcon(App*, Config*);
     ~TrayIcon();
 
+    void UpdateIcon();
+
 private:
     wxDECLARE_EVENT_TABLE();
 
@@ -29,4 +31,6 @@ private:
 
     App* m_pApp;
     Config* m_pConfig;
+
+    wxIconArray* m_pIcons;
 };

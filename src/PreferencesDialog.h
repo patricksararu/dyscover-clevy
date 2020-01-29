@@ -6,14 +6,16 @@
 
 #include <wx/wx.h>
 
+class App;
 class Config;
 
 class PreferencesDialog : public wxDialog
 {
 public:
-    PreferencesDialog(Config*);
+    PreferencesDialog(App*, Config*);
 
 private:
+    App* m_pApp;
     Config* m_pConfig;
 
     wxCheckBox* m_pSoundCheckBox;

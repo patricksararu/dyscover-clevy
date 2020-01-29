@@ -2,12 +2,14 @@
 // PreferencesDialog.cpp
 //
 
+#include "App.h"
 #include "Config.h"
 #include "PreferencesDialog.h"
 
-PreferencesDialog::PreferencesDialog(Config* pConfig)
+PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     : wxDialog(nullptr, wxID_ANY, "Preferences")
 {
+    m_pApp = pApp;
     m_pConfig = pConfig;
 
     m_pSoundCheckBox = new wxCheckBox(this, wxID_ANY, "Sound");
@@ -107,6 +109,8 @@ bool PreferencesDialog::TransferDataFromWindow()
     m_pConfig->SetStartWithSystem(m_pStartWithSystemCheckBox->GetValue());
     m_pConfig->SetPaused(m_pPausedCheckBox->GetValue());
     m_pConfig->SetLayout(m_pClassicRadioButton->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
+
+    m_pApp->UpdateTrayIcon();
 
     return true;
 }

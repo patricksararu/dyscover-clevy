@@ -12,7 +12,7 @@ bool App::OnInit()
 {
     m_pConfig = new Config();
     m_pCore = new Core(m_pConfig);
-    m_pPreferencesDialog = new PreferencesDialog(m_pConfig);
+    m_pPreferencesDialog = new PreferencesDialog(this, m_pConfig);
     m_pTrayIcon = new TrayIcon(this, m_pConfig);
 
     return true;
@@ -31,6 +31,11 @@ int App::OnExit()
 void App::ShowPreferencesDialog()
 {
     m_pPreferencesDialog->Show();
+}
+
+void App::UpdateTrayIcon()
+{
+    m_pTrayIcon->UpdateIcon();
 }
 
 wxIMPLEMENT_APP(App);

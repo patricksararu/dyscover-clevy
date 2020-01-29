@@ -91,12 +91,14 @@ if(WIN32)
     )
 endif()
 
-# Resources
-if (APPLE)
-  file(COPY res/ClevyIcon.icns DESTINATION ${CMAKE_BINARY_DIR})
-else()
-  file(COPY res/ClevyIcon.ico DESTINATION ${CMAKE_BINARY_DIR})
-endif()
+# Icons
+file(COPY res/0.bmp DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/1.bmp DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/2.bmp DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/3.bmp DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/4.bmp DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/5.bmp DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res/6.bmp DESTINATION ${CMAKE_BINARY_DIR})
 
 # Sounds
 file(GLOB SOUND_FILES "res/data/*.wav")

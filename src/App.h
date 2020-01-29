@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include <wx/wx.h>
+#include <wx/app.h>
 
 class Config;
 class Core;

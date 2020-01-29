@@ -2,6 +2,8 @@
 // TrayIcon.cpp
 //
 
+#include <wx/iconbndl.h>
+#include <wx/menu.h>
 #include <wx/utils.h>
 
 #include "App.h"

@@ -6,6 +6,8 @@
 
 #include <wx/string.h>
 
+class wxFileConfig;  // TODO: Replace with #include <wx/fileconf.h>
+
 enum class Layout
 {
     DutchClassic,
@@ -14,8 +16,6 @@ enum class Layout
 
 bool wxFromString(const wxString& string, Layout* pLayout);
 wxString wxToString(const Layout& layout);
-
-class wxFileConfig;
 
 class Config
 {

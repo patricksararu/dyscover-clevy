@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <wx/icon.h>
 #include <wx/taskbar.h>
 
 class App;

@@ -2,6 +2,8 @@
 // PreferencesDialog.cpp
 //
 
+#include <wx/sizer.h>
+
 #include "App.h"
 #include "Config.h"
 #include "PreferencesDialog.h"

@@ -4,7 +4,11 @@
 
 #pragma once
 
-#include <wx/wx.h>
+#include <wx/checkbox.h>
+#include <wx/dialog.h>
+#include <wx/radiobut.h>
+#include <wx/slider.h>
+#include <wx/stattext.h>
 
 class App;
 class Config;

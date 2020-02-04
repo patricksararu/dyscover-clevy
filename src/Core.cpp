@@ -4,6 +4,7 @@
 
 #include "Config.h"
 #include "Core.h"
+#include "Device.h"
 #include "Keyboard.h"
 #include "SoundPlayer.h"
 #include "Speech.h"
@@ -11,6 +12,7 @@
 Core::Core(Config* pConfig)
 {
     m_pConfig = pConfig;
+    m_pDevice = Device::Create(this);
     m_pKeyboard = Keyboard::Create(this);
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
@@ -23,6 +25,17 @@ Core::~Core()
     delete m_pSpeech;
     delete m_pSoundPlayer;
     delete m_pKeyboard;
+    delete m_pDevice;
+}
+
+void Core::OnClevyKeyboardConnected()
+{
+    m_pSoundPlayer->PlaySoundFile("dyscover_connect_positive_with_voice.wav");
+}
+
+void Core::OnClevyKeyboardDisconnected()
+{
+    m_pSoundPlayer->PlaySoundFile("dyscover_connect_negative_with_voice.wav");
 }
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)

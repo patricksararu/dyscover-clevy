@@ -13,6 +13,8 @@ add_executable(Clevy WIN32
   src/Config.h
   src/Core.cpp
   src/Core.h
+  src/Device.cpp
+  src/Device.h
   src/Keyboard.cpp
   src/Keyboard.h
   src/Keys.cpp
@@ -30,6 +32,8 @@ add_executable(Clevy WIN32
 
 # Platform-specifics
 if(WIN32)
+  target_sources(Clevy PRIVATE src/DeviceWindows.cpp src/DeviceWindows.h)
+  target_link_libraries(Clevy cfgmgr32.lib)
   target_sources(Clevy PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)
 elseif(UNIX)
   target_sources(Clevy PRIVATE src/KeyboardLinux.cpp src/KeyboardLinux.h)

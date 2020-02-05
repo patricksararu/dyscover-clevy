@@ -27,6 +27,13 @@ enum
 PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     : wxDialog(nullptr, wxID_ANY, _("Preferences"))
 {
+#ifdef __APPLE__
+    wxIcon icon("ClevyIcon.icns", wxBITMAP_TYPE_ICON);
+#else
+    wxIcon icon("ClevyIcon.ico", wxBITMAP_TYPE_ICO);
+#endif
+    SetIcon(icon);
+
     m_pApp = pApp;
     m_pConfig = pConfig;
 

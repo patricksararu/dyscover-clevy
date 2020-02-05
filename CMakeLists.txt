@@ -95,6 +95,13 @@ if(WIN32)
     )
 endif()
 
+# Main icon
+if(APPLE)
+    file(COPY res/ClevyIcon.icns DESTINATION ${CMAKE_BINARY_DIR})
+else()
+    file(COPY res/ClevyIcon.ico DESTINATION ${CMAKE_BINARY_DIR})
+endif()
+
 # Icons
 file(COPY res/0.bmp DESTINATION ${CMAKE_BINARY_DIR})
 file(COPY res/1.bmp DESTINATION ${CMAKE_BINARY_DIR})

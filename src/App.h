@@ -19,6 +19,7 @@ private:
 
 public:
     void ShowPreferencesDialog();
+    void UpdatePreferencesDialog();
     void UpdateTrayIcon();
 
 private:

@@ -18,7 +18,11 @@ class PreferencesDialog : public wxDialog
 public:
     PreferencesDialog(App*, Config*);
 
+    virtual bool TransferDataToWindow() override;
+
 private:
+    wxDECLARE_EVENT_TABLE();
+
     App* m_pApp;
     Config* m_pConfig;
 
@@ -40,6 +44,17 @@ private:
     wxRadioButton* m_pClassicRadioButton;
     wxRadioButton* m_pCoverRadioButton;
 
-    virtual bool TransferDataToWindow() override;
-    virtual bool TransferDataFromWindow() override;
+    void OnSoundChanged(wxCommandEvent&);
+    void OnSoundsChanged(wxCommandEvent&);
+    void OnTTSChanged(wxCommandEvent&);
+    void OnVolumeChanged(wxCommandEvent&);
+
+    void OnWordChanged(wxCommandEvent&);
+    void OnSelectionSpeakerKeyChanged(wxCommandEvent&);
+    void OnReadAlongChanged(wxCommandEvent&);
+    void OnSpeedChanged(wxCommandEvent&);
+
+    void OnStartWithSystemChanged(wxCommandEvent&);
+    void OnPausedChanged(wxCommandEvent&);
+    void OnLayoutChanged(wxCommandEvent&);
 };

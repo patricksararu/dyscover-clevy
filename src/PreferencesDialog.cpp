@@ -8,29 +8,45 @@
 #include "Config.h"
 #include "PreferencesDialog.h"
 
+enum
+{
+    ID_SOUND = wxID_HIGHEST + 1,
+    ID_SOUNDS,
+    ID_TTS,
+    ID_VOLUME,
+    ID_WORD,
+    ID_SELECTIONSPEAKERKEY,
+    ID_READALONG,
+    ID_SPEED,
+    ID_STARTWITHSYSTEM,
+    ID_PAUSED,
+    ID_CLASSIC,
+    ID_COVER,
+};
+
 PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     : wxDialog(nullptr, wxID_ANY, "Preferences")
 {
     m_pApp = pApp;
     m_pConfig = pConfig;
 
-    m_pSoundCheckBox = new wxCheckBox(this, wxID_ANY, "Sound");
-    m_pSoundsCheckBox = new wxCheckBox(this, wxID_ANY, "Sounds");
-    m_pTTSCheckBox = new wxCheckBox(this, wxID_ANY, "TTS (Text to Speech)");
+    m_pSoundCheckBox = new wxCheckBox(this, ID_SOUND, "Sound");
+    m_pSoundsCheckBox = new wxCheckBox(this, ID_SOUNDS, "Sounds");
+    m_pTTSCheckBox = new wxCheckBox(this, ID_TTS, "TTS (Text to Speech)");
     m_pVolumeStaticText = new wxStaticText(this, wxID_ANY, "Volume");
-    m_pVolumeSlider = new wxSlider(this, wxID_ANY, 100, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
+    m_pVolumeSlider = new wxSlider(this, ID_VOLUME, 100, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
 
     m_pActivateAfterStaticText = new wxStaticText(this, wxID_ANY, "Activate After");
-    m_pWordCheckBox = new wxCheckBox(this, wxID_ANY, "Word");
-    m_pSelectionSpeakerKeyCheckBox = new wxCheckBox(this, wxID_ANY, "Selection and Speaker key");
-    m_pReadAlongCheckBox = new wxCheckBox(this, wxID_ANY, "Read Along");
+    m_pWordCheckBox = new wxCheckBox(this, ID_WORD, "Word");
+    m_pSelectionSpeakerKeyCheckBox = new wxCheckBox(this, ID_SELECTIONSPEAKERKEY, "Selection and Speaker key");
+    m_pReadAlongCheckBox = new wxCheckBox(this, ID_READALONG, "Read Along");
     m_pSpeedStaticText = new wxStaticText(this, wxID_ANY, "Speed");
-    m_pSpeedSlider = new wxSlider(this, wxID_ANY, 0, -75, 75, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
+    m_pSpeedSlider = new wxSlider(this, ID_SPEED, 0, -75, 75, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
 
-    m_pStartWithSystemCheckBox = new wxCheckBox(this, wxID_ANY, "Start with system");
-    m_pPausedCheckBox = new wxCheckBox(this, wxID_ANY, "Paused");
-    m_pClassicRadioButton = new wxRadioButton(this, wxID_ANY, "Classic");
-    m_pCoverRadioButton = new wxRadioButton(this, wxID_ANY, "Cover");
+    m_pStartWithSystemCheckBox = new wxCheckBox(this, ID_STARTWITHSYSTEM, "Start with system");
+    m_pPausedCheckBox = new wxCheckBox(this, ID_PAUSED, "Paused");
+    m_pClassicRadioButton = new wxRadioButton(this, ID_CLASSIC, "Classic");
+    m_pCoverRadioButton = new wxRadioButton(this, ID_COVER, "Cover");
 
     wxBoxSizer* pSoundSettingsInnerSizer = new wxBoxSizer(wxVERTICAL);
     pSoundSettingsInnerSizer->Add(m_pSoundCheckBox, wxSizerFlags().Border().Expand());
@@ -65,7 +81,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pOtherSettingsSizer->Add(pOtherSettingsFirstInnerSizer, wxSizerFlags().Expand());
     pOtherSettingsSizer->Add(pOtherSettingsSecondInnerSizer, wxSizerFlags().Expand());
 
-    wxSizer* pButtonSizer = CreateButtonSizer(wxOK | wxCANCEL | wxAPPLY);
+    wxSizer* pButtonSizer = CreateButtonSizer(wxCLOSE);
 
     wxBoxSizer* pRootSizer = new wxBoxSizer(wxVERTICAL);
     pRootSizer->Add(pSoundSettingsSizer, wxSizerFlags().DoubleBorder().Expand());
@@ -96,23 +112,82 @@ bool PreferencesDialog::TransferDataToWindow()
     return true;
 }
 
-bool PreferencesDialog::TransferDataFromWindow()
+void PreferencesDialog::OnSoundChanged(wxCommandEvent&)
 {
     m_pConfig->SetSound(m_pSoundCheckBox->GetValue());
-    m_pConfig->SetSounds(m_pSoundsCheckBox->GetValue());
-    m_pConfig->SetTTS(m_pTTSCheckBox->GetValue());
-    m_pConfig->SetVolume(m_pVolumeSlider->GetValue());
-
-    m_pConfig->SetWord(m_pWordCheckBox->GetValue());
-    m_pConfig->SetSelection(m_pSelectionSpeakerKeyCheckBox->GetValue());
-    m_pConfig->SetReadAlong(m_pReadAlongCheckBox->GetValue());
-    m_pConfig->SetSpeed(m_pSpeedSlider->GetValue());
-
-    m_pConfig->SetStartWithSystem(m_pStartWithSystemCheckBox->GetValue());
-    m_pConfig->SetPaused(m_pPausedCheckBox->GetValue());
-    m_pConfig->SetLayout(m_pClassicRadioButton->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
 
     m_pApp->UpdateTrayIcon();
-
-    return true;
 }
+
+void PreferencesDialog::OnSoundsChanged(wxCommandEvent&)
+{
+    m_pConfig->SetSounds(m_pSoundsCheckBox->GetValue());
+
+    m_pApp->UpdateTrayIcon();
+}
+
+void PreferencesDialog::OnTTSChanged(wxCommandEvent&)
+{
+    m_pConfig->SetTTS(m_pTTSCheckBox->GetValue());
+
+    m_pApp->UpdateTrayIcon();
+}
+
+void PreferencesDialog::OnVolumeChanged(wxCommandEvent&)
+{
+    m_pConfig->SetVolume(m_pVolumeSlider->GetValue());
+}
+
+void PreferencesDialog::OnWordChanged(wxCommandEvent&)
+{
+    m_pConfig->SetWord(m_pWordCheckBox->GetValue());
+}
+
+void PreferencesDialog::OnSelectionSpeakerKeyChanged(wxCommandEvent&)
+{
+    m_pConfig->SetSelection(m_pSelectionSpeakerKeyCheckBox->GetValue());
+}
+
+void PreferencesDialog::OnReadAlongChanged(wxCommandEvent&)
+{
+    m_pConfig->SetReadAlong(m_pReadAlongCheckBox->GetValue());
+}
+
+void PreferencesDialog::OnSpeedChanged(wxCommandEvent&)
+{
+    m_pConfig->SetSpeed(m_pSpeedSlider->GetValue());
+}
+
+void PreferencesDialog::OnStartWithSystemChanged(wxCommandEvent&)
+{
+    m_pConfig->SetStartWithSystem(m_pStartWithSystemCheckBox->GetValue());
+}
+
+void PreferencesDialog::OnPausedChanged(wxCommandEvent&)
+{
+    m_pConfig->SetPaused(m_pPausedCheckBox->GetValue());
+
+    m_pApp->UpdateTrayIcon();
+}
+
+void PreferencesDialog::OnLayoutChanged(wxCommandEvent&)
+{
+    m_pConfig->SetLayout(m_pClassicRadioButton->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
+}
+
+wxBEGIN_EVENT_TABLE(PreferencesDialog, wxDialog)
+    EVT_CHECKBOX(ID_SOUND, PreferencesDialog::OnSoundChanged)
+    EVT_CHECKBOX(ID_SOUNDS, PreferencesDialog::OnSoundsChanged)
+    EVT_CHECKBOX(ID_TTS, PreferencesDialog::OnTTSChanged)
+    EVT_SLIDER(ID_VOLUME, PreferencesDialog::OnVolumeChanged)
+
+    EVT_CHECKBOX(ID_WORD, PreferencesDialog::OnWordChanged)
+    EVT_CHECKBOX(ID_SELECTIONSPEAKERKEY, PreferencesDialog::OnSelectionSpeakerKeyChanged)
+    EVT_CHECKBOX(ID_READALONG, PreferencesDialog::OnReadAlongChanged)
+    EVT_SLIDER(ID_SPEED, PreferencesDialog::OnSpeedChanged)
+
+    EVT_CHECKBOX(ID_STARTWITHSYSTEM, PreferencesDialog::OnStartWithSystemChanged)
+    EVT_CHECKBOX(ID_PAUSED, PreferencesDialog::OnPausedChanged)
+    EVT_RADIOBUTTON(ID_CLASSIC, PreferencesDialog::OnLayoutChanged)
+    EVT_RADIOBUTTON(ID_COVER, PreferencesDialog::OnLayoutChanged)
+wxEND_EVENT_TABLE()

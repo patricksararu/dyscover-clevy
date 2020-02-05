@@ -33,6 +33,11 @@ void App::ShowPreferencesDialog()
     m_pPreferencesDialog->Show();
 }
 
+void App::UpdatePreferencesDialog()
+{
+    m_pPreferencesDialog->TransferDataToWindow();
+}
+
 void App::UpdateTrayIcon()
 {
     m_pTrayIcon->UpdateIcon();

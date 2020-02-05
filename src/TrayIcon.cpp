@@ -91,12 +91,16 @@ void TrayIcon::OnMenuSound(wxCommandEvent&)
 {
     m_pConfig->SetSound(!m_pConfig->GetSound());
 
+    m_pApp->UpdatePreferencesDialog();
+
     UpdateIcon();
 }
 
 void TrayIcon::OnMenuSounds(wxCommandEvent&)
 {
     m_pConfig->SetSounds(!m_pConfig->GetSounds());
+
+    m_pApp->UpdatePreferencesDialog();
 
     UpdateIcon();
 }
@@ -105,12 +109,16 @@ void TrayIcon::OnMenuTTS(wxCommandEvent&)
 {
     m_pConfig->SetTTS(!m_pConfig->GetTTS());
 
+    m_pApp->UpdatePreferencesDialog();
+
     UpdateIcon();
 }
 
 void TrayIcon::OnMenuPaused(wxCommandEvent&)
 {
     m_pConfig->SetPaused(!m_pConfig->GetPaused());
+
+    m_pApp->UpdatePreferencesDialog();
 
     UpdateIcon();
 }

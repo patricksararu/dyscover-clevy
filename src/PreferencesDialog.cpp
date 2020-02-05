@@ -25,35 +25,35 @@ enum
 };
 
 PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
-    : wxDialog(nullptr, wxID_ANY, "Preferences")
+    : wxDialog(nullptr, wxID_ANY, _("Preferences"))
 {
     m_pApp = pApp;
     m_pConfig = pConfig;
 
-    m_pSoundCheckBox = new wxCheckBox(this, ID_SOUND, "Sound");
-    m_pSoundsCheckBox = new wxCheckBox(this, ID_SOUNDS, "Sounds");
-    m_pTTSCheckBox = new wxCheckBox(this, ID_TTS, "TTS (Text to Speech)");
-    m_pVolumeStaticText = new wxStaticText(this, wxID_ANY, "Volume");
+    m_pSoundCheckBox = new wxCheckBox(this, ID_SOUND, _("Sound"));
+    m_pSoundsCheckBox = new wxCheckBox(this, ID_SOUNDS, _("Sounds"));
+    m_pTTSCheckBox = new wxCheckBox(this, ID_TTS, _("TTS (Text to Speech)"));
+    m_pVolumeStaticText = new wxStaticText(this, wxID_ANY, _("Volume"));
     m_pVolumeSlider = new wxSlider(this, ID_VOLUME, 100, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
 
-    m_pActivateAfterStaticText = new wxStaticText(this, wxID_ANY, "Activate After");
-    m_pWordCheckBox = new wxCheckBox(this, ID_WORD, "Word");
-    m_pSelectionSpeakerKeyCheckBox = new wxCheckBox(this, ID_SELECTIONSPEAKERKEY, "Selection and Speaker key");
-    m_pReadAlongCheckBox = new wxCheckBox(this, ID_READALONG, "Read Along");
-    m_pSpeedStaticText = new wxStaticText(this, wxID_ANY, "Speed");
+    m_pActivateAfterStaticText = new wxStaticText(this, wxID_ANY, _("Activate After"));
+    m_pWordCheckBox = new wxCheckBox(this, ID_WORD, _("Word"));
+    m_pSelectionSpeakerKeyCheckBox = new wxCheckBox(this, ID_SELECTIONSPEAKERKEY, _("Selection and Speaker key"));
+    m_pReadAlongCheckBox = new wxCheckBox(this, ID_READALONG, _("Read Along"));
+    m_pSpeedStaticText = new wxStaticText(this, wxID_ANY, _("Speed"));
     m_pSpeedSlider = new wxSlider(this, ID_SPEED, 0, -75, 75, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
 
-    m_pStartWithSystemCheckBox = new wxCheckBox(this, ID_STARTWITHSYSTEM, "Start with system");
-    m_pPausedCheckBox = new wxCheckBox(this, ID_PAUSED, "Paused");
-    m_pClassicRadioButton = new wxRadioButton(this, ID_CLASSIC, "Classic");
-    m_pCoverRadioButton = new wxRadioButton(this, ID_COVER, "Cover");
+    m_pStartWithSystemCheckBox = new wxCheckBox(this, ID_STARTWITHSYSTEM, _("Start with system"));
+    m_pPausedCheckBox = new wxCheckBox(this, ID_PAUSED, _("Paused"));
+    m_pClassicRadioButton = new wxRadioButton(this, ID_CLASSIC, _("Classic"));
+    m_pCoverRadioButton = new wxRadioButton(this, ID_COVER, _("Cover"));
 
     wxBoxSizer* pSoundSettingsInnerSizer = new wxBoxSizer(wxVERTICAL);
     pSoundSettingsInnerSizer->Add(m_pSoundCheckBox, wxSizerFlags().Border().Expand());
     pSoundSettingsInnerSizer->Add(m_pSoundsCheckBox, wxSizerFlags().Border().Expand());
     pSoundSettingsInnerSizer->Add(m_pTTSCheckBox, wxSizerFlags().Border().Expand());
 
-    wxStaticBoxSizer* pSoundSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, "Sound Settings");
+    wxStaticBoxSizer* pSoundSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Sound Settings"));
     pSoundSettingsSizer->Add(pSoundSettingsInnerSizer, wxSizerFlags().Proportion(1));
     pSoundSettingsSizer->Add(m_pVolumeStaticText, wxSizerFlags().Border().Center());
     pSoundSettingsSizer->Add(m_pVolumeSlider);
@@ -64,7 +64,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pTTSSettingsInnerSizer->Add(m_pSelectionSpeakerKeyCheckBox, wxSizerFlags().Border().Expand());
     pTTSSettingsInnerSizer->Add(m_pReadAlongCheckBox, wxSizerFlags().Border().Expand());
 
-    wxStaticBoxSizer* pTTSSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, "Text To Speech");
+    wxStaticBoxSizer* pTTSSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Text To Speech"));
     pTTSSettingsSizer->Add(pTTSSettingsInnerSizer, wxSizerFlags().Proportion(1));
     pTTSSettingsSizer->Add(m_pSpeedStaticText, wxSizerFlags().Border().Center());
     pTTSSettingsSizer->Add(m_pSpeedSlider);
@@ -77,7 +77,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pOtherSettingsSecondInnerSizer->Add(m_pClassicRadioButton, wxSizerFlags().Border().Expand().Proportion(1));
     pOtherSettingsSecondInnerSizer->Add(m_pCoverRadioButton, wxSizerFlags().Border().Expand().Proportion(1));
 
-    wxStaticBoxSizer* pOtherSettingsSizer = new wxStaticBoxSizer(wxVERTICAL, this, "Other Settings");
+    wxStaticBoxSizer* pOtherSettingsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Other Settings"));
     pOtherSettingsSizer->Add(pOtherSettingsFirstInnerSizer, wxSizerFlags().Expand());
     pOtherSettingsSizer->Add(pOtherSettingsSecondInnerSizer, wxSizerFlags().Expand());
 

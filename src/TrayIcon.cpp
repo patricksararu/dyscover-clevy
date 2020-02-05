@@ -65,17 +65,17 @@ void TrayIcon::UpdateIcon()
         iconIndex = m_pConfig->GetSounds() && !m_pConfig->GetTTS() ? 4 : 5;
     }
 
-    SetIcon(m_pIcons->Item(iconIndex), "Clevy");
+    SetIcon(m_pIcons->Item(iconIndex), _("Clevy"));
 }
 
 wxMenu* TrayIcon::CreatePopupMenu()
 {
     wxMenu* pMenu = new wxMenu();
-    pMenu->AppendCheckItem(ID_SOUND, "Sound");
-    pMenu->AppendCheckItem(ID_SOUNDS, "Sounds");
-    pMenu->AppendCheckItem(ID_TTS, "TTS");
+    pMenu->AppendCheckItem(ID_SOUND, _("Sound"));
+    pMenu->AppendCheckItem(ID_SOUNDS, _("Sounds"));
+    pMenu->AppendCheckItem(ID_TTS, _("TTS"));
     pMenu->AppendSeparator();
-    pMenu->AppendCheckItem(ID_PAUSED, "Paused");
+    pMenu->AppendCheckItem(ID_PAUSED, _("Paused"));
     pMenu->AppendSeparator();
     pMenu->Append(wxID_PREFERENCES);
     pMenu->Append(wxID_HELP);

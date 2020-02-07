@@ -115,9 +115,9 @@ file(COPY res/6.bmp DESTINATION ${CMAKE_BINARY_DIR})
 file(GLOB SOUND_FILES "res/data/*.wav")
 add_custom_command(
     TARGET Clevy POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/data
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/audio
 )
 add_custom_command(
     TARGET Clevy POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Clevy>/data
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Clevy>/audio
 )

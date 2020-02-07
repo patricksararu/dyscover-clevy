@@ -7,7 +7,7 @@
 
 #include "SoundPlayer.h"
 
-static const std::string g_sSoundFilesPath = "data";
+static const std::string g_sSoundFilesPath = "audio";
 
 SoundPlayer::SoundPlayer()
 {

@@ -2,6 +2,8 @@
 // Core.cpp
 //
 
+#include <wx/filename.h>
+
 #include "Config.h"
 #include "Core.h"
 #include "Device.h"
@@ -16,7 +18,7 @@ Core::Core(Config* pConfig)
     m_pKeyboard = Keyboard::Create(this);
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
-    m_pSpeech->Init("tts", "nl", "Ilse");
+    m_pSpeech->Init(wxFileNameFromPath("tts"), "nl", "Ilse");
 }
 
 Core::~Core()

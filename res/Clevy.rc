@@ -1,0 +1,15 @@
+//
+// Clevy.rc
+//
+
+#include <wx/msw/wx.rc>
+
+ClevyIcon ICON ClevyIcon.ico
+
+ClevyIcon0 ICON icons/ClevyIcon0.ico
+ClevyIcon1 ICON icons/ClevyIcon1.ico
+ClevyIcon2 ICON icons/ClevyIcon2.ico
+ClevyIcon3 ICON icons/ClevyIcon3.ico
+ClevyIcon4 ICON icons/ClevyIcon4.ico
+ClevyIcon5 ICON icons/ClevyIcon5.ico
+ClevyIcon6 ICON icons/ClevyIcon6.ico

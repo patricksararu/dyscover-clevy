@@ -2,12 +2,12 @@
 // TrayIcon.cpp
 //
 
-#include <wx/iconbndl.h>
 #include <wx/menu.h>
 #include <wx/utils.h>
 
 #include "App.h"
 #include "Config.h"
+#include "ResourceLoader.h"
 #include "TrayIcon.h"
 
 enum
@@ -23,13 +23,7 @@ TrayIcon::TrayIcon(App* pApp, Config* pConfig)
     m_pApp = pApp;
     m_pConfig = pConfig;
 
-    m_pIcons = new wxIconArray();
-
-    for (int i = 0; i <= 6; i++)
-    {
-        const wxString& iconname = wxString::Format("%d.bmp", i);
-        m_pIcons->Add(wxIcon(iconname, wxBITMAP_TYPE_ANY));
-    }
+    m_icons = LoadClevyIcons();
 
     UpdateIcon();
 }
@@ -37,8 +31,6 @@ TrayIcon::TrayIcon(App* pApp, Config* pConfig)
 TrayIcon::~TrayIcon()
 {
     RemoveIcon();
-
-    delete m_pIcons;
 }
 
 void TrayIcon::UpdateIcon()
@@ -65,7 +57,7 @@ void TrayIcon::UpdateIcon()
         iconIndex = m_pConfig->GetSounds() && !m_pConfig->GetTTS() ? 4 : 5;
     }
 
-    SetIcon(m_pIcons->Item(iconIndex), _("Clevy"));
+    SetIcon(m_icons[iconIndex], _("Clevy"));
 }
 
 wxMenu* TrayIcon::CreatePopupMenu()

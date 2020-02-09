@@ -22,6 +22,8 @@ add_executable(Clevy WIN32
   src/PreferencesDialog.cpp
   src/PreferencesDialog.h
   src/Queue.h
+  src/ResourceLoader.cpp
+  src/ResourceLoader.h
   src/SoundPlayer.cpp
   src/SoundPlayer.h
   src/Speech.cpp
@@ -95,21 +97,28 @@ if(WIN32)
     )
 endif()
 
-# Main icon
-if(APPLE)
+# Resources
+if(WIN32)
+    target_sources(Clevy PRIVATE res/Clevy.rc)
+elseif(APPLE)
     file(COPY res/ClevyIcon.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon0.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon1.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon2.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon3.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon4.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon5.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon6.icns DESTINATION ${CMAKE_BINARY_DIR})
 else()
     file(COPY res/ClevyIcon.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon0.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon1.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon2.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon3.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon4.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon5.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/ClevyIcon6.ico DESTINATION ${CMAKE_BINARY_DIR})
 endif()
-
-# Icons
-file(COPY res/0.bmp DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY res/1.bmp DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY res/2.bmp DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY res/3.bmp DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY res/4.bmp DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY res/5.bmp DESTINATION ${CMAKE_BINARY_DIR})
-file(COPY res/6.bmp DESTINATION ${CMAKE_BINARY_DIR})
 
 # Sounds
 file(GLOB SOUND_FILES "res/data/*.wav")

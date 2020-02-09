@@ -33,5 +33,5 @@ private:
     App* m_pApp;
     Config* m_pConfig;
 
-    wxIconArray* m_pIcons;
+    wxIconArray m_icons;
 };

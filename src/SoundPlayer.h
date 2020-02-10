@@ -14,4 +14,7 @@ public:
 
 	void PlaySoundFile(const std::string& filename);
 	void StopPlaying();
+
+private:
+	std::string m_soundFilesPath;
 };

@@ -2,7 +2,13 @@
 // ResourceLoader.cpp
 //
 
+#include <wx/filename.h>
+#include <wx/stdpaths.h>
+
 #include "ResourceLoader.h"
+
+static const wxString kSoundFilesPath("audio");
+static const wxString kTTSDataPath("tts");
 
 wxIcon LoadIcon(const wxString& name)
 {
@@ -30,4 +36,22 @@ wxIconArray LoadClevyIcons()
     }
 
     return icons;
+}
+
+wxString GetExecutablePath()
+{
+    wxFileName filename(wxStandardPaths::Get().GetExecutablePath());
+    return filename.GetPath();
+}
+
+wxString GetSoundFilesPath()
+{
+    wxFileName filename(GetExecutablePath(), kSoundFilesPath);
+    return filename.GetFullPath();
+}
+
+wxString GetTTSDataPath()
+{
+    wxFileName filename(GetExecutablePath(), kTTSDataPath);
+    return filename.GetFullPath();
 }

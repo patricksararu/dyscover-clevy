@@ -10,3 +10,7 @@
 wxIcon LoadIcon(const wxString&);
 wxIcon LoadClevyIcon();
 wxIconArray LoadClevyIcons();
+
+wxString GetExecutablePath();
+wxString GetSoundFilesPath();
+wxString GetTTSDataPath();

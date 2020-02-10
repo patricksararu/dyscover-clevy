@@ -2,12 +2,11 @@
 // Core.cpp
 //
 
-#include <wx/filename.h>
-
 #include "Config.h"
 #include "Core.h"
 #include "Device.h"
 #include "Keyboard.h"
+#include "ResourceLoader.h"
 #include "SoundPlayer.h"
 #include "Speech.h"
 
@@ -18,7 +17,7 @@ Core::Core(Config* pConfig)
     m_pKeyboard = Keyboard::Create(this);
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
-    m_pSpeech->Init(wxFileNameFromPath("tts"), "nl", "Ilse");
+    m_pSpeech->Init(GetTTSDataPath(), "nl", "Ilse");
 }
 
 Core::~Core()

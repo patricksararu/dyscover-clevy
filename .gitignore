@@ -7,9 +7,6 @@
 *.userosscache
 *.sln.docstates
 
-# Nugget packages
-packages/
-
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
@@ -24,6 +21,8 @@ x86/
 bld/
 [Bb]in/
 [Oo]bj/
+build_*/
+out/
 
 # Visual Studio 2015 cache/options directory
 .vs/
@@ -66,6 +65,7 @@ desktop.ini
 *.@@@
 *.twfd
 *.twopts
+CMakeSettings.json
 
 # Backup and temporary files
 *~

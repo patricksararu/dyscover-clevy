@@ -139,3 +139,18 @@ add_custom_command(
     TARGET Clevy POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Clevy>/audio
 )
+
+# Installation
+install(TARGETS Clevy RUNTIME DESTINATION .)
+install(FILES ${LIBRSTTS_DLL_FILE} DESTINATION .)
+install(FILES ${SOUND_FILES} DESTINATION audio)
+install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts DESTINATION .)
+
+# Packaging
+set(CPACK_PACKAGE_VENDOR "BNC Distribution")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "Clevy")
+if(WIN32)
+    set(CPACK_GENERATOR WIX)
+    set(CPACK_WIX_UPGRADE_GUID 12C19B6B-BB03-4255-AD65-0A46D994886B) # NOTE: Never change this and never reuse in any other project.
+endif()
+include(CPack)

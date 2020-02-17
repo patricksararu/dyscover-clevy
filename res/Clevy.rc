@@ -4,6 +4,8 @@
 
 #include <wx/msw/wx.rc>
 
+#include "ClevyVersionInfo.h"
+
 ClevyIcon ICON ClevyIcon.ico
 
 ClevyIcon0 ICON icons/ClevyIcon0.ico
@@ -13,3 +15,37 @@ ClevyIcon3 ICON icons/ClevyIcon3.ico
 ClevyIcon4 ICON icons/ClevyIcon4.ico
 ClevyIcon5 ICON icons/ClevyIcon5.ico
 ClevyIcon6 ICON icons/ClevyIcon6.ico
+
+VS_VERSION_INFO VERSIONINFO
+    FILEVERSION    VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TWEAK
+    PRODUCTVERSION VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TWEAK
+    FILEFLAGSMASK  VS_FFI_FILEFLAGSMASK
+#ifdef _DEBUG
+    FILEFLAGS      VS_FF_DEBUG
+#else
+    FILEFLAGS      0x0L
+#endif
+    FILEOS         VOS_NT
+    FILETYPE       VFT_APP
+    FILESUBTYPE    VFT2_UNKNOWN
+{
+    BLOCK "StringFileInfo"
+    {
+        BLOCK "000904b0"
+        {
+            VALUE "Comments",         "\0"
+            VALUE "CompanyName",      "BNC Distribution\0"
+            VALUE "FileDescription",  "Clevy Dyscover\0"
+            VALUE "FileVersion",      VERSION_STRING
+            VALUE "InternalName",     "Dyscover\0"
+            VALUE "LegalCopyright",   "Copyright (c) BNC Distribution\0"
+            VALUE "OriginalFilename", "Clevy.exe\0"
+            VALUE "ProductName",      "Clevy Dyscover\0"
+            VALUE "ProductVersion",   VERSION_STRING
+        }
+    }
+    BLOCK "VarFileInfo"
+    {
+        VALUE "Translation", 0x9, 1200
+    }
+}

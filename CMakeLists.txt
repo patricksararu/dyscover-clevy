@@ -1,8 +1,13 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(CMAKE_CXX_STANDARD 14)  # Use C++14
+project(Clevy
+  VERSION 3.90.0.0
+  DESCRIPTION "Clevy Dyscover"
+  HOMEPAGE_URL "https://clevy.com"
+  LANGUAGES CXX
+)
 
-project(Clevy)
+set(CMAKE_CXX_STANDARD 14)  # Use C++14
 
 add_executable(Clevy WIN32
   src/App.cpp
@@ -96,6 +101,10 @@ if(WIN32)
         COMMENT "Updating TTS data files ..."
     )
 endif()
+
+# Version
+configure_file(res/ClevyVersionInfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/generated/ClevyVersionInfo.h)
+include_directories(${CMAKE_CURRENT_BINARY_DIR}/generated/)
 
 # Resources
 if(WIN32)

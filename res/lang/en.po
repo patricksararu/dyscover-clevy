@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Preferences"
+msgstr "Preferences"
+
+msgid "Sound"
+msgstr "Sound"
+
+msgid "Sounds"
+msgstr "Sounds"
+
+msgid "TTS (Text to Speech)"
+msgstr "TTS (Text to Speech)"
+
+msgid "Volume"
+msgstr "Volume"
+
+msgid "Activate After"
+msgstr "Activate After"
+
+msgid "Word"
+msgstr "Word"
+
+msgid "Sentence"
+msgstr "Sentence"
+
+msgid "Selection and Speaker key"
+msgstr "Selection and Speaker key"
+
+msgid "Read Along"
+msgstr "Read Along"
+
+msgid "Speed"
+msgstr "Speed"
+
+msgid "Start with system"
+msgstr "Start with system"
+
+msgid "Paused"
+msgstr "Paused"
+
+msgid "Classic"
+msgstr "Classic"
+
+msgid "Cover"
+msgstr "Cover"
+
+msgid "Sound Settings"
+msgstr "Sound Settings"
+
+msgid "Text To Speech"
+msgstr "Text To Speech"
+
+msgid "Other Settings"
+msgstr "Other Settings"
+
+msgid "Clevy"
+msgstr "Clevy"
+
+msgid "TTS"
+msgstr "TTS"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Exit"
+msgstr "Exit"

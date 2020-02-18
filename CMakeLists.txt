@@ -140,6 +140,16 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Clevy>/audio
 )
 
+# Translations
+find_package(Gettext REQUIRED)
+add_custom_command(
+    TARGET Clevy POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/lang/en
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/en.po -o$<TARGET_FILE_DIR:Clevy>/lang/en/Clevy.mo
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/lang/nl
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/nl.po -o$<TARGET_FILE_DIR:Clevy>/lang/nl/Clevy.mo
+)
+
 # Installation
 install(TARGETS Clevy RUNTIME DESTINATION .)
 install(FILES ${LIBRSTTS_DLL_FILE} DESTINATION .)

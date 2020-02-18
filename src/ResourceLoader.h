@@ -14,3 +14,4 @@ wxIconArray LoadClevyIcons();
 wxString GetExecutablePath();
 wxString GetSoundFilesPath();
 wxString GetTTSDataPath();
+wxString GetTranslationsPath();

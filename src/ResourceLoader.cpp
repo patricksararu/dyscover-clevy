@@ -9,6 +9,7 @@
 
 static const wxString kSoundFilesPath("audio");
 static const wxString kTTSDataPath("tts");
+static const wxString kTranslationsPath("lang");
 
 wxIcon LoadIcon(const wxString& name)
 {
@@ -53,5 +54,11 @@ wxString GetSoundFilesPath()
 wxString GetTTSDataPath()
 {
     wxFileName filename(GetExecutablePath(), kTTSDataPath);
+    return filename.GetFullPath();
+}
+
+wxString GetTranslationsPath()
+{
+    wxFileName filename(GetExecutablePath(), kTranslationsPath);
     return filename.GetFullPath();
 }

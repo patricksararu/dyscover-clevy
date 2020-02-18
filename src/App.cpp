@@ -6,10 +6,15 @@
 #include "Config.h"
 #include "Core.h"
 #include "PreferencesDialog.h"
+#include "ResourceLoader.h"
 #include "TrayIcon.h"
 
 bool App::OnInit()
 {
+    m_pLocale = new wxLocale(wxLANGUAGE_DUTCH);
+    m_pLocale->AddCatalogLookupPathPrefix(GetTranslationsPath());
+    m_pLocale->AddCatalog("Clevy");
+
     m_pConfig = new Config();
     m_pCore = new Core(m_pConfig);
     m_pPreferencesDialog = new PreferencesDialog(this, m_pConfig);
@@ -24,6 +29,8 @@ int App::OnExit()
     delete m_pPreferencesDialog;
     delete m_pCore;
     delete m_pConfig;
+
+    delete m_pLocale;
 
     return wxApp::OnExit();
 }

@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Preferences"
+msgstr "Instellingen"
+
+msgid "Sound"
+msgstr "Geluid"
+
+msgid "Sounds"
+msgstr "Klanken"
+
+msgid "TTS (Text to Speech)"
+msgstr "Text to Speech"
+
+msgid "Volume"
+msgstr "Volume"
+
+msgid "Activate After"
+msgstr "Toepassen na"
+
+msgid "Word"
+msgstr "Woord"
+
+msgid "Sentence"
+msgstr "Zin"
+
+msgid "Selection and Speaker key"
+msgstr "Selectie en luidspreker toets"
+
+msgid "Read Along"
+msgstr "Lees mee"
+
+msgid "Speed"
+msgstr "Snelheid"
+
+msgid "Start with system"
+msgstr "Automatisch opstarten"
+
+msgid "Paused"
+msgstr "Pauze"
+
+msgid "Classic"
+msgstr "Dyscover"
+
+msgid "Cover"
+msgstr "KWeC"
+
+msgid "Sound Settings"
+msgstr "Geluidsinstellingen"
+
+msgid "Text To Speech"
+msgstr "Text to Speech"
+
+msgid "Other Settings"
+msgstr "Overige instellingen"
+
+msgid "Clevy"
+msgstr "Clevy"
+
+msgid "TTS"
+msgstr "TTS"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Manual"
+msgstr "Handleiding"
+
+msgid "Exit"
+msgstr "Afsluiten"

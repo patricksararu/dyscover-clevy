@@ -23,6 +23,8 @@ public:
     void UpdateTrayIcon();
 
 private:
+    wxLocale* m_pLocale;
+
     Config* m_pConfig;
     Core* m_pCore;
     PreferencesDialog* m_pPreferencesDialog;

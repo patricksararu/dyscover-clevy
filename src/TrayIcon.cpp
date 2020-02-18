@@ -69,9 +69,9 @@ wxMenu* TrayIcon::CreatePopupMenu()
     pMenu->AppendSeparator();
     pMenu->AppendCheckItem(ID_PAUSED, _("Paused"));
     pMenu->AppendSeparator();
-    pMenu->Append(wxID_PREFERENCES);
-    pMenu->Append(wxID_HELP);
-    pMenu->Append(wxID_EXIT);
+    pMenu->Append(wxID_PREFERENCES, _("Settings"));
+    pMenu->Append(wxID_HELP, _("Manual"));
+    pMenu->Append(wxID_EXIT, _("Exit"));
     pMenu->Check(ID_SOUND, m_pConfig->GetSound());
     pMenu->Check(ID_SOUNDS, m_pConfig->GetSounds());
     pMenu->Check(ID_TTS, m_pConfig->GetTTS());

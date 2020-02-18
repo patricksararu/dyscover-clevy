@@ -1,0 +1,68 @@
+msgid "Preferences"
+msgstr ""
+
+msgid "Sound"
+msgstr ""
+
+msgid "Sounds"
+msgstr ""
+
+msgid "TTS (Text to Speech)"
+msgstr ""
+
+msgid "Volume"
+msgstr ""
+
+msgid "Activate After"
+msgstr ""
+
+msgid "Word"
+msgstr ""
+
+msgid "Sentence"
+msgstr ""
+
+msgid "Selection and Speaker key"
+msgstr ""
+
+msgid "Read Along"
+msgstr ""
+
+msgid "Speed"
+msgstr ""
+
+msgid "Start with system"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Classic"
+msgstr ""
+
+msgid "Cover"
+msgstr ""
+
+msgid "Sound Settings"
+msgstr ""
+
+msgid "Text To Speech"
+msgstr ""
+
+msgid "Other Settings"
+msgstr ""
+
+msgid "Clevy"
+msgstr ""
+
+msgid "TTS"
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Exit"
+msgstr ""

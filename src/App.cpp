@@ -2,6 +2,8 @@
 // App.cpp
 //
 
+#include <wx/splash.h>
+
 #include "App.h"
 #include "Config.h"
 #include "Core.h"
@@ -14,6 +16,8 @@ bool App::OnInit()
     m_pLocale = new wxLocale(wxLANGUAGE_DUTCH);
     m_pLocale->AddCatalogLookupPathPrefix(GetTranslationsPath());
     m_pLocale->AddCatalog("Dyscover");
+
+    wxSplashScreen splashScreen(LoadSplashBitmap(), wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 5000, nullptr, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP);
 
     m_pConfig = new Config();
     m_pCore = new Core(m_pConfig);

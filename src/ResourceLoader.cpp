@@ -39,6 +39,11 @@ wxIconArray LoadDyscoverIcons()
     return icons;
 }
 
+wxBitmap LoadSplashBitmap()
+{
+    return wxBitmap("Splash", wxBITMAP_TYPE_BMP_RESOURCE);
+}
+
 wxString GetExecutablePath()
 {
     wxFileName filename(wxStandardPaths::Get().GetExecutablePath());

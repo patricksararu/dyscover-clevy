@@ -154,6 +154,7 @@ add_custom_command(
 install(TARGETS Clevy RUNTIME DESTINATION .)
 install(FILES ${LIBRSTTS_DLL_FILE} DESTINATION .)
 install(FILES ${SOUND_FILES} DESTINATION audio)
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/lang DESTINATION .) # TODO: Remove this ugly hack.
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts DESTINATION .)
 
 # Packaging

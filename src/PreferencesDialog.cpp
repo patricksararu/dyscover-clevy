@@ -61,7 +61,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     wxStaticBoxSizer* pSoundSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Sound Settings"));
     pSoundSettingsSizer->Add(pSoundSettingsInnerSizer, wxSizerFlags().Proportion(1));
     pSoundSettingsSizer->Add(m_pVolumeStaticText, wxSizerFlags().Border().Center());
-    pSoundSettingsSizer->Add(m_pVolumeSlider);
+    pSoundSettingsSizer->Add(m_pVolumeSlider, wxSizerFlags().Center());
 
     wxBoxSizer* pTTSSettingsInnerSizer = new wxBoxSizer(wxVERTICAL);
     pTTSSettingsInnerSizer->Add(m_pActivateAfterStaticText, wxSizerFlags().Border().Expand());
@@ -73,7 +73,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     wxStaticBoxSizer* pTTSSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Text To Speech"));
     pTTSSettingsSizer->Add(pTTSSettingsInnerSizer, wxSizerFlags().Proportion(1));
     pTTSSettingsSizer->Add(m_pSpeedStaticText, wxSizerFlags().Border().Center());
-    pTTSSettingsSizer->Add(m_pSpeedSlider);
+    pTTSSettingsSizer->Add(m_pSpeedSlider, wxSizerFlags().Center());
 
     wxBoxSizer* pOtherSettingsFirstInnerSizer = new wxBoxSizer(wxHORIZONTAL);
     pOtherSettingsFirstInnerSizer->Add(m_pStartWithSystemCheckBox, wxSizerFlags().Border().Expand().Proportion(1));

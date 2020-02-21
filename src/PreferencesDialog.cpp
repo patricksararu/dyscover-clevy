@@ -16,6 +16,7 @@ enum
     ID_TTS,
     ID_VOLUME,
     ID_WORD,
+    ID_SENTENCE,
     ID_SELECTIONSPEAKERKEY,
     ID_READALONG,
     ID_SPEED,
@@ -41,6 +42,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
 
     m_pActivateAfterStaticText = new wxStaticText(this, wxID_ANY, _("Activate After"));
     m_pWordCheckBox = new wxCheckBox(this, ID_WORD, _("Word"));
+    m_pSentenceCheckBox = new wxCheckBox(this, ID_SENTENCE, _("Sentence"));
     m_pSelectionSpeakerKeyCheckBox = new wxCheckBox(this, ID_SELECTIONSPEAKERKEY, _("Selection and Speaker key"));
     m_pReadAlongCheckBox = new wxCheckBox(this, ID_READALONG, _("Read Along"));
     m_pSpeedStaticText = new wxStaticText(this, wxID_ANY, _("Speed"));
@@ -64,6 +66,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     wxBoxSizer* pTTSSettingsInnerSizer = new wxBoxSizer(wxVERTICAL);
     pTTSSettingsInnerSizer->Add(m_pActivateAfterStaticText, wxSizerFlags().Border().Expand());
     pTTSSettingsInnerSizer->Add(m_pWordCheckBox, wxSizerFlags().Border().Expand());
+    pTTSSettingsInnerSizer->Add(m_pSentenceCheckBox, wxSizerFlags().Border().Expand());
     pTTSSettingsInnerSizer->Add(m_pSelectionSpeakerKeyCheckBox, wxSizerFlags().Border().Expand());
     pTTSSettingsInnerSizer->Add(m_pReadAlongCheckBox, wxSizerFlags().Border().Expand());
 
@@ -103,6 +106,7 @@ bool PreferencesDialog::TransferDataToWindow()
     m_pVolumeSlider->SetValue(m_pConfig->GetVolume());
 
     m_pWordCheckBox->SetValue(m_pConfig->GetWord());
+    m_pSentenceCheckBox->SetValue(m_pConfig->GetSentence());
     m_pSelectionSpeakerKeyCheckBox->SetValue(m_pConfig->GetSelection());
     m_pReadAlongCheckBox->SetValue(m_pConfig->GetReadAlong());
     m_pSpeedSlider->SetValue(m_pConfig->GetSpeed());
@@ -146,6 +150,11 @@ void PreferencesDialog::OnWordChanged(wxCommandEvent&)
     m_pConfig->SetWord(m_pWordCheckBox->GetValue());
 }
 
+void PreferencesDialog::OnSentenceChanged(wxCommandEvent&)
+{
+    m_pConfig->SetSentence(m_pSentenceCheckBox->GetValue());
+}
+
 void PreferencesDialog::OnSelectionSpeakerKeyChanged(wxCommandEvent&)
 {
     m_pConfig->SetSelection(m_pSelectionSpeakerKeyCheckBox->GetValue());
@@ -185,6 +194,7 @@ wxBEGIN_EVENT_TABLE(PreferencesDialog, wxDialog)
     EVT_SLIDER(ID_VOLUME, PreferencesDialog::OnVolumeChanged)
 
     EVT_CHECKBOX(ID_WORD, PreferencesDialog::OnWordChanged)
+    EVT_CHECKBOX(ID_SENTENCE, PreferencesDialog::OnSentenceChanged)
     EVT_CHECKBOX(ID_SELECTIONSPEAKERKEY, PreferencesDialog::OnSelectionSpeakerKeyChanged)
     EVT_CHECKBOX(ID_READALONG, PreferencesDialog::OnReadAlongChanged)
     EVT_SLIDER(ID_SPEED, PreferencesDialog::OnSpeedChanged)

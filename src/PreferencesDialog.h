@@ -34,6 +34,7 @@ private:
 
     wxStaticText* m_pActivateAfterStaticText;
     wxCheckBox* m_pWordCheckBox;
+    wxCheckBox* m_pSentenceCheckBox;
     wxCheckBox* m_pSelectionSpeakerKeyCheckBox;
     wxCheckBox* m_pReadAlongCheckBox;
     wxStaticText* m_pSpeedStaticText;
@@ -50,6 +51,7 @@ private:
     void OnVolumeChanged(wxCommandEvent&);
 
     void OnWordChanged(wxCommandEvent&);
+    void OnSentenceChanged(wxCommandEvent&);
     void OnSelectionSpeakerKeyChanged(wxCommandEvent&);
     void OnReadAlongChanged(wxCommandEvent&);
     void OnSpeedChanged(wxCommandEvent&);

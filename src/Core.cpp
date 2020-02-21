@@ -71,20 +71,50 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     {
         if (key == Key::Tab || key == Key::Space || key == Key::Enter)
         {
-            if (!m_speechBuffer.empty() && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetWord())
+            if (!m_wordSpeechBuffer.empty() && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetWord())
             {
                 m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
                 m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
-                m_pSpeech->Speak(m_speechBuffer);
+                m_pSpeech->Speak(m_wordSpeechBuffer);
             }
 
-            m_speechBuffer.clear();
+            m_wordSpeechBuffer.clear();
+        }
+        else if (key == Key::Dot || ((key == Key::One || key == Key::Slash) && shift))
+        {
+            if (m_pConfig->GetSound() && m_pConfig->GetTTS())
+            {
+                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
+                m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
+
+                if (!m_wordSpeechBuffer.empty() && m_pConfig->GetWord())
+                {
+                    m_pSpeech->Speak(m_wordSpeechBuffer);
+                }
+
+                if (!m_sentenceSpeechBuffer.empty() && m_pConfig->GetSentence())
+                {
+                    m_pSpeech->Speak(m_sentenceSpeechBuffer);
+                }
+            }
+
+            m_wordSpeechBuffer.clear();
+            m_sentenceSpeechBuffer.clear();
+        }
+        else if (key == Key::Alt)
+        {
+            m_pSpeech->Stop();
         }
         else if (key == Key::Backspace)
         {
-            if (!m_speechBuffer.empty())
+            if (!m_wordSpeechBuffer.empty())
             {
-                m_speechBuffer.pop_back();
+                m_wordSpeechBuffer.pop_back();
+            }
+
+            if (!m_sentenceSpeechBuffer.empty())
+            {
+                m_sentenceSpeechBuffer.pop_back();
             }
         }
         else
@@ -93,12 +123,16 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
             {
                 for (KeyStroke ks : translation.keystrokes)
                 {
-                    m_speechBuffer.append(m_pKeyboard->TranslateKeyStroke(ks.key, ks.shift, ks.ctrl));
+                    std::string chars = m_pKeyboard->TranslateKeyStroke(ks.key, ks.shift, ks.ctrl);
+                    m_wordSpeechBuffer.append(chars);
+                    m_sentenceSpeechBuffer.append(chars);
                 }
             }
             else
             {
-                m_speechBuffer.append(m_pKeyboard->TranslateKeyStroke(key, shift, ctrl));
+                std::string chars = m_pKeyboard->TranslateKeyStroke(key, shift, ctrl);
+                m_wordSpeechBuffer.append(chars);
+                m_sentenceSpeechBuffer.append(chars);
             }
         }
     }

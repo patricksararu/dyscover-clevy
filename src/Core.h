@@ -29,5 +29,6 @@ private:
     SoundPlayer* m_pSoundPlayer;
     Speech* m_pSpeech;
 
-    std::string m_speechBuffer;
+    std::string m_wordSpeechBuffer;
+    std::string m_sentenceSpeechBuffer;
 };

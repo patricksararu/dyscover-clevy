@@ -11,6 +11,7 @@ static const wxString kSoundsKey("/Dyscover/Sounds");
 static const wxString kTTSKey("/Dyscover/TTS");
 static const wxString kVolumeKey("/Dyscover/Volume");
 static const wxString kWordKey("/Dyscover/Word");
+static const wxString kSentenceKey("/Dyscover/Sentence");
 static const wxString kSelectionKey("/Dyscover/Selection");
 static const wxString kReadAlongKey("/Dyscover/ReadAlong");
 static const wxString kSpeedKey("/Dyscover/Speed");
@@ -23,6 +24,7 @@ static constexpr bool kSoundsDefaultValue = true;
 static constexpr bool kTTSDefaultValue = true;
 static constexpr long kVolumeDefaultValue = 100;
 static constexpr bool kWordDefaultValue = true;
+static constexpr bool kSentenceDefaultValue = true;
 static constexpr bool kSelectionDefaultValue = true;
 static constexpr bool kReadAlongDefaultValue = true;
 static constexpr long kSpeedDefaultValue = 0;
@@ -91,6 +93,16 @@ bool Config::GetWord()
 void Config::SetWord(bool word)
 {
     m_pConfig->Write(kWordKey, word);
+}
+
+bool Config::GetSentence()
+{
+    return m_pConfig->ReadBool(kSentenceKey, kSentenceDefaultValue);
+}
+
+void Config::SetSentence(bool sentence)
+{
+    m_pConfig->Write(kSentenceKey, sentence);
 }
 
 bool Config::GetSelection()

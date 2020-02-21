@@ -106,7 +106,7 @@ static constexpr KeyMapping s_keyMappings[] = {
     { Key::Left, VK_LEFT },
     { Key::Right, VK_RIGHT },
     { Key::WinCmd, VK_LWIN },
-    { Key::Alt, VK_MENU },
+    { Key::Alt, VK_LMENU },
     { Key::Zero, 0x30 },
     { Key::One, 0x31 },
     { Key::Two, 0x32 },

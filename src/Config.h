@@ -38,6 +38,9 @@ public:
     bool GetWord();
     void SetWord(bool);
 
+    bool GetSentence();
+    void SetSentence(bool);
+
     bool GetSelection();
     void SetSelection(bool);
 

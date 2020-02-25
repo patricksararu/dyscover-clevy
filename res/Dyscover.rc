@@ -1,20 +1,19 @@
 //
-// Clevy.rc
+// Dyscover.rc
 //
 
 #include <wx/msw/wx.rc>
 
-#include "ClevyVersionInfo.h"
+#include "VersionInfo.h"
 
-ClevyIcon ICON ClevyIcon.ico
-
-ClevyIcon0 ICON icons/ClevyIcon0.ico
-ClevyIcon1 ICON icons/ClevyIcon1.ico
-ClevyIcon2 ICON icons/ClevyIcon2.ico
-ClevyIcon3 ICON icons/ClevyIcon3.ico
-ClevyIcon4 ICON icons/ClevyIcon4.ico
-ClevyIcon5 ICON icons/ClevyIcon5.ico
-ClevyIcon6 ICON icons/ClevyIcon6.ico
+Icon ICON icons/Icon.ico
+Icon0 ICON icons/Icon0.ico
+Icon1 ICON icons/Icon1.ico
+Icon2 ICON icons/Icon2.ico
+Icon3 ICON icons/Icon3.ico
+Icon4 ICON icons/Icon4.ico
+Icon5 ICON icons/Icon5.ico
+Icon6 ICON icons/Icon6.ico
 
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION    VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TWEAK
@@ -39,7 +38,7 @@ VS_VERSION_INFO VERSIONINFO
             VALUE "FileVersion",      VERSION_STRING
             VALUE "InternalName",     "Dyscover\0"
             VALUE "LegalCopyright",   "Copyright (c) BNC Distribution\0"
-            VALUE "OriginalFilename", "Clevy.exe\0"
+            VALUE "OriginalFilename", "Dyscover.exe\0"
             VALUE "ProductName",      "Clevy Dyscover\0"
             VALUE "ProductVersion",   VERSION_STRING
         }

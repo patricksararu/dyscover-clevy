@@ -22,18 +22,18 @@ wxIcon LoadIcon(const wxString& name)
 #endif
 }
 
-wxIcon LoadClevyIcon()
+wxIcon LoadDyscoverIcon()
 {
-    return LoadIcon("ClevyIcon");
+    return LoadIcon("Icon");
 }
 
-wxIconArray LoadClevyIcons()
+wxIconArray LoadDyscoverIcons()
 {
     wxIconArray icons;
 
     for (int i = 0; i <= 6; i++)
     {
-        icons.Add(LoadIcon(wxString::Format("ClevyIcon%d", i)));
+        icons.Add(LoadIcon(wxString::Format("Icon%d", i)));
     }
 
     return icons;

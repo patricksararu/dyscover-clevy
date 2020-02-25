@@ -29,7 +29,7 @@ enum
 PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     : wxDialog(nullptr, wxID_ANY, _("Preferences"))
 {
-    SetIcon(LoadClevyIcon());
+    SetIcon(LoadDyscoverIcon());
 
     m_pApp = pApp;
     m_pConfig = pConfig;

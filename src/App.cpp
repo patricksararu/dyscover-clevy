@@ -13,7 +13,7 @@ bool App::OnInit()
 {
     m_pLocale = new wxLocale(wxLANGUAGE_DUTCH);
     m_pLocale->AddCatalogLookupPathPrefix(GetTranslationsPath());
-    m_pLocale->AddCatalog("Clevy");
+    m_pLocale->AddCatalog("Dyscover");
 
     m_pConfig = new Config();
     m_pCore = new Core(m_pConfig);

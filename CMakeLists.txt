@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(Clevy
+project(Dyscover
   VERSION 3.90.0.0
   DESCRIPTION "Clevy Dyscover"
   HOMEPAGE_URL "https://clevy.com"
@@ -9,7 +9,7 @@ project(Clevy
 
 set(CMAKE_CXX_STANDARD 14)  # Use C++14
 
-add_executable(Clevy WIN32
+add_executable(Dyscover WIN32
   src/App.cpp
   src/App.h
   src/Audio.cpp
@@ -39,29 +39,29 @@ add_executable(Clevy WIN32
 
 # Platform-specifics
 if(WIN32)
-  target_sources(Clevy PRIVATE src/DeviceWindows.cpp src/DeviceWindows.h)
-  target_link_libraries(Clevy cfgmgr32.lib)
-  target_sources(Clevy PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)
+  target_sources(Dyscover PRIVATE src/DeviceWindows.cpp src/DeviceWindows.h)
+  target_link_libraries(Dyscover cfgmgr32.lib)
+  target_sources(Dyscover PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)
 elseif(UNIX)
-  target_sources(Clevy PRIVATE src/KeyboardLinux.cpp src/KeyboardLinux.h)
+  target_sources(Dyscover PRIVATE src/KeyboardLinux.cpp src/KeyboardLinux.h)
 else()
   message(FATAL_ERROR "Unsupported platform")
 endif()
 
 # Warnings
 if(MSVC)
-  target_compile_options(Clevy PRIVATE /W4 /WX)
+  target_compile_options(Dyscover PRIVATE /W4 /WX)
 else()
-  target_compile_options(Clevy PRIVATE -Wall -Wextra -Werror -pedantic -Wno-error=missing-field-initializers)
+  target_compile_options(Dyscover PRIVATE -Wall -Wextra -Werror -pedantic -Wno-error=missing-field-initializers)
 endif()
 
 # Use wxWidgets
 find_package(wxWidgets REQUIRED)
 include(${wxWidgets_USE_FILE})
-target_link_libraries(Clevy ${wxWidgets_LIBRARIES})
+target_link_libraries(Dyscover ${wxWidgets_LIBRARIES})
 
 # Use librstts
-target_include_directories(Clevy PRIVATE lib/rstts/include/)
+target_include_directories(Dyscover PRIVATE lib/rstts/include/)
 
 if(WIN32)
     # Determine file paths
@@ -85,73 +85,73 @@ if(WIN32)
     )
 
     # Link .exe with generated .lib
-    target_sources(Clevy PRIVATE ${LIBRSTTS_LIB_FILE})
-    target_link_libraries(Clevy ${LIBRSTTS_LIB_FILE})
+    target_sources(Dyscover PRIVATE ${LIBRSTTS_LIB_FILE})
+    target_link_libraries(Dyscover ${LIBRSTTS_LIB_FILE})
 
     # Copy .dll file to the folder where .exe is
     add_custom_command(
-        TARGET Clevy POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy ${LIBRSTTS_DLL_FILE} $<TARGET_FILE_DIR:Clevy>
+        TARGET Dyscover POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy ${LIBRSTTS_DLL_FILE} $<TARGET_FILE_DIR:Dyscover>
     )
 
     # Copy data files
     add_custom_command(
-        TARGET Clevy POST_BUILD
-        COMMAND xcopy \"${CMAKE_SOURCE_DIR}/res/data/tts\" \"$<TARGET_FILE_DIR:Clevy>/tts\" /s /y /i /d
+        TARGET Dyscover POST_BUILD
+        COMMAND xcopy \"${CMAKE_SOURCE_DIR}/res/data/tts\" \"$<TARGET_FILE_DIR:Dyscover>/tts\" /s /y /i /d
         COMMENT "Updating TTS data files ..."
     )
 endif()
 
 # Version
-configure_file(res/ClevyVersionInfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/generated/ClevyVersionInfo.h)
+configure_file(res/VersionInfo.h.in ${CMAKE_CURRENT_BINARY_DIR}/generated/VersionInfo.h)
 include_directories(${CMAKE_CURRENT_BINARY_DIR}/generated/)
 
 # Resources
 if(WIN32)
-    target_sources(Clevy PRIVATE res/Clevy.rc)
+    target_sources(Dyscover PRIVATE res/Dyscover.rc)
 elseif(APPLE)
-    file(COPY res/ClevyIcon.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon0.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon1.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon2.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon3.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon4.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon5.icns DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon6.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon0.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon1.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon2.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon3.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon4.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon5.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon6.icns DESTINATION ${CMAKE_BINARY_DIR})
 else()
-    file(COPY res/ClevyIcon.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon0.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon1.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon2.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon3.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon4.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon5.ico DESTINATION ${CMAKE_BINARY_DIR})
-    file(COPY res/icons/ClevyIcon6.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon0.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon1.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon2.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon3.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon4.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon5.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/icons/Icon6.ico DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
 # Sounds
 file(GLOB SOUND_FILES "res/data/*.wav")
 add_custom_command(
-    TARGET Clevy POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/audio
+    TARGET Dyscover POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Dyscover>/audio
 )
 add_custom_command(
-    TARGET Clevy POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Clevy>/audio
+    TARGET Dyscover POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Dyscover>/audio
 )
 
 # Translations
 find_package(Gettext REQUIRED)
 add_custom_command(
-    TARGET Clevy POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/lang/en
-    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/en.po -o$<TARGET_FILE_DIR:Clevy>/lang/en/Clevy.mo
-    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Clevy>/lang/nl
-    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/nl.po -o$<TARGET_FILE_DIR:Clevy>/lang/nl/Clevy.mo
+    TARGET Dyscover POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Dyscover>/lang/en
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/en.po -o$<TARGET_FILE_DIR:Dyscover>/lang/en/Dyscover.mo
+    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Dyscover>/lang/nl
+    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/nl.po -o$<TARGET_FILE_DIR:Dyscover>/lang/nl/Dyscover.mo
 )
 
 # Installation
-install(TARGETS Clevy RUNTIME DESTINATION .)
+install(TARGETS Dyscover RUNTIME DESTINATION .)
 install(FILES ${LIBRSTTS_DLL_FILE} DESTINATION .)
 install(FILES ${SOUND_FILES} DESTINATION audio)
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/lang DESTINATION .) # TODO: Remove this ugly hack.
@@ -159,7 +159,7 @@ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts DESTINATION .)
 
 # Packaging
 set(CPACK_PACKAGE_VENDOR "BNC Distribution")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "Clevy")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "Clevy/Dyscover")
 if(WIN32)
     set(CPACK_GENERATOR WIX)
     set(CPACK_WIX_UPGRADE_GUID 12C19B6B-BB03-4255-AD65-0A46D994886B) # NOTE: Never change this and never reuse in any other project.

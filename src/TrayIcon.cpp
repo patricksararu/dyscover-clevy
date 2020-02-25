@@ -23,7 +23,7 @@ TrayIcon::TrayIcon(App* pApp, Config* pConfig)
     m_pApp = pApp;
     m_pConfig = pConfig;
 
-    m_icons = LoadClevyIcons();
+    m_icons = LoadDyscoverIcons();
 
     UpdateIcon();
 }

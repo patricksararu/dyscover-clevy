@@ -8,8 +8,8 @@
 #include <wx/iconbndl.h>
 
 wxIcon LoadIcon(const wxString&);
-wxIcon LoadClevyIcon();
-wxIconArray LoadClevyIcons();
+wxIcon LoadDyscoverIcon();
+wxIconArray LoadDyscoverIcons();
 
 wxString GetExecutablePath();
 wxString GetSoundFilesPath();

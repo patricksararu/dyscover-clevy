@@ -2,6 +2,9 @@
 // Core.cpp
 //
 
+#include <wx/clipbrd.h>
+#include <wx/time.h>
+
 #include "Config.h"
 #include "Core.h"
 #include "Device.h"
@@ -42,6 +45,35 @@ void Core::OnClevyKeyboardDisconnected()
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
 {
     if (m_pConfig->GetPaused())  return false;
+
+    if (key == Key::WinCmd && eventType == KeyEventType::KeyDown && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetSelection())
+    {
+        // Send Ctrl+C
+        m_pKeyboard->SendKeyStroke(Key::C, false, true);
+
+        // Wait a while
+        wxMilliSleep(25);
+
+        // Read text from clipboard and pronounce it
+        if (wxTheClipboard->Open())
+        {
+            if (wxTheClipboard->IsSupported(wxDF_TEXT))
+            {
+                wxTextDataObject tdo;
+                wxTheClipboard->GetData(tdo);
+                wxString s = tdo.GetText();
+
+                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
+                m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
+                m_pSpeech->Speak(s.ToStdString());
+            }
+
+            wxTheClipboard->Close();
+        }
+
+        // Supress this event
+        return true;
+    }
 
     KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, m_pConfig->GetLayout());
     bool bSupressEvent = false;

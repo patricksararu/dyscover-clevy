@@ -158,10 +158,16 @@ install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/lang DESTINATION .) # TODO
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts DESTINATION .)
 
 # Packaging
+set(CPACK_PACKAGE_NAME "Clevy Dyscover 4")
 set(CPACK_PACKAGE_VENDOR "BNC Distribution")
-set(CPACK_PACKAGE_INSTALL_DIRECTORY "Clevy/Dyscover")
+set(CPACK_PACKAGE_INSTALL_DIRECTORY "Clevy Dyscover 4")
+set(CPACK_PACKAGE_EXECUTABLES "Dyscover;Clevy Dyscover 4")
 if(WIN32)
     set(CPACK_GENERATOR WIX)
     set(CPACK_WIX_UPGRADE_GUID 12C19B6B-BB03-4255-AD65-0A46D994886B) # NOTE: Never change this and never reuse in any other project.
+    set(CPACK_WIX_PRODUCT_ICON ${CMAKE_CURRENT_SOURCE_DIR}/res/icons/Icon.ico)
+    set(CPACK_WIX_PROGRAM_MENU_FOLDER "Clevy Dyscover 4")
+    set(CPACK_WIX_PROPERTY_ARPURLINFOABOUT "https://clevy.com/")
+    set(CPACK_WIX_PROPERTY_ARPHELPLINK "https://clevy.com/")
 endif()
 include(CPack)

@@ -69,6 +69,10 @@ find_package(wxWidgets REQUIRED)
 include(${wxWidgets_USE_FILE})
 target_link_libraries(Dyscover ${wxWidgets_LIBRARIES})
 
+# Use PortAudio
+find_package(PortAudio REQUIRED)
+target_link_libraries(Dyscover portaudio)
+
 # Use librstts
 target_include_directories(Dyscover PRIVATE lib/rstts/include/)
 

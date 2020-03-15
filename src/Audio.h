@@ -4,11 +4,7 @@
 
 #pragma once
 
-#define WIN32_LEAN_AND_MEAN
-#include <windows.h>
-#include <mmsystem.h>
-
-#include "Queue.h"
+#include <portaudio.h>
 
 class Audio
 {
@@ -16,15 +12,12 @@ public:
 	Audio();
 	~Audio();
 
-	bool Open(int channels, int samplerate, int samplesize);
+	bool Open(int channels, int samplerate, PaSampleFormat sampleformat);
 	void Close();
 
-	bool Write(const void* audiodata, size_t audiodatalen);
+	bool Write(const void* audiodata, unsigned long audiodatalen);
 	void Stop();
 
 private:
-	HWAVEOUT m_hWaveOut;
-	Queue<WAVEHDR*> m_waveHdrs;
-
-	static void CALLBACK WaveOutCallback(HWAVEOUT, UINT, DWORD_PTR, DWORD_PTR, DWORD_PTR);
+	PaStream* m_pStream;
 };

@@ -9,7 +9,6 @@
 #endif
 
 #include "Audio.h"
-#include "Debug.h"
 #include "Speech.h"
 
 #ifdef  __BORLANDC__
@@ -93,7 +92,7 @@ bool Speech::Init(const char* basedir, const char* lang, const char* voice)
 		return false;
 	}
 
-	if (!m_audio.Open(kChannels, kSampleRate, kSampleSize))
+	if (!m_audio.Open(kChannels, kSampleRate, paInt16))
 	{
 		Term();
 		return false;
@@ -182,5 +181,5 @@ void Speech::TTSAudioCallback(RSTTSInst inst, const void* audiodata, size_t audi
 	(void)inst;
 
 	Speech* pThis = (Speech*)userptr;
-	pThis->m_audio.Write(audiodata, audiodatalen);
+	pThis->m_audio.Write(audiodata, static_cast<unsigned long>(audiodatalen / kSampleSize));
 }

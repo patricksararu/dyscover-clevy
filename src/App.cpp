@@ -54,4 +54,9 @@ void App::UpdateTrayIcon()
     m_pTrayIcon->UpdateIcon();
 }
 
+void App::UpdateAudioVolume()
+{
+    m_pCore->UpdateAudioVolume();
+}
+
 wxIMPLEMENT_APP(App);

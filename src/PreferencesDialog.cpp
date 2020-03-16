@@ -143,6 +143,8 @@ void PreferencesDialog::OnTTSChanged(wxCommandEvent&)
 void PreferencesDialog::OnVolumeChanged(wxCommandEvent&)
 {
     m_pConfig->SetVolume(m_pVolumeSlider->GetValue());
+
+    m_pApp->UpdateAudioVolume();
 }
 
 void PreferencesDialog::OnWordChanged(wxCommandEvent&)

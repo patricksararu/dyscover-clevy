@@ -22,6 +22,8 @@ public:
 
     virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) override;
 
+    void UpdateAudioVolume();
+
 private:
     Config* m_pConfig;
     Device* m_pDevice;

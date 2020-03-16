@@ -21,6 +21,7 @@ public:
     void ShowPreferencesDialog();
     void UpdatePreferencesDialog();
     void UpdateTrayIcon();
+    void UpdateAudioVolume();
 
 private:
     wxLocale* m_pLocale;

@@ -3,6 +3,7 @@
 //
 
 #include <wx/clipbrd.h>
+#include <wx/log.h>
 #include <wx/time.h>
 
 #include "Config.h"
@@ -105,7 +106,6 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         {
             if (!m_wordSpeechBuffer.empty() && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetWord())
             {
-                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
                 m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
                 m_pSpeech->Speak(m_wordSpeechBuffer);
             }
@@ -116,7 +116,6 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         {
             if (m_pConfig->GetSound() && m_pConfig->GetTTS())
             {
-                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
                 m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
 
                 if (!m_wordSpeechBuffer.empty() && m_pConfig->GetWord())
@@ -170,4 +169,9 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     }
 
     return bSupressEvent;
+}
+
+void Core::UpdateAudioVolume()
+{
+    m_pSpeech->SetAudioVolume(m_pConfig->GetVolume() * 0xFFFF / 100);
 }

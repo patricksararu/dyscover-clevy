@@ -132,7 +132,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
             m_wordSpeechBuffer.clear();
             m_sentenceSpeechBuffer.clear();
         }
-        else if (key == Key::Alt)
+        else if (key == Key::Esc)
         {
             m_pSpeech->Stop();
         }

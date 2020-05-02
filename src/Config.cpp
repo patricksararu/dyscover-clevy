@@ -6,31 +6,27 @@
 
 #include "Config.h"
 
-static const wxString kSoundKey("/Dyscover/Sound");
-static const wxString kSoundsKey("/Dyscover/Sounds");
-static const wxString kTTSKey("/Dyscover/TTS");
-static const wxString kVolumeKey("/Dyscover/Volume");
-static const wxString kWordKey("/Dyscover/Word");
-static const wxString kSentenceKey("/Dyscover/Sentence");
-static const wxString kSelectionKey("/Dyscover/Selection");
-static const wxString kReadAlongKey("/Dyscover/ReadAlong");
-static const wxString kSpeedKey("/Dyscover/Speed");
-static const wxString kStartWithSystemKey("/Dyscover/StartWithSystem");
-static const wxString kPausedKey("/Dyscover/Paused");
 static const wxString kLayoutKey("/Dyscover/Layout");
+static const wxString kEnabledKey("/Dyscover/Enabled");
+static const wxString kAutostartKey("/Dyscover/Autostart");
+static const wxString kLettersAndNumbersKey("/Dyscover/LettersAndNumbers");
+static const wxString kLetterCombinationsKey("/Dyscover/LetterCombinations");
+static const wxString kWordsKey("/Dyscover/Words");
+static const wxString kSentencesKey("/Dyscover/Sentences");
+static const wxString kSelectionKey("/Dyscover/Selection");
+static const wxString kVolumeKey("/Dyscover/Volume");
+static const wxString kSpeedKey("/Dyscover/Speed");
 
-static constexpr bool kSoundDefaultValue = true;
-static constexpr bool kSoundsDefaultValue = true;
-static constexpr bool kTTSDefaultValue = true;
-static constexpr long kVolumeDefaultValue = 100;
-static constexpr bool kWordDefaultValue = true;
-static constexpr bool kSentenceDefaultValue = true;
-static constexpr bool kSelectionDefaultValue = true;
-static constexpr bool kReadAlongDefaultValue = true;
-static constexpr long kSpeedDefaultValue = 0;
-static constexpr bool kStartWithSystemDefaultValue = false;
-static constexpr bool kPausedDefaultValue = false;
 static constexpr Layout kLayoutDefaultValue = Layout::DutchClassic;
+static constexpr bool kEnabledDefaultValue = true;
+static constexpr bool kAutostartDefaultValue = false;
+static constexpr bool kLettersAndNumbersDefaultValue = true;
+static constexpr bool kLetterCombinationsDefaultValue = true;
+static constexpr bool kWordsDefaultValue = true;
+static constexpr bool kSentencesDefaultValue = true;
+static constexpr bool kSelectionDefaultValue = true;
+static constexpr long kVolumeDefaultValue = 100;
+static constexpr long kSpeedDefaultValue = 0;
 
 static const wxString kLayoutValueClassic("Classic");
 static const wxString kLayoutValueKWeC("Cover");
@@ -45,64 +41,74 @@ Config::~Config()
     delete m_pConfig;
 }
 
-bool Config::GetSound()
+Layout Config::GetLayout()
 {
-    return m_pConfig->ReadBool(kSoundKey, kSoundDefaultValue);
+    return m_pConfig->ReadObject<Layout>(kLayoutKey, kLayoutDefaultValue);
 }
 
-void Config::SetSound(bool sound)
+void Config::SetLayout(Layout value)
 {
-    m_pConfig->Write(kSoundKey, sound);
+    m_pConfig->Write(kLayoutKey, value);
 }
 
-bool Config::GetSounds()
+bool Config::GetEnabled()
 {
-    return m_pConfig->ReadBool(kSoundsKey, kSoundsDefaultValue);
+    return m_pConfig->ReadBool(kEnabledKey, kEnabledDefaultValue);
 }
 
-void Config::SetSounds(bool sounds)
+void Config::SetEnabled(bool value)
 {
-    m_pConfig->Write(kSoundsKey, sounds);
+    m_pConfig->Write(kEnabledKey, value);
 }
 
-bool Config::GetTTS()
+bool Config::GetAutostart()
 {
-    return m_pConfig->ReadBool(kTTSKey, kTTSDefaultValue);
+    return m_pConfig->ReadBool(kAutostartKey, kAutostartDefaultValue);
 }
 
-void Config::SetTTS(bool tts)
+void Config::SetAutostart(bool value)
 {
-    m_pConfig->Write(kTTSKey, tts);
+    m_pConfig->Write(kAutostartKey, value);
 }
 
-long Config::GetVolume()
+bool Config::GetLettersAndNumbers()
 {
-    return m_pConfig->ReadLong(kVolumeKey, kVolumeDefaultValue);
+    return m_pConfig->ReadBool(kLettersAndNumbersKey, kLettersAndNumbersDefaultValue);
 }
 
-void Config::SetVolume(long volume)
+void Config::SetLettersAndNumbers(bool value)
 {
-    m_pConfig->Write(kVolumeKey, volume);
+    m_pConfig->Write(kLettersAndNumbersKey, value);
 }
 
-bool Config::GetWord()
+bool Config::GetLetterCombinations()
 {
-    return m_pConfig->ReadBool(kWordKey, kWordDefaultValue);
+    return m_pConfig->ReadBool(kLetterCombinationsKey, kLetterCombinationsDefaultValue);
 }
 
-void Config::SetWord(bool word)
+void Config::SetLetterCombinations(bool value)
 {
-    m_pConfig->Write(kWordKey, word);
+    m_pConfig->Write(kLetterCombinationsKey, value);
 }
 
-bool Config::GetSentence()
+bool Config::GetWords()
 {
-    return m_pConfig->ReadBool(kSentenceKey, kSentenceDefaultValue);
+    return m_pConfig->ReadBool(kWordsKey, kWordsDefaultValue);
 }
 
-void Config::SetSentence(bool sentence)
+void Config::SetWords(bool value)
 {
-    m_pConfig->Write(kSentenceKey, sentence);
+    m_pConfig->Write(kWordsKey, value);
+}
+
+bool Config::GetSentences()
+{
+    return m_pConfig->ReadBool(kSentencesKey, kSentencesDefaultValue);
+}
+
+void Config::SetSentences(bool value)
+{
+    m_pConfig->Write(kSentencesKey, value);
 }
 
 bool Config::GetSelection()
@@ -110,19 +116,19 @@ bool Config::GetSelection()
     return m_pConfig->ReadBool(kSelectionKey, kSelectionDefaultValue);
 }
 
-void Config::SetSelection(bool selection)
+void Config::SetSelection(bool value)
 {
-    m_pConfig->Write(kSelectionKey, selection);
+    m_pConfig->Write(kSelectionKey, value);
 }
 
-bool Config::GetReadAlong()
+long Config::GetVolume()
 {
-    return m_pConfig->ReadBool(kReadAlongKey, kReadAlongDefaultValue);
+    return m_pConfig->ReadLong(kVolumeKey, kVolumeDefaultValue);
 }
 
-void Config::SetReadAlong(bool readalong)
+void Config::SetVolume(long value)
 {
-    m_pConfig->Write(kReadAlongKey, readalong);
+    m_pConfig->Write(kVolumeKey, value);
 }
 
 long Config::GetSpeed()
@@ -130,39 +136,9 @@ long Config::GetSpeed()
     return m_pConfig->ReadLong(kSpeedKey, kSpeedDefaultValue);
 }
 
-void Config::SetSpeed(long speed)
+void Config::SetSpeed(long value)
 {
-    m_pConfig->Write(kSpeedKey, speed);
-}
-
-bool Config::GetStartWithSystem()
-{
-    return m_pConfig->ReadBool(kStartWithSystemKey, kStartWithSystemDefaultValue);
-}
-
-void Config::SetStartWithSystem(bool startWithSystem)
-{
-    m_pConfig->Write(kStartWithSystemKey, startWithSystem);
-}
-
-bool Config::GetPaused()
-{
-    return m_pConfig->ReadBool(kPausedKey, kPausedDefaultValue);
-}
-
-void Config::SetPaused(bool paused)
-{
-    m_pConfig->Write(kPausedKey, paused);
-}
-
-Layout Config::GetLayout()
-{
-    return m_pConfig->ReadObject<Layout>(kLayoutKey, kLayoutDefaultValue);
-}
-
-void Config::SetLayout(Layout layout)
-{
-    m_pConfig->Write(kLayoutKey, layout);
+    m_pConfig->Write(kSpeedKey, value);
 }
 
 bool wxFromString(const wxString& string, Layout* pLayout)

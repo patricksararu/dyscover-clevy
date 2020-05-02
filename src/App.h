@@ -23,6 +23,8 @@ public:
     void UpdateTrayIcon();
     void UpdateAudioVolume();
 
+    bool IsClevyKeyboardPresent();
+
 private:
     wxLocale* m_pLocale;
 

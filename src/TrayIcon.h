@@ -22,10 +22,12 @@ private:
     wxDECLARE_EVENT_TABLE();
 
     wxMenu* CreatePopupMenu() override;
-    void OnMenuSound(wxCommandEvent&);
-    void OnMenuSounds(wxCommandEvent&);
-    void OnMenuTTS(wxCommandEvent&);
-    void OnMenuPaused(wxCommandEvent&);
+    void OnMenuEnabled(wxCommandEvent&);
+    void OnMenuLettersAndNumbers(wxCommandEvent&);
+    void OnMenuLetterCombinations(wxCommandEvent&);
+    void OnMenuWords(wxCommandEvent&);
+    void OnMenuSentences(wxCommandEvent&);
+    void OnMenuSelection(wxCommandEvent&);
     void OnMenuPreferences(wxCommandEvent&);
     void OnMenuHelp(wxCommandEvent&);
     void OnMenuExit(wxCommandEvent&);

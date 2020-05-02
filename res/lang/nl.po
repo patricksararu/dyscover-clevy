@@ -12,62 +12,65 @@ msgstr ""
 msgid "Preferences"
 msgstr "Instellingen"
 
-msgid "Sound"
-msgstr "Geluid"
+msgid "Status:"
+msgstr "Status:"
 
-msgid "Sounds"
+msgid "Method:"
+msgstr "Methode:"
+
+msgid "Dyscover"
+msgstr "Dyscover"
+
+msgid "KWeC"
+msgstr "KWeC"
+
+msgid "Software enabled"
+msgstr "Software actief"
+
+msgid "Auto-start with system"
+msgstr "Automatisch opstarten"
+
+msgid "Letters and numbers"
+msgstr "Letters en cijfers"
+
+msgid "Letter combinations"
 msgstr "Klanken"
 
-msgid "TTS (Text to Speech)"
-msgstr "Text to Speech"
+msgid "Words"
+msgstr "Woorden"
+
+msgid "Sentences"
+msgstr "Zinnen"
+
+msgid "Selection"
+msgstr "Selectie"
 
 msgid "Volume"
 msgstr "Volume"
 
-msgid "Activate After"
-msgstr "Toepassen na"
-
-msgid "Word"
-msgstr "Woord"
-
-msgid "Sentence"
-msgstr "Zin"
-
-msgid "Selection and Speaker key"
-msgstr "Selectie en luidspreker toets"
-
-msgid "Read Along"
-msgstr "Lees mee"
-
 msgid "Speed"
 msgstr "Snelheid"
 
-msgid "Start with system"
-msgstr "Automatisch opstarten"
+msgid "Keyboard"
+msgstr "Toetsenbord"
 
-msgid "Paused"
-msgstr "Pauze"
+msgid "General"
+msgstr "Algemeen"
 
-msgid "Classic"
-msgstr "Dyscover"
+msgid "Sound"
+msgstr "Geluid"
 
-msgid "Cover"
-msgstr "KWeC"
+msgid "Keyboard connected"
+msgstr "Toetsenbord aangesloten"
 
-msgid "Sound Settings"
-msgstr "Geluidsinstellingen"
-
-msgid "Text To Speech"
-msgstr "Text to Speech"
-
-msgid "Other Settings"
-msgstr "Overige instellingen"
+msgid "Keyboard not connected"
+msgstr "Toetsenbord niet aangesloten"
 
 msgid "Clevy"
 msgstr "Clevy"
 
-msgid "TTS"
-msgstr "TTS"
+msgid "Enabled"
+msgstr "Actief"
 
 msgid "Settings"
 msgstr "Instellingen"

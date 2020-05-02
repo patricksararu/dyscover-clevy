@@ -12,10 +12,12 @@
 
 enum
 {
-    ID_SOUND = wxID_HIGHEST + 1,
-    ID_SOUNDS,
-    ID_TTS,
-    ID_PAUSED,
+    ID_ENABLED = wxID_HIGHEST + 1,
+    ID_LETTERS_AND_NUMBERS,
+    ID_LETTER_COMBINATIONS,
+    ID_WORDS,
+    ID_SENTENCES,
+    ID_SELECTION,
 };
 
 TrayIcon::TrayIcon(App* pApp, Config* pConfig)
@@ -35,84 +37,75 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::UpdateIcon()
 {
-    int iconIndex;
-
-    if (m_pConfig->GetPaused())
-    {
-        iconIndex = 6;
-    }
-    else if (m_pConfig->GetSound())
-    {
-        if (m_pConfig->GetSounds())
-        {
-            iconIndex = m_pConfig->GetTTS() ? 0 : 1;
-        }
-        else
-        {
-            iconIndex = m_pConfig->GetTTS() ? 2 : 3;
-        }
-    }
-    else
-    {
-        iconIndex = m_pConfig->GetSounds() && !m_pConfig->GetTTS() ? 4 : 5;
-    }
-
+    int iconIndex = m_pConfig->GetEnabled() ? 0 : 5;
     SetIcon(m_icons[iconIndex], _("Clevy"));
 }
 
 wxMenu* TrayIcon::CreatePopupMenu()
 {
     wxMenu* pMenu = new wxMenu();
-    pMenu->AppendCheckItem(ID_SOUND, _("Sound"));
-    pMenu->AppendCheckItem(ID_SOUNDS, _("Sounds"));
-    pMenu->AppendCheckItem(ID_TTS, _("TTS"));
+    pMenu->AppendCheckItem(ID_ENABLED, _("Enabled"));
     pMenu->AppendSeparator();
-    pMenu->AppendCheckItem(ID_PAUSED, _("Paused"));
+    pMenu->AppendCheckItem(ID_LETTERS_AND_NUMBERS, _("Letters and numbers"));
+    pMenu->AppendCheckItem(ID_LETTER_COMBINATIONS, _("Letter combinations"));
+    pMenu->AppendCheckItem(ID_WORDS, _("Words"));
+    pMenu->AppendCheckItem(ID_SENTENCES, _("Sentences"));
+    pMenu->AppendCheckItem(ID_SELECTION, _("Selection"));
     pMenu->AppendSeparator();
     pMenu->Append(wxID_PREFERENCES, _("Settings"));
     pMenu->Append(wxID_HELP, _("Manual"));
     pMenu->Append(wxID_EXIT, _("Exit"));
-    pMenu->Check(ID_SOUND, m_pConfig->GetSound());
-    pMenu->Check(ID_SOUNDS, m_pConfig->GetSounds());
-    pMenu->Check(ID_TTS, m_pConfig->GetTTS());
-    pMenu->Check(ID_PAUSED, m_pConfig->GetPaused());
+    pMenu->Check(ID_ENABLED, m_pConfig->GetEnabled());
+    pMenu->Check(ID_LETTERS_AND_NUMBERS, m_pConfig->GetLettersAndNumbers());
+    pMenu->Check(ID_LETTER_COMBINATIONS, m_pConfig->GetLetterCombinations());
+    pMenu->Check(ID_WORDS, m_pConfig->GetWords());
+    pMenu->Check(ID_SENTENCES, m_pConfig->GetSentences());
+    pMenu->Check(ID_SELECTION, m_pConfig->GetSelection());
     return pMenu;
 }
 
-void TrayIcon::OnMenuSound(wxCommandEvent&)
+void TrayIcon::OnMenuEnabled(wxCommandEvent&)
 {
-    m_pConfig->SetSound(!m_pConfig->GetSound());
+    m_pConfig->SetEnabled(!m_pConfig->GetEnabled());
 
     m_pApp->UpdatePreferencesDialog();
 
     UpdateIcon();
 }
 
-void TrayIcon::OnMenuSounds(wxCommandEvent&)
+void TrayIcon::OnMenuLettersAndNumbers(wxCommandEvent&)
 {
-    m_pConfig->SetSounds(!m_pConfig->GetSounds());
+    m_pConfig->SetLettersAndNumbers(!m_pConfig->GetLettersAndNumbers());
 
     m_pApp->UpdatePreferencesDialog();
-
-    UpdateIcon();
 }
 
-void TrayIcon::OnMenuTTS(wxCommandEvent&)
+void TrayIcon::OnMenuLetterCombinations(wxCommandEvent&)
 {
-    m_pConfig->SetTTS(!m_pConfig->GetTTS());
+    m_pConfig->SetLetterCombinations(!m_pConfig->GetLetterCombinations());
 
     m_pApp->UpdatePreferencesDialog();
-
-    UpdateIcon();
 }
 
-void TrayIcon::OnMenuPaused(wxCommandEvent&)
+void TrayIcon::OnMenuWords(wxCommandEvent&)
 {
-    m_pConfig->SetPaused(!m_pConfig->GetPaused());
+    m_pConfig->SetWords(!m_pConfig->GetWords());
 
     m_pApp->UpdatePreferencesDialog();
+}
 
-    UpdateIcon();
+void TrayIcon::OnMenuSentences(wxCommandEvent&)
+{
+    m_pConfig->SetSentences(!m_pConfig->GetSentences());
+
+    m_pApp->UpdatePreferencesDialog();
+}
+
+void TrayIcon::OnMenuSelection(wxCommandEvent&)
+{
+    m_pConfig->SetSelection(!m_pConfig->GetSelection());
+
+    m_pApp->UpdatePreferencesDialog();
 }
 
 void TrayIcon::OnMenuPreferences(wxCommandEvent&)
@@ -131,10 +124,12 @@ void TrayIcon::OnMenuExit(wxCommandEvent&)
 }
 
 wxBEGIN_EVENT_TABLE(TrayIcon, wxTaskBarIcon)
-    EVT_MENU(ID_SOUND, TrayIcon::OnMenuSound)
-    EVT_MENU(ID_SOUNDS, TrayIcon::OnMenuSounds)
-    EVT_MENU(ID_TTS, TrayIcon::OnMenuTTS)
-    EVT_MENU(ID_PAUSED, TrayIcon::OnMenuPaused)
+    EVT_MENU(ID_ENABLED, TrayIcon::OnMenuEnabled)
+    EVT_MENU(ID_LETTERS_AND_NUMBERS, TrayIcon::OnMenuLettersAndNumbers)
+    EVT_MENU(ID_LETTER_COMBINATIONS, TrayIcon::OnMenuLetterCombinations)
+    EVT_MENU(ID_WORDS, TrayIcon::OnMenuWords)
+    EVT_MENU(ID_SENTENCES, TrayIcon::OnMenuSentences)
+    EVT_MENU(ID_SELECTION, TrayIcon::OnMenuSelection)
     EVT_MENU(wxID_PREFERENCES, TrayIcon::OnMenuPreferences)
     EVT_MENU(wxID_HELP, TrayIcon::OnMenuHelp)
     EVT_MENU(wxID_EXIT, TrayIcon::OnMenuExit)

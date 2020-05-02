@@ -20,7 +20,7 @@ bool App::OnInit()
     wxSplashScreen splashScreen(LoadSplashBitmap(), wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 5000, nullptr, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP);
 
     m_pConfig = new Config();
-    m_pCore = new Core(m_pConfig);
+    m_pCore = new Core(this, m_pConfig);
     m_pPreferencesDialog = new PreferencesDialog(this, m_pConfig);
     m_pTrayIcon = new TrayIcon(this, m_pConfig);
 
@@ -57,6 +57,11 @@ void App::UpdateTrayIcon()
 void App::UpdateAudioVolume()
 {
     m_pCore->UpdateAudioVolume();
+}
+
+bool App::IsClevyKeyboardPresent()
+{
+    return m_pCore->IsClevyKeyboardPresent();
 }
 
 wxIMPLEMENT_APP(App);

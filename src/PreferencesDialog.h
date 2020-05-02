@@ -26,37 +26,35 @@ private:
     App* m_pApp;
     Config* m_pConfig;
 
-    wxCheckBox* m_pSoundCheckBox;
-    wxCheckBox* m_pSoundsCheckBox;
-    wxCheckBox* m_pTTSCheckBox;
-    wxStaticText* m_pVolumeStaticText;
-    wxSlider* m_pVolumeSlider;
+    wxStaticText* m_pKeyboardStatusLabel;
+    wxStaticText* m_pKeyboardStatusValue;
+    wxStaticText* m_pKeyboardMethodLabel;
+    wxRadioButton* m_pKeyboardMethodDyscover;
+    wxRadioButton* m_pKeyboardMethodKWeC;
 
-    wxStaticText* m_pActivateAfterStaticText;
-    wxCheckBox* m_pWordCheckBox;
-    wxCheckBox* m_pSentenceCheckBox;
-    wxCheckBox* m_pSelectionSpeakerKeyCheckBox;
-    wxCheckBox* m_pReadAlongCheckBox;
-    wxStaticText* m_pSpeedStaticText;
-    wxSlider* m_pSpeedSlider;
+    wxCheckBox* m_pSoftwareEnabled;
+    wxCheckBox* m_pSoftwareAutostart;
 
-    wxCheckBox* m_pStartWithSystemCheckBox;
-    wxCheckBox* m_pPausedCheckBox;
-    wxRadioButton* m_pClassicRadioButton;
-    wxRadioButton* m_pCoverRadioButton;
+    wxCheckBox* m_pSoundLettersAndNumbers;
+    wxCheckBox* m_pSoundLetterCombinations;
+    wxCheckBox* m_pSoundWords;
+    wxCheckBox* m_pSoundSentences;
+    wxCheckBox* m_pSoundSelection;
+    wxStaticText* m_pSoundVolumeLabel;
+    wxSlider* m_pSoundVolume;
+    wxStaticText* m_pSoundSpeedLabel;
+    wxSlider* m_pSoundSpeed;
 
-    void OnSoundChanged(wxCommandEvent&);
-    void OnSoundsChanged(wxCommandEvent&);
-    void OnTTSChanged(wxCommandEvent&);
-    void OnVolumeChanged(wxCommandEvent&);
+    void OnKeyboardMethodChanged(wxCommandEvent&);
 
-    void OnWordChanged(wxCommandEvent&);
-    void OnSentenceChanged(wxCommandEvent&);
-    void OnSelectionSpeakerKeyChanged(wxCommandEvent&);
-    void OnReadAlongChanged(wxCommandEvent&);
-    void OnSpeedChanged(wxCommandEvent&);
+    void OnSoftwareEnabledChanged(wxCommandEvent&);
+    void OnSoftwareAutoStartChanged(wxCommandEvent&);
 
-    void OnStartWithSystemChanged(wxCommandEvent&);
-    void OnPausedChanged(wxCommandEvent&);
-    void OnLayoutChanged(wxCommandEvent&);
+    void OnSoundLettersAndNumbersChanged(wxCommandEvent&);
+    void OnSoundLetterCombinationsChanged(wxCommandEvent&);
+    void OnSoundWordsChanged(wxCommandEvent&);
+    void OnSoundSentencesChanged(wxCommandEvent&);
+    void OnSoundSelectionChanged(wxCommandEvent&);
+    void OnSoundVolumeChanged(wxCommandEvent&);
+    void OnSoundSpeedChanged(wxCommandEvent&);
 };

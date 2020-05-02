@@ -6,6 +6,7 @@
 #include <wx/log.h>
 #include <wx/time.h>
 
+#include "App.h"
 #include "Config.h"
 #include "Core.h"
 #include "Device.h"
@@ -14,8 +15,9 @@
 #include "SoundPlayer.h"
 #include "Speech.h"
 
-Core::Core(Config* pConfig)
+Core::Core(App* pApp, Config* pConfig)
 {
+    m_pApp = pApp;
     m_pConfig = pConfig;
     m_pDevice = Device::Create(this);
     m_pKeyboard = Keyboard::Create(this);
@@ -35,19 +37,23 @@ Core::~Core()
 
 void Core::OnClevyKeyboardConnected()
 {
+    m_pApp->UpdatePreferencesDialog();
+
     m_pSoundPlayer->PlaySoundFile("dyscover_connect_positive_with_voice.wav");
 }
 
 void Core::OnClevyKeyboardDisconnected()
 {
+    m_pApp->UpdatePreferencesDialog();
+
     m_pSoundPlayer->PlaySoundFile("dyscover_connect_negative_with_voice.wav");
 }
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
 {
-    if (m_pConfig->GetPaused())  return false;
+    if (!m_pConfig->GetEnabled())  return false;
 
-    if (key == Key::WinCmd && eventType == KeyEventType::KeyDown && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetSelection())
+    if (key == Key::WinCmd && eventType == KeyEventType::KeyDown && m_pConfig->GetSelection())
     {
         // Send Ctrl+C
         m_pKeyboard->SendKeyStroke(Key::C, false, true);
@@ -93,10 +99,26 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         bSupressEvent = true;
     }
 
-    if (eventType == KeyEventType::KeyDown && m_pConfig->GetSound() && m_pConfig->GetSounds())
+    // Play sound
+    if (eventType == KeyEventType::KeyDown)
     {
-        m_pSoundPlayer->StopPlaying();
-        m_pSoundPlayer->PlaySoundFile(translation.sound);
+        // Is a single letter or a combination?
+        if (translation.keystrokes.size() < 2)
+        {
+            if (m_pConfig->GetLettersAndNumbers())
+            {
+                m_pSoundPlayer->StopPlaying();
+                m_pSoundPlayer->PlaySoundFile(translation.sound);
+            }
+        }
+        else
+        {
+            if (m_pConfig->GetLetterCombinations())
+            {
+                m_pSoundPlayer->StopPlaying();
+                m_pSoundPlayer->PlaySoundFile(translation.sound);
+            }
+        }
     }
 
     // Speech handling
@@ -104,7 +126,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     {
         if (key == Key::Tab || key == Key::Space || key == Key::Enter)
         {
-            if (!m_wordSpeechBuffer.empty() && m_pConfig->GetSound() && m_pConfig->GetTTS() && m_pConfig->GetWord())
+            if (!m_wordSpeechBuffer.empty() && m_pConfig->GetWords())
             {
                 m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
                 m_pSpeech->Speak(m_wordSpeechBuffer);
@@ -114,19 +136,16 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         }
         else if (key == Key::Dot || ((key == Key::One || key == Key::Slash) && shift))
         {
-            if (m_pConfig->GetSound() && m_pConfig->GetTTS())
+            m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
+
+            if (!m_wordSpeechBuffer.empty() && m_pConfig->GetWords())
             {
-                m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
+                m_pSpeech->Speak(m_wordSpeechBuffer);
+            }
 
-                if (!m_wordSpeechBuffer.empty() && m_pConfig->GetWord())
-                {
-                    m_pSpeech->Speak(m_wordSpeechBuffer);
-                }
-
-                if (!m_sentenceSpeechBuffer.empty() && m_pConfig->GetSentence())
-                {
-                    m_pSpeech->Speak(m_sentenceSpeechBuffer);
-                }
+            if (!m_sentenceSpeechBuffer.empty() && m_pConfig->GetSentences())
+            {
+                m_pSpeech->Speak(m_sentenceSpeechBuffer);
             }
 
             m_wordSpeechBuffer.clear();
@@ -169,6 +188,11 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     }
 
     return bSupressEvent;
+}
+
+bool Core::IsClevyKeyboardPresent()
+{
+    return m_pDevice->IsClevyKeyboardPresent();
 }
 
 void Core::UpdateAudioVolume()

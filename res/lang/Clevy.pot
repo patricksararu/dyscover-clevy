@@ -1,61 +1,64 @@
 msgid "Preferences"
 msgstr ""
 
-msgid "Sound"
+msgid "Status:"
 msgstr ""
 
-msgid "Sounds"
+msgid "Method:"
 msgstr ""
 
-msgid "TTS (Text to Speech)"
+msgid "Dyscover"
+msgstr ""
+
+msgid "KWeC"
+msgstr ""
+
+msgid "Software enabled"
+msgstr ""
+
+msgid "Auto-start with system"
+msgstr ""
+
+msgid "Letters and numbers"
+msgstr ""
+
+msgid "Letter combinations"
+msgstr ""
+
+msgid "Words"
+msgstr ""
+
+msgid "Sentences"
+msgstr ""
+
+msgid "Selection"
 msgstr ""
 
 msgid "Volume"
 msgstr ""
 
-msgid "Activate After"
-msgstr ""
-
-msgid "Word"
-msgstr ""
-
-msgid "Sentence"
-msgstr ""
-
-msgid "Selection and Speaker key"
-msgstr ""
-
-msgid "Read Along"
-msgstr ""
-
 msgid "Speed"
 msgstr ""
 
-msgid "Start with system"
+msgid "Keyboard"
 msgstr ""
 
-msgid "Paused"
+msgid "General"
 msgstr ""
 
-msgid "Classic"
+msgid "Sound"
 msgstr ""
 
-msgid "Cover"
+msgid "Keyboard connected"
 msgstr ""
 
-msgid "Sound Settings"
-msgstr ""
-
-msgid "Text To Speech"
-msgstr ""
-
-msgid "Other Settings"
+msgid "Keyboard not connected"
 msgstr ""
 
 msgid "Clevy"
 msgstr ""
 
-msgid "TTS"
+msgid "Enabled"
 msgstr ""
 
 msgid "Settings"

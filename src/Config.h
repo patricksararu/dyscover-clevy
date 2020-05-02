@@ -23,41 +23,35 @@ public:
     Config();
     ~Config();
 
-    bool GetSound();
-    void SetSound(bool);
+    Layout GetLayout();
+    void SetLayout(Layout);
 
-    bool GetSounds();
-    void SetSounds(bool);
+    bool GetEnabled();
+    void SetEnabled(bool);
 
-    bool GetTTS();
-    void SetTTS(bool);
+    bool GetAutostart();
+    void SetAutostart(bool);
 
-    long GetVolume();
-    void SetVolume(long);
+    bool GetLettersAndNumbers();
+    void SetLettersAndNumbers(bool);
 
-    bool GetWord();
-    void SetWord(bool);
+    bool GetLetterCombinations();
+    void SetLetterCombinations(bool);
 
-    bool GetSentence();
-    void SetSentence(bool);
+    bool GetWords();
+    void SetWords(bool);
+
+    bool GetSentences();
+    void SetSentences(bool);
 
     bool GetSelection();
     void SetSelection(bool);
 
-    bool GetReadAlong();
-    void SetReadAlong(bool);
-
     long GetSpeed();
     void SetSpeed(long);
 
-    bool GetStartWithSystem();
-    void SetStartWithSystem(bool);
-
-    bool GetPaused();
-    void SetPaused(bool);
-
-    Layout GetLayout();
-    void SetLayout(Layout layout);
+    long GetVolume();
+    void SetVolume(long);
 
 private:
     wxFileConfig* m_pConfig;

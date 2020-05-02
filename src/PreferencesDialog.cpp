@@ -11,19 +11,18 @@
 
 enum
 {
-    ID_SOUND = wxID_HIGHEST + 1,
-    ID_SOUNDS,
-    ID_TTS,
+    ID_STATUS = wxID_HIGHEST + 1,
+    ID_METHOD_DYSCOVER,
+    ID_METHOD_KWEC,
+    ID_ENABLED,
+    ID_AUTOSTART,
+    ID_LETTERS_AND_NUMBERS,
+    ID_LETTER_COMBINATIONS,
+    ID_WORDS,
+    ID_SENTENCES,
+    ID_SELECTION,
     ID_VOLUME,
-    ID_WORD,
-    ID_SENTENCE,
-    ID_SELECTIONSPEAKERKEY,
-    ID_READALONG,
     ID_SPEED,
-    ID_STARTWITHSYSTEM,
-    ID_PAUSED,
-    ID_CLASSIC,
-    ID_COVER,
 };
 
 PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
@@ -34,175 +33,157 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pApp = pApp;
     m_pConfig = pConfig;
 
-    m_pSoundCheckBox = new wxCheckBox(this, ID_SOUND, _("Sound"));
-    m_pSoundsCheckBox = new wxCheckBox(this, ID_SOUNDS, _("Sounds"));
-    m_pTTSCheckBox = new wxCheckBox(this, ID_TTS, _("TTS (Text to Speech)"));
-    m_pVolumeStaticText = new wxStaticText(this, wxID_ANY, _("Volume"));
-    m_pVolumeSlider = new wxSlider(this, ID_VOLUME, 100, 0, 100, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
+    m_pKeyboardStatusLabel = new wxStaticText(this, ID_STATUS, _("Status:"));
+    m_pKeyboardStatusValue = new wxStaticText(this, ID_STATUS, wxEmptyString);
+    m_pKeyboardMethodLabel = new wxStaticText(this, wxID_ANY, _("Method:"));
+    m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Dyscover"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    m_pKeyboardMethodKWeC = new wxRadioButton(this, ID_METHOD_KWEC, _("KWeC"));
 
-    m_pActivateAfterStaticText = new wxStaticText(this, wxID_ANY, _("Activate After"));
-    m_pWordCheckBox = new wxCheckBox(this, ID_WORD, _("Word"));
-    m_pSentenceCheckBox = new wxCheckBox(this, ID_SENTENCE, _("Sentence"));
-    m_pSelectionSpeakerKeyCheckBox = new wxCheckBox(this, ID_SELECTIONSPEAKERKEY, _("Selection and Speaker key"));
-    m_pReadAlongCheckBox = new wxCheckBox(this, ID_READALONG, _("Read Along"));
-    m_pSpeedStaticText = new wxStaticText(this, wxID_ANY, _("Speed"));
-    m_pSpeedSlider = new wxSlider(this, ID_SPEED, 0, -75, 75, wxDefaultPosition, wxDefaultSize, wxSL_VERTICAL | wxSL_INVERSE);
+    m_pSoftwareEnabled = new wxCheckBox(this, ID_ENABLED, _("Software enabled"));
+    m_pSoftwareAutostart = new wxCheckBox(this, ID_AUTOSTART, _("Auto-start with system"));
 
-    m_pStartWithSystemCheckBox = new wxCheckBox(this, ID_STARTWITHSYSTEM, _("Start with system"));
-    m_pPausedCheckBox = new wxCheckBox(this, ID_PAUSED, _("Paused"));
-    m_pClassicRadioButton = new wxRadioButton(this, ID_CLASSIC, _("Classic"));
-    m_pCoverRadioButton = new wxRadioButton(this, ID_COVER, _("Cover"));
+    m_pSoundLettersAndNumbers = new wxCheckBox(this, ID_LETTERS_AND_NUMBERS, _("Letters and numbers"));
+    m_pSoundLetterCombinations = new wxCheckBox(this, ID_LETTER_COMBINATIONS, _("Letter combinations"));
+    m_pSoundWords = new wxCheckBox(this, ID_WORDS, _("Words"));
+    m_pSoundSentences = new wxCheckBox(this, ID_SENTENCES, _("Sentences"));
+    m_pSoundSelection = new wxCheckBox(this, ID_SELECTION, _("Selection"));
+    m_pSoundVolumeLabel = new wxStaticText(this, wxID_ANY, _("Volume"));
+    m_pSoundVolume = new wxSlider(this, ID_VOLUME, 100, 0, 100);
+    m_pSoundSpeedLabel = new wxStaticText(this, wxID_ANY, _("Speed"));
+    m_pSoundSpeed = new wxSlider(this, ID_SPEED, 0, -75, 75);
 
-    wxBoxSizer* pSoundSettingsInnerSizer = new wxBoxSizer(wxVERTICAL);
-    pSoundSettingsInnerSizer->Add(m_pSoundCheckBox, wxSizerFlags().Border().Expand());
-    pSoundSettingsInnerSizer->Add(m_pSoundsCheckBox, wxSizerFlags().Border().Expand());
-    pSoundSettingsInnerSizer->Add(m_pTTSCheckBox, wxSizerFlags().Border().Expand());
+    wxBoxSizer* pKeyboardStatusSizer = new wxBoxSizer(wxHORIZONTAL);
+    pKeyboardStatusSizer->Add(m_pKeyboardStatusLabel, wxSizerFlags().Border(wxRIGHT));
+    pKeyboardStatusSizer->Add(m_pKeyboardStatusValue, wxSizerFlags().Expand());
 
-    wxStaticBoxSizer* pSoundSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Sound Settings"));
-    pSoundSettingsSizer->Add(pSoundSettingsInnerSizer, wxSizerFlags().Proportion(1));
-    pSoundSettingsSizer->Add(m_pVolumeStaticText, wxSizerFlags().Border().Center());
-    pSoundSettingsSizer->Add(m_pVolumeSlider, wxSizerFlags().Center());
+    wxBoxSizer* pKeyboardMethodSizer = new wxBoxSizer(wxHORIZONTAL);
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodLabel, wxSizerFlags().Border(wxRIGHT));
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover, wxSizerFlags().Proportion(1));
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC, wxSizerFlags().Proportion(1));
 
-    wxBoxSizer* pTTSSettingsInnerSizer = new wxBoxSizer(wxVERTICAL);
-    pTTSSettingsInnerSizer->Add(m_pActivateAfterStaticText, wxSizerFlags().Border().Expand());
-    pTTSSettingsInnerSizer->Add(m_pWordCheckBox, wxSizerFlags().Border().Expand());
-    pTTSSettingsInnerSizer->Add(m_pSentenceCheckBox, wxSizerFlags().Border().Expand());
-    pTTSSettingsInnerSizer->Add(m_pSelectionSpeakerKeyCheckBox, wxSizerFlags().Border().Expand());
-    pTTSSettingsInnerSizer->Add(m_pReadAlongCheckBox, wxSizerFlags().Border().Expand());
+    wxStaticBoxSizer* pKeyboardSectionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keyboard"));
+    pKeyboardSectionSizer->Add(pKeyboardStatusSizer, wxSizerFlags().Border().Expand());
+    pKeyboardSectionSizer->Add(pKeyboardMethodSizer, wxSizerFlags().Border().Expand());
 
-    wxStaticBoxSizer* pTTSSettingsSizer = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Text To Speech"));
-    pTTSSettingsSizer->Add(pTTSSettingsInnerSizer, wxSizerFlags().Proportion(1));
-    pTTSSettingsSizer->Add(m_pSpeedStaticText, wxSizerFlags().Border().Center());
-    pTTSSettingsSizer->Add(m_pSpeedSlider, wxSizerFlags().Center());
+    wxStaticBoxSizer* pGeneralSectionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("General"));
+    pGeneralSectionSizer->Add(m_pSoftwareEnabled, wxSizerFlags().Border().Expand());
+    pGeneralSectionSizer->Add(m_pSoftwareAutostart, wxSizerFlags().Border().Expand());
 
-    wxBoxSizer* pOtherSettingsFirstInnerSizer = new wxBoxSizer(wxHORIZONTAL);
-    pOtherSettingsFirstInnerSizer->Add(m_pStartWithSystemCheckBox, wxSizerFlags().Border().Expand().Proportion(1));
-    pOtherSettingsFirstInnerSizer->Add(m_pPausedCheckBox, wxSizerFlags().Border().Expand().Proportion(1));
-
-    wxBoxSizer* pOtherSettingsSecondInnerSizer = new wxBoxSizer(wxHORIZONTAL);
-    pOtherSettingsSecondInnerSizer->Add(m_pClassicRadioButton, wxSizerFlags().Border().Expand().Proportion(1));
-    pOtherSettingsSecondInnerSizer->Add(m_pCoverRadioButton, wxSizerFlags().Border().Expand().Proportion(1));
-
-    wxStaticBoxSizer* pOtherSettingsSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Other Settings"));
-    pOtherSettingsSizer->Add(pOtherSettingsFirstInnerSizer, wxSizerFlags().Expand());
-    pOtherSettingsSizer->Add(pOtherSettingsSecondInnerSizer, wxSizerFlags().Expand());
-
-    wxSizer* pButtonSizer = CreateButtonSizer(wxCLOSE);
+    wxStaticBoxSizer* pSoundSectionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Sound"));
+    pSoundSectionSizer->Add(m_pSoundLettersAndNumbers, wxSizerFlags().Border().Expand());
+    pSoundSectionSizer->Add(m_pSoundLetterCombinations, wxSizerFlags().Border().Expand());
+    pSoundSectionSizer->Add(m_pSoundWords, wxSizerFlags().Border().Expand());
+    pSoundSectionSizer->Add(m_pSoundSentences, wxSizerFlags().Border().Expand());
+    pSoundSectionSizer->Add(m_pSoundSelection, wxSizerFlags().Border().Expand());
+    pSoundSectionSizer->AddSpacer(10);
+    pSoundSectionSizer->Add(m_pSoundVolumeLabel, wxSizerFlags().Border(wxLEFT | wxRIGHT).Expand());
+    pSoundSectionSizer->Add(m_pSoundVolume, wxSizerFlags().Expand());
+    pSoundSectionSizer->AddSpacer(10);
+    pSoundSectionSizer->Add(m_pSoundSpeedLabel, wxSizerFlags().Border(wxLEFT | wxRIGHT).Expand());
+    pSoundSectionSizer->Add(m_pSoundSpeed, wxSizerFlags().Border(wxBOTTOM).Expand());
 
     wxBoxSizer* pRootSizer = new wxBoxSizer(wxVERTICAL);
-    pRootSizer->Add(pSoundSettingsSizer, wxSizerFlags().DoubleBorder().Expand());
-    pRootSizer->Add(pTTSSettingsSizer, wxSizerFlags().DoubleBorder().Expand());
-    pRootSizer->Add(pOtherSettingsSizer, wxSizerFlags().DoubleBorder().Expand());
-    pRootSizer->Add(pButtonSizer, wxSizerFlags().Border().Expand());
+    pRootSizer->Add(pKeyboardSectionSizer, wxSizerFlags().DoubleBorder().Expand());
+    pRootSizer->Add(pGeneralSectionSizer, wxSizerFlags().DoubleHorzBorder().Expand());
+    pRootSizer->Add(pSoundSectionSizer, wxSizerFlags().DoubleBorder().Expand());
 
     SetSizerAndFit(pRootSizer);
 }
 
 bool PreferencesDialog::TransferDataToWindow()
 {
-    m_pSoundCheckBox->SetValue(m_pConfig->GetSound());
-    m_pSoundsCheckBox->SetValue(m_pConfig->GetSounds());
-    m_pTTSCheckBox->SetValue(m_pConfig->GetTTS());
-    m_pVolumeSlider->SetValue(m_pConfig->GetVolume());
+    if (m_pApp->IsClevyKeyboardPresent())
+    {
+        m_pKeyboardStatusValue->SetLabelText(_("Keyboard connected"));
+    }
+    else
+    {
+        m_pKeyboardStatusValue->SetLabelText(_("Keyboard not connected"));
+    }
 
-    m_pWordCheckBox->SetValue(m_pConfig->GetWord());
-    m_pSentenceCheckBox->SetValue(m_pConfig->GetSentence());
-    m_pSelectionSpeakerKeyCheckBox->SetValue(m_pConfig->GetSelection());
-    m_pReadAlongCheckBox->SetValue(m_pConfig->GetReadAlong());
-    m_pSpeedSlider->SetValue(m_pConfig->GetSpeed());
+    m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::DutchClassic);
+    m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::DutchKWeC);
 
-    m_pStartWithSystemCheckBox->SetValue(m_pConfig->GetStartWithSystem());
-    m_pPausedCheckBox->SetValue(m_pConfig->GetPaused());
-    m_pClassicRadioButton->SetValue(m_pConfig->GetLayout() == Layout::DutchClassic);
-    m_pCoverRadioButton->SetValue(m_pConfig->GetLayout() == Layout::DutchKWeC);
+    m_pSoftwareEnabled->SetValue(m_pConfig->GetEnabled());
+    m_pSoftwareAutostart->SetValue(m_pConfig->GetAutostart());
+
+    m_pSoundLettersAndNumbers->SetValue(m_pConfig->GetLettersAndNumbers());
+    m_pSoundLetterCombinations->SetValue(m_pConfig->GetLetterCombinations());
+    m_pSoundWords->SetValue(m_pConfig->GetWords());
+    m_pSoundSentences->SetValue(m_pConfig->GetSentences());
+    m_pSoundSelection->SetValue(m_pConfig->GetSelection());
+    m_pSoundVolume->SetValue(m_pConfig->GetVolume());
+    m_pSoundSpeed->SetValue(m_pConfig->GetSpeed());
 
     return true;
 }
 
-void PreferencesDialog::OnSoundChanged(wxCommandEvent&)
+void PreferencesDialog::OnKeyboardMethodChanged(wxCommandEvent&)
 {
-    m_pConfig->SetSound(m_pSoundCheckBox->GetValue());
+    m_pConfig->SetLayout(m_pKeyboardMethodDyscover->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
+}
+
+void PreferencesDialog::OnSoftwareEnabledChanged(wxCommandEvent&)
+{
+    m_pConfig->SetEnabled(m_pSoftwareEnabled->GetValue());
 
     m_pApp->UpdateTrayIcon();
 }
 
-void PreferencesDialog::OnSoundsChanged(wxCommandEvent&)
+void PreferencesDialog::OnSoftwareAutoStartChanged(wxCommandEvent&)
 {
-    m_pConfig->SetSounds(m_pSoundsCheckBox->GetValue());
-
-    m_pApp->UpdateTrayIcon();
+    m_pConfig->SetAutostart(m_pSoftwareAutostart->GetValue());
 }
 
-void PreferencesDialog::OnTTSChanged(wxCommandEvent&)
+void PreferencesDialog::OnSoundLettersAndNumbersChanged(wxCommandEvent&)
 {
-    m_pConfig->SetTTS(m_pTTSCheckBox->GetValue());
-
-    m_pApp->UpdateTrayIcon();
+    m_pConfig->SetLettersAndNumbers(m_pSoundLettersAndNumbers->GetValue());
 }
 
-void PreferencesDialog::OnVolumeChanged(wxCommandEvent&)
+void PreferencesDialog::OnSoundLetterCombinationsChanged(wxCommandEvent&)
 {
-    m_pConfig->SetVolume(m_pVolumeSlider->GetValue());
+    m_pConfig->SetLetterCombinations(m_pSoundLetterCombinations->GetValue());
+}
+
+void PreferencesDialog::OnSoundWordsChanged(wxCommandEvent&)
+{
+    m_pConfig->SetWords(m_pSoundWords->GetValue());
+}
+
+void PreferencesDialog::OnSoundSentencesChanged(wxCommandEvent&)
+{
+    m_pConfig->SetSentences(m_pSoundSentences->GetValue());
+}
+
+void PreferencesDialog::OnSoundSelectionChanged(wxCommandEvent&)
+{
+    m_pConfig->SetSelection(m_pSoundSelection->GetValue());
+}
+
+void PreferencesDialog::OnSoundVolumeChanged(wxCommandEvent&)
+{
+    m_pConfig->SetVolume(m_pSoundVolume->GetValue());
 
     m_pApp->UpdateAudioVolume();
 }
 
-void PreferencesDialog::OnWordChanged(wxCommandEvent&)
+void PreferencesDialog::OnSoundSpeedChanged(wxCommandEvent&)
 {
-    m_pConfig->SetWord(m_pWordCheckBox->GetValue());
-}
-
-void PreferencesDialog::OnSentenceChanged(wxCommandEvent&)
-{
-    m_pConfig->SetSentence(m_pSentenceCheckBox->GetValue());
-}
-
-void PreferencesDialog::OnSelectionSpeakerKeyChanged(wxCommandEvent&)
-{
-    m_pConfig->SetSelection(m_pSelectionSpeakerKeyCheckBox->GetValue());
-}
-
-void PreferencesDialog::OnReadAlongChanged(wxCommandEvent&)
-{
-    m_pConfig->SetReadAlong(m_pReadAlongCheckBox->GetValue());
-}
-
-void PreferencesDialog::OnSpeedChanged(wxCommandEvent&)
-{
-    m_pConfig->SetSpeed(m_pSpeedSlider->GetValue());
-}
-
-void PreferencesDialog::OnStartWithSystemChanged(wxCommandEvent&)
-{
-    m_pConfig->SetStartWithSystem(m_pStartWithSystemCheckBox->GetValue());
-}
-
-void PreferencesDialog::OnPausedChanged(wxCommandEvent&)
-{
-    m_pConfig->SetPaused(m_pPausedCheckBox->GetValue());
-
-    m_pApp->UpdateTrayIcon();
-}
-
-void PreferencesDialog::OnLayoutChanged(wxCommandEvent&)
-{
-    m_pConfig->SetLayout(m_pClassicRadioButton->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
+    m_pConfig->SetSpeed(m_pSoundSpeed->GetValue());
 }
 
 wxBEGIN_EVENT_TABLE(PreferencesDialog, wxDialog)
-    EVT_CHECKBOX(ID_SOUND, PreferencesDialog::OnSoundChanged)
-    EVT_CHECKBOX(ID_SOUNDS, PreferencesDialog::OnSoundsChanged)
-    EVT_CHECKBOX(ID_TTS, PreferencesDialog::OnTTSChanged)
-    EVT_SLIDER(ID_VOLUME, PreferencesDialog::OnVolumeChanged)
+    EVT_RADIOBUTTON(ID_METHOD_DYSCOVER, PreferencesDialog::OnKeyboardMethodChanged)
+    EVT_RADIOBUTTON(ID_METHOD_KWEC, PreferencesDialog::OnKeyboardMethodChanged)
 
-    EVT_CHECKBOX(ID_WORD, PreferencesDialog::OnWordChanged)
-    EVT_CHECKBOX(ID_SENTENCE, PreferencesDialog::OnSentenceChanged)
-    EVT_CHECKBOX(ID_SELECTIONSPEAKERKEY, PreferencesDialog::OnSelectionSpeakerKeyChanged)
-    EVT_CHECKBOX(ID_READALONG, PreferencesDialog::OnReadAlongChanged)
-    EVT_SLIDER(ID_SPEED, PreferencesDialog::OnSpeedChanged)
+    EVT_CHECKBOX(ID_ENABLED, PreferencesDialog::OnSoftwareEnabledChanged)
+    EVT_CHECKBOX(ID_AUTOSTART, PreferencesDialog::OnSoftwareAutoStartChanged)
 
-    EVT_CHECKBOX(ID_STARTWITHSYSTEM, PreferencesDialog::OnStartWithSystemChanged)
-    EVT_CHECKBOX(ID_PAUSED, PreferencesDialog::OnPausedChanged)
-    EVT_RADIOBUTTON(ID_CLASSIC, PreferencesDialog::OnLayoutChanged)
-    EVT_RADIOBUTTON(ID_COVER, PreferencesDialog::OnLayoutChanged)
+    EVT_CHECKBOX(ID_LETTERS_AND_NUMBERS, PreferencesDialog::OnSoundLettersAndNumbersChanged)
+    EVT_CHECKBOX(ID_LETTER_COMBINATIONS, PreferencesDialog::OnSoundLetterCombinationsChanged)
+    EVT_CHECKBOX(ID_WORDS, PreferencesDialog::OnSoundWordsChanged)
+    EVT_CHECKBOX(ID_SENTENCES, PreferencesDialog::OnSoundSentencesChanged)
+    EVT_CHECKBOX(ID_SELECTION, PreferencesDialog::OnSoundSelectionChanged)
+    EVT_SLIDER(ID_VOLUME, PreferencesDialog::OnSoundVolumeChanged)
+    EVT_SLIDER(ID_SPEED, PreferencesDialog::OnSoundSpeedChanged)
 wxEND_EVENT_TABLE()

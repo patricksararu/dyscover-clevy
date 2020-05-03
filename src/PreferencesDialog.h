@@ -45,6 +45,9 @@ private:
     wxStaticText* m_pSoundSpeedLabel;
     wxSlider* m_pSoundSpeed;
 
+    wxStaticText* m_pVersionLabel;
+    wxStaticText* m_pVersionValue;
+
     void OnKeyboardMethodChanged(wxCommandEvent&);
 
     void OnSoftwareEnabledChanged(wxCommandEvent&);

@@ -8,6 +8,7 @@
 #include "Config.h"
 #include "PreferencesDialog.h"
 #include "ResourceLoader.h"
+#include "VersionInfo.h"
 
 enum
 {
@@ -52,6 +53,9 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pSoundSpeedLabel = new wxStaticText(this, wxID_ANY, _("Speed"));
     m_pSoundSpeed = new wxSlider(this, ID_SPEED, 0, -75, 75);
 
+    m_pVersionLabel = new wxStaticText(this, wxID_ANY, "Version");
+    m_pVersionValue = new wxStaticText(this, wxID_ANY, VERSION_STRING);
+
     wxBoxSizer* pKeyboardStatusSizer = new wxBoxSizer(wxHORIZONTAL);
     pKeyboardStatusSizer->Add(m_pKeyboardStatusLabel, wxSizerFlags().Border(wxRIGHT));
     pKeyboardStatusSizer->Add(m_pKeyboardStatusValue, wxSizerFlags().Expand());
@@ -82,10 +86,16 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pSoundSectionSizer->Add(m_pSoundSpeedLabel, wxSizerFlags().Border(wxLEFT | wxRIGHT).Expand());
     pSoundSectionSizer->Add(m_pSoundSpeed, wxSizerFlags().Border(wxBOTTOM).Expand());
 
+    wxBoxSizer* pVersionSizer = new wxBoxSizer(wxHORIZONTAL);
+    pVersionSizer->AddStretchSpacer();
+    pVersionSizer->Add(m_pVersionLabel, wxSizerFlags().Border(wxRIGHT));
+    pVersionSizer->Add(m_pVersionValue, wxSizerFlags().Border(wxRIGHT));
+
     wxBoxSizer* pRootSizer = new wxBoxSizer(wxVERTICAL);
     pRootSizer->Add(pKeyboardSectionSizer, wxSizerFlags().DoubleBorder().Expand());
     pRootSizer->Add(pGeneralSectionSizer, wxSizerFlags().DoubleHorzBorder().Expand());
     pRootSizer->Add(pSoundSectionSizer, wxSizerFlags().DoubleBorder().Expand());
+    pRootSizer->Add(pVersionSizer, wxSizerFlags().DoubleBorder(wxRIGHT | wxBOTTOM).Expand());
 
     SetSizerAndFit(pRootSizer);
 }

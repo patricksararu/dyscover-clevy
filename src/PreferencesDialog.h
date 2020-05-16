@@ -48,6 +48,13 @@ private:
     wxStaticText* m_pVersionLabel;
     wxStaticText* m_pVersionValue;
 
+#ifdef __LICENSING_DEMO__
+    wxStaticText* m_pDemoDaysRemaining;
+#endif
+#ifdef __LICENSING_NONE__
+    wxStaticText* m_pLicensingDisabledWarning;
+#endif
+
     void OnKeyboardMethodChanged(wxCommandEvent&);
 
     void OnSoftwareEnabledChanged(wxCommandEvent&);

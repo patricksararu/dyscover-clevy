@@ -24,6 +24,8 @@ add_executable(Dyscover WIN32
   src/Keyboard.h
   src/Keys.cpp
   src/Keys.h
+  src/LicensingDemo.cpp
+  src/LicensingDemo.h
   src/PreferencesDialog.cpp
   src/PreferencesDialog.h
   src/Queue.h
@@ -100,6 +102,20 @@ if(WIN32)
         COMMAND xcopy \"${CMAKE_SOURCE_DIR}/res/data/tts\" \"$<TARGET_FILE_DIR:Dyscover>/tts\" /s /y /i /d
         COMMENT "Updating TTS data files ..."
     )
+endif()
+
+# Licensing
+set(LICENSING "demo" CACHE STRING "Specifies which licensing of the app to use")
+set_property(CACHE LICENSING PROPERTY STRINGS demo full none)
+message(STATUS "Licensing is set to ${LICENSING}.")
+if(LICENSING STREQUAL "demo")
+  target_compile_definitions(Dyscover PRIVATE __LICENSING_DEMO__)
+elseif(LICENSING STREQUAL "full")
+  target_compile_definitions(Dyscover PRIVATE __LICENSING_FULL__)
+elseif(LICENSING STREQUAL "none")
+  target_compile_definitions(Dyscover PRIVATE __LICENSING_NONE__)
+else()
+  message(FATAL_ERROR "Invalid licensing mode! Valid modes are demo, full and none.")
 endif()
 
 # Version

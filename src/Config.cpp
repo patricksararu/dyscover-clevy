@@ -16,6 +16,8 @@ static const wxString kSentencesKey("/Dyscover/Sentences");
 static const wxString kSelectionKey("/Dyscover/Selection");
 static const wxString kVolumeKey("/Dyscover/Volume");
 static const wxString kSpeedKey("/Dyscover/Speed");
+static const wxString kDemoStartedKey("/Dyscover/DemoStarted");
+static const wxString kDemoExpiredKey("/Dyscover/DemoExpired");
 
 static constexpr Layout kLayoutDefaultValue = Layout::DutchClassic;
 static constexpr bool kEnabledDefaultValue = true;
@@ -27,6 +29,8 @@ static constexpr bool kSentencesDefaultValue = true;
 static constexpr bool kSelectionDefaultValue = true;
 static constexpr long kVolumeDefaultValue = 100;
 static constexpr long kSpeedDefaultValue = 0;
+static const wxDateTime kDemoStartedDefaultValue;
+static constexpr bool kDemoExpiredDefaultValue = false;
 
 static const wxString kLayoutValueClassic("Classic");
 static const wxString kLayoutValueKWeC("Cover");
@@ -139,6 +143,43 @@ long Config::GetSpeed()
 void Config::SetSpeed(long value)
 {
     m_pConfig->Write(kSpeedKey, value);
+}
+
+wxDateTime Config::GetDemoStarted()
+{
+    return m_pConfig->ReadObject<wxDateTime>(kDemoStartedKey, kDemoStartedDefaultValue);
+}
+
+void Config::SetDemoStarted(wxDateTime value)
+{
+    m_pConfig->Write(kDemoStartedKey, value);
+}
+
+bool Config::GetDemoExpired()
+{
+    return m_pConfig->ReadBool(kDemoExpiredKey, kDemoExpiredDefaultValue);
+}
+
+void Config::SetDemoExpired(bool value)
+{
+    m_pConfig->Write(kDemoExpiredKey, value);
+}
+
+bool wxFromString(const wxString& string, wxDateTime* pDateTime)
+{
+    wxDateTime datetime;
+    if (datetime.ParseISOCombined(string))
+    {
+        *pDateTime = datetime;
+        return true;
+    }
+
+    return false;
+}
+
+wxString wxToString(const wxDateTime& datetime)
+{
+    return datetime.FormatISOCombined();
 }
 
 bool wxFromString(const wxString& string, Layout* pLayout)

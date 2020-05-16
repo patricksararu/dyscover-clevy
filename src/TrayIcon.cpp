@@ -37,7 +37,11 @@ TrayIcon::~TrayIcon()
 
 void TrayIcon::UpdateIcon()
 {
+#ifdef __LICENSING_FULL__
+    int iconIndex = m_pApp->IsClevyKeyboardPresent() && m_pConfig->GetEnabled() ? 0 : 5;
+#else
     int iconIndex = m_pConfig->GetEnabled() ? 0 : 5;
+#endif
     SetIcon(m_icons[iconIndex], _("Clevy"));
 }
 

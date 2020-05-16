@@ -86,6 +86,17 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pSoundSectionSizer->Add(m_pSoundSpeedLabel, wxSizerFlags().Border(wxLEFT | wxRIGHT).Expand());
     pSoundSectionSizer->Add(m_pSoundSpeed, wxSizerFlags().Border(wxBOTTOM).Expand());
 
+    wxBoxSizer* pLicenseSizer = new wxBoxSizer(wxVERTICAL);
+#ifdef __LICENSING_DEMO__
+    wxString s = wxString::Format("Demo days remaining: %d", m_pApp->GetDemoDaysRemaining());
+    m_pDemoDaysRemaining = new wxStaticText(this, wxID_ANY, s);
+    pLicenseSizer->Add(m_pDemoDaysRemaining, wxSizerFlags().Expand());
+#endif
+#ifdef __LICENSING_NONE__
+    m_pLicensingDisabledWarning = new wxStaticText(this, wxID_ANY, "Licensing disabled. Do NOT distribute this build.");
+    pLicenseSizer->Add(m_pLicensingDisabledWarning, wxSizerFlags().Expand());
+#endif
+
     wxBoxSizer* pVersionSizer = new wxBoxSizer(wxHORIZONTAL);
     pVersionSizer->AddStretchSpacer();
     pVersionSizer->Add(m_pVersionLabel, wxSizerFlags().Border(wxRIGHT));
@@ -95,7 +106,8 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pRootSizer->Add(pKeyboardSectionSizer, wxSizerFlags().DoubleBorder().Expand());
     pRootSizer->Add(pGeneralSectionSizer, wxSizerFlags().DoubleHorzBorder().Expand());
     pRootSizer->Add(pSoundSectionSizer, wxSizerFlags().DoubleBorder().Expand());
-    pRootSizer->Add(pVersionSizer, wxSizerFlags().DoubleBorder(wxRIGHT | wxBOTTOM).Expand());
+    pRootSizer->Add(pLicenseSizer, wxSizerFlags().DoubleHorzBorder().Expand());
+    pRootSizer->Add(pVersionSizer, wxSizerFlags().DoubleBorder().Expand());
 
     SetSizerAndFit(pRootSizer);
 }

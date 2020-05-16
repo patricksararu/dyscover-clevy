@@ -14,7 +14,7 @@
 #include "SoundPlayer.h"
 #include "Speech.h"
 
-Core::Core(App* pApp, Config* pConfig)
+Core::Core(App* pApp, Config* pConfig, Device* pDevice)
 {
     m_pApp = pApp;
     m_pConfig = pConfig;
@@ -22,6 +22,8 @@ Core::Core(App* pApp, Config* pConfig)
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
     m_pSpeech->Init(GetTTSDataPath(), "nl", "Ilse");
+
+    m_bKeyboardConnected = pDevice->IsClevyKeyboardPresent();
 }
 
 Core::~Core()
@@ -34,6 +36,10 @@ Core::~Core()
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
 {
+#ifdef __LICENSING_FULL__
+    if (!m_bKeyboardConnected)  return false;
+#endif
+
     if (!m_pConfig->GetEnabled())  return false;
 
     if (key == Key::WinCmd && eventType == KeyEventType::KeyDown && m_pConfig->GetSelection())
@@ -176,11 +182,15 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
 void Core::OnClevyKeyboardConnected()
 {
     m_pSoundPlayer->PlaySoundFile("dyscover_connect_positive_with_voice.wav");
+
+    m_bKeyboardConnected = true;
 }
 
 void Core::OnClevyKeyboardDisconnected()
 {
     m_pSoundPlayer->PlaySoundFile("dyscover_connect_negative_with_voice.wav");
+
+    m_bKeyboardConnected = false;
 }
 
 void Core::UpdateAudioVolume()

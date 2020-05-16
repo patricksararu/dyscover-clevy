@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <wx/datetime.h>
 #include <wx/string.h>
 
 class wxFileConfig;  // TODO: Replace with #include <wx/fileconf.h>
@@ -52,6 +53,12 @@ public:
 
     long GetVolume();
     void SetVolume(long);
+
+    wxDateTime GetDemoStarted();
+    void SetDemoStarted(wxDateTime);
+
+    bool GetDemoExpired();
+    void SetDemoExpired(bool);
 
 private:
     wxFileConfig* m_pConfig;

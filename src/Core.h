@@ -14,7 +14,7 @@ class Speech;
 class Core : public IKeyEventListener
 {
 public:
-    Core(App*, Config*);
+    Core(App*, Config*, Device*);
     virtual ~Core();
 
     virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) override;
@@ -33,4 +33,6 @@ private:
 
     std::string m_wordSpeechBuffer;
     std::string m_sentenceSpeechBuffer;
+
+    bool m_bKeyboardConnected;
 };

@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "Device.h"
 #include "Keyboard.h"
 
 class App;
@@ -12,25 +11,22 @@ class Config;
 class SoundPlayer;
 class Speech;
 
-class Core : public IDeviceListener, public IKeyEventListener
+class Core : public IKeyEventListener
 {
 public:
     Core(App*, Config*);
     virtual ~Core();
 
-    virtual void OnClevyKeyboardConnected() override;
-    virtual void OnClevyKeyboardDisconnected() override;
-
     virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) override;
 
-    bool IsClevyKeyboardPresent();
+    void OnClevyKeyboardConnected();
+    void OnClevyKeyboardDisconnected();
 
     void UpdateAudioVolume();
 
 private:
     App* m_pApp;
     Config* m_pConfig;
-    Device* m_pDevice;
     Keyboard* m_pKeyboard;
     SoundPlayer* m_pSoundPlayer;
     Speech* m_pSpeech;

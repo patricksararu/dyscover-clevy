@@ -21,6 +21,7 @@ bool App::OnInit()
 
     m_pConfig = new Config();
     m_pCore = new Core(this, m_pConfig);
+    m_pDevice = Device::Create(this);
     m_pPreferencesDialog = new PreferencesDialog(this, m_pConfig);
     m_pTrayIcon = new TrayIcon(this, m_pConfig);
 
@@ -31,12 +32,27 @@ int App::OnExit()
 {
     delete m_pTrayIcon;
     delete m_pPreferencesDialog;
+    delete m_pDevice;
     delete m_pCore;
     delete m_pConfig;
 
     delete m_pLocale;
 
     return wxApp::OnExit();
+}
+
+void App::OnClevyKeyboardConnected()
+{
+    UpdatePreferencesDialog();
+
+    m_pCore->OnClevyKeyboardConnected();
+}
+
+void App::OnClevyKeyboardDisconnected()
+{
+    UpdatePreferencesDialog();
+
+    m_pCore->OnClevyKeyboardDisconnected();
 }
 
 void App::ShowPreferencesDialog()
@@ -61,7 +77,7 @@ void App::UpdateAudioVolume()
 
 bool App::IsClevyKeyboardPresent()
 {
-    return m_pCore->IsClevyKeyboardPresent();
+    return m_pDevice->IsClevyKeyboardPresent();
 }
 
 wxIMPLEMENT_APP(App);

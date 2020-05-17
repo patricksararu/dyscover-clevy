@@ -9,7 +9,6 @@
 #include "App.h"
 #include "Config.h"
 #include "Core.h"
-#include "Device.h"
 #include "Keyboard.h"
 #include "ResourceLoader.h"
 #include "SoundPlayer.h"
@@ -19,7 +18,6 @@ Core::Core(App* pApp, Config* pConfig)
 {
     m_pApp = pApp;
     m_pConfig = pConfig;
-    m_pDevice = Device::Create(this);
     m_pKeyboard = Keyboard::Create(this);
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
@@ -32,21 +30,6 @@ Core::~Core()
     delete m_pSpeech;
     delete m_pSoundPlayer;
     delete m_pKeyboard;
-    delete m_pDevice;
-}
-
-void Core::OnClevyKeyboardConnected()
-{
-    m_pApp->UpdatePreferencesDialog();
-
-    m_pSoundPlayer->PlaySoundFile("dyscover_connect_positive_with_voice.wav");
-}
-
-void Core::OnClevyKeyboardDisconnected()
-{
-    m_pApp->UpdatePreferencesDialog();
-
-    m_pSoundPlayer->PlaySoundFile("dyscover_connect_negative_with_voice.wav");
 }
 
 bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
@@ -190,9 +173,14 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     return bSupressEvent;
 }
 
-bool Core::IsClevyKeyboardPresent()
+void Core::OnClevyKeyboardConnected()
 {
-    return m_pDevice->IsClevyKeyboardPresent();
+    m_pSoundPlayer->PlaySoundFile("dyscover_connect_positive_with_voice.wav");
+}
+
+void Core::OnClevyKeyboardDisconnected()
+{
+    m_pSoundPlayer->PlaySoundFile("dyscover_connect_negative_with_voice.wav");
 }
 
 void Core::UpdateAudioVolume()

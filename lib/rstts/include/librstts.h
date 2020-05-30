@@ -63,8 +63,8 @@ extern "C" {
   *
   * NEVER check against a specific version number, but always for
   * a specific version or later (using the >= operator)! This is
-  * because newer versions of the SDK almost always and thus
-  * increment this number even when entirely API compatible.
+  * because newer versions of the SDK will increase this number
+  * even when entirely API compatible.
   *
   * Note that the buildtime and runtime versions are not always
   * exactly the same. In particular, bug fix releases may update the
@@ -75,7 +75,7 @@ extern "C" {
   * the buildtime and runtime version numbers as independent, and
   * not make assumptions based on how they relate to each other.
   */
-#define RSTTS_BUILDTIME_VERSION 0x010000
+#define RSTTS_BUILDTIME_VERSION 0x010207
 
 
 /**
@@ -94,7 +94,7 @@ typedef struct RSTTSEventData RSTTSEventData;  /*!< @brief TTS event data (the a
 
 
 /**
- * @brief This indicates the state of a TTS instance.
+ * @brief This type represents the state of a TTS instance.
  *
  * \li RSTTSInst_unset: Special value used to indicate unknown state or error. Returned as an error indication from rsttsGetState().
  * \li RSTTSInst_ready: The instance is not in use and is ready to be
@@ -105,10 +105,12 @@ typedef struct RSTTSEventData RSTTSEventData;  /*!< @brief TTS event data (the a
  * which will let it eventually transition to another state.)
  * \li RSTTSInst_playing: The instance is actively used (processing
  * text and/or generating audio).
- * \li RSTTSInst_stopping: The instance has been requested to stop, but
- * still has outstanding callbacks and releasing of resources to complete
- * before it is ready to accept new work. It will transition automatically
- * to RSTTSInst_ready when these ongoing actions are completed.
+ * \li RSTTSInst_stopping: The instance has been requested to stop, but is
+ * not yet ready to accept new work (it will need to finish any
+ * ongoing callback, as well as release resources specific to its current
+ * task before it can accept a new one)
+ * It will transition automatically to RSTTSInst_ready when these
+ * actions are completed and it becomes ready to accept new tasks.
  */
 typedef enum { RSTTSInst_unset=0, RSTTSInst_ready=1, RSTTSInst_paused=2, RSTTSInst_playing=4, RSTTSInst_stopping=8 } RSTTSInst_State;
 
@@ -118,8 +120,76 @@ typedef enum { RSTTSInst_unset=0, RSTTSInst_ready=1, RSTTSInst_paused=2, RSTTSIn
  * see this function for more information.
  */
 
-  typedef enum { RSTTS_PARAM_NONE=0, RSTTS_PARAM_QUALITY_SETTING=1, RSTTS_PARAM_LICENSE_FILE=2, RSTTS_PARAM_LICENSE_BUFFER=3, RSTTS_PARAM_EVENT_MASK=4, RSTTS_PARAM_TEXT_POSITION_TRACKING=5, RSTTS_PARAM_VISEME_ALPHABET=6, RSTTS_PARAM_RESPONSIVENESS_SETTING=7, RSTTS_PARAM_PUNCTUATION_PAUSE_MS=8, RSTTS_PARAM_SENTENCE_PAUSE_MS=9, RSTTS_PARAM_X_WEAK_BREAK_PAUSE_MS=10, RSTTS_PARAM_WEAK_BREAK_PAUSE_MS=11, RSTTS_PARAM_MEDIUM_BREAK_PAUSE_MS=12, RSTTS_PARAM_STRONG_BREAK_PAUSE_MS=13, RSTTS_PARAM_X_STRONG_BREAK_PAUSE_MS=14, RSTTS_PARAM_MAX_BREAK_PAUSE_MS=15 } RSTTS_PARAMS;
+  typedef enum {
+    RSTTS_PARAM_NONE=0,
+    RSTTS_PARAM_QUALITY_SETTING=1,
+    RSTTS_PARAM_LICENSE_FILE=2,
+    RSTTS_PARAM_LICENSE_BUFFER=3,
+    RSTTS_PARAM_EVENT_MASK=4,
+    RSTTS_PARAM_TEXT_POSITION_TRACKING=5,
+    RSTTS_PARAM_VISEME_ALPHABET=6,
+    RSTTS_PARAM_RESPONSIVENESS_SETTING=7,
+    RSTTS_PARAM_PUNCTUATION_PAUSE_MS=8,
+    RSTTS_PARAM_SENTENCE_PAUSE_MS=9,
+    RSTTS_PARAM_X_WEAK_BREAK_PAUSE_MS=10,
+    RSTTS_PARAM_WEAK_BREAK_PAUSE_MS=11,
+    RSTTS_PARAM_MEDIUM_BREAK_PAUSE_MS=12,
+    RSTTS_PARAM_STRONG_BREAK_PAUSE_MS=13,
+    RSTTS_PARAM_X_STRONG_BREAK_PAUSE_MS=14,
+    RSTTS_PARAM_MAX_BREAK_PAUSE_MS=15,
+    RSTTS_PARAM_TEXT_POSITION_INCLUDES_MARKUP=16,
+    RSTTS_PARAM_AUDIO_REALTIME_PCT=17,
 
+    // Pitch parameters 100-109
+    RSTTS_PARAM_PITCH_DEFAULT=100,
+    RSTTS_PARAM_PITCH_X_LOW=101,
+    RSTTS_PARAM_PITCH_LOW=102,
+    RSTTS_PARAM_PITCH_MEDIUM=103,
+    RSTTS_PARAM_PITCH_HIGH=104,
+    RSTTS_PARAM_PITCH_X_HIGH=105,
+
+    // Rate parameters 110-119
+    RSTTS_PARAM_RATE_DEFAULT=110,
+    RSTTS_PARAM_RATE_X_SLOW=111,
+    RSTTS_PARAM_RATE_SLOW=112,
+    RSTTS_PARAM_RATE_MEDIUM=113,
+    RSTTS_PARAM_RATE_FAST=114,
+    RSTTS_PARAM_RATE_X_FAST=115,
+
+    // Volume parameters 120-129
+    RSTTS_PARAM_VOLUME_DEFAULT=120,
+    RSTTS_PARAM_VOLUME_SILENT=121,
+    RSTTS_PARAM_VOLUME_X_SOFT=122,
+    RSTTS_PARAM_VOLUME_SOFT=123,
+    RSTTS_PARAM_VOLUME_MEDIUM=124,
+    RSTTS_PARAM_VOLUME_LOUD=125,
+    RSTTS_PARAM_VOLUME_X_LOUD=126,
+
+    // Marked up emphasis level "reduced" 130-139
+    RSTTS_PARAM_MARKUP_EMPHASIS_REDUCED_RATE=130,
+    RSTTS_PARAM_MARKUP_EMPHASIS_REDUCED_PITCH=131,
+    RSTTS_PARAM_MARKUP_EMPHASIS_REDUCED_VOLUME=132,
+
+    // Marked up emphasis level "moderate" 140-149
+    RSTTS_PARAM_MARKUP_EMPHASIS_MODERATE_RATE=140,
+    RSTTS_PARAM_MARKUP_EMPHASIS_MODERATE_PITCH=141,
+    RSTTS_PARAM_MARKUP_EMPHASIS_MODERATE_VOLUME=142,
+
+    // Marked up emphasis level "strong" 150-159
+    RSTTS_PARAM_MARKUP_EMPHASIS_STRONG_RATE=150,
+    RSTTS_PARAM_MARKUP_EMPHASIS_STRONG_PITCH=151,
+    RSTTS_PARAM_MARKUP_EMPHASIS_STRONG_VOLUME=152,
+
+    // General URI handling settings 160-169
+    RSTTS_PARAM_URI_BASE=160,
+
+    // Built-in file: URI handler settings 170-179
+    RSTTS_PARAM_URI_FILE_BUILTIN_ENABLED=170,
+    RSTTS_PARAM_URI_FILE_BUILTIN_ALLOW_ABS=171,
+    RSTTS_PARAM_URI_FILE_BUILTIN_ALLOW_REL=172,
+    RSTTS_PARAM_URI_FILE_BUILTIN_SFX=173
+
+  } RSTTS_PARAMS;
 
 /**
  * @brief This indicates the type of a parameter value passed as the value argument to rsttsSetParameter().
@@ -147,9 +217,11 @@ typedef enum { RSTTS_TYPE_UNDEFINED=0, RSTTS_TYPE_INT=1, RSTTS_TYPE_UINT=2, RSTT
  * See rsttsLoadLexicon functions for more information.
  */
 
-typedef enum {  RSTTS_PRE_SSML_PARSE=0,  RSTTS_PRE_NORMALIZATION=1  } EngineStage;
+typedef enum {  RSTTS_PRE_MARKUP_PARSE=0, RSTTS_POST_MARKUP_PARSE=100, RSTTS_PRE_NORMALIZATION=200  } EngineStage;
 
-#define RSTTS_PARAMVAL_FALSE NULL /*!< @brief Used with rsttsSetParameter() for setting a boolean parameter to true */
+#define RSTTS_PRE_SSML_PARSE RSTTS_PRE_MARKUP_PARSE /*!< @deprecated Use RSTTS_PRE_MARKUP_PARSE instead @brief Alias for RSTTS_PRE_MARKUP_PARSE */
+
+#define RSTTS_PARAMVAL_FALSE NULL /*!< @brief Used with rsttsSetParameter() for setting a boolean parameter to false */
 /* (arbitrary non-NULL void pointer value used to set a boolean TTS parameter to true) */
 #define RSTTS_PARAMVAL_TRUE ((void*)1) /*!< @brief Used with rsttsSetParameter() for setting a boolean parameter to true */
 
@@ -360,12 +432,14 @@ PUBLIC_API const char* rsttsGetErrorCodeString(int err);
  * -----------------|---------------------|-------
  * <b>Event reporting settings</b> |||
  * RSTTS_PARAM_EVENT_MASK       | RSTTS_TYPE_INT    | Selects for which events callbacks will be generated. The value should be a bit mask of (or:ed together) values of RSTTS_EventType. The predefined masks RSTTS_EVENT_MASK_NONE, RSTTS_EVENT_MASK_DEFAULT, RSTTS_EVENT_MASK_ALL may also be used. (The event mask may be set during ongoing generation, but changes may not take effect immediately.)
+ * RSTTS_PARAM_TEXT_POSITION_INCLUDES_MARKUP | RSTTS_TYPE_BOOL | Set to let markup (SSML tags/entities etc) count as part of the text in reported positions in events.
  * RSTTS_PARAM_TEXT_POSITION_TRACKING | RSTTS_TYPE_BOOL | Set to RSTTS_PARAMVAL_FALSE to disable text position tracking, RSTTS_PARAMVAL_TRUE to enable. Text position tracking is disabled per default, and should be enabled for applications relying on events being reported together with their positions in the input text. (May incur a slight extra cost in CPU time and memory usage; applications not needing this can leave it disabled.)
  * RSTTS_PARAM_VISEME_ALPHABET  | RSTTS_TYPE_STRING | Sets the viseme alphabet to use when reporting viseme events (when enabled by the event mask). Most voices support the "sapi" viseme alphabet. (Success merely indicates that the parameter was set, it does not indicate that the selected viseme alphabet is available for any voice.)
  * <b>License settings</b> |||
  * RSTTS_PARAM_LICENSE_BUFFER   | RSTTS_TYPE_STRING | Loads a license from memory. Provide license file contents as a null-terminated string (const char*). Success indicates that the license was successfully loaded and validated.
- * RSTTS_PARAM_LICENSE_FILE     | RSTTS_TYPE_STRING | Loads a license from a file. Provide a path as a null-terminated string (const char*). Success indicates that the license was successfully loaded and validated.
+ * RSTTS_PARAM_LICENSE_FILE     | RSTTS_TYPE_STRING | Loads a license from a file. Provide a path as a null-terminated UTF-8 string (const char*). Success indicates that the license was successfully loaded and validated.
  * <b>Speed/quality tradeoff settings</b> |||
+ * RSTTS_PARAM_AUDIO_REALTIME_PCT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Limits audio generation speed, in percentage of realtime speed. Set to a percentage of realtime speed (i.e. 200 for 2x realtime), or 0 (default) for no speed limitation (license and system limitations still apply).
  * RSTTS_PARAM_QUALITY_SETTING | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Sets a general voice quality/speed tradeoff level. Use the constants RSTTS_QUALITY_NORMAL or RSTTS_QUALITY_LOW or some value in between.
  * RSTTS_PARAM_RESPONSIVENESS_SETTING | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Controls tradeoffs that affect time to first audio, including adjusting how much voice data to preload on voice selection. Setting the value RSTTS_RESPONSIVENESS_FAST may decrease the time from initiating a call to rsttsSynthesize() or rsttsSynthesizeAsync() to the first emitted audio from that call, but may instead slow down voice selection. Also, see note below. Use the constants RSTTS_RESPONSIVENESS_NORMAL or RSTTS_RESPONSIVENESS_FAST or some value in between.
  * <b>Pause settings</b> |||
@@ -377,6 +451,42 @@ PUBLIC_API const char* rsttsGetErrorCodeString(int err);
  * RSTTS_PARAM_WEAK_BREAK_PAUSE_MS | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Default pause length (in ms) for breaks specified with prosodic strength <i>weak</i> |
  * RSTTS_PARAM_X_STRONG_BREAK_PAUSE_MS | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Default pause length (in ms) for breaks specified with prosodic strength <i>x-strong</i> |
  * RSTTS_PARAM_X_WEAK_BREAK_PAUSE_MS | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Default pause length (in ms) for breaks specified with prosodic strength <i>x-weak</i> |
+ * <b>Pitch/rate/volume settings</b> |||
+ * RSTTS_PARAM_PITCH_DEFAULT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Basic pitch level (percentage, linear scale) for text without pitch markup, or explicitly marked up as having default pitch. (Cannot be modified while the TTS instance is in use. The real-time master pitch setting set by rsttsSetPitch() is applied on top of this setting during processing, to achieve the final pitch.) |
+ * RSTTS_PARAM_PITCH_X_LOW | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_PITCH_DEFAULT, but instead applies when markup specifies the <i>x-low</i> pitch level. |
+ * RSTTS_PARAM_PITCH_LOW | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_PITCH_DEFAULT, but instead applies when markup specifies the <i>low</i> pitch level. |
+ * RSTTS_PARAM_PITCH_MEDIUM | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_PITCH_DEFAULT, but instead applies when markup specifies the <i>medium</i> pitch level. |
+ * RSTTS_PARAM_PITCH_HIGH | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_PITCH_DEFAULT, but instead applies when markup specifies the <i>high</i> pitch level. |
+ * RSTTS_PARAM_PITCH_X_HIGH | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_PITCH_DEFAULT, but instead applies when markup specifies the <i>x-high</i> pitch level. |
+ * RSTTS_PARAM_RATE_DEFAULT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Basic rate/speed level (percentage, linear scale) for text without rate markup, or explicitly marked up as having default rate. (Cannot be modified while the TTS instance is in use. The real-time master rate setting set by rsttsSetRate() is applied on top of this setting during processing, to achieve the final rate.) |
+ * RSTTS_PARAM_RATE_X_SLOW | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_RATE_DEFAULT, but instead applies when markup specifies the <i>x-slow</i> rate level. |
+ * RSTTS_PARAM_RATE_SLOW | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_RATE_DEFAULT, but instead applies when markup specifies the <i>slow</i> rate level. |
+ * RSTTS_PARAM_RATE_MEDIUM | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_RATE_DEFAULT, but instead applies when markup specifies the <i>medium</i> rate level. |
+ * RSTTS_PARAM_RATE_FAST | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_RATE_DEFAULT, but instead applies when markup specifies the <i>fast</i> rate level. |
+ * RSTTS_PARAM_RATE_X_FAST | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_RATE_DEFAULT, but instead applies when markup specifies the <i>x-fast</i> rate level. |
+ * RSTTS_PARAM_VOLUME_DEFAULT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Basic volume level (percentage of default, linear scale) for text without volume markup, or explicitly marked up as having default volume. (Cannot be modified while the TTS instance is in use. The real-time master volume setting set by rsttsSetVolume() is applied on top of this setting during processing, to achieve the final pitch.) The setting may be zero, but not negative. Settings larger than RSTTS_VOLUME_MAX are truncated to that value. |
+ * RSTTS_PARAM_VOLUME_SILENT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_VOLUME_DEFAULT, but instead applies when markup specifies the <i>silent</i> volume level. Should normally be left at zero. |
+ * RSTTS_PARAM_VOLUME_X_SOFT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_VOLUME_DEFAULT, but instead applies when markup specifies the <i>x-soft</i> volume level. |
+ * RSTTS_PARAM_VOLUME_SOFT | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_VOLUME_DEFAULT, but instead applies when markup specifies the <i>soft</i> volume level. |
+ * RSTTS_PARAM_VOLUME_MEDIUM | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_VOLUME_DEFAULT, but instead applies when markup specifies the <i>medium</i> volume level. |
+ * RSTTS_PARAM_VOLUME_LOUD | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_VOLUME_DEFAULT, but instead applies when markup specifies the <i>loud</i> volume level. |
+ * RSTTS_PARAM_VOLUME_X_LOUD | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | As RSTTS_PARAM_VOLUME_DEFAULT, but instead applies when markup specifies the <i>x-loud</i> volume level. |
+ * <b>Settings for modifying pitch/rate/volume based on emphasis markup</b> |||
+ * RSTTS_PARAM_MARKUP_EMPHASIS_REDUCED_RATE | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of rate/speed to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>reduced</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_REDUCED_PITCH | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of pitch to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>reduced</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_REDUCED_VOLUME | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of volume to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>reduced</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_MODERATE_RATE | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of rate/speed to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>moderate</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_MODERATE_PITCH | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of pitch to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>moderate</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_MODERATE_VOLUME | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of volume to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>moderate</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_STRONG_RATE | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of rate/speed to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>strong</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_STRONG_PITCH | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of pitch to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>strong</i>. |
+ * RSTTS_PARAM_MARKUP_EMPHASIS_STRONG_VOLUME | RSTTS_TYPE_INT or RSTTS_TYPE_UINT | Amount of volume to apply (as percentage of prosody settings) when reading text marked up with prosody level <i>strong</i>. |
+ * <b>URI handling</b> |||
+ * RSTTS_PARAM_URI_BASE | RSTTS_TYPE_STRING | Base URI to use for resolving URI:s in document. Only "file:" URIs are supported at this time. Using a file URI with an absolute path is recommended. |
+ * RSTTS_PARAM_URI_FILE_BUILTIN_ENABLED | RSTTS_TYPE_BOOL | If set, enables the built-in handling of file URIs. Setting this means that documents will be able to reference files (in for example the SSML <i>audio</i> element). This might have security implications if processing untrusted documents. Note that some additional parameters limit which paths may be used, to mitigate this. |
+ * RSTTS_PARAM_URI_FILE_BUILTIN_ALLOW_ABS | RSTTS_TYPE_BOOL | If set, allows URIs in the document to refer to files outside the base URI directory using absolute paths. (For platforms with a current device concept like MS Windows, a path absolute to the current device, but not specifying the device, is considered as absolute for this purpose.) This may have security implications if reading untrusted content. |
+ * RSTTS_PARAM_URI_FILE_BUILTIN_ALLOW_REL | RSTTS_TYPE_BOOL | If set, allows URIs in the document to refer to files outside the base URI directory using relative paths. This may have security implications if reading untrusted content. |
+ * RSTTS_PARAM_URI_FILE_BUILTIN_SFX | RSTTS_TYPE_BOOL | If set, allows the document use the audio tag (with a file: method and no file suffix) to refer to sound effects and special recorded sounds included in the TTS installation. Enabled per default. |
  * 
  * @param[in] inst TTS instance to set the parameter for
  * @param[in] parameterName which parameter you want to set, specified in enum RSTTS_PARAMS
@@ -385,7 +495,7 @@ PUBLIC_API const char* rsttsGetErrorCodeString(int err);
  *
  * @returns Result code indicating whether the parameter was successfully set; check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
- * @note Parameters for a TTS instance can in many cases be changed regardless
+ * @note Parameters for a TTS instance can in some cases be changed regardless
  * of whether the instance is in use or not.
  * The change may then not take effect until the next
  * new sentence or a similar event.
@@ -419,7 +529,9 @@ PUBLIC_API int rsttsSetParameter(RSTTSInst inst, const RSTTS_PARAMS parameterNam
  * directory given to rsttsInit().
  *
  * @note This call does not verify that the directory actually exists
- * and contains usable data.
+ * and contains usable data. It simply stores a path that is used as
+ * an implicit parameter for subsequent language/voice selection.
+
  */
 
 PUBLIC_API int rsttsSetDictsdir(RSTTSInst inst ,const char *dir);
@@ -441,7 +553,8 @@ PUBLIC_API int rsttsSetDictsdir(RSTTSInst inst ,const char *dir);
  * directory given to rsttsInit().
  *
  * @note This call does not verify that the directory actually exists
- * and contains usable data.
+ * and contains usable data. It simply stores a path that is used as
+ * an implicit parameter for subsequent language/voice selection.
  */
 
 PUBLIC_API int rsttsSetAudiodir(RSTTSInst inst,const char *dir);
@@ -452,15 +565,17 @@ PUBLIC_API int rsttsSetAudiodir(RSTTSInst inst,const char *dir);
  *
  * This call sets the language that a TTS instance will use in cases where
  * the language is not specified by text markup.
- * This can be changed at any time, but changes will not
- * affect any generation already in progress.
+ * This can be changed at any time, and will affect future operations but
+ * changes will not affect any operation already in progress.
  *
  * The language is to be specified as a dash or underscore separated
- * BCP47 language tag, which is matched in a non-case-significant
- * manner against the installed languages.
+ * BCP47 language tag (for example "en-AU"), which is matched in a
+ * non-case-significant manner against the installed languages.
+ * It is also permitted to only specify the first part of the language
+ * code (for example "en").
  *
  * The TTS engine requires the primary language subtag to match,
- * and will also try to match the region subtag if possible (but
+ * and will also try to match any region subtag if possible (but
  * does not require it to match). I.e. "en-AU" will give
  * Australian English if installed, but will otherwise try to fall
  * back to some other installed variant of English.
@@ -470,11 +585,18 @@ PUBLIC_API int rsttsSetAudiodir(RSTTSInst inst,const char *dir);
  *
  * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
- * @note This call has no effect on speech generated from SSML. (Specifying
- * input language on the "speech" element that initiates SSML input is
- * mandatory, and will always override.)
+ * @note Selecting a language undoes any previous voice selection; also,
+ * the language setting determines which voices can be selected. Therefore,
+ * language should always be selected before voice.
  *
- * @note Always set the language before setting the voice.
+ * @note When using the rSpeak TTS with input text containing language
+ * markup (for example SSML, where this is mandatory according to the
+ * specifications),
+ * explicitly setting language+voice beforehand via the API is not
+ * required. Doing so may still be meaningful for checking beforehand that a
+ * language+voice is available, for responsiveness purposes (allowing
+ * voice data to be pre-loaded), and because the voice selection is then
+ * treated as the default voice for that language.
  *
  */
 
@@ -485,14 +607,16 @@ PUBLIC_API int rsttsSetLanguage(RSTTSInst inst,const char *lang);
  * @brief Selects a voice by name
  *
  * This call selects the voice to use by the TTS instance.
- * Make sure that you have set the language before setting the voice.
  *
- * Setting the voice is not mandatory, the TTS is able to choose an installed
- * and licensed voice automatically as long as the language is set.
- * Also, SSML markup will override API voice settings.
+ * Make sure that the language is set before setting the voice.
+ *
+ * Setting the voice is not mandatory, the TTS engine will otherwise
+ * choose an installed and licensed voice automatically as long as the
+ * language is set.  Also, voice markup will override API voice
+ * settings.
  *
  * @param[in] inst TTS instance
- * @param[in] name Voice name, for example "Maja"
+ * @param[in] name Voice name as an UTF-8 string, for example "Maja"
  *
  * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
@@ -507,16 +631,17 @@ PUBLIC_API int rsttsSetVoiceByName(RSTTSInst inst,const char *name); /* Select v
 /**
  * @brief Selects a voice by gender
  *
- * This call selects the gender of the voice to use by the TTS instance.
- * This can be used rather than rsttsSetVoiceByName() when a voice of a
- * certain gender is desired, but it is otherwise not known or not
- * important which specific voice of that gender is used.
+ * This call selects which voice to use by the TTS instance, selecting
+ * by gender rather than by name.  This may be used instead of than
+ * rsttsSetVoiceByName() when a voice of a certain gender is desired,
+ * but it not important which specific voice of that gender is used.
  *
  * Make sure that the language is set before setting the voice.
  *
- * Setting the voice is not mandatory, the TTS is able to choose an installed
- * and licensed voice automatically as long as the language is set.
- * Also, SSML markup will override API voice settings.
+ * Setting the voice is not mandatory, the TTS engine will otherwise
+ * choose an installed and licensed voice automatically as long as the
+ * language is set.  Also, voice markup will override API voice
+ * settings.
  *
  * @param[in] inst TTS instance
  * @param[in] gender Voice gender; "male", "female" or "neutral"
@@ -546,12 +671,13 @@ PUBLIC_API int rsttsSetVoiceByGender(RSTTSInst inst,const char *gender); /* Sele
  *
  * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
- * @note Pitch changes are cumulative with any changes specified in SSML
- * markup; I.e. if a call specifies half pitch and the SSML specifies
+ * @note This master pitch setting is cumulative with any pitch setting
+ * specified in markup or the RSTTS_PARAM_PITCH_DEFAULT setting of
+ * rsttsSetParameter().
+ * I.e. if a call specifies half pitch and the SSML specifies
  * triple pitch, then the resulting speech will be at 3/2 pitch.
  * Internal TTS engine limitations for minimal/maximum pitch are applied
- * to the resulting cumulative value only (not to the individual values
- * resulting into the cumulative value).
+ * to the resulting cumulative value.
  *
  * @note Pitch can be changed during ongoing audio generation. Changes
  * will take effect within approximately 0.1 seconds (from the perspective
@@ -598,12 +724,13 @@ PUBLIC_API int rsttsGetPitch(RSTTSInst inst,float* pval); /* Get pitch from TTS 
  *
  * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
- * @note Speed changes are cumulative with any changes specified in SSML
- * markup; I.e. if a call specifies half speed and the SSML specifies
+ * @note This master speed setting is cumulative with any rate setting
+ * specified in text markup or the RSTTS_PARAM_RATE_DEFAULT setting of
+ * rsttsSetParameter().
+ * I.e. if a call specifies half speed and the SSML text specifies
  * triple speed (rate), then the resulting speech will be at 3/2 speed.
  * Internal TTS engine limitations for minimal/maximum speed are applied
- * to the resulting cumulative value only (not to the individual values
- * resulting into the cumulative value).
+ * to the resulting cumulative value.
  *
  * @note Speed can be changed during ongoing audio generation. Changes
  * will take effect within approximately 0.1 seconds (from the perspective
@@ -659,12 +786,13 @@ PUBLIC_API int rsttsSetSpeed(RSTTSInst inst,float speed); /* Select speed to use
  *
  * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
- * @note Volume changes are cumulative with any changes specified in SSML
- * markup; I.e. if a call specifies half volume and the SSML specifies
+ * @note This master volume setting is cumulative with any volume setting
+ * specified in text markup or the RSTTS_PARAM_VOLUME_DEFAULT setting
+ * of rsttsSetParameter().
+ * I.e. if a call specifies half volume and the SSML text specifies
  * triple volume, then the resulting speech will be at 3/2 volume.
  * Internal TTS engine limitations for minimal/maximum volume are applied
- * to the resulting cumulative value only (not to the individual values
- * resulting into the cumulative value).
+ * to the resulting cumulative value.
  *
  * @note Volume can be changed during ongoing audio generation. Changes
  * will take effect within approximately 0.1 seconds (from the perspective
@@ -795,16 +923,29 @@ PUBLIC_API int rsttsSetEventCallback(RSTTSInst inst, rsttsEventCallback cb, void
  *
  * This call generates speech from text. It will not return until the text
  * is fully processed and all audio and event callbacks have been generated (except
- * on an error, or if requested to stop earlier).
+ * on a critical error, or if requested to stop earlier).
  *
- * Input format must be supplied. Supported input formats are "text" (utf-8 plain text)
- * and "ssml" (any version of SSML). (Additional formats may be supported in the future.)
+ * Input format must be supplied. Supported input formats are "text"
+ * (utf-8 plain text), "ssml" (any version of SSML) and "autossml"
+ * (handles incomplete SSML or UTF-8 plain text with mixed-in SSML fragments).
+ * (Additional formats may be supported in the future.)
+ *
+ * It is mandatory that the language of the text to read is specified.
+ * This is done within markup contained in the text itself (for input
+ * formats that support this), or by a previous call to rsttsSetLanguage().
+ *
+ * Specifying a voice is not required; if no voice is explicitly selected
+ * (via API calls or markup), then a voice supporting the language will
+ * be selected automatically by the TTS engine (if there is at least one
+ * such voice available).
  *
  * @param[in] inst TTS instance
  * @param[in] text input text (null-terminated UTF-8 string)
  * @param[in] format input format (for example "text" or "ssml")
  *
- * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
+ * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros. RSTTS_LANGUAGE_NOT_SET is returned if the input format requires the language to be set beforehand, but this has not been done.
+ *
+ * @note A result code indicating an error is only returned on a critical error that caused the whole operation to be prevented or aborted. Errors after which the operation may proceed are reported via Failure events (see rsttsSetEventCallback()). (The same result code is also indicated in the SynthesizeEnd event, if enabled; unless the instance was stopped during the call, which inhibits further callbacks from the ongoing operation.)
  */
 
 PUBLIC_API int rsttsSynthesize(RSTTSInst inst, const char *text, const char *format); /* synthesize text into audio */
@@ -816,20 +957,40 @@ PUBLIC_API int rsttsSynthesize(RSTTSInst inst, const char *text, const char *for
  * This call initiates a background generation of speech from text.
  * It will return instantly while speech generation proceeds in the background.
  *
- * Input format must be supplied. Supported input formats are "text" (utf-8 plain text)
- * and "ssml" (any version of SSML). (Additional formats may be supported in the future.)
+ * Input format must be supplied. Supported input formats are "text"
+ * (utf-8 plain text), "ssml" (any version of SSML) and "autossml"
+ * (handles incomplete SSML or UTF-8 plain text with mixed-in SSML fragments).
+ * (Additional formats may be supported in the future.)
+ *
+ * It is mandatory that the language of the text to read is specified.
+ * This is done within markup contained in the text itself (for input
+ * formats that support this), or by a previous call to rsttsSetLanguage().
+ *
+ * Specifying a voice is not required; if no voice is explicitly selected
+ * (via API calls or markup), then a voice supporting the language will
+ * be selected automatically by the TTS engine (if there is at least one
+ * such voice available).
  *
  * @param[in] inst TTS instance
  * @param[in] text input text (null-terminated UTF-8 string)
  * @param[in] format input format (for example "text" or "ssml")
  *
- * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
- * On success, speech generation will proceed in the background but the call still returns
- * immediately.
+ * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros. RSTTS_LANGUAGE_NOT_SET is returned if the input format requires the language to be set beforehand, but this has not been done.
+ * Success indicates that the operation is proceeding in a background thread.
  *
- * @note The TTS instance will, on success, be busy for a while and can not be freed with
- * rsttsFree() while audio generation is still in progress. To free the instance, either
- * stop it first or wait until it is done (i.e. stopped).
+ * @note A successful return value merely indicates that the call was
+ * successfully handed over to a background thread; it does not indicate
+ * whether the operation as a whole will be successful, which is often
+ * not yet known at that point.
+ * A final result can however be reported in a SynthesizeEnd callback,
+ * if enabled (see rsttsSetEventCallback() and rsttsSetParameter()).
+ * Errors after which the operation may proceed are reported
+ * via Failure events.
+ *
+ * @note The TTS instance will, on success, be busy for a while and can not
+ * be freed with rsttsFree() while audio generation is still in progress.
+ * To free the instance, optionally stop it first and then wait until it
+ * is done.
  */
 
 PUBLIC_API int rsttsSynthesizeAsync(RSTTSInst inst,const char *text,const char *format); /* syntesize in background */
@@ -904,7 +1065,7 @@ PUBLIC_API RSTTSInst_State rsttsGetState(RSTTSInst inst);
   * timeout has passed, whichever happens first.
   *
   * @param[in] inst TTS instance
-  * @param[in] state_mask Set of states to wait for (states OR:ed together)
+  * @param[in] state_mask Set of states to wait for (RSTTSInst_State values OR:ed together)
   * @param[in] timeout_ms Timeout in milliseconds
   *
   * @returns Error code, check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
@@ -925,13 +1086,20 @@ PUBLIC_API int rsttsWaitState(RSTTSInst inst, int state_mask, int timeout_ms);
  *
  * @param[in] inst TTS instance
  * @param[in] lexfile Path to lexicon file
- * @param[in] where Describes at which stage to apply the lexicon. Should currently always be RSTTS_PRE_SSML_PARSE.
+ * @param[in] where Determines at which stage to apply the lexicon. Use one of the constants RSTTS_PRE_MARKUP_PARSE, RSTTS_POST_MARKUP_PARSE.
  *
- * The returned value is a lexicon ID which should be passed to rsttsUnloadLexicon() when the lexicon is to be unloaded.
+ * On success, (i.e. when the RSTTS_SUCCESS() macro evaluates the returned value to true), the returned value is a lexicon ID which can later be passed to rsttsUnloadLexicon() to unload the lexicon.
  * Trying to load a lexicon on a busy instance will return RSTTS_INSTANCE_BUSY and have no effect.
- * @warning Only one lexicon can be loaded in the current version. Future versions will support having multiple lexicons loaded at the same time. The returned lexicon id will then be used to keep track of these lexicons.
- * @warning The current version always applies the lexicon before parsing any SSML markup. This is indicated by passing RSTTS_PRE_SSML_PARSE as the third parameter. Future versions may support applying lexicons at different stages. The value RSTTS_PRE_NORMALIZATION can be used for lexicons that should be applied after parsing any SSML markup but before text normalization, in versions that support this (but it currently has the same effect as RSTTS_PRE_SSML_PARSE)
- * @returns A lexicon identifier on success, or an error code. Check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
+ *
+ * A lexicon applied at the RSTTS_PRE_MARKUP_PARSE stage may introduce new markup, which is then interpreted according to the current text format (SSML markup if the text is in SSML, for example). This may make a lexicon specific to the used text format, and may also be more prone to errors (for example, a rule may inadvertently transform valid SSML into invalid SSML).
+ *
+ * A lexicon run at the RSTTS_POST_MARKUP_PARSE stage may not modify or add markup (SSML tags etc); or rather, any characters introduced at that point (even characters which would otherwise have special meanings in the current text format) will simply be considered as text and not as markup. This is because the markup processing has already been completed before the lexicon runs.
+ *
+ * Additional stages may be supported in the future.
+ * For backwards compatibility, the name RSTTS_PRE_SSML_PARSE is available as an alias for RSTTS_PRE_MARKUP_PARSE.
+ *
+ * @warning Only one lexicon per stage can be loaded in the current version. Future versions may support having multiple lexicons loaded at the same stage at the same time.
+ * @returns An arbitrary lexicon identifier number on success, otherwise an error code. Check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
  */
 
@@ -939,19 +1107,88 @@ PUBLIC_API int rsttsLoadLexiconFromFile(RSTTSInst inst, const char *lexfile,Engi
 
 
 /**
- * @brief Unloads a lexicon from TTS instance, not applying it to text anymore
+ * @brief Unloads a lexicon from a TTS instance.
  *
- * This call removes a lexicon from TTS instance.
- * The passed lexicon id must be a value returned by any of the rsttsLoadLexicon functions when the lexicon was loaded. The call to rsttsUnloadLexicon() will then unload the specific lexicon identified by that lexicon id.
+ * This call removes a lexicon from TTS instance, causing it to no
+ * longer be applied.  The passed lexicon id must be a a value
+ * number returned by a call that loaded a lexicon to the same
+ * instance (see rsttsLoadLexiconFromFile()). The call to
+ * rsttsUnloadLexicon() will then unload the specific lexicon
+ * identified by that lexicon id.
  *
  * @param[in] inst TTS instance
  * @param[in] lexid An integer used as a lexicon identifier
- * @returns success, or an error code. Check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
+ * @returns Error code. Check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros.
  *
  * @note Trying to unload a lexicon from a busy instance will return RSTTS_INSTANCE_BUSY and have no effect.
  */
 
 PUBLIC_API int rsttsUnloadLexicon(RSTTSInst inst, int lexid); /* unload a lexicon identified by lexid from TTS instance inst */
+
+
+/**
+ * @brief Retrieves language/voice version information for a voice
+ *
+ * This call saves sets the values pointed to by its pointer
+ * parameters (if non-NULL) to numbers representing the
+ * versions of the language and voice data used for a voice.
+ *
+ * @param[in] inst TTS instance
+ * @param[in] lang Language code (NULL for current language, if any)
+ * @param[in] voice Voice name (NULL for current voice, if any)
+ * @param[out] langv Used to output version number for language data (if non-NULL)
+ * @param[out] voicev Used to output version number for voice data (if non-NULL)
+ * @returns Error code. Check for error/success with RSTTS_ERROR(), RSTTS_SUCCESS() macros. On success, the version information will be written to the locations pointed to by the pointer arguments.
+ *
+ * If the lang and voice parameters are both NULL, then information
+ * about the voice currently in use by the instance (if any) is
+ * requested. (When a voice is selected via an API call, then that
+ * voice remains the current voice for this purpose until a new
+ * voice/language selection, or until the voice currently in use
+ * changes because of text markup.)
+ *
+ * If language and voice is specified, then the information for the
+ * installed voice (if any) that matches those language/voice names is
+ * used. If only voice is specified, then the language last selected
+ * via API call is assumed (a language must have been selected in that
+ * case). If only language is specified, then the preferred voice for
+ * that language (as determined by the TTS engine) is assumed.
+ *
+ * The number consists of two fields, which can be masked out with the
+ * RSTTS_LANGVOICEVER_MAJOR() and RSTTS_LANGVOICEVER_MINOR() macros.
+ * The recommended way to represent these numbers in text is to print them
+ * with a separating period ('.').
+ *
+ * The MAJOR part may be increased on a major revision of that
+ * particular voice or language data. Apart from that, these numbers
+ * do not hold any particular meaning except that they will increase
+ * between consecutive revisions of the voice/audio data files, so
+ * that newer files will always get higher numbers. The fields are
+ * represented in such a way that the full integers can be compared
+ * directly without, needing to mask out the fields first, so that a
+ * more recent version will always compare as a higher number.
+ *
+ * @note Will fail and return RSTTS_OPERATION_NOT_ALLOWED if
+ * information about the current voice is requested when the instance
+ * has no current voice set (either via API call or via voice/language
+ * markup).
+ *
+ * @note Can be called from within a RSTTSEvent_Voice event callback,
+ * with lang and voice both set to NULL, to retrieve the version of
+ * the voice just switched to.
+ *
+ * If information for the current voice (i.e. with both the lang and
+ * voice parameters passed as NULL) is requested from a separate
+ * thread on an instance that is currently reading a text using
+ * multiple voices or languages, a call might temporarily fail or
+ * return version information for a voice in use at that approximate
+ * time.
+ */
+
+PUBLIC_API int rsttsGetLanguageVoiceVersion(RSTTSInst inst, const char *lang, const char *voice, unsigned long *langv, unsigned long *voicev);
+
+#define RSTTS_LANGVOICEVER_MAJOR(v) ((v)>>24) /*!< @brief Extract major part of voice/lang version retrieved with rsttsGetLanguageVoiceVersion() */
+#define RSTTS_LANGVOICEVER_MINOR(v) ((v)&0xfffffful) /*!< @brief Extract minor part of voice/lang version retrieved with rsttsGetLanguageVoiceVersion() */
 
 
 #define rsttsStop(ttsinst) rsttsSetState(ttsinst, RSTTSInst_stopping);  /*!< @brief Stops a playing or paused TTS instance. (Convenience macro.) */

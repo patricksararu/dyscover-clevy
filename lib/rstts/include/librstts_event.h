@@ -24,7 +24,7 @@ extern "C" {
  * bitmask which specifies which events an instance should report.
  *
  * \li RSTTSEvent_None: Can be used to represent "no event".
- *     Never reported as an event by the TTS.
+ *     The TTS will never report an event of this type.
  *
  * \li RSTTSEvent_Mark: Generated when the speech has reached a mark
  *     in the input (for SSML input: the 'mark' element).
@@ -49,6 +49,23 @@ extern "C" {
  *     setting of the parameter TEXT_POSITION_TRACKING. Note that
  *     sentence boundaries are controlled both by (SSML) markup and
  *     punctuation.
+ *
+ * \li RSTTSEvent_SynthesizeEnd: Generated at the end of a call to
+ *     rsttsSynthesize() and rsttsSynthesizeAsync(), as the last thing
+ *     that happens, regardless of error or success. (It is however not
+ *     generated if the call was stopped, which inhibits further events
+ *     resulting from the same call.)
+ *     The event type specific event information contains a status
+ *     value from the call, which, in the case of rsttsSynthesize() is
+       the same as its return value
+ *     (for rsttsSynthesizeAsync(), it will differ in cases where an error
+ *     was detected after the call was handed over to a background thread.)
+ *     Unlike other events, this event happens after the call is
+ *     essentially finished, and the instance has transitioned back to
+ *     the ready state (i.e. the instance is considered no longer in use
+ *     for the call at this point).
+ *     rsttsGetErrorMessage(NULL) can be called within the callback to
+ *     extract an human-readable error message from the call.
  *
  * \li RSTTSEvent_TextStart: Generated when starting to read a text, before
  *     all audio and other events.
@@ -114,7 +131,25 @@ extern "C" {
  *     The event contains information both about what voice was requested,
  *     and what voice was actually chosen.
  *
- * Failure events:
+ * End and failure events:
+ *
+ * \li RSTTSEvent_SynthesizeEnd: Generated when a rsttsSynthesize() or
+ *     rsttsSynthesizeAsync() call has finished (note however, that if the
+ *     call is stopped with rsttsStop() or rsttsSetState(), that
+ *     will suppress any remaining events from the ongoing call, including
+ *     this one). The event will occur immediately before the call returns,
+ *     and, in case the instance was Ready at the time of the call, after
+ *     the instance has returned to the Ready state. (For multithreaded
+ *     applications, note that other threads doing API calls on the same
+ *     instance might observe this transition before the event is generated.)
+ *     For an rsttsSynthesizeAsync() call, this event can be used to get
+ *     access to the status value that the call would have returned if
+ *     synchronous. (Some error codes can not be returned directly by
+ *     rsttsSynthesizeAsync(), because the error might not be detected until
+ *     after the asynchronous job has been handed over to a background
+ *     thread).
+ *     rsttsGetErrorMessage(NULL) can be called from within the event
+ *     callback for a human readable error description.
  *
  * \li RSTTSEvent_Failure: Used to report non-critical TTS runtime errors, including failed voice/language switch, errors in transcriptions and such.
  */
@@ -132,16 +167,17 @@ typedef enum {
   RSTTSEvent_Word = 1<<5,       // 32, 0x20
 
   // Audio/pronunciation events
-  RSTTSEvent_Audio = 1<<7,      // 128, 0x80
-  RSTTSEvent_Break = 1<<8,      // 256, 0x100
-  RSTTSEvent_Emphasis = 1<<9,   // 512, 0x200
-  RSTTSEvent_Phoneme = 1<<10,   // 1024, 0x400
-  RSTTSEvent_Prosody = 1<<11,   // 2048, 0x800
-  RSTTSEvent_Viseme = 1<<12,    // 4096, 0x1000
-  RSTTSEvent_Voice = 1<<13,     // 8192, 0x2000
+  RSTTSEvent_Audio = 1<<7,          // 128, 0x80
+  RSTTSEvent_Break = 1<<8,          // 256, 0x100
+  RSTTSEvent_Emphasis = 1<<9,       // 512, 0x200
+  RSTTSEvent_Phoneme = 1<<10,       // 1024, 0x400
+  RSTTSEvent_Prosody = 1<<11,       // 2048, 0x800
+  RSTTSEvent_Viseme = 1<<12,        // 4096, 0x1000
+  RSTTSEvent_Voice = 1<<13,         // 8192, 0x2000
   
-  // Failure events
-  RSTTSEvent_Failure = 1<<15    // 32768, 0x8000
+  // End/failure events
+  RSTTSEvent_SynthesizeEnd = 1<<14, // 16384, 0x4000
+  RSTTSEvent_Failure = 1<<15        // 32768, 0x8000
   
 } RSTTSEventType;
 
@@ -282,7 +318,7 @@ typedef struct {
  */
 typedef struct {
   const char *strength;  //!< Break prosodic strength if defined (or NULL)
-  int duration_ms;       //!< Duration of the break, in ms
+  int duration_ms;       //!< Duration of the break, in milliseconds
 } RSTTSEventData_Break;
 
 /**
@@ -367,6 +403,16 @@ typedef struct {
   RSTTSEventVoiceDesc actual;     //!< Actual values used by TTS engine
 } RSTTSEventData_Voice;
 
+/**
+ * @brief Event type specific data for SynthesizeEnd events
+ *
+ * rstts_status is the final status code indicating success/error of a
+ * call to rsttsSynthesize() or rsttsSynthesizeAsync().
+ *
+ */
+typedef struct {
+  int rstts_statuscode;   //!< Status code for the just finishing call
+} RSTTSEventData_SynthesizeEnd;
 
 /**
  * @brief Failure types, to be reported with a Failure event.
@@ -410,15 +456,20 @@ typedef enum {
  * rsttsSynthesize() or rsttsSynthesizeAsync() call to immediately return
  * an error code.
  *
- * @warn A failure is usually reported as soon as it is detected by the
- * engine, therefore a failure callback associated with a position in the
- * input text may occur earlier than other events caused by preceding
- * parts of the text.
- * (For example, an invalid transcription in a sentence or paragraph can
- * be reported before before other events of the sentence, even
- * when that transcription is not at the start of the sentence. Reported
- * audio positions will then indicate when the error was found, rather than
- * when the exact part of the text that trigged the failure is reached.)
+ * The rstts_statuscode field indicates the status/error code from
+ * librstts_error.h that most closely corresponds to the semantics
+ * of the failure event.
+ *
+ * The http_statuscode field contains a HTTP status code that
+ * matches the failure event, or -1 if none applies.
+ *
+ * The description is a plain-text, UTF-8 human readable description of
+ * the failure event (currently always in English), for logging, error
+ * reporting and debugging purposes. An application should not rely on
+ * these messages being in any specific form. The precise contents of
+ * these descriptions are not considered as a stable part of the
+ * API and may vary depending on settings and platform, or change
+ * arbitrarily between versions.
  *
  * This structure may be extended in future versions of the API.
  */
@@ -464,7 +515,8 @@ typedef union {
   RSTTSEventData_Viseme *Viseme;       //!< for eventtype: RSTTSEvent_Viseme
   RSTTSEventData_Voice *Voice;         //!< for eventtype: RSTTSEvent_Voice
 
-  // Extra data for failure events
+  // Extra data for end/failure events
+  RSTTSEventData_SynthesizeEnd *SynthesizeEnd; //!< for eventtype: RSTTSEvent_SynthesizeEnd
   RSTTSEventData_Failure *Failure;     //!< for eventtype: RSTTSEvent_Failure
 
 } RSTTSEventSpecificData;
@@ -476,9 +528,9 @@ typedef union {
  * This data type contains data associated with an event. This data has a
  * lifetime limited to the duration of the event callback, and is allocated
  * and de-allocated by the text-to-speech engine itself.
- * An API user needing to access any event data after the event callback has
- * completed will need to make its own deep copy of the data, as the
- * text-to-speech engine will be free to reuse the memory used for the
+ * An application needing to access any event data after the event callback
+ * has completed will need to make its own deep copy of the data, as the
+ * text-to-speech engine may reuse the memory holding for the callback data
  * for other purposes once the event callback function has returned.
  *
  * Unless otherwise specified: Strings (const char pointers) in event
@@ -532,7 +584,7 @@ struct RSTTSEventData {
 
   /**
    * Timing of the event in the audio stream,
-   * measured in ms and relative to the start of the current
+   * measured in milliseconds and relative to the start of the current
    * rsttsSynthesize() or rsttsSynthesizeAsync() call.
    */
   long time_pos_ms;

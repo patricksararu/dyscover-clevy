@@ -1,9 +1,256 @@
 Release notes rSpeak SDK
 Copyright © 2017 rSpeak Technologies.
-Copyright © 2018 ReadSpeaker B.V.
+Copyright © 2018, 2019, 2020 ReadSpeaker B.V.
+
+Changes in release 1.2.7 (since release 1.2.6)
+
+* API: A new SynthesizeEnd event has been added. If enabled by the
+  event mask, this event is trigged at the end of a rsttsSynthesize()
+  or rsttsSynthesizeAsync() call, essentially immediately before it
+  returns, to indicate its final result status. This is useful to get
+  a end indication and retrieve a final status and error message from
+  rsttsSynthesizeAsync(). (Note, stopping the instance with
+  rsttsStop() or rsttsSetStatus() inhibits any subsequent events from
+  the call being stopped, including this event.)
+
+* API: Added parameter RSTTS_PARAM_AUDIO_REALTIME_PCT to set a speed
+  limit for an instance, as a percentage of realtime (set to 0 for
+  maximum speed, 100 for realtime speed). This setting is used to
+  throttle the speech generation speed if/when maximum speed is not
+  desired. (The maximum realtime factor permitted by the license, if
+  any, always applies regardless of this setting.)
+
+* Java wrapper: Support added for the SynthesizeEnd event, see above.
+
+* Performance improvements, notably even quicker loading of huge user
+  lexicon files.
+
+* Improved input handling for the "autossml" input text format
+  (compatibility text format for handling plain text with inserted
+  SSML fragments).
+
+* Multiple improvements to normalization, disambiguation and
+  decompounding for Latvian (lv_lv)
+
+* Fixes for normalization of numbers, in particular for Arabic
+  (ar_arb) and Norwegian bokmål (nb_no) and Polish (pl_pl).
+
+* Improved normalization of days and dates for Arabic (ar_arb).
+
+* Fix for a bug in 1.2.6 that caused the Flemish (nl_be) voice Veerle
+  to also require on the Dutch (nl_nl) data files to be installed.
+
+* Improved handling of question intonation for Finnish (fi_fi)
+
+* Documentation improvements, in particular regarding the
+  SynthesizeEnd event and status reported from rsttsSynthesize() and
+  rsttsSynthesizeAsync().
 
 
-Changes in bug fix release 1.0.2 (since release 1.0)
+Changes in release 1.2.6 (since release 1.2.3)
+
+* Added language: Flemish (nl_be)
+
+* Added voice: Veerle (nl_be)
+
+* 32-bit MacOS (platform i386-apple-darwin) is no longer supported.
+  (The last release supporting this platform is 1.2.3.)
+
+* Minor improvements to disambiguation and pronunciation for Arabic (ar_arb)
+
+* Minor liaison rule improvements for French (fr_fr)
+
+* Improved normalization and compound word pronunciation for Latvian (lv_lv)
+
+* Lexicon updates for Arabic (ar_arb), Dutch (nl_nl), German (de_de),
+  Polish (pl_pl), Swedish (sv_se)
+
+* Loading a user lexicon with many entries is now significantly faster.
+
+* Enhanced licensing functionality for Android platforms
+
+
+Changes in release 1.2.3 (since release 1.2.0)
+
+* Added language: Latvian (lv_lv)
+
+* Added voice: Oskars (lv_lv)
+
+* Minor normalization improvements for Danish (da_dk), Dutch (nl_nl),
+  English (en_au, en_gb, en_us), Finnish (fi_fi), German (de_de),
+  Italian (it_it), Norwegian Bokmål (nb_no), Polish (pl_pl), Spanish
+  (es_es).
+
+* Minor disambiguation improvements for Danish (da_dk), French
+  (fr_fr), German (de_de), Swedish (sv_se).
+
+* Minor lexicon and word lookup additions/corrections to various
+  languages.
+
+* Added support for spelling out letters from the greek alphabet in
+  Polish text.
+
+* Lexicon support: It is now permitted to insert empty lines within a
+  rSpeak format lexicon file. (Such lines have no effect, but can be
+  useful from a lexicon maintenance standpoint.)
+
+* SSML support: Markup within an audio element (such as phoneme, mark
+  and break elements) is now handled correctly; that is, ignored if
+  the audio could be played, but otherwise processed as fallback
+  content.
+
+* Devanagari punctuation characters are now recognized by the engine
+  as punctuation.
+
+* Fixes an issue where attempting to read an input sentence in Arabic
+  (ar_arb) containing no alphanumeric characters but only graphical
+  symbols could cause a crash.
+
+* Fixes an issue where attempting to stop a busy TTS instance (with
+  rsttsSetState() or rsttsStop()) could, under certain conditions,
+  cause the instance to lock up (and get stuck in the Stopping state)
+  rather than release its resources (and transition to the Ready
+  state).
+
+* Fixes an issue where events could potentially be incorrectly
+  positioned within a sentence.
+
+
+Changes in release 1.2.0 (since release 1.1.0)
+
+* Added languages: Danish (da_dk), Polish (pl_pl)
+
+* Added voices: Lene (da_dk), Ania (pl_pl)
+
+* API: Added parameter RSTTS_PARAM_TEXT_POSITION_INCLUDES_MARKUP,
+  which, if enabled, events to count markup (ssml tags) as part of the
+  text for position reporting purposes. (See rsttsSetParameter() in
+  the API documentation.)
+
+* API: Added new error code RSTTS_LANGUAGE_NOT_SET, which is now
+  returned by API calls to indicate that an operation requires
+  rsttsSetLanguage() to have been called on the instance beforehand,
+  but that this wasn't done. This error code is returned when
+  attempting to set a voice or to read plain text without first
+  setting a language.
+
+* API: Improved error messages when failing to load a license file.
+
+* API: Improved error checking and reporting when loading a lexicon
+  with rsttsLoadLexiconFromFile().
+
+* Updated SDK acknowledgements file.
+
+* Audio quality improvements and minor performance improvements
+
+* Fixed a potential crash in Arabic (ar_arb).
+
+* Fixed a synchronization issue which could cause the TTS to lock up
+  in some circumstances on Android platforms.
+
+* Pronunciation improvements in language independent components as
+  well as specifically for for Arabic (ar_arb), British English
+  (en_gb), French (fr_fr).
+
+* Dictionary additions/adjustments for Arabic (ar_arb), Dutch (nl_nl),
+  Finnish (fi_fi), French (fr_fr), German (de_de), Italian (it_it),
+  Spanish (es_es), Swedish (sv_se), UK English (en_gb), US English
+  (en_us)
+
+* Normalization improvements for Arabic (ar_arb), Dutch (nl_nl),
+  English (en_au, en_gb, en_us), Finnish (fi_fi), French
+  (fr_fr), German (de_de), Italian (it_it), Norwegian Bokmål (nb_no),
+  Spanish (es_es), Swedish (sv_se); in particular for the reading of
+  numbers.
+
+* For Finnish (fi_fi), the phoneme symbols "h:" and "ey" were removed
+  (see the language specific phoneme map documentation).
+
+* Java wrapper: New API functions getLanguageVersion(), getVoiceVersion()
+
+
+Changes in release 1.1.0 (since bug fix release 1.0.2):
+
+* Added languages: Arabic (ar_arb), Finnish (fi_fi)
+
+* Added voices: Amir (ar_arb), Elina (fi_fi)
+
+* Additions and some clarifications to the API documentation
+
+* Decreased memory usage
+
+* Responsiveness improvements
+
+* Minor speech quality improvements
+
+* New text format: "autossml". This format handles incomplete SSML
+  and UTF-8 plain text with mixed-in SSML fragments.
+  (rsttsSynthesize(), rsttsSynthesizeAsync())
+
+* New API call rsttsGetLanguageVoiceVersion() (and associated macros
+  RSTTS_LANGVOICEVER_MAJOR(), RSTTS_LANGVOICEVER_MINOR()) to request
+  voice/language data version information.
+
+* Additional data file version checks added when loading voice and
+  language data. A new error code RSTTS_INTERNAL_FILE_VERSION_ERROR is
+  used to report detected data file incompatibility errors.
+
+* Improved error handling. In particular, errors on lexicon loading
+  are now better detected and reported.
+
+* The named rate/speed/pitch levels (used in SSML markup) are now
+  customizable via rsttsSetParameter().
+
+* New status codes have been added to librstts_error.h, for errors related
+  to fetching/using external resources referred to by a document.
+
+* The third ("where") parameter to rsttsLoadLexiconFromFile() was
+  previously ignored (as only pre-parse lexicons were supported
+  anyway), but is now used as documented, to determine to which stage
+  a lexicon is loaded. The supported stages are RSTTS_PRE_MARKUP_PARSE
+  and RSTTS_POST_MARKUP_PARSE, for lexicons to apply before and after
+  the parsing of markup, respectively. (RSTTS_PRE_SSML_PARSE is now
+  an alias of RSTTS_PRE_MARKUP_PARSE, for backwards compatibility.)
+  Up to one lexicon may be loaded to each stage.
+
+* Support for VoiceWare-compatible lexicons. These must have the
+  filename suffix .csv or .CSV and be loaded to apply at the
+  RSTTS_POST_MARKUP_PARSE stage.
+
+* Support for VoiceWare-compatible transcriptions for some
+  languages (specify phoneme alphabet "x-vw" when using from SSML).
+  Supported for: Dutch, English (Australian), English (US), French,
+  German, Italian, Spanish, Swedish.
+
+* If an SSML phoneme element contains a transcription the engine
+  cannot handle, the engine will now, as a fallback, read the contents
+  within the element (if any).
+
+* SSML extension: The prosody element now also accepts absolute,
+  unit-less numeric prosody pitch values. These are interpreted as
+  percentages of the normal pitch for the voice, not affected by
+  surrounding markup.  (I.e. pitch="100" gives normal pitch.)
+
+* Emphasis markup can now trig a variation in rate/pitch/volume to make
+  the emphasized text stand out in a desired manner. (See the
+  RSTTS_PARAM_MARKUP_EMPHASIS_* parameters to rsttsSetParameter().)
+
+* Documents can now include .au and .wav files (via the SSML audio
+  element), if this functionality is enabled. This is enabled and
+  configured via the RSTTS_PARAM_URI_* parameters of rsttsSetParameter().
+  Built-in sfx (paralinguistic sounds) can now also be disabled if desired.
+
+* German (de_de) normalization: Now also considers the word "Billiarden"
+  as numeric. 1:ens, 2:ens etc will now be read as erstens, zweitens etc
+
+* Various minor normalization improvements
+
+* Disambiguation improvements for Italian
+
+* Minor disambiguation improvements for English and French
+
+
+Changes in bug fix release 1.0.2 (since release 1.0):
 
 * Some data was missing from viseme events, fixed.
 

@@ -32,13 +32,13 @@
 // Return values
 
 /**
- * @brief Generic success value (do not check against this value, use RSTTS_SUCCESS() instead!)
+ * @brief Generic success value (do not check against this specific value, use RSTTS_SUCCESS() instead!)
  *
  * This value is often used to indicate success, where
  * no other useful information is to be returned from the API call.
  * Some operations may return other values that also indicate succcess,
- * so API users should generally not check against this value but use
- * the RSTTS_SUCCESS() macro instead.
+ * that is why it is important to use the RSTTS_SUCCESS() macro instead
+ * of comparing explicitly with this value.
  */
 
 #define RSTTS_OK 0
@@ -205,6 +205,43 @@
  * an unexpected error when trying to access the channel locking resource.
  */
 #define RSTTS_LICENSE_CHANNEL_LOCK_IO_ERROR -109
+/* (Numbers -109..-119 reserved for future additional LICENSE errors) */
+/**
+ * A resource referenced by the text (for example a sound file
+ * referenced by an SSML audio element) has an incompatible file format or
+ * is corrupt.
+ */
+#define RSTTS_RESOURCE_FILE_FORMAT_ERROR -120
+/**
+ * A resource referenced by the text (for example a sound file
+ * referenced by an SSML audio element) is forbidden due to current settings.
+ * (For example, trying to reference a file by absolute path when
+ * the options RSTTS_PARAM_URI_FILE_BUILTIN_ENABLED and
+ * RSTTS_PARAM_URI_FILE_BUILTIN_ALLOW_ABS are not set).
+ */
+#define RSTTS_RESOURCE_FORBIDDEN_ERROR -121
+/**
+ * A resource referenced by the text (for example a sound file
+ * referenced by an SSML audio element) was not found.
+ */
+#define RSTTS_RESOURCE_NOT_FOUND_ERROR -122
+/**
+ * An error occured while reading from a resource referenced by the
+ * text (for example a sound file referenced by an SSML audio element)
+ */
+#define RSTTS_RESOURCE_READ_ERROR -123
+/**
+ * An resource referenced by the text (for example a sound file referenced
+ * by an SSML audio element) could not be accessed (for example, due to
+ * a file permissions error or similar).
+ */
+#define RSTTS_RESOURCE_UNAVAILABLE_ERROR -124
+/* (Numbers -125..-129 reserved for future additional RESOURCE errors) */
+/**
+ * The operation requires a language to be set beforehand, but no language
+ * is currently set for the instance.
+ */
+#define RSTTS_LANGUAGE_NOT_SET -130
 
 // Internal errors
 // Internal error in thread creation/destruction or locking/unlocking of data
@@ -234,5 +271,19 @@
  * being out of free memory or file handles.
  */
 #define RSTTS_INTERNAL_VOICE_ERROR -202
+/**
+ * A language/voice file is of a version not compatible with this TTS engine.
+ *
+ * This error typically means that the TTS software has been only partially
+ * updated from a previous version that is not fully compatible (perhaps
+ * the library has been updated but not the data files, or the other way
+ * around, or some voice/language files were missed when updating).
+ * Compatibility checks are performed when a voice is loaded,
+ * which happens on voice selection via the API (rsttsSetVoiceByName()),
+ * alternatively within rsttsSynthesize() or rsttsSynthesizeAsync() in
+ * case there was no previous voice selection or when a voice load is
+ * trigged by language/voice markup.
+ */
+#define RSTTS_INTERNAL_FILE_VERSION_ERROR -203
 
 #endif

@@ -17,6 +17,9 @@ Icon6 ICON icons/Icon6.ico
 
 Splash BITMAP Splash.bmp
 
+// Refer to VersionInfo.h file included above
+TRANSLATION_RESOURCE_NAME MOFILE TRANSLATION_MO_FILE
+
 VS_VERSION_INFO VERSIONINFO
     FILEVERSION    VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TWEAK
     PRODUCTVERSION VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH, VERSION_TWEAK
@@ -32,7 +35,7 @@ VS_VERSION_INFO VERSIONINFO
 {
     BLOCK "StringFileInfo"
     {
-        BLOCK "000904b0"
+        BLOCK LANG_CHARSET
         {
             VALUE "Comments",         "\0"
             VALUE "CompanyName",      "BNC Distribution\0"
@@ -47,6 +50,6 @@ VS_VERSION_INFO VERSIONINFO
     }
     BLOCK "VarFileInfo"
     {
-        VALUE "Translation", 0x9, 1200
+        VALUE "Translation", LANG_ID, CHARSET
     }
 }

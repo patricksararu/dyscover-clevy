@@ -15,8 +15,10 @@
 bool App::OnInit()
 {
     m_pLocale = new wxLocale(wxLANGUAGE_DUTCH);
-    m_pLocale->AddCatalogLookupPathPrefix(GetTranslationsPath());
-    m_pLocale->AddCatalog("Dyscover");
+
+    wxTranslations* pTranslations = wxTranslations::Get();
+    pTranslations->SetLoader(new wxResourceTranslationsLoader());
+    pTranslations->AddCatalog("Dyscover");
 
     m_pConfig = new Config();
 

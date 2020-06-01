@@ -104,6 +104,28 @@ if(WIN32)
     )
 endif()
 
+# Languages
+set(LANGUAGE "nl" CACHE STRING "Specifies which language to use")
+set_property(CACHE LANGUAGE PROPERTY STRINGS nl)
+message(STATUS "Language is set to ${LANGUAGE}.")
+if(LANGUAGE STREQUAL "nl")
+  set(LANG_ID "0413")  # 0x0413 = Dutch
+  set(CHARSET "04B0")  # 0x04B0 = 1200 = Unicode
+else()
+  message(FATAL_ERROR "Unsupported language.")
+endif()
+
+# Translations
+find_package(Gettext REQUIRED)
+set(PO_FILE ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/${LANGUAGE}.po)
+set(MO_FILE ${CMAKE_CURRENT_BINARY_DIR}/Dyscover.mo)
+add_custom_command(
+  MAIN_DEPENDENCY ${PO_FILE}
+  OUTPUT ${MO_FILE}
+  COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${PO_FILE} -o"${MO_FILE}"
+)
+target_sources(Dyscover PRIVATE ${MO_FILE})
+
 # Licensing
 set(LICENSING "demo" CACHE STRING "Specifies which licensing of the app to use")
 set_property(CACHE LICENSING PROPERTY STRINGS demo full none)
@@ -156,21 +178,10 @@ add_custom_command(
     COMMAND ${CMAKE_COMMAND} -E copy_if_different ${SOUND_FILES} $<TARGET_FILE_DIR:Dyscover>/audio
 )
 
-# Translations
-find_package(Gettext REQUIRED)
-add_custom_command(
-    TARGET Dyscover POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Dyscover>/lang/en
-    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/en.po -o$<TARGET_FILE_DIR:Dyscover>/lang/en/Dyscover.mo
-    COMMAND ${CMAKE_COMMAND} -E make_directory $<TARGET_FILE_DIR:Dyscover>/lang/nl
-    COMMAND ${GETTEXT_MSGFMT_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/res/lang/nl.po -o$<TARGET_FILE_DIR:Dyscover>/lang/nl/Dyscover.mo
-)
-
 # Installation
 install(TARGETS Dyscover RUNTIME DESTINATION .)
 install(FILES ${LIBRSTTS_DLL_FILE} DESTINATION .)
 install(FILES ${SOUND_FILES} DESTINATION audio)
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/Release/lang DESTINATION .) # TODO: Remove this ugly hack.
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts DESTINATION .)
 
 # Packaging

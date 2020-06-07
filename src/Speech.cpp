@@ -20,6 +20,7 @@ static const int kChannels = 1;
 static const int kSampleRate = 22050;
 static const int kSampleSize = 2;
 
+#if defined __LANGUAGE_NL__
 static const char kLicense[] = "<?xml version=\"1.0\"?>\
 <license version=\"1.0\" licid=\"4f2aab79db4149aa559d9044adac697e\" subject=\"rSpeak SDK Ilse for Clevy Dyscover software\">\
 	<issued>2018-08-28</issued>\
@@ -32,6 +33,23 @@ static const char kLicense[] = "<?xml version=\"1.0\"?>\
 	<voice name=\"Ilse\" vendor=\"rSpeak\"/>\
 	<signature id=\"1ea8690890fffbbff71f2c37148dfd50e351e666940dadf494ed4ba122e901f7ad71df6d8b974d1261b638f12acf786777590cfb13509850ec700223f1de95cb\"/>\
 </license>";
+#elif defined __LANGUAGE_NL_BE__
+static const char kLicense[] = "<?xml version=\"1.0\"?>\
+<license version=\"1.0\" licid=\"1e740ecca77d93e6746f433d5805140c\" subject=\"rSpeak SDK Ilse Veerle, BNC, exp. 2020-06-02\">\
+	<issued>2020-05-14</issued>\
+	<licensee>\
+		<company name=\"BNC Distribution\" address=\"Wasaweg 3a, 9723JD Groningen, The Netherlands\"/>\
+		<contact name=\"Bertran van den Hoff\" email=\"bertran.vandenhoff@bnc-distribution.nl\"/>\
+	</licensee>\
+	<product name=\"SDK rSpeak\"/>\
+	<general channels=\"0\" speed=\"0\" textlimit=\"0\" expires=\"2020-06-02\"/>\
+	<voice name=\"Ilse\" vendor=\"rSpeak\"/>\
+	<voice name=\"Veerle\" vendor=\"rSpeak\"/>\
+	<signature id=\"20ccdbe7165d8d221a95853a1dc8d0fb0c5eaa83fca9549a44f3d69eed2395cca25c58b2e43b0692bfcc9886b15c13afa6840411f95428e443b61806fdf6eaa7\"/>\
+</license>";
+#else
+#error Unsupported language.
+#endif
 
 Speech::Speech() : m_rstts(nullptr), m_quit(false)
 {

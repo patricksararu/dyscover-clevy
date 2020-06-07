@@ -106,11 +106,20 @@ endif()
 
 # Languages
 set(LANGUAGE "nl" CACHE STRING "Specifies which language to use")
-set_property(CACHE LANGUAGE PROPERTY STRINGS nl)
+set_property(CACHE LANGUAGE PROPERTY STRINGS nl nl_be)
 message(STATUS "Language is set to ${LANGUAGE}.")
 if(LANGUAGE STREQUAL "nl")
   set(LANG_ID "0413")  # 0x0413 = Dutch
   set(CHARSET "04B0")  # 0x04B0 = 1200 = Unicode
+  set(TTS_LANG "nl_nl")
+  set(TTS_VOICE "Ilse")
+  target_compile_definitions(Dyscover PRIVATE __LANGUAGE_NL__)
+elseif(LANGUAGE STREQUAL "nl_be")
+  set(LANG_ID "0813")  # 0x0813 = Belgian Dutch
+  set(CHARSET "04B0")  # 0x04B0 = 1200 = Unicode
+  set(TTS_LANG "nl_be")
+  set(TTS_VOICE "Veerle")
+  target_compile_definitions(Dyscover PRIVATE __LANGUAGE_NL_BE__)
 else()
   message(FATAL_ERROR "Unsupported language.")
 endif()

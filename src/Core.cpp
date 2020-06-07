@@ -13,6 +13,7 @@
 #include "ResourceLoader.h"
 #include "SoundPlayer.h"
 #include "Speech.h"
+#include "VersionInfo.h"
 
 Core::Core(App* pApp, Config* pConfig, Device* pDevice)
 {
@@ -21,7 +22,7 @@ Core::Core(App* pApp, Config* pConfig, Device* pDevice)
     m_pKeyboard = Keyboard::Create(this);
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
-    m_pSpeech->Init(GetTTSDataPath(), "nl", "Ilse");
+    m_pSpeech->Init(GetTTSDataPath(), TTS_LANG, TTS_VOICE);
 
     m_bKeyboardConnected = pDevice->IsClevyKeyboardPresent();
 }

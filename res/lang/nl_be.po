@@ -1,0 +1,82 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: nl_be\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Preferences"
+msgstr "Instellingen"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Method:"
+msgstr "Methode:"
+
+msgid "Dyscover"
+msgstr "Dyscover"
+
+msgid "KWeC"
+msgstr "KWeC"
+
+msgid "Software enabled"
+msgstr "Software actief"
+
+msgid "Auto-start with system"
+msgstr "Automatisch opstarten"
+
+msgid "Letters and numbers"
+msgstr "Letters en cijfers"
+
+msgid "Letter combinations"
+msgstr "Klanken"
+
+msgid "Words"
+msgstr "Woorden"
+
+msgid "Sentences"
+msgstr "Zinnen"
+
+msgid "Selection"
+msgstr "Selectie"
+
+msgid "Volume"
+msgstr "Volume"
+
+msgid "Speed"
+msgstr "Snelheid"
+
+msgid "Keyboard"
+msgstr "Toetsenbord"
+
+msgid "General"
+msgstr "Algemeen"
+
+msgid "Sound"
+msgstr "Geluid"
+
+msgid "Keyboard connected"
+msgstr "Toetsenbord aangesloten"
+
+msgid "Keyboard not connected"
+msgstr "Toetsenbord niet aangesloten"
+
+msgid "Clevy"
+msgstr "Clevy"
+
+msgid "Enabled"
+msgstr "Actief"
+
+msgid "Settings"
+msgstr "Instellingen"
+
+msgid "Manual"
+msgstr "Handleiding"
+
+msgid "Exit"
+msgstr "Afsluiten"

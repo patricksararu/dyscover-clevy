@@ -14,7 +14,13 @@
 
 bool App::OnInit()
 {
+#if defined __LANGUAGE_NL__
     m_pLocale = new wxLocale(wxLANGUAGE_DUTCH);
+#elif defined __LANGUAGE_NL_BE__
+    m_pLocale = new wxLocale(wxLANGUAGE_DUTCH_BELGIAN);
+#else
+#error Unsupported language.
+#endif
 
     wxTranslations* pTranslations = wxTranslations::Get();
     pTranslations->SetLoader(new wxResourceTranslationsLoader());

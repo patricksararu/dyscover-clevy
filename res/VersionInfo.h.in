@@ -21,3 +21,6 @@
 
 #define TRANSLATION_RESOURCE_NAME Dyscover_${LANGUAGE}
 #define TRANSLATION_MO_FILE "${MO_FILE}"
+
+#define TTS_LANG "${TTS_LANG}"
+#define TTS_VOICE "${TTS_VOICE}"

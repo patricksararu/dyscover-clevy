@@ -191,7 +191,13 @@ add_custom_command(
 install(TARGETS Dyscover RUNTIME DESTINATION .)
 install(FILES ${LIBRSTTS_DLL_FILE} DESTINATION .)
 install(FILES ${SOUND_FILES} DESTINATION audio)
-install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts DESTINATION .)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_LANG}.db DESTINATION tts/data/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_LANG}.fsa DESTINATION tts/data/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_LANG}.fst DESTINATION tts/data/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.db DESTINATION tts/data/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.fon DESTINATION tts/data/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.opu DESTINATION tts/data/)
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.udb DESTINATION tts/data/)
 
 # Packaging
 set(CPACK_PACKAGE_NAME "Clevy Dyscover 4")

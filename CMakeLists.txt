@@ -199,11 +199,22 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.fon DES
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.opu DESTINATION tts/data/)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/res/data/tts/data/${TTS_VOICE}.udb DESTINATION tts/data/)
 
+# Decode platform name
+set(PLATFORM_NAME ${CMAKE_SYSTEM_NAME})
+if(PLATFORM_NAME MATCHES "Windows")
+  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(PLATFORM_NAME win64)
+  else()
+    set(PLATFORM_NAME win32)
+  endif()
+endif()
+
 # Packaging
 set(CPACK_PACKAGE_NAME "Clevy Dyscover 4")
 set(CPACK_PACKAGE_VENDOR "BNC Distribution")
 set(CPACK_PACKAGE_INSTALL_DIRECTORY "Clevy Dyscover 4")
 set(CPACK_PACKAGE_EXECUTABLES "Dyscover;Clevy Dyscover 4")
+set(CPACK_PACKAGE_FILE_NAME "Dyscover-${LANGUAGE}-${LICENSING}-${CMAKE_PROJECT_VERSION}-${PLATFORM_NAME}")
 if(WIN32)
     set(CPACK_GENERATOR WIX)
     set(CPACK_WIX_UPGRADE_GUID 12C19B6B-BB03-4255-AD65-0A46D994886B) # NOTE: Never change this and never reuse in any other project.

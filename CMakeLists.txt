@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 
 project(Dyscover
-  VERSION 3.91.0.0
+  VERSION 3.92.0.0
   DESCRIPTION "Clevy Dyscover"
   HOMEPAGE_URL "https://clevy.com"
   LANGUAGES CXX

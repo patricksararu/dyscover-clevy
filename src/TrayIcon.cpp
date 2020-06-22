@@ -42,7 +42,7 @@ void TrayIcon::UpdateIcon()
 #else
     int iconIndex = m_pConfig->GetEnabled() ? 0 : 5;
 #endif
-    SetIcon(m_icons[iconIndex], _("Clevy"));
+    SetIcon(m_icons[iconIndex], _("Clevy Dyscover"));
 }
 
 wxMenu* TrayIcon::CreatePopupMenu()

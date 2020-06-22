@@ -51,7 +51,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pSoundVolumeLabel = new wxStaticText(this, wxID_ANY, _("Volume"));
     m_pSoundVolume = new wxSlider(this, ID_VOLUME, 100, 0, 100);
     m_pSoundSpeedLabel = new wxStaticText(this, wxID_ANY, _("Speed"));
-    m_pSoundSpeed = new wxSlider(this, ID_SPEED, 0, -75, 75);
+    m_pSoundSpeed = new wxSlider(this, ID_SPEED, 0, -25, +25);
 
     m_pVersionLabel = new wxStaticText(this, wxID_ANY, "Version");
     m_pVersionValue = new wxStaticText(this, wxID_ANY, VERSION_STRING);

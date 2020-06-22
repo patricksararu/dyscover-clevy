@@ -26,6 +26,18 @@ bool App::OnInit()
     pTranslations->SetLoader(new wxResourceTranslationsLoader());
     pTranslations->AddCatalog("Dyscover");
 
+    m_pSingleInstanceChecker = new wxSingleInstanceChecker();
+    if (m_pSingleInstanceChecker->IsAnotherRunning())
+    {
+        wxMessageBox(_("Another instance is already running."), _("Clevy Dyscover"), wxSTAY_ON_TOP);
+
+        // Clean up now because OnExit() won't be called since we are returning false here.
+        delete m_pSingleInstanceChecker;
+        delete m_pLocale;
+
+        return false;
+    }
+
     m_pConfig = new Config();
 
 #ifdef __LICENSING_DEMO__
@@ -37,6 +49,7 @@ bool App::OnInit()
         // Clean up now because OnExit() won't be called since we are returning false here.
         delete m_pDemoLicensing;
         delete m_pConfig;
+        delete m_pSingleInstanceChecker;
         delete m_pLocale;
 
         return false;
@@ -64,6 +77,7 @@ int App::OnExit()
     delete m_pCore;
     delete m_pConfig;
 
+    delete m_pSingleInstanceChecker;
     delete m_pLocale;
 
     return wxApp::OnExit();

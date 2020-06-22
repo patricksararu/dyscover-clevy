@@ -5,6 +5,7 @@
 #pragma once
 
 #include <wx/app.h>
+#include <wx/snglinst.h>
 
 #include "Device.h"
 #include "LicensingDemo.h"
@@ -39,6 +40,7 @@ public:
 
 private:
     wxLocale* m_pLocale;
+    wxSingleInstanceChecker* m_pSingleInstanceChecker;
 
     Config* m_pConfig;
     Core* m_pCore;

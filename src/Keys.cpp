@@ -39,7 +39,6 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Nine, false, true, false, { { Key::Nine, false, false, false } }, "9.wav" },
     { Key::Zero, false, true, false, { { Key::Zero, false, false, false } }, "0.wav" },
     { Key::Five, false, true, true, { { Key::E, false, true, true } } },
-    { Key::AltGr, false, false, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },
     { Key::AltGr, false, true, false, { { Key::AltGr, false, true, false }, { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::OpenBracket, false, false, false, { { Key::O }, { Key::U } }, "ou.wav" },
     { Key::CloseBracket, false, false, false, { { Key::I }, { Key::J } }, "ij.wav" },
@@ -145,7 +144,6 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Nine, false, true, false, { { Key::Nine, false, false, false } }, "9.wav" },
     { Key::Zero, false, true, false, { { Key::Zero, false, false, false } }, "0.wav" },
     { Key::Five, false, true, true, { { Key::E, false, true, true } } },
-    { Key::AltGr, false, false, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },
     { Key::AltGr, false, true, false, { { Key::AltGr, false, true, false }, { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::OpenBracket, false, false, false, { { Key::O }, { Key::U } }, "ou.wav" },
     { Key::CloseBracket, false, false, false, { { Key::U }, { Key::I } }, "ui.wav" },

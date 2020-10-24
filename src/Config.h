@@ -7,6 +7,10 @@
 #include <wx/datetime.h>
 #include <wx/string.h>
 
+#ifdef WIN32
+#include <wx/msw/registry.h>
+#endif //  WIN32
+
 class wxFileConfig;  // TODO: Replace with #include <wx/fileconf.h>
 
 enum class Layout
@@ -62,4 +66,7 @@ public:
 
 private:
     wxFileConfig* m_pConfig;
+#ifdef WIN32
+    wxRegKey* m_pWindowsAutostartRegistryKey;
+#endif // WIN32
 };

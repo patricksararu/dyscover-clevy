@@ -4,6 +4,10 @@
 
 #include <wx/fileconf.h>
 
+#ifdef WIN32
+#include <wx/stdpaths.h>
+#endif // WIN32
+
 #include "Config.h"
 
 static const wxString kLayoutKey("/Dyscover/Layout");
@@ -35,9 +39,14 @@ static constexpr bool kDemoExpiredDefaultValue = false;
 static const wxString kLayoutValueClassic("Classic");
 static const wxString kLayoutValueKWeC("Cover");
 
+static const wxString kWindowsRegistryAutostartKeyName("ClevyDyscover4");
+
 Config::Config()
 {
     m_pConfig = new wxFileConfig("Dyscover", "Clevy", "ClevyDyscover.ini");
+#ifdef WIN32
+    m_pWindowsAutostartRegistryKey = new wxRegKey(wxRegKey::HKCU, "Software\\Microsoft\\Windows\\CurrentVersion\\Run");
+#endif // WIN32
 }
 
 Config::~Config()
@@ -67,12 +76,27 @@ void Config::SetEnabled(bool value)
 
 bool Config::GetAutostart()
 {
+#ifdef WIN32
+    return m_pWindowsAutostartRegistryKey->HasValue(kWindowsRegistryAutostartKeyName);
+#else
     return m_pConfig->ReadBool(kAutostartKey, kAutostartDefaultValue);
+#endif // WIN32
 }
 
 void Config::SetAutostart(bool value)
 {
+#ifdef WIN32
+    if (value)
+    {
+        m_pWindowsAutostartRegistryKey->SetValue(kWindowsRegistryAutostartKeyName, wxStandardPaths::Get().GetExecutablePath());
+    }
+    else
+    {
+        m_pWindowsAutostartRegistryKey->DeleteValue(kWindowsRegistryAutostartKeyName);
+    }
+#else
     m_pConfig->Write(kAutostartKey, value);
+#endif // WIN32
 }
 
 bool Config::GetLettersAndNumbers()

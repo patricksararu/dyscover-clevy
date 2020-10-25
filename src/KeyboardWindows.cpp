@@ -150,6 +150,7 @@ static constexpr KeyMapping s_keyMappings[] = {
     { Key::Dot, VK_OEM_PERIOD },
     { Key::Semicolon, VK_OEM_1 },
     { Key::Slash, VK_OEM_2 },
+    { Key::Tilda, VK_OEM_3},
     { Key::OpenBracket, VK_OEM_4 },
     { Key::Backslash, VK_OEM_5 },
     { Key::CloseBracket, VK_OEM_6 },

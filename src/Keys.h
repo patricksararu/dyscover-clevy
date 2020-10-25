@@ -73,6 +73,7 @@ enum class Key
     Dot,
     Minus,
     Slash,
+    Tilda,
     Equal,
     OpenBracket,
     CloseBracket,

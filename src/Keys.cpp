@@ -38,17 +38,17 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Eight, false, true, false, { { Key::Eight, false, false, false } }, "8.wav" },
     { Key::Nine, false, true, false, { { Key::Nine, false, false, false } }, "9.wav" },
     { Key::Zero, false, true, false, { { Key::Zero, false, false, false } }, "0.wav" },
-    { Key::AltGr, false, true, false, { { Key::AltGr, false, true, false }, { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
+    { Key::AltGr, false, true, false, { { Key::AltGr, false, false, false }, { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::OpenBracket, false, false, false, { { Key::O }, { Key::U } }, "ou.wav" },
     { Key::CloseBracket, false, false, false, { { Key::I }, { Key::J } }, "ij.wav" },
     { Key::OpenBracket, false, true, false, { { Key::OpenBracket, false, false, false } } },
-    { Key::CloseBracket, false, true, false, { { Key::CloseBracket, false, false, false } } },
+    { Key::CloseBracket, false, true, false, { { Key::I }, { Key::J } }, "u.wav" },  // Not a mistake: Ctrl+] should give 'ij' with sound 'u'
     { Key::Semicolon, false, false, false, { { Key::N }, { Key::G } }, "ng.wav" },
     { Key::Semicolon, false, true, false, { { Key::Semicolon, false, false, false } } },
     { Key::Apostrophe, false, false, false, { { Key::N }, { Key::K } }, "nk.wav" },
     { Key::Apostrophe, false, true, false, { { Key::Apostrophe, false, false, false } } },
     { Key::Backslash, false, false, false, { { Key::C }, { Key::H } }, "ch.wav" },
-    { Key::Backslash, false, true, false, { { Key::S }, { Key::J } }, "sj.wav" },
+    { Key::Backslash, false, true, false, { { Key::C }, { Key::H } }, "sj.wav" },  // Not a mistake: Ctrl+\ should give 'ch' with sound 'sj'
     { Key::Minus, false, false, false, { { Key::E }, { Key::U }, { Key::R } }, "eur.wav" },
     { Key::Minus, false, true, false, { { Key::Minus, false, false, false } } },
     { Key::Slash, false, false, false, { { Key::O }, { Key::O }, { Key::R } }, "oor.wav" },
@@ -69,14 +69,19 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::PageDown, false, true, false, { { Key::PageDown, false, false, false } } },
     { Key::A, false, false, false, {}, "a.wav" },
     { Key::A, true, false, false, {}, "a.wav" },
+    { Key::A, true, false, true, { { Key::A }, { Key::A } }, "aa.wav" },
     { Key::B, false, false, false, {}, "b.wav" },
     { Key::B, true, false, false, {}, "b.wav" },
     { Key::C, false, false, false, {}, "c.wav" },
     { Key::C, true, false, false, {}, "c.wav" },
+    { Key::C, false, true, false, { { Key::C } }, "k.wav" },  // Not a mistake: Ctrl+C should give 'c' with sound 'k'
     { Key::D, false, false, false, {}, "d.wav" },
     { Key::D, true, false, false, {}, "d.wav" },
+    { Key::D, false, true, false, { { Key::D } }, "t.wav" },  // Not a mistake: Ctrl+D should give 'd' with sound 't'
     { Key::E, false, false, false, {}, "e.wav" },
     { Key::E, true, false, false, {}, "e.wav" },
+    { Key::E, true, false, true, { { Key::E }, { Key::E } }, "ee.wav" },
+    { Key::E, false, true, false, { { Key::E } }, "u.wav" },  // Not a mistake: Ctrl+E should give 'e' with sound 'u'
     { Key::F, false, false, false, {}, "f.wav" },
     { Key::F, true, false, false, {}, "f.wav" },
     { Key::G, false, false, false, {}, "g.wav" },
@@ -85,6 +90,8 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::H, true, false, false, {}, "h.wav" },
     { Key::I, false, false, false, {}, "i.wav" },
     { Key::I, true, false, false, {}, "i.wav" },
+    { Key::I, true, false, true, { { Key::I }, { Key::E } }, "ie.wav" },
+    { Key::I, false, true, false, { { Key::I } }, "u.wav" },  // Not a mistake: Ctrl+I should give 'i' with sound 'u'
     { Key::J, false, false, false, {}, "j.wav" },
     { Key::J, true, false, false, {}, "j.wav" },
     { Key::K, false, false, false, {}, "k.wav" },
@@ -97,6 +104,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::N, true, false, false, {}, "n.wav" },
     { Key::O, false, false, false, {}, "o.wav" },
     { Key::O, true, false, false, {}, "o.wav" },
+    { Key::O, true, false, true, { { Key::O }, { Key::O } }, "oo.wav" },
     { Key::P, false, false, false, {}, "p.wav" },
     { Key::P, true, false, false, {}, "p.wav" },
     { Key::Q, false, false, false, {}, "q.wav" },
@@ -109,6 +117,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::T, true, false, false, {}, "t.wav" },
     { Key::U, false, false, false, {}, "u.wav" },
     { Key::U, true, false, false, {}, "u.wav" },
+    { Key::U, true, false, true, { { Key::U }, { Key::U } }, "uu.wav" },
     { Key::V, false, false, false, {}, "v.wav" },
     { Key::V, true, false, false, {}, "v.wav" },
     { Key::W, false, false, false, {}, "w.wav" },
@@ -117,6 +126,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::X, true, false, false, {}, "x.wav" },
     { Key::Y, false, false, false, {}, "y.wav" },
     { Key::Y, true, false, false, {}, "y.wav" },
+    { Key::Y, false, true, false, { { Key::Y } }, "i.wav" },  // Not a mistake: Ctrl+Y should give 'y' with sound 'i'
     { Key::Z, false, false, false, {}, "z.wav" },
     { Key::Z, true, false, false, {}, "z.wav" },
 };

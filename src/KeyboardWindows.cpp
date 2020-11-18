@@ -66,14 +66,22 @@ std::string KeyboardWindows::TranslateKeyStroke(Key key, bool shift, bool ctrl)
 {
     int vkCode = KeyCodeFromKey(key);
 
+    // Check if keystroke is a dead key/diacritic.
+    // This is needed because ToAscii() modifies the keyboard state and effectively kills diacritics.
+    // https://stackoverflow.com/questions/1964614/toascii-tounicode-in-a-keyboard-hook-destroys-dead-keys
+    UINT mapped = MapVirtualKey(vkCode, MAPVK_VK_TO_CHAR);
+    if (mapped >> (sizeof(UINT) * 8 - 1) & 1)  return std::string();
+
     BYTE keyboardState[256];
-    ZeroMemory(keyboardState, sizeof(keyboardState));
+    if (GetKeyboardState(keyboardState) == 0)  return std::string();
+
     keyboardState[VK_SHIFT] = shift ? 0xFF : 0x00;
     keyboardState[VK_CONTROL] = ctrl ? 0xFF : 0x00;
 
     WORD charBuffer[10];
     ZeroMemory(charBuffer, sizeof(charBuffer));
 
+    // TODO: Use ToUnicode().
     int result = ToAscii(vkCode, 0, keyboardState, charBuffer, 0);
     if (result < 0)  return std::string();
 

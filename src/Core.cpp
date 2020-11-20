@@ -46,7 +46,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     if (key == Key::WinCmd && eventType == KeyEventType::KeyDown && m_pConfig->GetSelection())
     {
         // Send Ctrl+C
-        m_pKeyboard->SendKeyStroke(Key::C, false, true);
+        m_pKeyboard->SendKeyStroke(Key::C, false, true, false);
 
         // Wait a while
         wxMilliSleep(25);
@@ -81,7 +81,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         {
             for (KeyStroke ks : translation.keystrokes)
             {
-                m_pKeyboard->SendKeyStroke(ks.key, ks.shift, ks.ctrl);
+                m_pKeyboard->SendKeyStroke(ks.key, ks.shift, ks.ctrl, ks.alt);
             }
         }
 

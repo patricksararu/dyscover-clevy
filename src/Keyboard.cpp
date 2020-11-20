@@ -32,7 +32,7 @@ Keyboard::~Keyboard()
 {
 }
 
-void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl)
+void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)
 {
     if (m_bShiftPressed && !shift)
     {
@@ -54,6 +54,17 @@ void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl)
     {
         // Press Ctrl
         SendKeyEvent(KeyEventType::KeyDown, Key::Ctrl);
+    }
+
+    if (m_bAltPressed && !alt)
+    {
+        // Release Alt
+        SendKeyEvent(KeyEventType::KeyUp, Key::Alt);
+    }
+    else if (!m_bAltPressed && alt)
+    {
+        // Press Alt
+        SendKeyEvent(KeyEventType::KeyDown, Key::Alt);
     }
 
     SendKeyEvent(KeyEventType::KeyDown, key);
@@ -79,6 +90,17 @@ void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl)
     {
         // Release Ctrl
         SendKeyEvent(KeyEventType::KeyUp, Key::Ctrl);
+    }
+
+    if (m_bAltPressed && !alt)
+    {
+        // Re-press Alt
+        SendKeyEvent(KeyEventType::KeyDown, Key::Alt);
+    }
+    else if (!m_bAltPressed && alt)
+    {
+        // Release Alt
+        SendKeyEvent(KeyEventType::KeyUp, Key::Alt);
     }
 }
 

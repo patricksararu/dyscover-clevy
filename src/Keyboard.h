@@ -22,7 +22,7 @@ public:
 
     virtual void SendKeyEvent(KeyEventType eventType, Key key) = 0;
 
-    void SendKeyStroke(Key key, bool shift, bool ctrl);
+    void SendKeyStroke(Key key, bool shift, bool ctrl, bool alt);
 
     virtual std::string TranslateKeyStroke(Key key, bool shift, bool ctrl) = 0;
 

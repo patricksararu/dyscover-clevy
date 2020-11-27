@@ -56,12 +56,7 @@ void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)
         SendKeyEvent(KeyEventType::KeyDown, Key::Ctrl);
     }
 
-    if (m_bAltPressed && !alt)
-    {
-        // Release Alt
-        SendKeyEvent(KeyEventType::KeyUp, Key::Alt);
-    }
-    else if (!m_bAltPressed && alt)
+    if (alt)
     {
         // Press Alt
         SendKeyEvent(KeyEventType::KeyDown, Key::Alt);
@@ -92,12 +87,7 @@ void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)
         SendKeyEvent(KeyEventType::KeyUp, Key::Ctrl);
     }
 
-    if (m_bAltPressed && !alt)
-    {
-        // Re-press Alt
-        SendKeyEvent(KeyEventType::KeyDown, Key::Alt);
-    }
-    else if (!m_bAltPressed && alt)
+    if (alt)
     {
         // Release Alt
         SendKeyEvent(KeyEventType::KeyUp, Key::Alt);
@@ -123,7 +113,15 @@ bool Keyboard::ProcessKeyEvent(KeyEventType eventType, Key key)
 
     if (key != Key::Unknown)
     {
-        return m_pListener->OnKeyEvent(key, eventType, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed);
+        bool bShouldSupress = m_pListener->OnKeyEvent(key, eventType, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed);
+
+        if (key == Key::Alt || key == Key::AltGr)
+        {
+            // Supress left and right Alt keys
+            return true;
+        }
+
+        return bShouldSupress;
     }
 
     return false;

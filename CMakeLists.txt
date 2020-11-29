@@ -41,6 +41,7 @@ add_executable(Dyscover WIN32
 
 # Platform-specifics
 if(WIN32)
+  target_sources(Dyscover PRIVATE src/DesktopToolbarWindows.cpp src/DesktopToolbarWindows.h)
   target_sources(Dyscover PRIVATE src/DeviceWindows.cpp src/DeviceWindows.h)
   target_link_libraries(Dyscover cfgmgr32.lib)
   target_sources(Dyscover PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)

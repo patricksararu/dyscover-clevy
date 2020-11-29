@@ -8,6 +8,9 @@
 #include "App.h"
 #include "Config.h"
 #include "Core.h"
+#ifdef WIN32
+#include "DesktopToolbarWindows.h"
+#endif // WIN32
 #include "PreferencesDialog.h"
 #include "ResourceLoader.h"
 #include "TrayIcon.h"
@@ -58,6 +61,9 @@ bool App::OnInit()
 
     wxSplashScreen splashScreen(LoadSplashBitmap(), wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 5000, nullptr, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP);
 
+#ifdef WIN32
+    m_pDesktopToolbar = new DesktopToolbarWindows();
+#endif // WIN32
     m_pDevice = Device::Create(this);
     m_pCore = new Core(this, m_pConfig, m_pDevice);
     m_pPreferencesDialog = new PreferencesDialog(this, m_pConfig);

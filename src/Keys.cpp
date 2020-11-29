@@ -18,6 +18,16 @@ struct KeyTranslationEntry
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchClassic = {
+    { Key::Up, false, false, false, { { Key::Up, false, false, false } } },
+    { Key::Down, false, false, false, { { Key::Down, false, false, false } } },
+    { Key::Left, false, false, false, { { Key::Left, false, false, false } } },
+    { Key::Right, false, false, false, { { Key::Right, false, false, false } } },
+    { Key::Backspace, false, false, false, { { Key::Backspace, false, false, false } } },
+    { Key::Space, false, false, false, { { Key::Space, false, false, false } } },
+    { Key::Enter, false, false, false, { { Key::Enter, false, false, false } } },
+    { Key::Tab, false, false, false, { { Key::Tab, false, false, false } } },
+    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
+    { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
     { Key::One, false, false, false, { { Key::A }, { Key::A } }, "aa.wav" },
     { Key::Two, false, false, false, { { Key::U }, { Key::U } }, "uu.wav" },
     { Key::Three, false, false, false, { { Key::O }, { Key::O } }, "oo.wav" },
@@ -132,6 +142,16 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
+    { Key::Up, false, false, false, { { Key::Up, false, false, false } } },
+    { Key::Down, false, false, false, { { Key::Down, false, false, false } } },
+    { Key::Left, false, false, false, { { Key::Left, false, false, false } } },
+    { Key::Right, false, false, false, { { Key::Right, false, false, false } } },
+    { Key::Backspace, false, false, false, { { Key::Backspace, false, false, false } } },
+    { Key::Space, false, false, false, { { Key::Space, false, false, false } } },
+    { Key::Enter, false, false, false, { { Key::Enter, false, false, false } } },
+    { Key::Tab, false, false, false, { { Key::Tab, false, false, false } } },
+    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
+    { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
     { Key::One, false, false, false, { { Key::A }, { Key::A } }, "aa.wav" },
     { Key::Two, false, false, false, { { Key::E }, { Key::E } }, "ee.wav" },
     { Key::Three, false, false, false, { { Key::O }, { Key::O } }, "oo.wav" },

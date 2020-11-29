@@ -86,6 +86,7 @@ enum class Key
     Down,
     Left,
     Right,
+    Backtick,
 };
 
 struct KeyStroke

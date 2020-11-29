@@ -73,20 +73,14 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     }
 
     KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, m_pConfig->GetLayout());
-    bool bSupressEvent = false;
-    if (!translation.keystrokes.empty())
-    {
-        // Ignore KeyUp events
-        if (eventType == KeyEventType::KeyDown)
-        {
-            for (KeyStroke ks : translation.keystrokes)
-            {
-                m_pKeyboard->SendKeyStroke(ks.key, ks.shift, ks.ctrl, ks.alt);
-            }
-        }
 
-        // Supress this event
-        bSupressEvent = true;
+    // Send simulated key strokes
+    if (eventType == KeyEventType::KeyDown)
+    {
+        for (KeyStroke ks : translation.keystrokes)
+        {
+            m_pKeyboard->SendKeyStroke(ks.key, ks.shift, ks.ctrl, ks.alt);
+        }
     }
 
     // Play sound
@@ -159,25 +153,17 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         }
         else
         {
-            if (!translation.keystrokes.empty())
+            for (KeyStroke ks : translation.keystrokes)
             {
-                for (KeyStroke ks : translation.keystrokes)
-                {
-                    std::string chars = m_pKeyboard->TranslateKeyStroke(ks.key, ks.shift, ks.ctrl);
-                    m_wordSpeechBuffer.append(chars);
-                    m_sentenceSpeechBuffer.append(chars);
-                }
-            }
-            else
-            {
-                std::string chars = m_pKeyboard->TranslateKeyStroke(key, shift, ctrl);
+                std::string chars = m_pKeyboard->TranslateKeyStroke(ks.key, ks.shift, ks.ctrl);
                 m_wordSpeechBuffer.append(chars);
                 m_sentenceSpeechBuffer.append(chars);
             }
         }
     }
 
-    return bSupressEvent;
+    // Supress all user keystrokes
+    return true;
 }
 
 void Core::OnClevyKeyboardConnected()

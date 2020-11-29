@@ -18,6 +18,7 @@ struct KeyTranslationEntry
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchClassic = {
+    { Key::CapsLock, false, false, false, { { Key::CapsLock, false, false, false } } },
     { Key::Up, false, false, false, { { Key::Up, false, false, false } } },
     { Key::Down, false, false, false, { { Key::Down, false, false, false } } },
     { Key::Left, false, false, false, { { Key::Left, false, false, false } } },
@@ -163,6 +164,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
+    { Key::CapsLock, false, false, false, { { Key::CapsLock, false, false, false } } },
     { Key::Up, false, false, false, { { Key::Up, false, false, false } } },
     { Key::Down, false, false, false, { { Key::Down, false, false, false } } },
     { Key::Left, false, false, false, { { Key::Left, false, false, false } } },

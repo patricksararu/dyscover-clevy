@@ -60,6 +60,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Eight, true, false, false, { { Key::Eight, true, false, false } } },
     { Key::Nine, true, false, false, { { Key::Nine, true, false, false } } },
     { Key::Zero, true, false, false, { { Key::Zero, true, false, false } } },
+    { Key::Five, false, true, true, { { Key::Five, false, true, true } } },  // Euro sign
     { Key::AltGr, false, true, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::OpenBracket, false, false, false, { { Key::O }, { Key::U } }, "ou.wav" },
     { Key::CloseBracket, false, false, false, { { Key::I }, { Key::J } }, "ij.wav" },
@@ -204,6 +205,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Eight, true, false, false, { { Key::Eight, true, false, false } } },
     { Key::Nine, true, false, false, { { Key::Nine, true, false, false } } },
     { Key::Zero, true, false, false, { { Key::Zero, true, false, false } } },
+    { Key::Five, false, true, true, { { Key::Five, false, true, true } } },  // Euro sign
     { Key::AltGr, false, true, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::OpenBracket, false, false, false, { { Key::O }, { Key::U } }, "ou.wav" },
     { Key::CloseBracket, false, false, false, { { Key::U }, { Key::I } }, "ui.wav" },

@@ -48,8 +48,8 @@ void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)
 
     if (alt)
     {
-        // Release Alt
-        SendKeyEvent(KeyEventType::KeyUp, Key::Alt);
+        // Press Alt
+        SendKeyEvent(KeyEventType::KeyDown, Key::Alt);
     }
 
     SendKeyEvent(KeyEventType::KeyDown, key);

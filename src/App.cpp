@@ -127,11 +127,6 @@ void App::UpdateTrayIcon()
     m_pTrayIcon->UpdateIcon();
 }
 
-void App::UpdateAudioVolume()
-{
-    m_pCore->UpdateAudioVolume();
-}
-
 bool App::IsClevyKeyboardPresent()
 {
     return m_pDevice->IsClevyKeyboardPresent();

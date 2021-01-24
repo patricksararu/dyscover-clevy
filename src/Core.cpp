@@ -23,6 +23,7 @@ Core::Core(App* pApp, Config* pConfig, Device* pDevice)
     m_pSoundPlayer = new SoundPlayer();
     m_pSpeech = new Speech();
     m_pSpeech->Init(GetTTSDataPath(), TTS_LANG, TTS_VOICE);
+    m_pSpeech->SetVolume(RSTTS_VOLUME_MAX);
 
     m_bKeyboardConnected = pDevice->IsClevyKeyboardPresent();
 }
@@ -60,7 +61,6 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
                 wxTheClipboard->GetData(tdo);
                 wxString s = tdo.GetText();
 
-                m_pSpeech->SetVolume(static_cast<float>(m_pConfig->GetVolume()));
                 m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
                 m_pSpeech->Speak(s.ToStdString());
             }
@@ -178,9 +178,4 @@ void Core::OnClevyKeyboardDisconnected()
     m_pSoundPlayer->PlaySoundFile("dyscover_connect_negative_with_voice.wav");
 
     m_bKeyboardConnected = false;
-}
-
-void Core::UpdateAudioVolume()
-{
-    m_pSpeech->SetAudioVolume(m_pConfig->GetVolume() * 0xFFFF / 100);
 }

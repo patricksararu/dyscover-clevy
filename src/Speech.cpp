@@ -151,16 +151,6 @@ bool Speech::SetVolume(float value)
 	return RSTTS_SUCCESS(result);
 }
 
-int Speech::GetAudioVolume()
-{
-	return m_audio.GetVolume();
-}
-
-bool Speech::SetAudioVolume(int value)
-{
-	return m_audio.SetVolume(value);
-}
-
 void Speech::Speak(std::string text)
 {
 	m_queue.Enqueue(text);

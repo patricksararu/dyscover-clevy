@@ -26,9 +26,6 @@ public:
 	float GetVolume();
 	bool SetVolume(float value);
 
-	int GetAudioVolume();
-	bool SetAudioVolume(int value);
-
 	void Speak(std::string text);
 	void Stop();
 

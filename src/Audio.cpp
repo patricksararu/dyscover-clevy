@@ -63,7 +63,7 @@ void Audio::Close()
 int Audio::GetVolume()
 {
 	DWORD dwVolume;
-	MMRESULT result = waveOutGetVolume(m_hWaveOut, &dwVolume);
+	MMRESULT result = waveOutGetVolume(0, &dwVolume);
 	if (result != 0)
 	{
 		return -1;
@@ -75,7 +75,7 @@ int Audio::GetVolume()
 bool Audio::SetVolume(int value)
 {
 	DWORD dwVolume = MAKELONG(value, value);
-	MMRESULT result = waveOutSetVolume(m_hWaveOut, dwVolume);
+	MMRESULT result = waveOutSetVolume(0, dwVolume);
 	return result == 0;
 }
 

@@ -18,7 +18,6 @@ static const wxString kLetterCombinationsKey("/Dyscover/LetterCombinations");
 static const wxString kWordsKey("/Dyscover/Words");
 static const wxString kSentencesKey("/Dyscover/Sentences");
 static const wxString kSelectionKey("/Dyscover/Selection");
-static const wxString kVolumeKey("/Dyscover/Volume");
 static const wxString kSpeedKey("/Dyscover/Speed");
 static const wxString kDemoStartedKey("/Dyscover/DemoStarted");
 static const wxString kDemoExpiredKey("/Dyscover/DemoExpired");
@@ -31,7 +30,6 @@ static constexpr bool kLetterCombinationsDefaultValue = true;
 static constexpr bool kWordsDefaultValue = true;
 static constexpr bool kSentencesDefaultValue = true;
 static constexpr bool kSelectionDefaultValue = true;
-static constexpr long kVolumeDefaultValue = 100;
 static constexpr long kSpeedDefaultValue = 0;
 static const wxDateTime kDemoStartedDefaultValue;
 static constexpr bool kDemoExpiredDefaultValue = false;
@@ -147,16 +145,6 @@ bool Config::GetSelection()
 void Config::SetSelection(bool value)
 {
     m_pConfig->Write(kSelectionKey, value);
-}
-
-long Config::GetVolume()
-{
-    return m_pConfig->ReadLong(kVolumeKey, kVolumeDefaultValue);
-}
-
-void Config::SetVolume(long value)
-{
-    m_pConfig->Write(kVolumeKey, value);
 }
 
 long Config::GetSpeed()

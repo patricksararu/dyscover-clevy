@@ -22,8 +22,6 @@ public:
     void OnClevyKeyboardConnected();
     void OnClevyKeyboardDisconnected();
 
-    void UpdateAudioVolume();
-
 private:
     App* m_pApp;
     Config* m_pConfig;

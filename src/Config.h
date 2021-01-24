@@ -55,9 +55,6 @@ public:
     long GetSpeed();
     void SetSpeed(long);
 
-    long GetVolume();
-    void SetVolume(long);
-
     wxDateTime GetDemoStarted();
     void SetDemoStarted(wxDateTime);
 

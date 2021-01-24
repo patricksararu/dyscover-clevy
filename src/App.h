@@ -30,7 +30,6 @@ public:
     void ShowPreferencesDialog();
     void UpdatePreferencesDialog();
     void UpdateTrayIcon();
-    void UpdateAudioVolume();
 
     bool IsClevyKeyboardPresent();
 

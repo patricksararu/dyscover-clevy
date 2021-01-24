@@ -5,6 +5,7 @@
 #include <wx/sizer.h>
 
 #include "App.h"
+#include "Audio.h"
 #include "Config.h"
 #include "PreferencesDialog.h"
 #include "ResourceLoader.h"
@@ -49,7 +50,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pSoundSentences = new wxCheckBox(this, ID_SENTENCES, _("Sentences"));
     m_pSoundSelection = new wxCheckBox(this, ID_SELECTION, _("Selection"));
     m_pSoundVolumeLabel = new wxStaticText(this, wxID_ANY, _("Volume"));
-    m_pSoundVolume = new wxSlider(this, ID_VOLUME, 100, 0, 100);
+    m_pSoundVolume = new wxSlider(this, ID_VOLUME, 0xFFFF, 0x0, 0xFFFF);
     m_pSoundSpeedLabel = new wxStaticText(this, wxID_ANY, _("Speed"));
     m_pSoundSpeed = new wxSlider(this, ID_SPEED, 0, -25, +25);
 
@@ -134,7 +135,7 @@ bool PreferencesDialog::TransferDataToWindow()
     m_pSoundWords->SetValue(m_pConfig->GetWords());
     m_pSoundSentences->SetValue(m_pConfig->GetSentences());
     m_pSoundSelection->SetValue(m_pConfig->GetSelection());
-    m_pSoundVolume->SetValue(m_pConfig->GetVolume());
+    m_pSoundVolume->SetValue(Audio::GetVolume());
     m_pSoundSpeed->SetValue(m_pConfig->GetSpeed());
 
     return true;
@@ -184,9 +185,7 @@ void PreferencesDialog::OnSoundSelectionChanged(wxCommandEvent&)
 
 void PreferencesDialog::OnSoundVolumeChanged(wxCommandEvent&)
 {
-    m_pConfig->SetVolume(m_pSoundVolume->GetValue());
-
-    m_pApp->UpdateAudioVolume();
+    Audio::SetVolume(m_pSoundVolume->GetValue());
 }
 
 void PreferencesDialog::OnSoundSpeedChanged(wxCommandEvent&)

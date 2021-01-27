@@ -163,6 +163,18 @@ static constexpr KeyMapping s_keyMappings[] = {
     { Key::Backslash, VK_OEM_5 },
     { Key::CloseBracket, VK_OEM_6 },
     { Key::Apostrophe, VK_OEM_7 },
+    { Key::F1, VK_F1 },
+    { Key::F2, VK_F2 },
+    { Key::F3, VK_F3 },
+    { Key::F4, VK_F4 },
+    { Key::F5, VK_F5 },
+    { Key::F6, VK_F6 },
+    { Key::F7, VK_F7 },
+    { Key::F8, VK_F8 },
+    { Key::F9, VK_F9 },
+    { Key::F10, VK_F10 },
+    { Key::F11, VK_F11 },
+    { Key::F12, VK_F12 },
 };
 
 Key KeyboardWindows::KeyFromKeyCode(int keyCode)

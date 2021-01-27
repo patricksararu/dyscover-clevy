@@ -18,6 +18,7 @@ struct KeyTranslationEntry
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchClassic = {
+    { Key::Esc, false, false, false, { { Key::Esc, false, false, false } } },
     { Key::CapsLock, false, false, false, { { Key::CapsLock, false, false, false } } },
     { Key::Up, false, false, false, { { Key::Up, false, false, false } } },
     { Key::Down, false, false, false, { { Key::Down, false, false, false } } },
@@ -161,6 +162,13 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Y, false, true, false, { { Key::Y } }, "i.wav" },  // Not a mistake: Ctrl+Y should give 'y' with sound 'i'
     { Key::Z, false, false, false, { { Key::Z, false, false, false } }, "z.wav" },
     { Key::Z, true, false, false, { { Key::Z, true, false, false } }, "z.wav" },
+    { Key::X, false, true, false, { { Key::X, false, true, false } } },
+    { Key::V, false, true, false, { { Key::V, false, true, false } } },
+    { Key::Z, false, true, false, { { Key::Z, false, true, false } } },
+    { Key::A, false, true, false, { { Key::A, false, true, false } } },
+    { Key::F, false, true, false, { { Key::F, false, true, false } } },
+    { Key::Tab, false, false, true, { { Key::Tab, false, false, true } } },
+    { Key::F4, false, false, true, { { Key::F4, false, false, true } } },
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchKWeC = {

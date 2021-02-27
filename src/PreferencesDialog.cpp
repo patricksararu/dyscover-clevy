@@ -14,6 +14,7 @@
 enum
 {
     ID_STATUS = wxID_HIGHEST + 1,
+    ID_METHOD_DEFAULT,
     ID_METHOD_DYSCOVER,
     ID_METHOD_KWEC,
     ID_ENABLED,
@@ -38,7 +39,8 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pKeyboardStatusLabel = new wxStaticText(this, ID_STATUS, _("Status:"));
     m_pKeyboardStatusValue = new wxStaticText(this, ID_STATUS, wxEmptyString);
     m_pKeyboardMethodLabel = new wxStaticText(this, wxID_ANY, _("Method:"));
-    m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Dyscover"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    m_pKeyboardMethodDefault = new wxRadioButton(this, ID_METHOD_DEFAULT, _("Default"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Dyscover"));
     m_pKeyboardMethodKWeC = new wxRadioButton(this, ID_METHOD_KWEC, _("KWeC"));
 
     m_pSoftwareEnabled = new wxCheckBox(this, ID_ENABLED, _("Software enabled"));
@@ -63,6 +65,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
 
     wxBoxSizer* pKeyboardMethodSizer = new wxBoxSizer(wxHORIZONTAL);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodLabel, wxSizerFlags().Border(wxRIGHT));
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault, wxSizerFlags().Proportion(1));
     pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover, wxSizerFlags().Proportion(1));
     pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC, wxSizerFlags().Proportion(1));
 
@@ -124,6 +127,7 @@ bool PreferencesDialog::TransferDataToWindow()
         m_pKeyboardStatusValue->SetLabelText(_("Keyboard not connected"));
     }
 
+    m_pKeyboardMethodDefault->SetValue(m_pConfig->GetLayout() == Layout::DutchDefault);
     m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::DutchClassic);
     m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::DutchKWeC);
 
@@ -143,7 +147,18 @@ bool PreferencesDialog::TransferDataToWindow()
 
 void PreferencesDialog::OnKeyboardMethodChanged(wxCommandEvent&)
 {
-    m_pConfig->SetLayout(m_pKeyboardMethodDyscover->GetValue() ? Layout::DutchClassic : Layout::DutchKWeC);
+    if (m_pKeyboardMethodDefault->GetValue())
+    {
+        m_pConfig->SetLayout(Layout::DutchDefault);
+    }
+    else if (m_pKeyboardMethodDyscover->GetValue())
+    {
+        m_pConfig->SetLayout(Layout::DutchClassic);
+    }
+    else
+    {
+        m_pConfig->SetLayout(Layout::DutchKWeC);
+    }
 }
 
 void PreferencesDialog::OnSoftwareEnabledChanged(wxCommandEvent&)
@@ -194,6 +209,7 @@ void PreferencesDialog::OnSoundSpeedChanged(wxCommandEvent&)
 }
 
 wxBEGIN_EVENT_TABLE(PreferencesDialog, wxDialog)
+    EVT_RADIOBUTTON(ID_METHOD_DEFAULT, PreferencesDialog::OnKeyboardMethodChanged)
     EVT_RADIOBUTTON(ID_METHOD_DYSCOVER, PreferencesDialog::OnKeyboardMethodChanged)
     EVT_RADIOBUTTON(ID_METHOD_KWEC, PreferencesDialog::OnKeyboardMethodChanged)
 

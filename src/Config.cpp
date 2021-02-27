@@ -34,6 +34,7 @@ static constexpr long kSpeedDefaultValue = 0;
 static const wxDateTime kDemoStartedDefaultValue;
 static constexpr bool kDemoExpiredDefaultValue = false;
 
+static const wxString kLayoutValueDefault("Default");
 static const wxString kLayoutValueClassic("Classic");
 static const wxString kLayoutValueKWeC("Cover");
 
@@ -196,6 +197,12 @@ wxString wxToString(const wxDateTime& datetime)
 
 bool wxFromString(const wxString& string, Layout* pLayout)
 {
+    if (string == kLayoutValueDefault)
+    {
+        *pLayout = Layout::DutchDefault;
+        return true;
+    }
+
     if (string == kLayoutValueClassic)
     {
         *pLayout = Layout::DutchClassic;
@@ -215,6 +222,8 @@ wxString wxToString(const Layout& layout)
 {
     switch (layout)
     {
+    case Layout::DutchDefault:
+        return kLayoutValueDefault;
     case Layout::DutchClassic:
         return kLayoutValueClassic;
     case Layout::DutchKWeC:

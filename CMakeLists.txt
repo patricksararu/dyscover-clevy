@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 
 project(Dyscover
   VERSION 3.95.0.0
@@ -48,6 +48,11 @@ elseif(UNIX)
   target_sources(Dyscover PRIVATE src/KeyboardLinux.cpp src/KeyboardLinux.h)
 else()
   message(FATAL_ERROR "Unsupported platform")
+endif()
+
+# Prevent adding /W3 to CMAKE_<LANG>_FLAGS by default
+if(POLICY CMP0092)
+  cmake_policy(SET CMP0092 NEW)
 endif()
 
 # Warnings

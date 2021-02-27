@@ -63,11 +63,14 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pKeyboardStatusSizer->Add(m_pKeyboardStatusLabel, wxSizerFlags().Border(wxRIGHT));
     pKeyboardStatusSizer->Add(m_pKeyboardStatusValue, wxSizerFlags().Expand());
 
-    wxBoxSizer* pKeyboardMethodSizer = new wxBoxSizer(wxHORIZONTAL);
-    pKeyboardMethodSizer->Add(m_pKeyboardMethodLabel, wxSizerFlags().Border(wxRIGHT));
-    pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault, wxSizerFlags().Proportion(1));
-    pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover, wxSizerFlags().Proportion(1));
-    pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC, wxSizerFlags().Proportion(1));
+    int gap = wxSizerFlags::GetDefaultBorder();
+    wxFlexGridSizer* pKeyboardMethodSizer = new wxFlexGridSizer(3, 2, gap, gap);
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodLabel);
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault);
+    pKeyboardMethodSizer->AddSpacer(1);
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover);
+    pKeyboardMethodSizer->AddSpacer(1);
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC);
 
     wxStaticBoxSizer* pKeyboardSectionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keyboard"));
     pKeyboardSectionSizer->Add(pKeyboardStatusSizer, wxSizerFlags().Border().Expand());

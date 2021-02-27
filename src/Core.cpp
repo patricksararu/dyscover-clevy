@@ -117,6 +117,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
             }
 
             m_wordSpeechBuffer.clear();
+            m_sentenceSpeechBuffer.push_back(' ');
         }
         else if (key == Key::Dot || ((key == Key::One || key == Key::Slash) && shift))
         {

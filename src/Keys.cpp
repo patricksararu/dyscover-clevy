@@ -184,7 +184,6 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::AltGr, false, true, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::OpenBracket, false, false, false, { { Key::O }, { Key::U } }, "ou.wav" },
     { Key::CloseBracket, false, false, false, { { Key::I }, { Key::J } }, "ij.wav" },
-    { Key::OpenBracket, false, true, false, { { Key::OpenBracket, false, false, false } } },
     { Key::CloseBracket, false, true, false, { { Key::I }, { Key::J } }, "u.wav" },  // Not a mistake: Ctrl+] should give 'ij' with sound 'u'
     { Key::OpenBracket, true, false, false, { { Key::OpenBracket, true, false, false } } },
     { Key::CloseBracket, true, false, false, { { Key::CloseBracket, true, false, false} } },

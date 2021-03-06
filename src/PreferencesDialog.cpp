@@ -116,6 +116,8 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pRootSizer->Add(pLicenseSizer, wxSizerFlags().DoubleHorzBorder().Expand());
     pRootSizer->Add(pVersionSizer, wxSizerFlags().DoubleBorder().Expand());
 
+    pRootSizer->SetMinSize(300, 300);
+
     SetSizerAndFit(pRootSizer);
 }
 

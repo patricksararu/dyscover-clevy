@@ -29,8 +29,8 @@ private:
     wxStaticText* m_pKeyboardStatusLabel;
     wxStaticText* m_pKeyboardStatusValue;
     wxStaticText* m_pKeyboardMethodLabel;
-    wxRadioButton* m_pKeyboardMethodDefault;
     wxRadioButton* m_pKeyboardMethodDyscover;
+    wxRadioButton* m_pKeyboardMethodDefault;
     wxRadioButton* m_pKeyboardMethodKWeC;
 
     wxCheckBox* m_pSoftwareEnabled;

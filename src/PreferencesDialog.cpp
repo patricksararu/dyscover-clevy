@@ -39,9 +39,9 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pKeyboardStatusLabel = new wxStaticText(this, ID_STATUS, _("Status:"));
     m_pKeyboardStatusValue = new wxStaticText(this, ID_STATUS, wxEmptyString);
     m_pKeyboardMethodLabel = new wxStaticText(this, wxID_ANY, _("Method:"));
-    m_pKeyboardMethodDefault = new wxRadioButton(this, ID_METHOD_DEFAULT, _("Default"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
-    m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Dyscover"));
-    m_pKeyboardMethodKWeC = new wxRadioButton(this, ID_METHOD_KWEC, _("KWeC"));
+    m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Clevy Dyscover"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
+    m_pKeyboardMethodDefault = new wxRadioButton(this, ID_METHOD_DEFAULT, _("Clevy Keyboard"));
+    m_pKeyboardMethodKWeC = new wxRadioButton(this, ID_METHOD_KWEC, _("KWeC-over"));
 
     m_pSoftwareEnabled = new wxCheckBox(this, ID_ENABLED, _("Software enabled"));
     m_pSoftwareAutostart = new wxCheckBox(this, ID_AUTOSTART, _("Auto-start with system"));
@@ -66,9 +66,9 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     int gap = wxSizerFlags::GetDefaultBorder();
     wxFlexGridSizer* pKeyboardMethodSizer = new wxFlexGridSizer(3, 2, gap, gap);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodLabel);
-    pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault);
-    pKeyboardMethodSizer->AddSpacer(1);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover);
+    pKeyboardMethodSizer->AddSpacer(1);
+    pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault);
     pKeyboardMethodSizer->AddSpacer(1);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC);
 
@@ -150,13 +150,13 @@ bool PreferencesDialog::TransferDataToWindow()
 
 void PreferencesDialog::OnKeyboardMethodChanged(wxCommandEvent&)
 {
-    if (m_pKeyboardMethodDefault->GetValue())
-    {
-        m_pConfig->SetLayout(Layout::DutchDefault);
-    }
-    else if (m_pKeyboardMethodDyscover->GetValue())
+    if (m_pKeyboardMethodDyscover->GetValue())
     {
         m_pConfig->SetLayout(Layout::DutchClassic);
+    }
+    else if (m_pKeyboardMethodDefault->GetValue())
+    {
+        m_pConfig->SetLayout(Layout::DutchDefault);
     }
     else
     {

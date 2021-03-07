@@ -9,6 +9,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Another instance is already running."
+msgstr "Another instance is already running."
+
+msgid "Clevy Dyscover"
+msgstr "Clevy Dyscover"
+
+msgid "Your 30-day demo license has expired! Please purchase a license."
+msgstr "Your 30-day demo license has expired! Please purchase a license."
+
+msgid "Clevy Dyscover demo license expired"
+msgstr "Clevy Dyscover demo license expired"
+
+msgid "Your 30 minute demo has expired. Please purchase a license."
+msgstr "Your 30 minute demo has expired. Please purchase a license."
+
+msgid "Clevy Dyscover demo license"
+msgstr "Clevy Dyscover demo license"
+
 msgid "Preferences"
 msgstr "Preferences"
 
@@ -18,11 +36,11 @@ msgstr "Status:"
 msgid "Method:"
 msgstr "Method:"
 
-msgid "Dyscover"
-msgstr "Dyscover"
+msgid "Clevy Keyboard"
+msgstr "Clevy Keyboard"
 
-msgid "KWeC"
-msgstr "KWeC"
+msgid "KWeC-over"
+msgstr "KWeC-over"
 
 msgid "Software enabled"
 msgstr "Software enabled"
@@ -30,11 +48,8 @@ msgstr "Software enabled"
 msgid "Auto-start with system"
 msgstr "Auto-start with system"
 
-msgid "Letters and numbers"
-msgstr "Letters and numbers"
-
-msgid "Letter combinations"
-msgstr "Letter combinations"
+msgid "Letters"
+msgstr "Letters"
 
 msgid "Words"
 msgstr "Words"
@@ -65,9 +80,6 @@ msgstr "Keyboard connected"
 
 msgid "Keyboard not connected"
 msgstr "Keyboard not connected"
-
-msgid "Clevy"
-msgstr "Clevy"
 
 msgid "Enabled"
 msgstr "Enabled"

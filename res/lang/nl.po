@@ -9,6 +9,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Another instance is already running."
+msgstr ""
+
+msgid "Clevy Dyscover"
+msgstr "Clevy Dyscover"
+
+msgid "Your 30-day demo license has expired! Please purchase a license."
+msgstr ""
+
+msgid "Clevy Dyscover demo license expired"
+msgstr ""
+
+msgid "Your 30 minute demo has expired. Please purchase a license."
+msgstr ""
+
+msgid "Clevy Dyscover demo license"
+msgstr ""
+
 msgid "Preferences"
 msgstr "Instellingen"
 
@@ -18,11 +36,11 @@ msgstr "Status:"
 msgid "Method:"
 msgstr "Methode:"
 
-msgid "Dyscover"
-msgstr "Dyscover"
+msgid "Clevy Keyboard"
+msgstr "Clevy Keyboard"
 
-msgid "KWeC"
-msgstr "KWeC"
+msgid "KWeC-over"
+msgstr "KWeC-over"
 
 msgid "Software enabled"
 msgstr "Software actief"
@@ -30,11 +48,8 @@ msgstr "Software actief"
 msgid "Auto-start with system"
 msgstr "Automatisch opstarten"
 
-msgid "Letters and numbers"
-msgstr "Letters en cijfers"
-
-msgid "Letter combinations"
-msgstr "Klanken"
+msgid "Letters"
+msgstr "Letters"
 
 msgid "Words"
 msgstr "Woorden"
@@ -65,9 +80,6 @@ msgstr "Toetsenbord aangesloten"
 
 msgid "Keyboard not connected"
 msgstr "Toetsenbord niet aangesloten"
-
-msgid "Clevy"
-msgstr "Clevy"
 
 msgid "Enabled"
 msgstr "Actief"

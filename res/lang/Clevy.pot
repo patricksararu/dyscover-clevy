@@ -1,3 +1,21 @@
+msgid "Another instance is already running."
+msgstr ""
+
+msgid "Clevy Dyscover"
+msgstr ""
+
+msgid "Your 30-day demo license has expired! Please purchase a license."
+msgstr ""
+
+msgid "Clevy Dyscover demo license expired"
+msgstr ""
+
+msgid "Your 30 minute demo has expired. Please purchase a license."
+msgstr ""
+
+msgid "Clevy Dyscover demo license"
+msgstr ""
+
 msgid "Preferences"
 msgstr ""
 
@@ -7,10 +25,10 @@ msgstr ""
 msgid "Method:"
 msgstr ""
 
-msgid "Dyscover"
+msgid "Clevy Keyboard"
 msgstr ""
 
-msgid "KWeC"
+msgid "KWeC-over"
 msgstr ""
 
 msgid "Software enabled"
@@ -19,10 +37,7 @@ msgstr ""
 msgid "Auto-start with system"
 msgstr ""
 
-msgid "Letters and numbers"
-msgstr ""
-
-msgid "Letter combinations"
+msgid "Letters"
 msgstr ""
 
 msgid "Words"
@@ -53,9 +68,6 @@ msgid "Keyboard connected"
 msgstr ""
 
 msgid "Keyboard not connected"
-msgstr ""
-
-msgid "Clevy"
 msgstr ""
 
 msgid "Enabled"

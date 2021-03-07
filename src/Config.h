@@ -38,11 +38,8 @@ public:
     bool GetAutostart();
     void SetAutostart(bool);
 
-    bool GetLettersAndNumbers();
-    void SetLettersAndNumbers(bool);
-
-    bool GetLetterCombinations();
-    void SetLetterCombinations(bool);
+    bool GetLetters();
+    void SetLetters(bool);
 
     bool GetWords();
     void SetWords(bool);

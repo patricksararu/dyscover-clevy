@@ -13,8 +13,7 @@
 enum
 {
     ID_ENABLED = wxID_HIGHEST + 1,
-    ID_LETTERS_AND_NUMBERS,
-    ID_LETTER_COMBINATIONS,
+    ID_LETTERS,
     ID_WORDS,
     ID_SENTENCES,
     ID_SELECTION,
@@ -50,8 +49,7 @@ wxMenu* TrayIcon::CreatePopupMenu()
     wxMenu* pMenu = new wxMenu();
     pMenu->AppendCheckItem(ID_ENABLED, _("Enabled"));
     pMenu->AppendSeparator();
-    pMenu->AppendCheckItem(ID_LETTERS_AND_NUMBERS, _("Letters and numbers"));
-    pMenu->AppendCheckItem(ID_LETTER_COMBINATIONS, _("Letter combinations"));
+    pMenu->AppendCheckItem(ID_LETTERS, _("Letters"));
     pMenu->AppendCheckItem(ID_WORDS, _("Words"));
     pMenu->AppendCheckItem(ID_SENTENCES, _("Sentences"));
     pMenu->AppendCheckItem(ID_SELECTION, _("Selection"));
@@ -60,8 +58,7 @@ wxMenu* TrayIcon::CreatePopupMenu()
     pMenu->Append(wxID_HELP, _("Manual"));
     pMenu->Append(wxID_EXIT, _("Exit"));
     pMenu->Check(ID_ENABLED, m_pConfig->GetEnabled());
-    pMenu->Check(ID_LETTERS_AND_NUMBERS, m_pConfig->GetLettersAndNumbers());
-    pMenu->Check(ID_LETTER_COMBINATIONS, m_pConfig->GetLetterCombinations());
+    pMenu->Check(ID_LETTERS, m_pConfig->GetLetters());
     pMenu->Check(ID_WORDS, m_pConfig->GetWords());
     pMenu->Check(ID_SENTENCES, m_pConfig->GetSentences());
     pMenu->Check(ID_SELECTION, m_pConfig->GetSelection());
@@ -77,16 +74,9 @@ void TrayIcon::OnMenuEnabled(wxCommandEvent&)
     UpdateIcon();
 }
 
-void TrayIcon::OnMenuLettersAndNumbers(wxCommandEvent&)
+void TrayIcon::OnMenuLetters(wxCommandEvent&)
 {
-    m_pConfig->SetLettersAndNumbers(!m_pConfig->GetLettersAndNumbers());
-
-    m_pApp->UpdatePreferencesDialog();
-}
-
-void TrayIcon::OnMenuLetterCombinations(wxCommandEvent&)
-{
-    m_pConfig->SetLetterCombinations(!m_pConfig->GetLetterCombinations());
+    m_pConfig->SetLetters(!m_pConfig->GetLetters());
 
     m_pApp->UpdatePreferencesDialog();
 }
@@ -129,8 +119,7 @@ void TrayIcon::OnMenuExit(wxCommandEvent&)
 
 wxBEGIN_EVENT_TABLE(TrayIcon, wxTaskBarIcon)
     EVT_MENU(ID_ENABLED, TrayIcon::OnMenuEnabled)
-    EVT_MENU(ID_LETTERS_AND_NUMBERS, TrayIcon::OnMenuLettersAndNumbers)
-    EVT_MENU(ID_LETTER_COMBINATIONS, TrayIcon::OnMenuLetterCombinations)
+    EVT_MENU(ID_LETTERS, TrayIcon::OnMenuLetters)
     EVT_MENU(ID_WORDS, TrayIcon::OnMenuWords)
     EVT_MENU(ID_SENTENCES, TrayIcon::OnMenuSentences)
     EVT_MENU(ID_SELECTION, TrayIcon::OnMenuSelection)

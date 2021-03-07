@@ -36,8 +36,7 @@ private:
     wxCheckBox* m_pSoftwareEnabled;
     wxCheckBox* m_pSoftwareAutostart;
 
-    wxCheckBox* m_pSoundLettersAndNumbers;
-    wxCheckBox* m_pSoundLetterCombinations;
+    wxCheckBox* m_pSoundLetters;
     wxCheckBox* m_pSoundWords;
     wxCheckBox* m_pSoundSentences;
     wxCheckBox* m_pSoundSelection;
@@ -61,8 +60,7 @@ private:
     void OnSoftwareEnabledChanged(wxCommandEvent&);
     void OnSoftwareAutoStartChanged(wxCommandEvent&);
 
-    void OnSoundLettersAndNumbersChanged(wxCommandEvent&);
-    void OnSoundLetterCombinationsChanged(wxCommandEvent&);
+    void OnSoundLettersChanged(wxCommandEvent&);
     void OnSoundWordsChanged(wxCommandEvent&);
     void OnSoundSentencesChanged(wxCommandEvent&);
     void OnSoundSelectionChanged(wxCommandEvent&);

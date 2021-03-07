@@ -86,22 +86,10 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
     // Play sound
     if (eventType == KeyEventType::KeyDown)
     {
-        // Is a single letter or a combination?
-        if (translation.keystrokes.size() < 2)
+        if (m_pConfig->GetLetters())
         {
-            if (m_pConfig->GetLettersAndNumbers())
-            {
-                m_pSoundPlayer->StopPlaying();
-                m_pSoundPlayer->PlaySoundFile(translation.sound);
-            }
-        }
-        else
-        {
-            if (m_pConfig->GetLetterCombinations())
-            {
-                m_pSoundPlayer->StopPlaying();
-                m_pSoundPlayer->PlaySoundFile(translation.sound);
-            }
+            m_pSoundPlayer->StopPlaying();
+            m_pSoundPlayer->PlaySoundFile(translation.sound);
         }
     }
 

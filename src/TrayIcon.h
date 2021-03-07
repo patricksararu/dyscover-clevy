@@ -23,8 +23,7 @@ private:
 
     wxMenu* CreatePopupMenu() override;
     void OnMenuEnabled(wxCommandEvent&);
-    void OnMenuLettersAndNumbers(wxCommandEvent&);
-    void OnMenuLetterCombinations(wxCommandEvent&);
+    void OnMenuLetters(wxCommandEvent&);
     void OnMenuWords(wxCommandEvent&);
     void OnMenuSentences(wxCommandEvent&);
     void OnMenuSelection(wxCommandEvent&);

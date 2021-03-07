@@ -13,8 +13,7 @@
 static const wxString kLayoutKey("/Dyscover/Layout");
 static const wxString kEnabledKey("/Dyscover/Enabled");
 static const wxString kAutostartKey("/Dyscover/Autostart");
-static const wxString kLettersAndNumbersKey("/Dyscover/LettersAndNumbers");
-static const wxString kLetterCombinationsKey("/Dyscover/LetterCombinations");
+static const wxString kLettersKey("/Dyscover/Letters");
 static const wxString kWordsKey("/Dyscover/Words");
 static const wxString kSentencesKey("/Dyscover/Sentences");
 static const wxString kSelectionKey("/Dyscover/Selection");
@@ -25,8 +24,7 @@ static const wxString kDemoExpiredKey("/Dyscover/DemoExpired");
 static constexpr Layout kLayoutDefaultValue = Layout::DutchClassic;
 static constexpr bool kEnabledDefaultValue = true;
 static constexpr bool kAutostartDefaultValue = false;
-static constexpr bool kLettersAndNumbersDefaultValue = true;
-static constexpr bool kLetterCombinationsDefaultValue = true;
+static constexpr bool kLettersDefaultValue = true;
 static constexpr bool kWordsDefaultValue = true;
 static constexpr bool kSentencesDefaultValue = true;
 static constexpr bool kSelectionDefaultValue = true;
@@ -98,24 +96,14 @@ void Config::SetAutostart(bool value)
 #endif // WIN32
 }
 
-bool Config::GetLettersAndNumbers()
+bool Config::GetLetters()
 {
-    return m_pConfig->ReadBool(kLettersAndNumbersKey, kLettersAndNumbersDefaultValue);
+    return m_pConfig->ReadBool(kLettersKey, kLettersDefaultValue);
 }
 
-void Config::SetLettersAndNumbers(bool value)
+void Config::SetLetters(bool value)
 {
-    m_pConfig->Write(kLettersAndNumbersKey, value);
-}
-
-bool Config::GetLetterCombinations()
-{
-    return m_pConfig->ReadBool(kLetterCombinationsKey, kLetterCombinationsDefaultValue);
-}
-
-void Config::SetLetterCombinations(bool value)
-{
-    m_pConfig->Write(kLetterCombinationsKey, value);
+    m_pConfig->Write(kLettersKey, value);
 }
 
 bool Config::GetWords()

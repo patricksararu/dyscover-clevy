@@ -25,7 +25,7 @@ Core::Core(App* pApp, Config* pConfig, Device* pDevice)
     m_pSpeech->Init(GetTTSDataPath(), TTS_LANG, TTS_VOICE);
     m_pSpeech->SetVolume(RSTTS_VOLUME_MAX);
 
-    m_bKeyboardConnected = pDevice->IsClevyKeyboardPresent();
+    m_bKeyboardConnected = pDevice != nullptr ? pDevice->IsClevyKeyboardPresent() : false;
 }
 
 Core::~Core()

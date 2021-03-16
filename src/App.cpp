@@ -23,7 +23,11 @@ bool App::OnInit()
 #endif
 
     wxTranslations* pTranslations = wxTranslations::Get();
+#ifdef __WINDOWS__
     pTranslations->SetLoader(new wxResourceTranslationsLoader());
+#else
+    pTranslations->SetLoader(new wxFileTranslationsLoader());
+#endif
     pTranslations->AddCatalog("Dyscover");
 
     m_pSingleInstanceChecker = new wxSingleInstanceChecker();

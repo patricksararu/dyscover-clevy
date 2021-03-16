@@ -9,7 +9,7 @@
 #ifdef WIN32
 #include "DeviceWindows.h"
 #else
-#error Unsupported platform
+#include "DeviceLinux.h"
 #endif
 
 Device* Device::Create(IDeviceListener* pListener)
@@ -17,7 +17,7 @@ Device* Device::Create(IDeviceListener* pListener)
 #ifdef WIN32
     return new DeviceWindows(pListener);
 #else
-#error Unsupported platform
+    return new DeviceLinux(pListener);
 #endif
 }
 

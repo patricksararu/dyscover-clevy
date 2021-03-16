@@ -16,9 +16,9 @@ wxIcon LoadIcon(const wxString& name)
 #ifdef __WINDOWS__
     return wxIcon(name, wxBITMAP_TYPE_ICO_RESOURCE);
 #elif defined __APPLE__
-    wxIcon icon(name + ".icns", wxBITMAP_TYPE_ICON);
+    return wxIcon(name + ".icns", wxBITMAP_TYPE_ICON);
 #else
-    wxIcon icon(name + ".ico", wxBITMAP_TYPE_ICO);
+    return wxIcon(name + ".ico", wxBITMAP_TYPE_ICO);
 #endif
 }
 
@@ -41,7 +41,11 @@ wxIconArray LoadDyscoverIcons()
 
 wxBitmap LoadSplashBitmap()
 {
+#ifdef __WINDOWS__
     return wxBitmap("Splash", wxBITMAP_TYPE_BMP_RESOURCE);
+#else
+    return wxBitmap("Splash.bmp", wxBITMAP_TYPE_BMP);
+#endif
 }
 
 wxString GetExecutablePath()

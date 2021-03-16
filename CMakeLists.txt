@@ -47,6 +47,7 @@ if(WIN32)
   target_link_libraries(Dyscover cfgmgr32.lib)
   target_sources(Dyscover PRIVATE src/KeyboardWindows.cpp src/KeyboardWindows.h)
 elseif(UNIX)
+  target_sources(Dyscover PRIVATE src/DeviceLinux.cpp src/DeviceLinux.h)
   target_sources(Dyscover PRIVATE src/KeyboardLinux.cpp src/KeyboardLinux.h)
 else()
   message(FATAL_ERROR "Unsupported platform")
@@ -70,7 +71,12 @@ include(${wxWidgets_USE_FILE})
 target_link_libraries(Dyscover ${wxWidgets_LIBRARIES})
 
 # Use PortAudio
-find_package(PortAudio REQUIRED)
+if(WIN32)
+  find_package(PortAudio REQUIRED)
+else()
+  find_package(PkgConfig REQUIRED)
+  pkg_check_modules(PORTAUDIO portaudio-2.0)
+endif()
 target_link_libraries(Dyscover portaudio)
 
 # Use librstts
@@ -113,6 +119,9 @@ if(WIN32)
         COMMAND xcopy \"${CMAKE_SOURCE_DIR}/res/data/tts\" \"$<TARGET_FILE_DIR:Dyscover>/tts\" /s /y /i /d
         COMMENT "Updating TTS data files ..."
     )
+else()
+    link_directories(${CMAKE_CURRENT_SOURCE_DIR}/lib/rstts/platforms/x86_64-pc-linux-gnu)
+    target_link_libraries(Dyscover rstts)
 endif()
 
 # Languages
@@ -181,6 +190,7 @@ elseif(APPLE)
     file(COPY res/icons/Icon4.icns DESTINATION ${CMAKE_BINARY_DIR})
     file(COPY res/icons/Icon5.icns DESTINATION ${CMAKE_BINARY_DIR})
     file(COPY res/icons/Icon6.icns DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/Splash.bmp DESTINATION ${CMAKE_BINARY_DIR})
 else()
     file(COPY res/icons/Icon.ico DESTINATION ${CMAKE_BINARY_DIR})
     file(COPY res/icons/Icon0.ico DESTINATION ${CMAKE_BINARY_DIR})
@@ -190,6 +200,7 @@ else()
     file(COPY res/icons/Icon4.ico DESTINATION ${CMAKE_BINARY_DIR})
     file(COPY res/icons/Icon5.ico DESTINATION ${CMAKE_BINARY_DIR})
     file(COPY res/icons/Icon6.ico DESTINATION ${CMAKE_BINARY_DIR})
+    file(COPY res/Splash.bmp DESTINATION ${CMAKE_BINARY_DIR})
 endif()
 
 # Sounds

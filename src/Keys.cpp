@@ -290,6 +290,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
 };
 
 static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
+    { Key::Esc, false, false, false, { { Key::Esc, false, false, false } } },
     { Key::CapsLock, false, false, false, { { Key::CapsLock, false, false, false } } },
     { Key::Up, false, false, false, { { Key::Up, false, false, false } } },
     { Key::Down, false, false, false, { { Key::Down, false, false, false } } },
@@ -348,7 +349,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Apostrophe, false, true, false, { { Key::Apostrophe, false, false, false } } },
     { Key::Apostrophe, true, false, false, { { Key::Apostrophe, true, false, false } } },
     { Key::Backslash, false, false, false, { { Key::C }, { Key::H } }, "ch.wav" },
-    { Key::Backslash, false, true, false, { { Key::S }, { Key::J } }, "sj.wav" },
+    { Key::Backslash, false, true, false, { { Key::C }, { Key::H } }, "sj.wav" },  // Not a mistake: Ctrl+\ should give 'ch' with sound 'sj'
     { Key::Backslash, true, false, false, { { Key::Backslash, true, false, false } } },
     { Key::Minus, false, false, false, { { Key::E }, { Key::U }, { Key::R } }, "eur.wav" },
     { Key::Minus, false, true, false, { { Key::Minus, false, false, false } } },
@@ -373,14 +374,19 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::PageDown, false, true, false, { { Key::PageDown, false, false, false } } },
     { Key::A, false, false, false, { { Key::A, false, false, false } }, "a.wav" },
     { Key::A, true, false, false, { { Key::A, true, false, false } }, "a.wav" },
+    { Key::A, false, false, true, { { Key::A }, { Key::A } }, "aa.wav" },
     { Key::B, false, false, false, { { Key::B, false, false, false } }, "b.wav" },
     { Key::B, true, false, false, { { Key::B, true, false, false } }, "b.wav" },
     { Key::C, false, false, false, { { Key::C, false, false, false } }, "c.wav" },
     { Key::C, true, false, false, { { Key::C, true, false, false } }, "c.wav" },
+    { Key::C, false, true, false, { { Key::C } }, "k.wav" },  // Not a mistake: Ctrl+C should give 'c' with sound 'k'
     { Key::D, false, false, false, { { Key::D, false, false, false } }, "d.wav" },
     { Key::D, true, false, false, { { Key::D, true, false, false } }, "d.wav" },
+    { Key::D, false, true, false, { { Key::D } }, "t.wav" },  // Not a mistake: Ctrl+D should give 'd' with sound 't'
     { Key::E, false, false, false, { { Key::E, false, false, false } }, "e.wav" },
     { Key::E, true, false, false, { { Key::E, true, false, false } }, "e.wav" },
+    { Key::E, false, false, true, { { Key::E }, { Key::E } }, "ee.wav" },
+    { Key::E, false, true, false, { { Key::E } }, "u.wav" },  // Not a mistake: Ctrl+E should give 'e' with sound 'u'
     { Key::F, false, false, false, { { Key::F, false, false, false } }, "f.wav" },
     { Key::F, true, false, false, { { Key::F, true, false, false } }, "f.wav" },
     { Key::G, false, false, false, { { Key::G, false, false, false } }, "g.wav" },
@@ -389,6 +395,8 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::H, true, false, false, { { Key::H, true, false, false } }, "h.wav" },
     { Key::I, false, false, false, { { Key::I, false, false, false } }, "i.wav" },
     { Key::I, true, false, false, { { Key::I, true, false, false } }, "i.wav" },
+    { Key::I, false, false, true, { { Key::I }, { Key::E } }, "ie.wav" },
+    { Key::I, false, true, false, { { Key::I } }, "u.wav" },  // Not a mistake: Ctrl+I should give 'i' with sound 'u'
     { Key::J, false, false, false, { { Key::J, false, false, false } }, "j.wav" },
     { Key::J, true, false, false, { { Key::J, true, false, false } }, "j.wav" },
     { Key::K, false, false, false, { { Key::K, false, false, false } }, "k.wav" },
@@ -401,6 +409,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::N, true, false, false, { { Key::N, true, false, false } }, "n.wav" },
     { Key::O, false, false, false, { { Key::O, false, false, false } }, "o.wav" },
     { Key::O, true, false, false, { { Key::O, true, false, false } }, "o.wav" },
+    { Key::O, false, false, true, { { Key::O }, { Key::O } }, "oo.wav" },
     { Key::P, false, false, false, { { Key::P, false, false, false } }, "p.wav" },
     { Key::P, true, false, false, { { Key::P, true, false, false } }, "p.wav" },
     { Key::Q, false, false, false, { { Key::Q, false, false, false } }, "q.wav" },
@@ -413,6 +422,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::T, true, false, false, { { Key::T, true, false, false } }, "t.wav" },
     { Key::U, false, false, false, { { Key::U, false, false, false } }, "u.wav" },
     { Key::U, true, false, false, { { Key::U, true, false, false } }, "u.wav" },
+    { Key::U, false, false, true, { { Key::U }, { Key::U } }, "uu.wav" },
     { Key::V, false, false, false, { { Key::V, false, false, false } }, "v.wav" },
     { Key::V, true, false, false, { { Key::V, true, false, false } }, "v.wav" },
     { Key::W, false, false, false, { { Key::W, false, false, false } }, "w.wav" },
@@ -421,8 +431,17 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::X, true, false, false, { { Key::X, true, false, false } }, "x.wav" },
     { Key::Y, false, false, false, { { Key::Y, false, false, false } }, "y.wav" },
     { Key::Y, true, false, false, { { Key::Y, true, false, false } }, "y.wav" },
+    { Key::Y, false, true, false, { { Key::Y } }, "i.wav" },  // Not a mistake: Ctrl+Y should give 'y' with sound 'i'
+    { Key::Y, false, false, true, { { Key::Y } }, "j.wav" },
     { Key::Z, false, false, false, { { Key::Z, false, false, false } }, "z.wav" },
     { Key::Z, true, false, false, { { Key::Z, true, false, false } }, "z.wav" },
+    { Key::X, false, true, false, { { Key::X, false, true, false } } },
+    { Key::V, false, true, false, { { Key::V, false, true, false } } },
+    { Key::Z, false, true, false, { { Key::Z, false, true, false } } },
+    { Key::A, false, true, false, { { Key::A, false, true, false } } },
+    { Key::F, false, true, false, { { Key::F, false, true, false } } },
+    { Key::Tab, false, false, true, { { Key::Tab, false, false, true } } },
+    { Key::F4, false, false, true, { { Key::F4, false, false, true } } },
 };
 
 KeyTranslation FindTranslation(const std::vector<KeyTranslationEntry>& entries, Key key, bool shift, bool ctrl, bool alt)

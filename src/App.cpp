@@ -56,7 +56,8 @@ bool App::OnInit()
     }
 #endif
 
-    wxSplashScreen splashScreen(LoadSplashBitmap(), wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 5000, nullptr, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP);
+    // No need to save pointer here because wxSplashScreen will automatically delete itself.
+    new wxSplashScreen(LoadSplashBitmap(), wxSPLASH_CENTRE_ON_SCREEN | wxSPLASH_TIMEOUT, 3000, nullptr, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP);
 
     m_pDevice = Device::Create(this);
     m_pCore = new Core(this, m_pConfig, m_pDevice);

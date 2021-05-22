@@ -109,7 +109,7 @@ void TrayIcon::OnMenuPreferences(wxCommandEvent&)
 
 void TrayIcon::OnMenuHelp(wxCommandEvent&)
 {
-    wxLaunchDefaultBrowser("http://www.clevy.nl/dyscover2-handleiding");
+    wxLaunchDefaultBrowser("https://clevy.com/dyscover-4-handleiding-nl");
 }
 
 void TrayIcon::OnMenuExit(wxCommandEvent&)

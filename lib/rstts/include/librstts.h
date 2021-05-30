@@ -75,7 +75,7 @@ extern "C" {
   * the buildtime and runtime version numbers as independent, and
   * not make assumptions based on how they relate to each other.
   */
-#define RSTTS_BUILDTIME_VERSION 0x010207
+#define RSTTS_BUILDTIME_VERSION 0x010209
 
 
 /**

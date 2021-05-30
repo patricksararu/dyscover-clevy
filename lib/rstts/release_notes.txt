@@ -2,6 +2,56 @@ Release notes rSpeak SDK
 Copyright © 2017 rSpeak Technologies.
 Copyright © 2018, 2019, 2020 ReadSpeaker B.V.
 
+Changes in release 1.2.9 (since release 1.2.7)
+
+* Added engine support for DNN guided unit selection voices
+  ("hybrid").
+
+* Improved error handling on voice load failure. Also fixes an issue
+  where a failed SSML voice switch would sometimes not be reported as
+  intended via a failure event.
+
+* CSV ("VoiceWare-compatible") lexicon support: Fixes muliple issues
+  with the CSV parser where file format errors or non-LF-terminated
+  files could cause (CSV) lexicon rules on the wrong format to be
+  quietly ignored or, in some cases, cause a crash. Also updates
+  handling of quoting and line breaks in the CSV parser to be more
+  compatible with RFC4180.
+
+* CSV ("VoiceWare-compatible") lexicon support: CSV parse errors are
+  now treated as errors rather than quietly ignored, and error
+  messages from loading a CSV lexicon also distinguish between file
+  format errors and other types of errors.
+
+* Minor improvements to normalization and disambiguation for Arabic
+  (ar_arb).
+
+* Minor improvemetns to normalization for German (de_de) and Polish
+  (pl_pl).
+
+* Improved normalization and handling of compounds for Latvian (lv_lv).
+
+* Lexicon adjustments/additions for Arabic (ar_arb), Dutch (nl_be,
+  nl_nl), English (en_au, en_gb, en_us), Finnish (fi_fi), French
+  (fr_fr), German (de_de), Latvian (lv_lv), Polish (pl_pl) and Swedish
+  (sv_se); as well as for English words included for foreign word
+  pronunciation in non-English languages.
+
+* Accepts some alternate IPA symbols for representing approximant r in
+  French (fr_fr).
+
+* SSML voice element: Fixed an issue that would cause 8 bit linear WAV
+  to play at almost inaudible volume. Fixes some URI/path handling
+  issues when including local files via "file:" URIs, in particular on
+  Windows platforms.
+
+* Fixes an issue on some platforms that could cause the TZ environment
+  variable to be modified when a license is loaded.
+
+* Minor update to included sample C program, to demonstrate setting
+  license file path.
+
+
 Changes in release 1.2.7 (since release 1.2.6)
 
 * API: A new SynthesizeEnd event has been added. If enabled by the

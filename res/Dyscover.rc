@@ -38,11 +38,11 @@ VS_VERSION_INFO VERSIONINFO
         BLOCK LANG_CHARSET
         {
             VALUE "Comments",         "\0"
-            VALUE "CompanyName",      "BNC Distribution\0"
+            VALUE "CompanyName",      "Alt. Medical B.V.\0"
             VALUE "FileDescription",  "Clevy Dyscover\0"
             VALUE "FileVersion",      VERSION_STRING
             VALUE "InternalName",     "Dyscover\0"
-            VALUE "LegalCopyright",   "Copyright (c) BNC Distribution\0"
+            VALUE "LegalCopyright",   "Copyright (c) Alt. Medical B.V.\0"
             VALUE "OriginalFilename", "Dyscover.exe\0"
             VALUE "ProductName",      "Clevy Dyscover\0"
             VALUE "ProductVersion",   VERSION_STRING

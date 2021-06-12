@@ -19,9 +19,6 @@ public:
 	bool Open(int channels, int samplerate, int samplesize);
 	void Close();
 
-	static int GetVolume();
-	static bool SetVolume(int value);
-
 	bool Write(const void* audiodata, size_t audiodatalen);
 	void Stop();
 

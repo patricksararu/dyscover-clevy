@@ -14,6 +14,8 @@ add_executable(Dyscover WIN32
   src/App.h
   src/Audio.cpp
   src/Audio.h
+  src/AudioLevel.cpp
+  src/AudioLevel.h
   src/Config.cpp
   src/Config.h
   src/Core.cpp

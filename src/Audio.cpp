@@ -60,25 +60,6 @@ void Audio::Close()
 	waveOutClose(m_hWaveOut);
 }
 
-int Audio::GetVolume()
-{
-	DWORD dwVolume;
-	MMRESULT result = waveOutGetVolume(0, &dwVolume);
-	if (result != 0)
-	{
-		return -1;
-	}
-
-	return dwVolume & 0xFFFF;
-}
-
-bool Audio::SetVolume(int value)
-{
-	DWORD dwVolume = MAKELONG(value, value);
-	MMRESULT result = waveOutSetVolume(0, dwVolume);
-	return result == 0;
-}
-
 bool Audio::Write(const void* audiodata, size_t audiodatalen)
 {
 	// Take an existing buffer from queue of available buffers and reuse it.

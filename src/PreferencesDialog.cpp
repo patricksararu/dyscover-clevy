@@ -5,7 +5,7 @@
 #include <wx/sizer.h>
 
 #include "App.h"
-#include "Audio.h"
+#include "AudioLevel.h"
 #include "Config.h"
 #include "PreferencesDialog.h"
 #include "ResourceLoader.h"
@@ -140,7 +140,7 @@ bool PreferencesDialog::TransferDataToWindow()
     m_pSoundWords->SetValue(m_pConfig->GetWords());
     m_pSoundSentences->SetValue(m_pConfig->GetSentences());
     m_pSoundSelection->SetValue(m_pConfig->GetSelection());
-    m_pSoundVolume->SetValue(Audio::GetVolume());
+    m_pSoundVolume->SetValue(GetAudioVolume());
     m_pSoundSpeed->SetValue(m_pConfig->GetSpeed());
 
     return true;
@@ -196,7 +196,7 @@ void PreferencesDialog::OnSoundSelectionChanged(wxCommandEvent&)
 
 void PreferencesDialog::OnSoundVolumeChanged(wxCommandEvent&)
 {
-    Audio::SetVolume(m_pSoundVolume->GetValue());
+    SetAudioVolume(m_pSoundVolume->GetValue());
 }
 
 void PreferencesDialog::OnSoundSpeedChanged(wxCommandEvent&)

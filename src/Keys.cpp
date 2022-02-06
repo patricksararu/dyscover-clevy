@@ -477,11 +477,11 @@ KeyTranslation TranslateKey(Key key, bool shift, bool ctrl, bool alt, Layout lay
 {
     switch (layout)
     {
-    case Layout::DutchDefault:
+    case Layout::Default:
         return FindTranslation(g_dutchDefault, key, shift, ctrl, alt);
-    case Layout::DutchClassic:
+    case Layout::Classic:
         return FindTranslation(g_dutchClassic, key, shift, ctrl, alt);
-    case Layout::DutchKWeC:
+    case Layout::KWeC:
         return FindTranslation(g_dutchKWeC, key, shift, ctrl, alt);
     default:
         return KeyTranslation();

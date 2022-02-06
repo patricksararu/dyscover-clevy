@@ -129,9 +129,9 @@ bool PreferencesDialog::TransferDataToWindow()
         m_pKeyboardStatusValue->SetLabelText(_("Keyboard not connected"));
     }
 
-    m_pKeyboardMethodDefault->SetValue(m_pConfig->GetLayout() == Layout::DutchDefault);
-    m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::DutchClassic);
-    m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::DutchKWeC);
+    m_pKeyboardMethodDefault->SetValue(m_pConfig->GetLayout() == Layout::Default);
+    m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::Classic);
+    m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::KWeC);
 
     m_pSoftwareEnabled->SetValue(m_pConfig->GetEnabled());
     m_pSoftwareAutostart->SetValue(m_pConfig->GetAutostart());
@@ -150,15 +150,15 @@ void PreferencesDialog::OnKeyboardMethodChanged(wxCommandEvent&)
 {
     if (m_pKeyboardMethodDyscover->GetValue())
     {
-        m_pConfig->SetLayout(Layout::DutchClassic);
+        m_pConfig->SetLayout(Layout::Classic);
     }
     else if (m_pKeyboardMethodDefault->GetValue())
     {
-        m_pConfig->SetLayout(Layout::DutchDefault);
+        m_pConfig->SetLayout(Layout::Default);
     }
     else
     {
-        m_pConfig->SetLayout(Layout::DutchKWeC);
+        m_pConfig->SetLayout(Layout::KWeC);
     }
 }
 

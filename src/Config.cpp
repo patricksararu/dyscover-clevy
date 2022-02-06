@@ -21,7 +21,7 @@ static const wxString kSpeedKey("/Dyscover/Speed");
 static const wxString kDemoStartedKey("/Dyscover/DemoStarted");
 static const wxString kDemoExpiredKey("/Dyscover/DemoExpired");
 
-static constexpr Layout kLayoutDefaultValue = Layout::DutchClassic;
+static constexpr Layout kLayoutDefaultValue = Layout::Classic;
 static constexpr bool kEnabledDefaultValue = true;
 static constexpr bool kAutostartDefaultValue = false;
 static constexpr bool kLettersDefaultValue = true;
@@ -187,19 +187,19 @@ bool wxFromString(const wxString& string, Layout* pLayout)
 {
     if (string == kLayoutValueDefault)
     {
-        *pLayout = Layout::DutchDefault;
+        *pLayout = Layout::Default;
         return true;
     }
 
     if (string == kLayoutValueClassic)
     {
-        *pLayout = Layout::DutchClassic;
+        *pLayout = Layout::Classic;
         return true;
     }
 
     if (string == kLayoutValueKWeC)
     {
-        *pLayout = Layout::DutchKWeC;
+        *pLayout = Layout::KWeC;
         return true;
     }
 
@@ -210,11 +210,11 @@ wxString wxToString(const Layout& layout)
 {
     switch (layout)
     {
-    case Layout::DutchDefault:
+    case Layout::Default:
         return kLayoutValueDefault;
-    case Layout::DutchClassic:
+    case Layout::Classic:
         return kLayoutValueClassic;
-    case Layout::DutchKWeC:
+    case Layout::KWeC:
         return kLayoutValueKWeC;
     default:
         return wxEmptyString;

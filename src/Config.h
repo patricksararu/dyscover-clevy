@@ -15,9 +15,9 @@ class wxFileConfig;  // TODO: Replace with #include <wx/fileconf.h>
 
 enum class Layout
 {
-    DutchDefault,
-    DutchClassic,
-    DutchKWeC,
+    Default,
+    Classic,
+    KWeC,
 };
 
 bool wxFromString(const wxString& string, Layout* pLayout);

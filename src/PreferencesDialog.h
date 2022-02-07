@@ -31,7 +31,9 @@ private:
     wxStaticText* m_pKeyboardMethodLabel;
     wxRadioButton* m_pKeyboardMethodDyscover;
     wxRadioButton* m_pKeyboardMethodDefault;
+#ifdef __LANGUAGE_NL__
     wxRadioButton* m_pKeyboardMethodKWeC;
+#endif
 
     wxCheckBox* m_pSoftwareEnabled;
     wxCheckBox* m_pSoftwareAutostart;

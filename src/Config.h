@@ -17,7 +17,9 @@ enum class Layout
 {
     Default,
     Classic,
+#ifdef __LANGUAGE_NL__
     KWeC,
+#endif
 };
 
 bool wxFromString(const wxString& string, Layout* pLayout);

@@ -40,7 +40,9 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pKeyboardMethodLabel = new wxStaticText(this, wxID_ANY, _("Method:"));
     m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Clevy Dyscover"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
     m_pKeyboardMethodDefault = new wxRadioButton(this, ID_METHOD_DEFAULT, _("Clevy Keyboard"));
+#ifdef __LANGUAGE_NL__
     m_pKeyboardMethodKWeC = new wxRadioButton(this, ID_METHOD_KWEC, _("KWeC-over"));
+#endif
 
     m_pSoftwareEnabled = new wxCheckBox(this, ID_ENABLED, _("Software enabled"));
     m_pSoftwareAutostart = new wxCheckBox(this, ID_AUTOSTART, _("Auto-start with system"));
@@ -67,8 +69,10 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover);
     pKeyboardMethodSizer->AddSpacer(1);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault);
+#ifdef __LANGUAGE_NL__
     pKeyboardMethodSizer->AddSpacer(1);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC);
+#endif
 
     wxStaticBoxSizer* pKeyboardSectionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keyboard"));
     pKeyboardSectionSizer->Add(pKeyboardStatusSizer, wxSizerFlags().Border().Expand());
@@ -131,7 +135,9 @@ bool PreferencesDialog::TransferDataToWindow()
 
     m_pKeyboardMethodDefault->SetValue(m_pConfig->GetLayout() == Layout::Default);
     m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::Classic);
+#ifdef __LANGUAGE_NL__
     m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::KWeC);
+#endif
 
     m_pSoftwareEnabled->SetValue(m_pConfig->GetEnabled());
     m_pSoftwareAutostart->SetValue(m_pConfig->GetAutostart());
@@ -156,10 +162,12 @@ void PreferencesDialog::OnKeyboardMethodChanged(wxCommandEvent&)
     {
         m_pConfig->SetLayout(Layout::Default);
     }
+#ifdef __LANGUAGE_NL__
     else
     {
         m_pConfig->SetLayout(Layout::KWeC);
     }
+#endif
 }
 
 void PreferencesDialog::OnSoftwareEnabledChanged(wxCommandEvent&)

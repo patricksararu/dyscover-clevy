@@ -34,7 +34,9 @@ static constexpr bool kDemoExpiredDefaultValue = false;
 
 static const wxString kLayoutValueDefault("Default");
 static const wxString kLayoutValueClassic("Classic");
+#ifdef __LANGUAGE_NL__
 static const wxString kLayoutValueKWeC("Cover");
+#endif
 
 static const wxString kWindowsRegistryAutostartKeyName("ClevyDyscover4");
 
@@ -197,11 +199,13 @@ bool wxFromString(const wxString& string, Layout* pLayout)
         return true;
     }
 
+#ifdef __LANGUAGE_NL__
     if (string == kLayoutValueKWeC)
     {
         *pLayout = Layout::KWeC;
         return true;
     }
+#endif
 
     return false;
 }
@@ -214,8 +218,10 @@ wxString wxToString(const Layout& layout)
         return kLayoutValueDefault;
     case Layout::Classic:
         return kLayoutValueClassic;
+#ifdef __LANGUAGE_NL__
     case Layout::KWeC:
         return kLayoutValueKWeC;
+#endif
     default:
         return wxEmptyString;
     }

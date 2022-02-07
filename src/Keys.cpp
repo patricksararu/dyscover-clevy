@@ -17,6 +17,7 @@ struct KeyTranslationEntry
     std::string sound;
 };
 
+#if defined __LANGUAGE_NL__
 static const std::vector<KeyTranslationEntry> g_dutchDefault = {
     { Key::Esc, false, false, false, { { Key::Esc, false, false, false } } },
     { Key::CapsLock, false, false, false, { { Key::CapsLock, false, false, false } } },
@@ -456,6 +457,13 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Tab, false, false, true, { { Key::Tab, false, false, true } } },
     { Key::F4, false, false, true, { { Key::F4, false, false, true } } },
 };
+#else defined __LANGUAGE_NL_BE__
+static const std::vector<KeyTranslationEntry> g_flemishDefault = {
+};
+
+static const std::vector<KeyTranslationEntry> g_flemishClassic = {
+};
+#endif
 
 KeyTranslation FindTranslation(const std::vector<KeyTranslationEntry>& entries, Key key, bool shift, bool ctrl, bool alt)
 {
@@ -477,12 +485,19 @@ KeyTranslation TranslateKey(Key key, bool shift, bool ctrl, bool alt, Layout lay
 {
     switch (layout)
     {
+#if defined __LANGUAGE_NL__
     case Layout::Default:
         return FindTranslation(g_dutchDefault, key, shift, ctrl, alt);
     case Layout::Classic:
         return FindTranslation(g_dutchClassic, key, shift, ctrl, alt);
     case Layout::KWeC:
         return FindTranslation(g_dutchKWeC, key, shift, ctrl, alt);
+#elif defined __LANGUAGE_NL_BE__
+    case Layout::Default:
+        return FindTranslation(g_flemishDefault, key, shift, ctrl, alt);
+    case Layout::Classic:
+        return FindTranslation(g_flemishClassic, key, shift, ctrl, alt);
+#endif
     default:
         return KeyTranslation();
     }

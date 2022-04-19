@@ -107,7 +107,11 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
             m_wordSpeechBuffer.clear();
             m_sentenceSpeechBuffer.push_back(' ');
         }
+#ifdef __LANGUAGE_NL_BE__
+        else if ((key == Key::Eight && !shift && !ctrl) || ((key == Key::Comma || key == Key::Dot) && shift))
+#else
         else if (key == Key::Dot || ((key == Key::One || key == Key::Slash) && shift))
+#endif
         {
             m_pSpeech->SetSpeed(static_cast<float>(m_pConfig->GetSpeed()));
 

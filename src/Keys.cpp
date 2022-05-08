@@ -504,6 +504,7 @@ static const std::vector<KeyTranslationEntry> g_flemishDefault = {
     { Key::Backslash, false, false, false, { { Key::Backslash, false, false, false } } },
     { Key::Backslash, true, false, false, { { Key::Backslash, true, false, false } } },
     { Key::AltGr, false, false, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },
+    { Key::AltGr, false, true, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::Equal, false, false, false, { { Key::Equal, false, false, false } } },
     { Key::Equal, true, false, false, { { Key::Equal, true, false, false } } },
     { Key::OpenBracket, false, false, false, { { Key::OpenBracket, false, false, false } } },
@@ -637,6 +638,7 @@ static const std::vector<KeyTranslationEntry> g_flemishClassic = {
     { Key::Backslash, true, false, false, { { Key::Backslash, true, false, false } } },
     { Key::Backslash, false, true, false, { { Key::C }, { Key::H } }, "sj.wav" },
     { Key::AltGr, false, false, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },
+    { Key::AltGr, false, true, false, { { Key::E }, { Key::E }, { Key::R } }, "eer.wav" },  // In non-US keyboard layouts, Windows translates AltGr to LeftCtrl+AltGr
     { Key::Equal, false, false, false, { { Key::O }, { Key::O }, { Key::R } }, "oor.wav" },
     { Key::Equal, true, false, false, { { Key::Equal, true, false, false } } },
     { Key::Equal, false, true, false, { { Key::Equal, false, false, false } } },

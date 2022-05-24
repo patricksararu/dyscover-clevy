@@ -58,6 +58,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
 
     m_pVersionLabel = new wxStaticText(this, wxID_ANY, "Version");
     m_pVersionValue = new wxStaticText(this, wxID_ANY, VERSION_STRING);
+    m_pVersionLanguage = new wxStaticText(this, wxID_ANY, LANG);
 
     wxBoxSizer* pKeyboardStatusSizer = new wxBoxSizer(wxHORIZONTAL);
     pKeyboardStatusSizer->Add(m_pKeyboardStatusLabel, wxSizerFlags().Border(wxRIGHT));
@@ -109,6 +110,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pVersionSizer->AddStretchSpacer();
     pVersionSizer->Add(m_pVersionLabel, wxSizerFlags().Border(wxRIGHT));
     pVersionSizer->Add(m_pVersionValue, wxSizerFlags().Border(wxRIGHT));
+    pVersionSizer->Add(m_pVersionLanguage, wxSizerFlags().Border(wxRIGHT));
 
     wxBoxSizer* pRootSizer = new wxBoxSizer(wxVERTICAL);
     pRootSizer->Add(pKeyboardSectionSizer, wxSizerFlags().DoubleBorder().Expand());

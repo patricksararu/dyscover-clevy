@@ -49,6 +49,7 @@ private:
 
     wxStaticText* m_pVersionLabel;
     wxStaticText* m_pVersionValue;
+    wxStaticText* m_pVersionLanguage;
 
 #ifdef __LICENSING_DEMO__
     wxStaticText* m_pDemoDaysRemaining;

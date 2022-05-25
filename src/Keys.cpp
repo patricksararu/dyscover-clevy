@@ -15,6 +15,9 @@ struct KeyTranslationEntry
     // Outputs
     std::vector<KeyStroke> output;
     std::string sound;
+
+    // Triggers
+    bool speak_sentence;
 };
 
 #if defined __LANGUAGE_NL__
@@ -29,7 +32,7 @@ static const std::vector<KeyTranslationEntry> g_dutchDefault = {
     { Key::Space, false, false, false, { { Key::Space, false, false, false } } },
     { Key::Enter, false, false, false, { { Key::Enter, false, false, false } } },
     { Key::Tab, false, false, false, { { Key::Tab, false, false, false } } },
-    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
+    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } }, std::string(), true },
     { Key::Dot, true, false, false, { { Key::Dot, true, false, false } } },
     { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
     { Key::Comma, true, false, false, { { Key::Comma, true, false, false } } },
@@ -43,7 +46,7 @@ static const std::vector<KeyTranslationEntry> g_dutchDefault = {
     { Key::Eight, false, false, false, { { Key::Eight, false, false, false } }, "8.wav" },
     { Key::Nine, false, false, false, { { Key::Nine, false, false, false } }, "9.wav" },
     { Key::Zero, false, false, false, { { Key::Zero, false, false, false } }, "0.wav" },
-    { Key::One, true, false, false, { { Key::One, true, false, false } } },
+    { Key::One, true, false, false, { { Key::One, true, false, false } }, std::string(), true },
     { Key::Two, true, false, false, { { Key::Two, true, false, false } } },
     { Key::Three, true, false, false, { { Key::Three, true, false, false } } },
     { Key::Four, true, false, false, { { Key::Four, true, false, false } } },
@@ -66,7 +69,7 @@ static const std::vector<KeyTranslationEntry> g_dutchDefault = {
     { Key::Minus, false, false, false, { { Key::Minus, false, false, false } } },
     { Key::Minus, true, false, false, { { Key::Minus, true, false, false } } },
     { Key::Slash, false, false, false, { { Key::Slash, false, false, false } } },
-    { Key::Slash, true, false, false, { { Key::Slash, true, false, false } } },
+    { Key::Slash, true, false, false, { { Key::Slash, true, false, false } }, std::string(), true },
     { Key::Equal, false, false, false, { { Key::Equal, false, false, false } } },
     { Key::Equal, true, false, false, { { Key::Equal, true, false, false } } },
     { Key::Ins, false, false, false, { { Key::Ins, false, false, false } } },
@@ -158,7 +161,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Space, false, false, false, { { Key::Space, false, false, false } } },
     { Key::Enter, false, false, false, { { Key::Enter, false, false, false } } },
     { Key::Tab, false, false, false, { { Key::Tab, false, false, false } } },
-    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
+    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } }, std::string(), true },
     { Key::Dot, true, false, false, { { Key::Dot, true, false, false } } },
     { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
     { Key::Comma, true, false, false, { { Key::Comma, true, false, false } } },
@@ -182,7 +185,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Eight, false, true, false, { { Key::Eight, false, false, false } }, "8.wav" },
     { Key::Nine, false, true, false, { { Key::Nine, false, false, false } }, "9.wav" },
     { Key::Zero, false, true, false, { { Key::Zero, false, false, false } }, "0.wav" },
-    { Key::One, true, false, false, { { Key::One, true, false, false } } },
+    { Key::One, true, false, false, { { Key::One, true, false, false } }, std::string(), true },
     { Key::Two, true, false, false, { { Key::Two, true, false, false } } },
     { Key::Three, true, false, false, { { Key::Three, true, false, false } } },
     { Key::Four, true, false, false, { { Key::Four, true, false, false } } },
@@ -214,7 +217,7 @@ static const std::vector<KeyTranslationEntry> g_dutchClassic = {
     { Key::Minus, true, false, false, { { Key::Minus, true, false, false } } },
     { Key::Slash, false, false, false, { { Key::O }, { Key::O }, { Key::R } }, "oor.wav" },
     { Key::Slash, false, true, false, { { Key::Slash, false, false, false } } },
-    { Key::Slash, true, false, false, { { Key::Slash, true, false, false } } },
+    { Key::Slash, true, false, false, { { Key::Slash, true, false, false } }, std::string(), true },
     { Key::Equal, false, false, false, { { Key::S }, { Key::C }, { Key::H } }, "sch.wav" },
     { Key::Equal, false, true, false, { { Key::Equal, false, false, false } } },
     { Key::Equal, true, false, false, { { Key::Equal, true, false, false } } },
@@ -313,7 +316,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Space, false, false, false, { { Key::Space, false, false, false } } },
     { Key::Enter, false, false, false, { { Key::Enter, false, false, false } } },
     { Key::Tab, false, false, false, { { Key::Tab, false, false, false } } },
-    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
+    { Key::Dot, false, false, false, { { Key::Dot, false, false, false } }, std::string(), true },
     { Key::Dot, true, false, false, { { Key::Dot, true, false, false } } },
     { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
     { Key::Comma, true, false, false, { { Key::Comma, true, false, false } } },
@@ -337,7 +340,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Eight, false, true, false, { { Key::Eight, false, false, false } }, "8.wav" },
     { Key::Nine, false, true, false, { { Key::Nine, false, false, false } }, "9.wav" },
     { Key::Zero, false, true, false, { { Key::Zero, false, false, false } }, "0.wav" },
-    { Key::One, true, false, false, { { Key::One, true, false, false } } },
+    { Key::One, true, false, false, { { Key::One, true, false, false } }, std::string(), true },
     { Key::Two, true, false, false, { { Key::Two, true, false, false } } },
     { Key::Three, true, false, false, { { Key::Three, true, false, false } } },
     { Key::Four, true, false, false, { { Key::Four, true, false, false } } },
@@ -370,7 +373,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Minus, true, false, false, { { Key::Minus, true, false, false } } },
     { Key::Slash, false, false, false, { { Key::O }, { Key::O }, { Key::R } }, "oor.wav" },
     { Key::Slash, false, true, false, { { Key::Slash, false, false, false } } },
-    { Key::Slash, true, false, false, { { Key::Slash, true, false, false } } },
+    { Key::Slash, true, false, false, { { Key::Slash, true, false, false } }, std::string(), true },
     { Key::Equal, false, false, false, { { Key::S }, { Key::C }, { Key::H } }, "sch.wav" },
     { Key::Equal, false, true, false, { { Key::Equal, false, false, false } } },
     { Key::Equal, true, false, false, { { Key::Equal, true, false, false } } },
@@ -476,7 +479,7 @@ static const std::vector<KeyTranslationEntry> g_flemishDefault = {
     { Key::Five, false, false, false, { { Key::Five, false, false, false } } },
     { Key::Six, false, false, false, { { Key::Six, false, false, false } } },
     { Key::Seven, false, false, false, { { Key::Seven, false, false, false } } },
-    { Key::Eight, false, false, false, { { Key::Eight, false, false, false } } },
+    { Key::Eight, false, false, false, { { Key::Eight, false, false, false } }, std::string(), true },
     { Key::Nine, false, false, false, { { Key::Nine, false, false, false } } },
     { Key::Zero, false, false, false, { { Key::Zero, false, false, false } } },
     { Key::One, true, false, false, { { Key::One, true, false, false } }, "1.wav" },
@@ -494,9 +497,9 @@ static const std::vector<KeyTranslationEntry> g_flemishDefault = {
     { Key::CloseBracket, false, false, false, { { Key::CloseBracket, false, false, false } } },
     { Key::CloseBracket, true, false, false, { { Key::CloseBracket, true, false, false } } },
     { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
-    { Key::Comma, true, false, false, { { Key::Comma, true, false, false } } },
+    { Key::Comma, true, false, false, { { Key::Comma, true, false, false } }, std::string(), true },
     { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
-    { Key::Dot, true, false, false, { { Key::Dot, true, false, false } } },
+    { Key::Dot, true, false, false, { { Key::Dot, true, false, false } }, std::string(), true },
     { Key::Slash, false, false, false, { { Key::Slash, false, false, false } } },
     { Key::Slash, true, false, false, { { Key::Slash, true, false, false } } },
     { Key::Backtick, false, false, false, { { Key::Backtick, false, false, false } } },
@@ -615,7 +618,7 @@ static const std::vector<KeyTranslationEntry> g_flemishClassic = {
     { Key::Five, false, true, false, { { Key::Five, false, false, false } } },
     { Key::Six, false, true, false, { { Key::Six, false, false, false } } },
     { Key::Seven, false, true, false, { { Key::Seven, false, false, false } } },
-    { Key::Eight, false, true, false, { { Key::Eight, false, false, false } } },
+    { Key::Eight, false, true, false, { { Key::Eight, false, false, false } }, std::string(), true },
     { Key::Nine, false, true, false, { { Key::Nine, false, false, false } } },
     { Key::Zero, false, true, false, { { Key::Zero, false, false, false } } },
     { Key::Semicolon, false, false, false, { { Key::I }, { Key::J } }, "ij.wav" },
@@ -625,9 +628,9 @@ static const std::vector<KeyTranslationEntry> g_flemishClassic = {
     { Key::Semicolon, false, true, false, { { Key::I }, { Key::J } }, "u.wav" },
     { Key::CloseBracket, false, true, false, { { Key::CloseBracket, false, false, false } } },
     { Key::Comma, false, false, false, { { Key::Comma, false, false, false } } },
-    { Key::Comma, true, false, false, { { Key::Comma, true, false, false } } },
+    { Key::Comma, true, false, false, { { Key::Comma, true, false, false } }, std::string(), true },
     { Key::Dot, false, false, false, { { Key::Dot, false, false, false } } },
-    { Key::Dot, true, false, false, { { Key::Dot, true, false, false } } },
+    { Key::Dot, true, false, false, { { Key::Dot, true, false, false } }, std::string(), true },
     { Key::Slash, false, false, false, { { Key::N }, { Key::G } }, "ng.wav" },
     { Key::Slash, true, false, false, { { Key::Slash, true, false, false } } },
     { Key::Slash, false, true, false, { { Key::Slash, false, false, false } } },
@@ -741,6 +744,7 @@ KeyTranslation FindTranslation(const std::vector<KeyTranslationEntry>& entries, 
             KeyTranslation kt;
             kt.keystrokes = entry.output;
             kt.sound = entry.sound;
+            kt.speak_sentence = entry.speak_sentence;
             return kt;
         }
     }

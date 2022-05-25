@@ -113,6 +113,8 @@ struct KeyTranslation
 {
     std::vector<KeyStroke> keystrokes;
     std::string sound;
+
+    bool speak_sentence;
 };
 
 std::string KeyToString(Key);

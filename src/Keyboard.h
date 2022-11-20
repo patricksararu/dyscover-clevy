@@ -9,7 +9,7 @@
 class IKeyEventListener
 {
 public:
-    virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) = 0;
+    virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool capsLock, bool shift, bool ctrl, bool alt) = 0;
 };
 
 class Keyboard
@@ -31,6 +31,8 @@ protected:
 
 private:
     IKeyEventListener* m_pListener;
+
+    bool m_bCapsLockActive;
 
     bool m_bShiftPressed;
     bool m_bCtrlPressed;

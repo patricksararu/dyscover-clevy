@@ -120,4 +120,4 @@ struct KeyTranslation
 std::string KeyToString(Key);
 Key KeyFromString(std::string);
 
-KeyTranslation TranslateKey(Key input, bool shift, bool ctrl, bool alt, Layout layout);
+KeyTranslation TranslateKey(Key input, bool caps, bool shift, bool ctrl, bool alt, Layout layout);

@@ -36,7 +36,7 @@ Core::~Core()
     delete m_pKeyboard;
 }
 
-bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt)
+bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool capsLock, bool shift, bool ctrl, bool alt)
 {
 #ifdef __LICENSING_FULL__
     if (!m_bKeyboardConnected)  return false;
@@ -72,7 +72,7 @@ bool Core::OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bo
         return true;
     }
 
-    KeyTranslation translation = TranslateKey(key, shift, ctrl, alt, m_pConfig->GetLayout());
+    KeyTranslation translation = TranslateKey(key, capsLock, shift, ctrl, alt, m_pConfig->GetLayout());
 
     // Send simulated key strokes
     if (eventType == KeyEventType::KeyDown)

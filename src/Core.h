@@ -17,7 +17,7 @@ public:
     Core(App*, Config*, Device*);
     virtual ~Core();
 
-    virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) override;
+    virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool capsLock, bool shift, bool ctrl, bool alt) override;
 
     void OnClevyKeyboardConnected();
     void OnClevyKeyboardDisconnected();

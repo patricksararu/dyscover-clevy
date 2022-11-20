@@ -13,6 +13,11 @@ KeyboardLinux::~KeyboardLinux()
 {
 }
 
+bool KeyboardLinux::IsCapsLockActive()
+{
+    return false;
+}
+
 void KeyboardLinux::SendKeyEvent(KeyEventType eventType, Key key)
 {
     (void)eventType;

@@ -13,10 +13,14 @@
 Keyboard* Keyboard::Create(IKeyEventListener* pListener)
 {
 #ifdef WIN32
-    return new KeyboardWindows(pListener);
+    Keyboard* pKeyboard = new KeyboardWindows(pListener);
 #else
-    return new KeyboardLinux(pListener);
+    Keyboard* pKeyboard = new KeyboardLinux(pListener);
 #endif
+
+    pKeyboard->Initialize();
+
+    return pKeyboard;
 }
 
 Keyboard::Keyboard(IKeyEventListener* pListener)
@@ -30,8 +34,9 @@ Keyboard::Keyboard(IKeyEventListener* pListener)
     m_bAltPressed = false;
 }
 
-Keyboard::~Keyboard()
+void Keyboard::Initialize()
 {
+    m_bCapsLockActive = IsCapsLockActive();
 }
 
 void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)

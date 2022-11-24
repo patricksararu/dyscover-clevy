@@ -470,7 +470,7 @@ static const std::vector<KeyTranslationEntry> g_dutchKWeC = {
     { Key::Tab, false, false, true, { { Key::Tab, false, false, true } } },
     { Key::F4, false, false, true, { { Key::F4, false, false, true } } },
 };
-#else defined __LANGUAGE_NL_BE__
+#elif defined __LANGUAGE_NL_BE__
 static const std::vector<KeyTranslationEntry> g_flemishDefault = {
     { Key::Esc, false, false, false, { { Key::Esc, false, false, false } } },
     { Key::CapsLock, false, false, false, { { Key::CapsLock, false, false, false } } },

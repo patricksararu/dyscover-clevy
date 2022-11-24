@@ -109,7 +109,11 @@ void TrayIcon::OnMenuPreferences(wxCommandEvent&)
 
 void TrayIcon::OnMenuHelp(wxCommandEvent&)
 {
+#if defined __LANGUAGE_NL__
     wxLaunchDefaultBrowser("https://clevy.com/dyscover-4-handleiding-nl");
+#elif defined __LANGUAGE_NL_BE__
+    wxLaunchDefaultBrowser("https://clevy.com/dyscover-4-handleiding-be");
+#endif
 }
 
 void TrayIcon::OnMenuExit(wxCommandEvent&)

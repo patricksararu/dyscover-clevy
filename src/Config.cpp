@@ -21,7 +21,7 @@ static const wxString kSpeedKey("/Dyscover/Speed");
 static const wxString kDemoStartedKey("/Dyscover/DemoStarted");
 static const wxString kDemoExpiredKey("/Dyscover/DemoExpired");
 
-static constexpr Layout kLayoutDefaultValue = Layout::DutchClassic;
+static constexpr Layout kLayoutDefaultValue = Layout::Classic;
 static constexpr bool kEnabledDefaultValue = true;
 static constexpr bool kAutostartDefaultValue = false;
 static constexpr bool kLettersDefaultValue = true;
@@ -34,7 +34,9 @@ static constexpr bool kDemoExpiredDefaultValue = false;
 
 static const wxString kLayoutValueDefault("Default");
 static const wxString kLayoutValueClassic("Classic");
+#ifdef __LANGUAGE_NL__
 static const wxString kLayoutValueKWeC("Cover");
+#endif
 
 static const wxString kWindowsRegistryAutostartKeyName("ClevyDyscover4");
 
@@ -187,21 +189,23 @@ bool wxFromString(const wxString& string, Layout* pLayout)
 {
     if (string == kLayoutValueDefault)
     {
-        *pLayout = Layout::DutchDefault;
+        *pLayout = Layout::Default;
         return true;
     }
 
     if (string == kLayoutValueClassic)
     {
-        *pLayout = Layout::DutchClassic;
+        *pLayout = Layout::Classic;
         return true;
     }
 
+#ifdef __LANGUAGE_NL__
     if (string == kLayoutValueKWeC)
     {
-        *pLayout = Layout::DutchKWeC;
+        *pLayout = Layout::KWeC;
         return true;
     }
+#endif
 
     return false;
 }
@@ -210,12 +214,14 @@ wxString wxToString(const Layout& layout)
 {
     switch (layout)
     {
-    case Layout::DutchDefault:
+    case Layout::Default:
         return kLayoutValueDefault;
-    case Layout::DutchClassic:
+    case Layout::Classic:
         return kLayoutValueClassic;
-    case Layout::DutchKWeC:
+#ifdef __LANGUAGE_NL__
+    case Layout::KWeC:
         return kLayoutValueKWeC;
+#endif
     default:
         return wxEmptyString;
     }

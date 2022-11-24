@@ -23,6 +23,11 @@ KeyboardWindows::~KeyboardWindows()
     UnhookWindowsHookEx(m_hKeyboardHook);
 }
 
+bool KeyboardWindows::IsCapsLockActive()
+{
+    return GetKeyState(VK_CAPITAL) & 1;
+}
+
 void KeyboardWindows::SendKeyEvent(KeyEventType eventType, Key key)
 {
     int keyCode = KeyCodeFromKey(key);

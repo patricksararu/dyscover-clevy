@@ -40,7 +40,9 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     m_pKeyboardMethodLabel = new wxStaticText(this, wxID_ANY, _("Method:"));
     m_pKeyboardMethodDyscover = new wxRadioButton(this, ID_METHOD_DYSCOVER, _("Clevy Dyscover"), wxDefaultPosition, wxDefaultSize, wxRB_GROUP);
     m_pKeyboardMethodDefault = new wxRadioButton(this, ID_METHOD_DEFAULT, _("Clevy Keyboard"));
+#ifdef __LANGUAGE_NL__
     m_pKeyboardMethodKWeC = new wxRadioButton(this, ID_METHOD_KWEC, _("KWeC-over"));
+#endif
 
     m_pSoftwareEnabled = new wxCheckBox(this, ID_ENABLED, _("Software enabled"));
     m_pSoftwareAutostart = new wxCheckBox(this, ID_AUTOSTART, _("Auto-start with system"));
@@ -56,6 +58,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
 
     m_pVersionLabel = new wxStaticText(this, wxID_ANY, "Version");
     m_pVersionValue = new wxStaticText(this, wxID_ANY, VERSION_STRING);
+    m_pVersionLanguage = new wxStaticText(this, wxID_ANY, LANG);
 
     wxBoxSizer* pKeyboardStatusSizer = new wxBoxSizer(wxHORIZONTAL);
     pKeyboardStatusSizer->Add(m_pKeyboardStatusLabel, wxSizerFlags().Border(wxRIGHT));
@@ -67,8 +70,10 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pKeyboardMethodSizer->Add(m_pKeyboardMethodDyscover);
     pKeyboardMethodSizer->AddSpacer(1);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodDefault);
+#ifdef __LANGUAGE_NL__
     pKeyboardMethodSizer->AddSpacer(1);
     pKeyboardMethodSizer->Add(m_pKeyboardMethodKWeC);
+#endif
 
     wxStaticBoxSizer* pKeyboardSectionSizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Keyboard"));
     pKeyboardSectionSizer->Add(pKeyboardStatusSizer, wxSizerFlags().Border().Expand());
@@ -105,6 +110,7 @@ PreferencesDialog::PreferencesDialog(App* pApp, Config* pConfig)
     pVersionSizer->AddStretchSpacer();
     pVersionSizer->Add(m_pVersionLabel, wxSizerFlags().Border(wxRIGHT));
     pVersionSizer->Add(m_pVersionValue, wxSizerFlags().Border(wxRIGHT));
+    pVersionSizer->Add(m_pVersionLanguage, wxSizerFlags().Border(wxRIGHT));
 
     wxBoxSizer* pRootSizer = new wxBoxSizer(wxVERTICAL);
     pRootSizer->Add(pKeyboardSectionSizer, wxSizerFlags().DoubleBorder().Expand());
@@ -129,9 +135,11 @@ bool PreferencesDialog::TransferDataToWindow()
         m_pKeyboardStatusValue->SetLabelText(_("Keyboard not connected"));
     }
 
-    m_pKeyboardMethodDefault->SetValue(m_pConfig->GetLayout() == Layout::DutchDefault);
-    m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::DutchClassic);
-    m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::DutchKWeC);
+    m_pKeyboardMethodDefault->SetValue(m_pConfig->GetLayout() == Layout::Default);
+    m_pKeyboardMethodDyscover->SetValue(m_pConfig->GetLayout() == Layout::Classic);
+#ifdef __LANGUAGE_NL__
+    m_pKeyboardMethodKWeC->SetValue(m_pConfig->GetLayout() == Layout::KWeC);
+#endif
 
     m_pSoftwareEnabled->SetValue(m_pConfig->GetEnabled());
     m_pSoftwareAutostart->SetValue(m_pConfig->GetAutostart());
@@ -150,16 +158,18 @@ void PreferencesDialog::OnKeyboardMethodChanged(wxCommandEvent&)
 {
     if (m_pKeyboardMethodDyscover->GetValue())
     {
-        m_pConfig->SetLayout(Layout::DutchClassic);
+        m_pConfig->SetLayout(Layout::Classic);
     }
     else if (m_pKeyboardMethodDefault->GetValue())
     {
-        m_pConfig->SetLayout(Layout::DutchDefault);
+        m_pConfig->SetLayout(Layout::Default);
     }
+#ifdef __LANGUAGE_NL__
     else
     {
-        m_pConfig->SetLayout(Layout::DutchKWeC);
+        m_pConfig->SetLayout(Layout::KWeC);
     }
+#endif
 }
 
 void PreferencesDialog::OnSoftwareEnabledChanged(wxCommandEvent&)

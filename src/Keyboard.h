@@ -9,7 +9,7 @@
 class IKeyEventListener
 {
 public:
-    virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool shift, bool ctrl, bool alt) = 0;
+    virtual bool OnKeyEvent(Key key, KeyEventType eventType, bool capsLock, bool shift, bool ctrl, bool alt) = 0;
 };
 
 class Keyboard
@@ -17,8 +17,9 @@ class Keyboard
 public:
     static Keyboard* Create(IKeyEventListener*);
 
-    Keyboard(IKeyEventListener*);
-    virtual ~Keyboard();
+    virtual ~Keyboard() = default;
+
+    virtual bool IsCapsLockActive() = 0;
 
     virtual void SendKeyEvent(KeyEventType eventType, Key key) = 0;
 
@@ -27,10 +28,16 @@ public:
     virtual std::string TranslateKeyStroke(Key key, bool shift, bool ctrl) = 0;
 
 protected:
+    explicit Keyboard(IKeyEventListener*);
+
     bool ProcessKeyEvent(KeyEventType eventType, Key key);
 
 private:
+    void Initialize();
+
     IKeyEventListener* m_pListener;
+
+    bool m_bCapsLockActive;
 
     bool m_bShiftPressed;
     bool m_bCtrlPressed;

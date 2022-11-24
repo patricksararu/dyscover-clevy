@@ -113,9 +113,11 @@ struct KeyTranslation
 {
     std::vector<KeyStroke> keystrokes;
     std::string sound;
+
+    bool speak_sentence;
 };
 
 std::string KeyToString(Key);
 Key KeyFromString(std::string);
 
-KeyTranslation TranslateKey(Key input, bool shift, bool ctrl, bool alt, Layout layout);
+KeyTranslation TranslateKey(Key input, bool caps, bool shift, bool ctrl, bool alt, Layout layout);

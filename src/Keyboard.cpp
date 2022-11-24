@@ -13,23 +13,30 @@
 Keyboard* Keyboard::Create(IKeyEventListener* pListener)
 {
 #ifdef WIN32
-    return new KeyboardWindows(pListener);
+    Keyboard* pKeyboard = new KeyboardWindows(pListener);
 #else
-    return new KeyboardLinux(pListener);
+    Keyboard* pKeyboard = new KeyboardLinux(pListener);
 #endif
+
+    pKeyboard->Initialize();
+
+    return pKeyboard;
 }
 
 Keyboard::Keyboard(IKeyEventListener* pListener)
 {
     m_pListener = pListener;
 
+    m_bCapsLockActive = false;
+
     m_bShiftPressed = false;
     m_bCtrlPressed = false;
     m_bAltPressed = false;
 }
 
-Keyboard::~Keyboard()
+void Keyboard::Initialize()
 {
+    m_bCapsLockActive = IsCapsLockActive();
 }
 
 void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)
@@ -76,6 +83,11 @@ void Keyboard::SendKeyStroke(Key key, bool shift, bool ctrl, bool alt)
 
 bool Keyboard::ProcessKeyEvent(KeyEventType eventType, Key key)
 {
+    if (key == Key::CapsLock && eventType == KeyEventType::KeyDown)
+    {
+        m_bCapsLockActive = !m_bCapsLockActive;
+    }
+
     if (key == Key::Shift)
     {
         m_bShiftPressed = eventType == KeyEventType::KeyDown;
@@ -93,7 +105,7 @@ bool Keyboard::ProcessKeyEvent(KeyEventType eventType, Key key)
 
     if (key != Key::Unknown)
     {
-        return m_pListener->OnKeyEvent(key, eventType, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed);
+        return m_pListener->OnKeyEvent(key, eventType, m_bCapsLockActive, m_bShiftPressed, m_bCtrlPressed, m_bAltPressed);
     }
 
     return false;

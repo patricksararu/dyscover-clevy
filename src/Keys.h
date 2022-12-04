@@ -101,12 +101,20 @@ enum class Key
     F12,
 };
 
+enum KeyStrokeFlags {
+    KSF_NoModifiers = 0,
+    KSF_Shift = 1,
+    KSF_Ctrl = 2,
+    KSF_Alt = 3,
+};
+
 struct KeyStroke
 {
     Key key;
-    bool shift;
-    bool ctrl;
-    bool alt;
+    //bool shift;
+    //bool ctrl;
+    //bool alt;
+    KeyStrokeFlags flags;
 };
 
 struct KeyTranslation

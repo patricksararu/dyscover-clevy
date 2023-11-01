@@ -1,5 +1,20 @@
 cmake_minimum_required(VERSION 3.15)
 
+# vcpkg
+# TODO: On Windows and macOS, use vcpkg by default
+# First try to find VCPKG_ROOT env variable
+message(STATUS "vcpkg root: $ENV{VCPKG_ROOT}")
+#if (WIN32)
+if(DEFINED ENV{VCPKG_ROOT})
+set(CMAKE_TOOLCHAIN_FILE $ENV{VCPKG_ROOT})
+else()
+# If not set, find vcpkg executable and take its' parent
+find_program(VCPKG_PATH vcpkg)
+message(STATUS "Found vcpkg: ${VCPKG_PATH}")
+cmake_path(GET VCPKG_PATH PARENT_PATH VCPKG_ROOT)
+message(STATUS "vcpkg root: ${VCPKG_ROOT}")
+endif()
+
 project(Dyscover
   VERSION 4.0.5.0
   DESCRIPTION "Clevy Dyscover"
